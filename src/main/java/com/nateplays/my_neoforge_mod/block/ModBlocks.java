@@ -18,6 +18,7 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MyNeoForgeMod.MODID);
 
 
+
     public static final DeferredBlock<Block> EARTH_CRYSTAL_ORE = registerBlock("earth_crystal_ore",
             () -> new DropExperienceBlock(
                     UniformInt.of(2,4),
@@ -30,10 +31,7 @@ public class ModBlocks {
                     BlockBehaviour.Properties.of().strength(4f,2f).requiresCorrectToolForDrops().sound(SoundType.STONE)
             ));
 
-    public static final DeferredBlock<Block> NULBERRY_BUSH = registerBlock("nulberry_bush",
-            () -> new SweetBerryBushBlock(
-                    BlockBehaviour.Properties.of().randomTicks().noCollission().pushReaction(PushReaction.DESTROY).noOcclusion()
-            ));
+    public static final DeferredBlock<Block> NULBERRY_BUSH = registerBlock("nulberry_bush", NulberryBushBlock::new);
 
 
 
