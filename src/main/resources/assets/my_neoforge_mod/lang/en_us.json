@@ -5,5 +5,8 @@
 
   "block.my_neoforge_mod.earth_crystal_ore": "Earth Crystal Ore",
   "block.my_neoforge_mod.machalite_ore": "Machalite Ore",
-  "block.my_neoforge_mod.nulberry_bush": "Nulberry Bush"
+  "block.my_neoforge_mod.nulberry_bush": "Nulberry Bush",
+
+  "creativetab.my_neoforge_mod.items_tab": "MyNeoForgeMod Items",
+  "creativetab.my_neoforge_mod.blocks_tab": "MyNeoForgeMod Blocks"
 }
