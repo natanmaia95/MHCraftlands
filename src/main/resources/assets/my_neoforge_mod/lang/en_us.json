@@ -1,5 +1,9 @@
 {
   "item.my_neoforge_mod.earth_crystal": "Earth Crystal",
   "item.my_neoforge_mod.machalite_chunk": "Machalite Chunk",
-  "item.my_neoforge_mod.nulberry": "Nulberry"
+  "item.my_neoforge_mod.nulberry": "Nulberry",
+
+  "block.my_neoforge_mod.earth_crystal_ore": "Earth Crystal Ore",
+  "block.my_neoforge_mod.machalite_ore": "Machalite Ore",
+  "block.my_neoforge_mod.nulberry_bush": "Nulberry Bush"
 }

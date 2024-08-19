@@ -1,5 +1,6 @@
 package com.nateplays.my_neoforge_mod;
 
+import com.nateplays.my_neoforge_mod.block.ModBlocks;
 import com.nateplays.my_neoforge_mod.item.ModItems;
 import org.slf4j.Logger;
 
@@ -58,6 +59,7 @@ public class MyNeoForgeMod
         NeoForge.EVENT_BUS.register(this);
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -80,6 +82,12 @@ public class MyNeoForgeMod
         }
         if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             event.accept(ModItems.NULBERRY);
+        }
+
+        if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
+            event.accept(ModBlocks.EARTH_CRYSTAL_ORE);
+            event.accept(ModBlocks.MACHALITE_ORE);
+            event.accept(ModBlocks.NULBERRY_BUSH);
         }
     }
 
