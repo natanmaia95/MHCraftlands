@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "my_neoforge_mod:block/nulberry_bush_stage0"
+    "cross": "nulberry:block/nulberry_bush_stage2"
   }
 }

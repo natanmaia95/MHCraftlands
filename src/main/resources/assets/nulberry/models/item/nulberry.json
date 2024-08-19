@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "my_neoforge_mod:item/nulberry"
+    "layer0": "nulberry:item/nulberry"
   }
 }

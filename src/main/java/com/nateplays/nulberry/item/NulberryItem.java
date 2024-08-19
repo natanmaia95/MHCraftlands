@@ -1,6 +1,6 @@
-package com.nateplays.my_neoforge_mod.item;
+package com.nateplays.nulberry.item;
 
-import com.nateplays.my_neoforge_mod.block.ModBlocks;
+import com.nateplays.nulberry.block.ModBlocks;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;

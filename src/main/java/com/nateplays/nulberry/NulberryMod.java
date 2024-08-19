@@ -1,25 +1,12 @@
-package com.nateplays.my_neoforge_mod;
+package com.nateplays.nulberry;
 
-import com.nateplays.my_neoforge_mod.block.ModBlocks;
-import com.nateplays.my_neoforge_mod.item.ModCreativeModeTabs;
-import com.nateplays.my_neoforge_mod.item.ModItems;
+import com.nateplays.nulberry.block.ModBlocks;
+import com.nateplays.nulberry.item.ModItems;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -32,24 +19,20 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredItem;
-import net.neoforged.neoforge.registries.DeferredRegister;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
-@Mod(MyNeoForgeMod.MODID)
-public class MyNeoForgeMod
+@Mod(NulberryMod.MODID)
+public class NulberryMod
 {
     // Define mod id in a common place for everything to reference
-    public static final String MODID = "my_neoforge_mod";
+    public static final String MODID = "nulberry";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
 
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
-    public MyNeoForgeMod(IEventBus modEventBus, ModContainer modContainer)
+    public NulberryMod(IEventBus modEventBus, ModContainer modContainer)
     {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -58,8 +41,6 @@ public class MyNeoForgeMod
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
-
-        ModCreativeModeTabs.register(modEventBus);
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
@@ -79,18 +60,8 @@ public class MyNeoForgeMod
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.EARTH_CRYSTAL);
-            event.accept(ModItems.MALACHITE_CHUNK);
-        }
         if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             event.accept(ModItems.NULBERRY);
-        }
-
-        if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
-            event.accept(ModBlocks.EARTH_CRYSTAL_ORE);
-            event.accept(ModBlocks.MACHALITE_ORE);
-            event.accept(ModBlocks.NULBERRY_BUSH);
         }
     }
 

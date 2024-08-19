@@ -1,6 +1,6 @@
-package com.nateplays.my_neoforge_mod.block;
+package com.nateplays.nulberry.block;
 
-import com.nateplays.my_neoforge_mod.item.ModItems;
+import com.nateplays.nulberry.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;

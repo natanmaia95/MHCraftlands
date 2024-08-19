@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "my_neoforge_mod:item/machalite_chunk"
+    "layer0": "nulberry:block/nulberry_bush_stage3"
   }
 }
