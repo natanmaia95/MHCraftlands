@@ -2,6 +2,8 @@ package com.nateplays.nulberry;
 
 import com.nateplays.nulberry.block.ModBlocks;
 import com.nateplays.nulberry.item.ModItems;
+import net.minecraft.core.registries.Registries;
+import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -70,6 +72,15 @@ public class NulberryMod
     public void onServerStarting(ServerStartingEvent event)
     {
 
+    }
+
+    @SubscribeEvent
+    public void onServerAboutToStart(ServerAboutToStartEvent event) {
+//        var biomes = event.getServer().registryAccess().registryOrThrow(Registries.BIOME);
+//
+//        biomes.holders().forEach(biome -> {
+//            ModWorldGen.addFeatures(biome);
+//        });
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent

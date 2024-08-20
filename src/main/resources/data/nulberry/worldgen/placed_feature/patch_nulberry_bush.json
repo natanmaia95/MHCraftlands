@@ -1,0 +1,19 @@
+{
+  "feature": "nulberry:patch_nulberry_bush",
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 40
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "WORLD_SURFACE_WG"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

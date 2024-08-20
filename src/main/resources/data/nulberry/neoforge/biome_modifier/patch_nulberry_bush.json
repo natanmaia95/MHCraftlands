@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#nulberry:spawns_nulberries",
+  "features": "nulberry:patch_nulberry_bush",
+  "step": "vegetal_decoration"
+}
