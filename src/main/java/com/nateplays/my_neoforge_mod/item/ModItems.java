@@ -19,6 +19,8 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> MALACHITE_CHUNK = ITEMS.register("machalite_chunk",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> MALACHITE_INGOT = ITEMS.register("machalite_ingot",
+            () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> NULBERRY = ITEMS.register("nulberry",
             () -> new NulberryItem(new Item.Properties()));
 

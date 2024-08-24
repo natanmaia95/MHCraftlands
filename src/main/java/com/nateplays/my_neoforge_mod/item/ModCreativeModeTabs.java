@@ -23,6 +23,7 @@ public class ModCreativeModeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModBlocks.EARTH_CRYSTAL_ORE);
                         output.accept(ModBlocks.MACHALITE_ORE);
+                        output.accept(ModBlocks.MACHALITE_BLOCK);
                         output.accept(ModBlocks.NULBERRY_BUSH);
                     })
                     .build());
@@ -35,6 +36,7 @@ public class ModCreativeModeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.EARTH_CRYSTAL);
                         output.accept(ModItems.MALACHITE_CHUNK);
+                        output.accept(ModItems.MALACHITE_INGOT);
                         output.accept(ModItems.NULBERRY);
                     })
                     .backgroundTexture(ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "textures/block/earth_crystal_ore.png"))

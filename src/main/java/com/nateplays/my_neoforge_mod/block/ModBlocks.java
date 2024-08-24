@@ -28,7 +28,14 @@ public class ModBlocks {
     public static final DeferredBlock<Block> MACHALITE_ORE = registerBlock("machalite_ore",
             () -> new DropExperienceBlock(
                     UniformInt.of(2,4),
-                    BlockBehaviour.Properties.of().strength(4f,2f).requiresCorrectToolForDrops().sound(SoundType.STONE)
+                    BlockBehaviour.Properties.of().strength(4f,2f).sound(SoundType.STONE)
+                            .requiresCorrectToolForDrops()
+            ));
+
+    public static final DeferredBlock<Block> MACHALITE_BLOCK = registerBlock("machalite_block",
+            () -> new Block(
+                    BlockBehaviour.Properties.of().strength(4f,2f).sound(SoundType.METAL)
+                            .requiresCorrectToolForDrops()
             ));
 
     public static final DeferredBlock<Block> NULBERRY_BUSH = registerBlock("nulberry_bush", NulberryBushBlock::new);

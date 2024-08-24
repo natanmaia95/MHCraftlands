@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "my_neoforge_mod:earth_crystal_ore",
+    "my_neoforge_mod:machalite_ore",
+    "my_neoforge_mod:machalite_block"
+  ]
+}

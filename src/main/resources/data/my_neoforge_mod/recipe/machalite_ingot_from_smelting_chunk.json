@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.7,
+  "group": "machalite_ingot",
+  "ingredient": {
+    "item": "my_neoforge_mod:machalite_chunk"
+  },
+  "result": {
+    "id": "my_neoforge_mod:machalite_ingot"
+  }
+}
