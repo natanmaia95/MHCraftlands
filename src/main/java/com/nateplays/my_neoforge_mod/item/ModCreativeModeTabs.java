@@ -38,6 +38,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.MALACHITE_CHUNK);
                         output.accept(ModItems.MALACHITE_INGOT);
                         output.accept(ModItems.NULBERRY);
+                        output.accept(ModItems.CHISEL);
                     })
                     .backgroundTexture(ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "textures/block/earth_crystal_ore.png"))
                     .build());

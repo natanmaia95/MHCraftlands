@@ -2,6 +2,7 @@ package com.nateplays.my_neoforge_mod.item;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.block.ModBlocks;
+import com.nateplays.my_neoforge_mod.item.custom.ChiselItem;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
@@ -24,7 +25,8 @@ public class ModItems {
     public static final DeferredItem<Item> NULBERRY = ITEMS.register("nulberry",
             () -> new NulberryItem(new Item.Properties()));
 
-
+    public static final DeferredItem<Item> CHISEL = ITEMS.register("chisel",
+            () -> new ChiselItem(new Item.Properties().durability(32)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
