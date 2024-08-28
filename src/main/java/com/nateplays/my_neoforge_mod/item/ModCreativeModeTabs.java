@@ -25,6 +25,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.MACHALITE_ORE);
                         output.accept(ModBlocks.MACHALITE_BLOCK);
                         output.accept(ModBlocks.NULBERRY_BUSH);
+                        output.accept(ModBlocks.MAGIC_BLOCK);
                     })
                     .build());
 

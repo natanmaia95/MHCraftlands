@@ -1,6 +1,7 @@
 package com.nateplays.my_neoforge_mod.block;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
+import com.nateplays.my_neoforge_mod.block.custom.MagicBlock;
 import com.nateplays.my_neoforge_mod.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -40,7 +41,10 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> NULBERRY_BUSH = registerBlock("nulberry_bush", NulberryBushBlock::new);
 
-
+    public static final DeferredBlock<Block> MAGIC_BLOCK = registerBlock("magic_block",
+            () -> new MagicBlock(
+                    BlockBehaviour.Properties.of().strength(1f,2f).sound(SoundType.AMETHYST)
+            ));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
