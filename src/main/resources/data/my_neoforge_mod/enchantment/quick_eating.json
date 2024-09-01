@@ -1,0 +1,35 @@
+{
+  "anvil_cost": 100,
+  "description": {
+    "translate": "enchantment.my_neoforge_mod.quick_eating"
+  },
+  "effects": {
+    "minecraft:attributes": [
+      {
+        "amount": {
+          "type": "minecraft:linear",
+          "base": 0.5,
+          "per_level_above_first": 0.5
+        },
+        "attribute": "my_neoforge_mod:player.eating_speed",
+        "id": "my_neoforge_mod:skill.quick_eating",
+        "operation": "add_value"
+      }
+
+    ]
+  },
+  "max_cost": {
+    "base": 0,
+    "per_level_above_first": 0
+  },
+  "max_level": 4,
+  "min_cost": {
+    "base": 0,
+    "per_level_above_first": 0
+  },
+  "slots": [
+    "armor"
+  ],
+  "supported_items": "#minecraft:enchantable/armor",
+  "weight": 5
+}

@@ -4,6 +4,8 @@ import com.nateplays.my_neoforge_mod.attribute.ModAttributes;
 import com.nateplays.my_neoforge_mod.block.ModBlocks;
 import com.nateplays.my_neoforge_mod.item.ModCreativeModeTabs;
 import com.nateplays.my_neoforge_mod.item.ModItems;
+import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
+import com.nateplays.my_neoforge_mod.item.armor.ModArmorMaterials;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -46,10 +48,12 @@ public class MyNeoForgeMod
 
         ModCreativeModeTabs.register(modEventBus);
 
-        ModItems.register(modEventBus);
-        ModBlocks.register(modEventBus);
-
+        ModArmorMaterials.register(modEventBus);
         ModAttributes.register(modEventBus);
+
+        ModItems.register(modEventBus);
+        ModArmorItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
 
         // Register the item to a creative tab

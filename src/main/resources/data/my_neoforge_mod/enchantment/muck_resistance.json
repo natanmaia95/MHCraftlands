@@ -1,0 +1,35 @@
+{
+  "anvil_cost": 100,
+  "description": {
+    "translate": "enchantment.my_neoforge_mod.muck_resistance"
+  },
+  "effects": {
+    "minecraft:attributes": [
+      {
+        "amount": {
+          "type": "minecraft:linear",
+          "base": 0.5,
+          "per_level_above_first": 0.5
+        },
+        "attribute": "minecraft:generic.movement_efficiency",
+        "id": "my_neoforge_mod:skill.muck_resistance",
+        "operation": "add_value"
+      }
+
+    ]
+  },
+  "max_cost": {
+    "base": 0,
+    "per_level_above_first": 0
+  },
+  "max_level": 2,
+  "min_cost": {
+    "base": 0,
+    "per_level_above_first": 0
+  },
+  "slots": [
+    "armor"
+  ],
+  "supported_items": "#minecraft:enchantable/armor",
+  "weight": 5
+}

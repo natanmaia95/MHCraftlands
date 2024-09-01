@@ -3,10 +3,21 @@
   "item.my_neoforge_mod.machalite_chunk": "Machalite Chunk",
   "item.my_neoforge_mod.nulberry": "Nulberry",
 
+  "item.my_neoforge_mod.hunter_helmet": "Hunter's Helmet",
+  "item.my_neoforge_mod.hunter_chestplate": "Hunter's Chestplate",
+  "item.my_neoforge_mod.hunter_leggings": "Hunter's Leggings",
+  "item.my_neoforge_mod.hunter_boots": "Hunter's Boots",
+
   "block.my_neoforge_mod.earth_crystal_ore": "Earth Crystal Ore",
   "block.my_neoforge_mod.machalite_ore": "Machalite Ore",
   "block.my_neoforge_mod.nulberry_bush": "Nulberry Bush",
 
   "creativetab.my_neoforge_mod.items_tab": "MyNeoForgeMod Items",
-  "creativetab.my_neoforge_mod.blocks_tab": "MyNeoForgeMod Blocks"
+  "creativetab.my_neoforge_mod.blocks_tab": "MyNeoForgeMod Blocks",
+  "creativetab.my_neoforge_mod.armors_tab": "MyNeoForgeMod Armors",
+
+  "attribute.my_neoforge_mod.player.eating_speed": "Eating Speed",
+
+  "enchantment.my_neoforge_mod.quick_eating": "Quick Eating",
+  "enchantment.my_neoforge_mod.muck_resistance": "Muck Resistance"
 }

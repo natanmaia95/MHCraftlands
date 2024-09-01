@@ -16,8 +16,8 @@ import java.util.function.Supplier;
 public class ModAttributes {
     public static final DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(Registries.ATTRIBUTE, MyNeoForgeMod.MODID);
 
-    public static final DeferredHolder<Attribute, Attribute> EATING_SPEED = ATTRIBUTES.register("eating_speed",
-            () -> new RangedAttribute("attribute.name.hunt_skill.eating_speed", 1.0, 0.0, 1024.0).setSyncable(true));
+    public static final DeferredHolder<Attribute, Attribute> EATING_SPEED = ATTRIBUTES.register("player.eating_speed",
+            () -> new RangedAttribute("attribute.my_neoforge_mod.player.eating_speed", 1.0, 0.0, 1024.0).setSyncable(true));
 
     private static <T extends Attribute> DeferredHolder<Attribute, Attribute> registerAttribute(String name, Supplier<Attribute> attr) {
         return ATTRIBUTES.register(name, attr);

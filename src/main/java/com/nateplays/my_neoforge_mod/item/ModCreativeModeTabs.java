@@ -2,6 +2,8 @@ package com.nateplays.my_neoforge_mod.item;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.block.ModBlocks;
+import com.nateplays.my_neoforge_mod.item.armor.HuntingArmorItem;
+import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -40,9 +42,34 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.MALACHITE_INGOT);
                         output.accept(ModItems.NULBERRY);
                         output.accept(ModItems.CHISEL);
+
+                        itemDisplayParameters.holders().lookup(Registries.ENCHANTMENT).ifPresent(enchantmentRegistryLookup -> {
+                            output.accept(HuntingArmorItem.makeItemStackWithLookup(ModArmorItems.HUNTER_HELMET.get(), enchantmentRegistryLookup));
+                        });
                     })
                     .backgroundTexture(ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "textures/block/earth_crystal_ore.png"))
                     .build());
+
+    public static final Supplier<CreativeModeTab> MYNEOFORGEMOD_ARMORS_TAB = CREATIVE_MODE_TABS.register("myneoforgemod_armors_tab",
+            () -> CreativeModeTab.builder()
+                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "myneoforgemod_blocks_tab"))
+                    .icon(() -> new ItemStack(ModArmorItems.HUNTER_HELMET.get()))
+                    .title(Component.translatable("creativetab.my_neoforge_mod.armors_tab"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        outputAcceptHuntingArmorItem(ModArmorItems.HUNTER_HELMET.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.HUNTER_CHESTPLATE.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.HUNTER_LEGGINGS.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.HUNTER_BOOTS.get(), itemDisplayParameters, output);
+                    })
+                    .build());
+
+
+
+    public static void outputAcceptHuntingArmorItem(HuntingArmorItem item, CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {
+        itemDisplayParameters.holders().lookup(Registries.ENCHANTMENT).ifPresent(enchantmentRegistryLookup -> {
+            output.accept(HuntingArmorItem.makeItemStackWithLookup(item, enchantmentRegistryLookup));
+        });
+    }
 
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);

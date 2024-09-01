@@ -1,0 +1,9 @@
+{
+  "armor_type": "my_neoforge_mod:hunter_boots",
+  "enchantments": [
+    {
+      "enchantment": "minecraft:feather_falling",
+      "level": 1
+    }
+  ]
+}
