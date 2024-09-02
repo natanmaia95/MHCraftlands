@@ -1,13 +1,13 @@
 {
   "anvil_cost": 100,
   "description": {
-    "translate": "enchantment.my_neoforge_mod.quick_eating"
+    "translate": "enchantment.my_neoforge_mod.bombardier"
   },
   "max_cost": {
     "base": 0,
     "per_level_above_first": 0
   },
-  "max_level": 4,
+  "max_level": 3,
   "min_cost": {
     "base": 0,
     "per_level_above_first": 0

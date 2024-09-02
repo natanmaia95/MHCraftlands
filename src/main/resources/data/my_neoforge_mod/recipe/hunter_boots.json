@@ -6,11 +6,11 @@
     "C": { "item": "minecraft:copper_ingot" }
   },
   "pattern": [
-    "CCC",
-    "L L"
+    "L L",
+    "C C"
   ],
   "result": {
     "count": 1,
-    "id": "my_neoforge_mod:hunter_helmet"
+    "id": "my_neoforge_mod:hunter_boots"
   }
 }

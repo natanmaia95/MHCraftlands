@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "com.nateplays.my_neoforge_mod.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "HuntingEnchantmentMixin",
+    "PrimedTntMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

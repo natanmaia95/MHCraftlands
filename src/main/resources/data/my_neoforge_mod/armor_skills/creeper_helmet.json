@@ -1,0 +1,9 @@
+{
+  "armor_item": "my_neoforge_mod:creeper_helmet",
+  "enchantments": [
+    {
+      "enchantment": "my_neoforge_mod:bombardier",
+      "level": 1
+    }
+  ]
+}

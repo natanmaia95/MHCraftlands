@@ -7,6 +7,10 @@
   "item.my_neoforge_mod.hunter_chestplate": "Hunter's Chestplate",
   "item.my_neoforge_mod.hunter_leggings": "Hunter's Leggings",
   "item.my_neoforge_mod.hunter_boots": "Hunter's Boots",
+  "item.my_neoforge_mod.creeper_helmet": "Creeper Helmet",
+  "item.my_neoforge_mod.creeper_chestplate": "Creeper Chestplate",
+  "item.my_neoforge_mod.creeper_leggings": "Creeper Leggings",
+  "item.my_neoforge_mod.creeper_boots": "Creeper Boots",
 
   "block.my_neoforge_mod.earth_crystal_ore": "Earth Crystal Ore",
   "block.my_neoforge_mod.machalite_ore": "Machalite Ore",
@@ -19,5 +23,6 @@
   "attribute.my_neoforge_mod.player.eating_speed": "Eating Speed",
 
   "enchantment.my_neoforge_mod.quick_eating": "Quick Eating",
-  "enchantment.my_neoforge_mod.muck_resistance": "Muck Resistance"
+  "enchantment.my_neoforge_mod.muck_resistance": "Muck Resistance",
+  "enchantment.my_neoforge_mod.bombardier": "Bombardier"
 }

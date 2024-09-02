@@ -1,0 +1,9 @@
+{
+  "armor_item": "my_neoforge_mod:creeper_chestplate",
+  "enchantments": [
+    {
+      "enchantment": "minecraft:blast_protection",
+      "level": 2
+    }
+  ]
+}

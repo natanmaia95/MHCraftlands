@@ -1,0 +1,9 @@
+{
+  "armor_item": "my_neoforge_mod:creeper_leggings",
+  "enchantments": [
+    {
+      "enchantment": "minecraft:swift_sneak",
+      "level": 1
+    }
+  ]
+}

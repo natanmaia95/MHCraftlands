@@ -5,6 +5,7 @@ import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
@@ -16,6 +17,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.EnumMap;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class ModArmorMaterials {
 
@@ -69,25 +71,46 @@ public class ModArmorMaterials {
                     0
             ));
 
-    public static final Holder<ArmorMaterial> HUNTER = ARMOR_MATERIALS.register("hunter", () -> new ArmorMaterial(
-            //defense values
-            Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
-                map.put(ArmorItem.Type.BOOTS, 1);
-                map.put(ArmorItem.Type.LEGGINGS, 1);
-                map.put(ArmorItem.Type.CHESTPLATE, 1);
-                map.put(ArmorItem.Type.HELMET, 1);
-                map.put(ArmorItem.Type.BODY, 1);
-                    }),
-            //enchantment value, equip sound
-            0, SoundEvents.ARMOR_EQUIP_LEATHER,
-            //repair item
-            () -> Ingredient.of(Items.LEATHER),
-            //texture locations
-            List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "hunter"))),
-            //toughness, knockback resistance
-            0, 0
-            ));
 
+    public static final Holder<ArmorMaterial> HUNTER = registerMaterial(
+            "hunter", 1, SoundEvents.ARMOR_EQUIP_LEATHER,
+            () -> Ingredient.of(Items.LEATHER)
+    );
+
+    public static final Holder<ArmorMaterial> CREEPER = registerMaterial(
+            "creeper", 1, SoundEvents.ARMOR_EQUIP_LEATHER,
+            () -> Ingredient.of(Items.GUNPOWDER)
+    );
+
+
+
+
+
+
+    public static Supplier<ArmorMaterial> makeHuntingArmorMaterial(
+            int baseDefense, Holder<SoundEvent> soundEvent,
+            Supplier<Ingredient> repairItem, List<ArmorMaterial.Layer> layers) {
+
+        return () -> new ArmorMaterial(
+                Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                    map.put(ArmorItem.Type.BOOTS, baseDefense);
+                    map.put(ArmorItem.Type.LEGGINGS, baseDefense);
+                    map.put(ArmorItem.Type.CHESTPLATE, baseDefense);
+                    map.put(ArmorItem.Type.HELMET, baseDefense);
+                    map.put(ArmorItem.Type.BODY, baseDefense);
+                }),
+                0, soundEvent, repairItem, layers, 0, 0
+        );
+    }
+
+    public static Holder<ArmorMaterial> registerMaterial(String name, int baseDefense, Holder<SoundEvent> soundEvent,
+                                                         Supplier<Ingredient> repairItem) {
+
+        return ARMOR_MATERIALS.register(name, makeHuntingArmorMaterial(
+                baseDefense, soundEvent, repairItem,
+                List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, name)))
+        ));
+    }
 
     public static void register(IEventBus eventBus) {
         ARMOR_MATERIALS.register(eventBus);

@@ -47,6 +47,23 @@ public class ModArmorItems {
             new Item.Properties().durability(100)
     ));
 
+    public static final Supplier<HuntingArmorItem> CREEPER_HELMET = ARMOR_ITEMS.register("creeper_helmet", () -> new HuntingArmorItem(
+            ModArmorMaterials.CREEPER, ArmorItem.Type.HELMET,
+            new Item.Properties().durability(150)
+    ));
+    public static final Supplier<HuntingArmorItem> CREEPER_CHESTPLATE = ARMOR_ITEMS.register("creeper_chestplate", () -> new HuntingArmorItem(
+            ModArmorMaterials.CREEPER, ArmorItem.Type.CHESTPLATE,
+            new Item.Properties().durability(150)
+    ));
+    public static final Supplier<HuntingArmorItem> CREEPER_LEGGINGS = ARMOR_ITEMS.register("creeper_leggings", () -> new HuntingArmorItem(
+            ModArmorMaterials.CREEPER, ArmorItem.Type.LEGGINGS,
+            new Item.Properties().durability(150)
+    ));
+    public static final Supplier<HuntingArmorItem> CREEPER_BOOTS = ARMOR_ITEMS.register("creeper_boots", () -> new HuntingArmorItem(
+            ModArmorMaterials.CREEPER, ArmorItem.Type.BOOTS,
+            new Item.Properties().durability(150)
+    ));
+
     public static void register(IEventBus eventBus) {
         ARMOR_ITEMS.register(eventBus);
     }

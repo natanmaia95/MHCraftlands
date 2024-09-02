@@ -60,6 +60,10 @@ public class ModCreativeModeTabs {
                         outputAcceptHuntingArmorItem(ModArmorItems.HUNTER_CHESTPLATE.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(ModArmorItems.HUNTER_LEGGINGS.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(ModArmorItems.HUNTER_BOOTS.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.CREEPER_HELMET.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.CREEPER_CHESTPLATE.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.CREEPER_LEGGINGS.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.CREEPER_BOOTS.get(), itemDisplayParameters, output);
                     })
                     .build());
 

@@ -1,5 +1,5 @@
 {
-  "armor_type": "my_neoforge_mod:hunter_leggings",
+  "armor_item": "my_neoforge_mod:hunter_leggings",
   "enchantments": [
     {
       "enchantment": "my_neoforge_mod:muck_resistance",

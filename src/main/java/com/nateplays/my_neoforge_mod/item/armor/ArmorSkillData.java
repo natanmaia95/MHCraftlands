@@ -4,7 +4,6 @@ package com.nateplays.my_neoforge_mod.item.armor;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 
@@ -12,16 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArmorSkillData {
-    private final ResourceLocation armorType;
+    private final ResourceLocation armorItem;
     private final List<EnchantmentData> enchantments;
 
-    public ArmorSkillData(ResourceLocation armorType, List<EnchantmentData> enchantments) {
-        this.armorType = armorType;
+    public ArmorSkillData(ResourceLocation armorItem, List<EnchantmentData> enchantments) {
+        this.armorItem = armorItem;
         this.enchantments = enchantments;
     }
 
-    public ResourceLocation getArmorType() {
-        return armorType;
+    public ResourceLocation getArmorItem() {
+        return armorItem;
     }
 
     public List<EnchantmentData> getEnchantments() {
@@ -29,8 +28,8 @@ public class ArmorSkillData {
     }
 
     public static ArmorSkillData fromJson(JsonObject json) {
-        String pathWithNamespace = GsonHelper.getAsString(json, "armor_type");
-        ResourceLocation armorType = ResourceLocation.parse(pathWithNamespace);
+        String pathWithNamespace = GsonHelper.getAsString(json, "armor_item");
+        ResourceLocation armorId = ResourceLocation.parse(pathWithNamespace);
         List<EnchantmentData> enchantments = new ArrayList<>();
 
         JsonArray enchantmentsArray = GsonHelper.getAsJsonArray(json, "enchantments");
@@ -42,7 +41,7 @@ public class ArmorSkillData {
             enchantments.add(new EnchantmentData(enchantment, level));
         }
 
-        return new ArmorSkillData(armorType, enchantments);
+        return new ArmorSkillData(armorId, enchantments);
     }
 
     public static class EnchantmentData {

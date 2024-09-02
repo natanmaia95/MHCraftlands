@@ -1,5 +1,6 @@
 package com.nateplays.my_neoforge_mod.item.armor;
 
+import com.nateplays.my_neoforge_mod.enchantment.ModEnchantmentHelper;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.PlayerModel;
@@ -56,60 +57,27 @@ public class HuntingArmorItem extends ArmorItem {
     }
 
     public static void applyInitialEnchantments(ItemStack stack, Level level) {
-        ResourceLocation armorTypeId = stack.getItemHolder().getKey().location();
-//        LOGGER.debug("armorid: " + armorTypeId.toString());
-        ArmorSkillData data = ArmorSkillDataLoader.getArmorEnchantmentData(armorTypeId);
-
-        if (data != null) {
-//            LOGGER.debug("hasdata");
-            List<Holder<Enchantment>> holdersList = new ArrayList<>();
-            level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).holders().forEach(holdersList::add);
-
-//            LOGGER.debug(holdersList.toString());
-
-            for (ArmorSkillData.EnchantmentData enchantmentData : data.getEnchantments()) {
-                Optional<Holder<Enchantment>> holderOptional = holdersList.stream()
-                        .filter(h -> h.unwrapKey().isPresent() && h.unwrapKey().get().location().equals(enchantmentData.getEnchantment()))
-                        .findFirst();
-                if (holderOptional.isPresent()) {
-//                    LOGGER.debug("found thing");
-                    stack.enchant(holderOptional.get(), enchantmentData.getLevel());
-                }
-            }
-        } else {
-//            LOGGER.debug("not hasdata");
-        }
+        HolderLookup.RegistryLookup<Enchantment> registryLookup = level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
+        applyInitialEnchantmentsWithLookup(stack, registryLookup);
     }
 
     //copy-pasted because fuck it
     public static void applyInitialEnchantmentsWithLookup (ItemStack stack, HolderLookup.RegistryLookup<Enchantment> registryLookup) {
-        ResourceLocation armorTypeId = stack.getItemHolder().getKey().location();
+        ResourceLocation armorId = stack.getItemHolder().getKey().location();
 //        LOGGER.debug("armorid: " + armorTypeId.toString());
-        ArmorSkillData data = ArmorSkillDataLoader.getArmorEnchantmentData(armorTypeId);
+        ArmorSkillData data = ArmorSkillDataLoader.getArmorEnchantmentData(armorId);
 
         if (data != null) {
 //            LOGGER.debug("hasdata");
-            List<Holder<Enchantment>> holdersList = new ArrayList<>();
-            registryLookup.listElements().forEach(enchantmentReference -> {
-                Holder<Enchantment> h = enchantmentReference.getDelegate();
-                holdersList.add(h);
-            });
-
-//            LOGGER.debug(holdersList.toString());
 
             for (ArmorSkillData.EnchantmentData enchantmentData : data.getEnchantments()) {
-                Optional<Holder<Enchantment>> holderOptional = holdersList.stream()
-                        .filter(h -> h.unwrapKey().isPresent() && h.unwrapKey().get().location().equals(enchantmentData.getEnchantment()))
-                        .findFirst();
-                if (holderOptional.isPresent()) {
-//                    LOGGER.debug("found thing");
-                    stack.enchant(holderOptional.get(), enchantmentData.getLevel());
+                Holder<Enchantment> holder = ModEnchantmentHelper.getEnchantmentFromLocationAndLookup(enchantmentData.getEnchantment(), registryLookup);
+                if (holder != null) {
+                    stack.enchant(holder, enchantmentData.getLevel());
                 }
             }
-        } else {
-//            LOGGER.debug("not hasdata");
-        }
-    }
 
+        } else LOGGER.debug("not hasdata");
+    }
 
 }

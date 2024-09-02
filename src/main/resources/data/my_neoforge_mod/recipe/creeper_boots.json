@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": { "item": "minecraft:iron" },
+    "Y": { "item": "minecraft:tnt" }
+  },
+  "pattern": [
+    "X X",
+    "Y Y"
+  ],
+  "result": {
+    "count": 1,
+    "id": "my_neoforge_mod:creeper_boots"
+  }
+}
