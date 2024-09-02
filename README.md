@@ -1,4 +1,6 @@
 **Asset Information**
+=======
+
 Textures are either vanilla edits or sourced from the internet. They are placeholder and not intended to be shared or distributed.
 
 
