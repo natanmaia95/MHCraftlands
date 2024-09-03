@@ -38,7 +38,8 @@ public class HuntingArmorItem extends ArmorItem {
 
     public HuntingArmorItem(Holder<ArmorMaterial> material, Type type, Properties properties) {
         super(material, type,
-                properties.component(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY)
+                properties
+                        .component(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY)
                         .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, false)
         );
     }
@@ -71,7 +72,8 @@ public class HuntingArmorItem extends ArmorItem {
 //            LOGGER.debug("hasdata");
 
             for (ArmorSkillData.EnchantmentData enchantmentData : data.getEnchantments()) {
-                Holder<Enchantment> holder = ModEnchantmentHelper.getEnchantmentFromLocationAndLookup(enchantmentData.getEnchantment(), registryLookup);
+                Holder<Enchantment> holder = ModEnchantmentHelper.getEnchantmentFromLocationAndLookup(
+                        ModEnchantmentHelper.getKey(enchantmentData.getEnchantment()), registryLookup);
                 if (holder != null) {
                     stack.enchant(holder, enchantmentData.getLevel());
                 }
@@ -79,5 +81,4 @@ public class HuntingArmorItem extends ArmorItem {
 
         } else LOGGER.debug("not hasdata");
     }
-
 }

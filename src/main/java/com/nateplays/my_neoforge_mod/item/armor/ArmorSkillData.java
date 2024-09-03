@@ -27,9 +27,7 @@ public class ArmorSkillData {
         return enchantments;
     }
 
-    public static ArmorSkillData fromJson(JsonObject json) {
-        String pathWithNamespace = GsonHelper.getAsString(json, "armor_item");
-        ResourceLocation armorId = ResourceLocation.parse(pathWithNamespace);
+    public static ArmorSkillData fromJson(ResourceLocation armorId, JsonObject json) {
         List<EnchantmentData> enchantments = new ArrayList<>();
 
         JsonArray enchantmentsArray = GsonHelper.getAsJsonArray(json, "enchantments");

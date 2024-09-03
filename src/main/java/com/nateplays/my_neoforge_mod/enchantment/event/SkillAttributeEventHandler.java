@@ -6,6 +6,7 @@ import com.nateplays.my_neoforge_mod.attribute.ModAttributes;
 import com.nateplays.my_neoforge_mod.enchantment.ModEnchantmentHelper;
 import com.nateplays.my_neoforge_mod.enchantment.ModEnchantments;
 import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -41,11 +42,11 @@ public class SkillAttributeEventHandler {
 
 
     public static void updateQuickEatingModifier(LivingEntity livingEntity) {
-        String enchantName = "quick_eating";
+        ResourceKey<Enchantment> enchantmentKey = ModEnchantments.QUICK_EATING;
         AttributeInstance attributeInstance = livingEntity.getAttribute(ModAttributes.EATING_SPEED);
         if (attributeInstance == null) return;
-        ResourceLocation modifierId = ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "skill."+enchantName);
-        Holder<Enchantment> enchantment = ModEnchantmentHelper.getEnchantmentFromLocation(ModEnchantmentHelper.getRL(enchantName), livingEntity.level());
+        ResourceLocation modifierId = ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "skill."+enchantmentKey.registry().getPath());
+        Holder<Enchantment> enchantment = ModEnchantmentHelper.getEnchantmentFromLocation(enchantmentKey, livingEntity.level());
         int enchantLevel = ModEnchantmentHelper.getTotalEnchantmentLevel(livingEntity, enchantment);
         if (enchantLevel > 0) {
             AttributeModifier modifier = new AttributeModifier(modifierId, enchantLevel * 1.0d, AttributeModifier.Operation.ADD_VALUE);
@@ -56,11 +57,11 @@ public class SkillAttributeEventHandler {
     }
 
     public static void updateMuckResistanceModifier(LivingEntity livingEntity) {
-        String enchantName = "muck_resistance";
+        ResourceKey<Enchantment> enchantmentKey = ModEnchantments.MUCK_RESISTANCE;
         AttributeInstance attributeInstance = livingEntity.getAttribute(Attributes.MOVEMENT_EFFICIENCY);
         if (attributeInstance == null) return;
-        ResourceLocation modifierId = ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "skill."+enchantName);
-        Holder<Enchantment> enchantment = ModEnchantmentHelper.getEnchantmentFromLocation(ModEnchantmentHelper.getRL(enchantName), livingEntity.level());
+        ResourceLocation modifierId = ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "skill."+enchantmentKey.registry().getPath());
+        Holder<Enchantment> enchantment = ModEnchantmentHelper.getEnchantmentFromLocation(enchantmentKey, livingEntity.level());
         int enchantLevel = ModEnchantmentHelper.getTotalEnchantmentLevel(livingEntity, enchantment);
         if (enchantLevel > 0) {
             AttributeModifier modifier = new AttributeModifier(modifierId, enchantLevel * 0.5d, AttributeModifier.Operation.ADD_VALUE);

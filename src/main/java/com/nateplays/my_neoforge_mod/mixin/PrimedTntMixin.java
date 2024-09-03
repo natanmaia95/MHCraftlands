@@ -2,6 +2,7 @@ package com.nateplays.my_neoforge_mod.mixin;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.enchantment.ModEnchantmentHelper;
+import com.nateplays.my_neoforge_mod.enchantment.ModEnchantments;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
@@ -31,8 +32,7 @@ public abstract class PrimedTntMixin {
     private void modifyExplosionStrength(CallbackInfo info) {
         PrimedTnt tnt = (PrimedTnt) (Object) this;
         if (tnt.getOwner() instanceof Player player) {
-            Holder<Enchantment> enchantmentHolder = ModEnchantmentHelper.getEnchantmentFromLocation(
-                    ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "bombardier"), player.level());
+            Holder<Enchantment> enchantmentHolder = ModEnchantmentHelper.getEnchantmentFromLocation(ModEnchantments.BOMBARDIER, player.level());
 
             int enchantmentLevel = ModEnchantmentHelper.getTotalEnchantmentLevel(player, enchantmentHolder);
 

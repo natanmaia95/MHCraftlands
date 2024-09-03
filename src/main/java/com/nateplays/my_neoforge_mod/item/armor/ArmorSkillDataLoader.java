@@ -39,7 +39,7 @@ public class ArmorSkillDataLoader extends SimpleJsonResourceReloadListener {
             ResourceLocation id = entry.getKey();
             try {
                 JsonObject json = GsonHelper.convertToJsonObject(entry.getValue(), "armor_skill");
-                ArmorSkillData data = ArmorSkillData.fromJson(json);
+                ArmorSkillData data = ArmorSkillData.fromJson(id, json);
                 ARMOR_SKILL_DATA_MAP.put(id, data);
             } catch (Exception e) {
                 LOGGER.error("Failed to load armor skill data for {}", id, e);
