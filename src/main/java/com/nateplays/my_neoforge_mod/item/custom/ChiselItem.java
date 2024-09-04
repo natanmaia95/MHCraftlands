@@ -1,20 +1,30 @@
 package com.nateplays.my_neoforge_mod.item.custom;
 
 import com.nateplays.my_neoforge_mod.block.ModBlocks;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.ComponentUtils;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
+import java.util.List;
 import java.util.Map;
 
 public class ChiselItem extends Item {
@@ -50,5 +60,18 @@ public class ChiselItem extends Item {
                     0.0, 0.0, 0.0);
         }
         return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        if (Screen.hasShiftDown()) {
+            tooltipComponents.add(Component.literal("Shift is being pressed!"));
+            MutableComponent newComponent = Component.literal("[COOL STUFF]");
+            ComponentUtils.mergeStyles(newComponent, Style.EMPTY.withBold(true).withObfuscated(true).withColor(ChatFormatting.DARK_BLUE));
+            tooltipComponents.add(newComponent);
+        } else {
+            tooltipComponents.add(Component.literal("Press Shift to see cool stuff!"));
+        }
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 }

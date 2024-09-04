@@ -2,8 +2,12 @@ package com.nateplays.my_neoforge_mod.mixin;
 
 import com.nateplays.my_neoforge_mod.enchantment.ModEnchantments;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.Holder;
+import net.minecraft.locale.Language;
 import net.minecraft.network.chat.*;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -29,11 +33,31 @@ public class HuntingEnchantmentMixin {
 //            newComponent.append(Component.literal("SKILL!"));
 //        }
         if (enchantment.is(ModEnchantments.TAG_SKILL_ENCHANTMENTS)) {
-            ComponentUtils.mergeStyles(newComponent, Style.EMPTY.withColor(ChatFormatting.GOLD));
-            newComponent.append(CommonComponents.SPACE);
+            String enchantName = enchantment.unwrapKey().get().location().getPath();
             int remainingLevels = (int) Mth.absMax(enchantment.value().getMaxLevel() - level, 0);
-            newComponent.append(Component.literal( "★".repeat(level) + "☆".repeat(remainingLevels)));
+
+            ComponentUtils.mergeStyles(newComponent, Style.EMPTY.withColor(ChatFormatting.GOLD));
+            newComponent.append(Component.literal( " " + "★".repeat(level) + "☆".repeat(remainingLevels)));
             newComponent.append(Component.literal(" [%d/%d]".formatted(level, enchantment.value().getMaxLevel())));
+
+            if (Screen.hasShiftDown()) {
+                Language language = Language.getInstance();
+
+                String skillDescKey = "tooltip.my_neoforge_mod.skill_description." + enchantName;
+                String leveledSkillDescKey = skillDescKey + ".%d".formatted(level);
+                TranslatableContents skillDescContents = null;
+                if (language.getOrDefault(leveledSkillDescKey, "") != "") {
+                    skillDescContents = new TranslatableContents(leveledSkillDescKey, null, TranslatableContents.NO_ARGS);
+                } else {
+                    skillDescContents = new TranslatableContents(skillDescKey, null, TranslatableContents.NO_ARGS);
+                }
+
+                MutableComponent skillDesc = MutableComponent.create(skillDescContents);
+                skillDesc = skillDesc.withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC);
+                newComponent.append(CommonComponents.NEW_LINE);
+                newComponent.append(skillDesc);
+            }
+
             info.setReturnValue(newComponent);
         }
 

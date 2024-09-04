@@ -20,6 +20,12 @@
   "creativetab.my_neoforge_mod.blocks_tab": "MyNeoForgeMod Blocks",
   "creativetab.my_neoforge_mod.armors_tab": "MyNeoForgeMod Armors",
 
+  "tooltip.my_neoforge_mod.magic_block.tooltip": "This is a tooltip. Cool!",
+  "tooltip.my_neoforge_mod.skill_description.quick_eating": "Makes eating and drinking faster.",
+  "tooltip.my_neoforge_mod.skill_description.muck_resistance": "Reduces slowness on difficult terrain.",
+  "tooltip.my_neoforge_mod.skill_description.muck_resistance.2": "[2] Completely removes slowness on difficult terrain.",
+  "tooltip.my_neoforge_mod.skill_description.bombardier": "Increases TNT explosion power.",
+
   "attribute.my_neoforge_mod.player.eating_speed": "Eating Speed",
 
   "enchantment.my_neoforge_mod.quick_eating": "Quick Eating",
