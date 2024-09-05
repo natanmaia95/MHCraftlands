@@ -1,6 +1,8 @@
 package com.nateplays.my_neoforge_mod.attribute;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
+import com.nateplays.my_neoforge_mod.entity.ModEntities;
+import com.nateplays.my_neoforge_mod.entity.custom.MosswineEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -15,10 +17,10 @@ import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = MyNeoForgeMod.MODID)
 public class ModAttributeHandler {
 
-//    @SubscribeEvent
-//    public static void onEntityAttributeCreation(EntityAttributeCreationEvent event) {
-//        event.put(ModEntities.CUSTOM_ENTITY, createCustomEntityAttributes().build());
-//    }
+    @SubscribeEvent
+    public static void registerAttributes(EntityAttributeCreationEvent event) {
+        event.put(ModEntities.MOSSWINE.get(), MosswineEntity.createAttributes().build());
+    }
 
     public static AttributeSupplier.Builder createPlayerHuntAttributes() {
         return LivingEntity.createLivingAttributes()
@@ -29,10 +31,5 @@ public class ModAttributeHandler {
     public static void entityAttributeModificationEvent(EntityAttributeModificationEvent event) {
         event.add(EntityType.PLAYER, ModAttributes.EATING_SPEED);
     }
-
-
-
-
-
 
 }

@@ -2,10 +2,13 @@ package com.nateplays.my_neoforge_mod;
 
 import com.nateplays.my_neoforge_mod.attribute.ModAttributes;
 import com.nateplays.my_neoforge_mod.block.ModBlocks;
+import com.nateplays.my_neoforge_mod.entity.ModEntities;
+import com.nateplays.my_neoforge_mod.entity.client.MosswineRenderer;
 import com.nateplays.my_neoforge_mod.item.ModCreativeModeTabs;
 import com.nateplays.my_neoforge_mod.item.ModItems;
 import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
 import com.nateplays.my_neoforge_mod.item.armor.ModArmorMaterials;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -55,6 +58,8 @@ public class MyNeoForgeMod
         ModArmorItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 
+        ModEntities.register(modEventBus);
+
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -100,7 +105,7 @@ public class MyNeoForgeMod
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-
+            EntityRenderers.register(ModEntities.MOSSWINE.get(), MosswineRenderer::new);
         }
     }
 }
