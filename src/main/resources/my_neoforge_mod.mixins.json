@@ -4,7 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "HuntingEnchantmentMixin",
-    "PrimedTntMixin"
+    "PrimedTntMixin",
   ],
   "client": [
   ],

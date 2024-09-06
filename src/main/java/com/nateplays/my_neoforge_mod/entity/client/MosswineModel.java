@@ -5,16 +5,19 @@ package com.nateplays.my_neoforge_mod.entity.client;// Made with Blockbench 4.10
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.EntityModel;
+import com.nateplays.my_neoforge_mod.entity.animations.MosswineAnimations;
+import com.nateplays.my_neoforge_mod.entity.custom.MosswineEntity;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
 public class MosswineModel<T extends Entity> extends HierarchicalModel<T> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 //	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("modid", "mosswine"), "main");
+	private final ModelPart root;
 	private final ModelPart body;
 	private final ModelPart legfrontright;
 	private final ModelPart legfrontleft;
@@ -24,6 +27,7 @@ public class MosswineModel<T extends Entity> extends HierarchicalModel<T> {
 	private final ModelPart snout;
 
 	public MosswineModel(ModelPart root) {
+		this.root = root;
 		this.body = root.getChild("body");
 		this.legfrontright = root.getChild("legfrontright");
 		this.legfrontleft = root.getChild("legfrontleft");
@@ -61,7 +65,19 @@ public class MosswineModel<T extends Entity> extends HierarchicalModel<T> {
 
 	@Override
 	public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.root().getAllParts().forEach(ModelPart::resetPose);
+		this.applyHeadRotation(entity, netHeadYaw, headPitch, ageInTicks);
 
+		this.animateWalk(MosswineAnimations.walk, limbSwing, limbSwingAmount, 1f, 1f);
+		this.animate(((MosswineEntity) entity).idleAnimationState, MosswineAnimations.idle_sniff, ageInTicks, 0.5f);
+	}
+
+	private void applyHeadRotation(Entity entity, float netHeadYaw, float headPitch, float ageInTicks) {
+		netHeadYaw = Mth.clamp(netHeadYaw, -30.0F, 30.0F);
+		headPitch = Mth.clamp(headPitch, -25.0F, 45.0F);
+
+		this.head.yRot = netHeadYaw * (float) (Math.PI / 180.0);
+		this.head.xRot = headPitch * (float) (Math.PI / 180.0);
 	}
 
 //	@Override
@@ -86,7 +102,7 @@ public class MosswineModel<T extends Entity> extends HierarchicalModel<T> {
 
 	@Override
 	public ModelPart root() {
-		return this.body;
+		return this.root;
 	}
 
 //	@Override
