@@ -70,6 +70,7 @@ public class MosswineModel<T extends Entity> extends HierarchicalModel<T> {
 
 		this.animateWalk(MosswineAnimations.walk, limbSwing, limbSwingAmount, 1f, 1f);
 		this.animate(((MosswineEntity) entity).idleAnimationState, MosswineAnimations.idle_sniff, ageInTicks, 0.5f);
+		this.animate(((MosswineEntity) entity).attackAnimationState, MosswineAnimations.attack, ageInTicks, 1f);
 	}
 
 	private void applyHeadRotation(Entity entity, float netHeadYaw, float headPitch, float ageInTicks) {

@@ -5,6 +5,7 @@
   "mixins": [
     "HuntingEnchantmentMixin",
     "PrimedTntMixin",
+    "InteractRidingEntityMixin"
   ],
   "client": [
   ],

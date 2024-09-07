@@ -1,6 +1,10 @@
 package com.nateplays.my_neoforge_mod.entity.custom;
 
 import com.nateplays.my_neoforge_mod.entity.ModEntities;
+import com.nateplays.my_neoforge_mod.entity.ai.MosswineAttackGoal;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -8,18 +12,26 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
 public class MosswineEntity extends Animal {
 
+    private static final EntityDataAccessor<Boolean> ATTACKING =
+            SynchedEntityData.defineId(MosswineEntity.class, EntityDataSerializers.BOOLEAN);
+
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
+
+    public final AnimationState attackAnimationState = new AnimationState();
+    public int attackAnimationTimeout = 0;
 
     public MosswineEntity(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
@@ -29,19 +41,20 @@ public class MosswineEntity extends Animal {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-
         this.goalSelector.addGoal(1, new BreedGoal(this, 1.2));
         this.goalSelector.addGoal(1, new TemptGoal(this, 1.2, Ingredient.of(Tags.Items.MUSHROOMS), false));
-
+        this.goalSelector.addGoal(2, new MosswineAttackGoal(this, 1.0f, false));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1.0));
         this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 8f));
-
         this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
+
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
         return createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 10.0).add(Attributes.MOVEMENT_SPEED, 0.25);
+                .add(Attributes.MAX_HEALTH, 10.0).add(Attributes.MOVEMENT_SPEED, 0.25)
+                .add(Attributes.ATTACK_DAMAGE, 1.0);
     }
 
     @Override
@@ -67,16 +80,23 @@ public class MosswineEntity extends Animal {
     }
 
     private void setupAnimationStates() {
-        if (this.getPose() == Pose.STANDING) {
+        if (this.getPose() == Pose.STANDING && this.getDeltaMovement() != Vec3.ZERO) {
             if (this.idleAnimationTimeout <= 0.0) {
                 this.idleAnimationTimeout = this.random.nextInt(200) + 100;
                 this.idleAnimationState.start(this.tickCount);
             } else {
                 this.idleAnimationTimeout--;
             }
+        } else { this.idleAnimationState.stop(); }
+
+        if (this.isAttacking() && this.attackAnimationTimeout <= 0) {
+            this.attackAnimationTimeout = 25; //length in ticks of animation
+            this.attackAnimationState.start(this.tickCount);
         } else {
-            this.idleAnimationState.stop();
+            this.attackAnimationTimeout--;
         }
+
+        if (!this.isAttacking()) this.attackAnimationState.stop();
     }
 
     @Override
@@ -91,11 +111,24 @@ public class MosswineEntity extends Animal {
         this.walkAnimation.update(f, 0.2f);
     }
 
-    /**
-     * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
-     *
-     * @param stack
-     */
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(ATTACKING, false);
+    }
+
+    public void setAttacking(boolean value) {
+        this.entityData.set(ATTACKING, value);
+    }
+
+    public boolean isAttacking() {
+        return this.entityData.get(ATTACKING);
+    }
+
+    public boolean isWithinMeleeAttackRange(LivingEntity entity) {
+        return this.getAttackBoundingBox().inflate(0.3).intersects(entity.getHitbox());
+    }
+
     @Override
     public boolean isFood(ItemStack stack) {
         return stack.is(Tags.Items.MUSHROOMS);
