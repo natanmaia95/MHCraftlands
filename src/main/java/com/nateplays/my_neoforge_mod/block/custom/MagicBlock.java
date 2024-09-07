@@ -1,6 +1,7 @@
 package com.nateplays.my_neoforge_mod.block.custom;
 
 import com.nateplays.my_neoforge_mod.item.ModItems;
+import com.nateplays.my_neoforge_mod.tags.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -36,7 +37,7 @@ public class MagicBlock extends Block {
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
         // yes, item entities can step on blocks
         if (entity instanceof ItemEntity itemEntity) {
-            if (itemEntity.getItem().getItem() == ModItems.MALACHITE_CHUNK.get()) {
+            if (itemEntity.getItem().is(ModTags.Items.TRANSFORMABLE_ITEMS)) {
                 itemEntity.setItem(new ItemStack(ModItems.MALACHITE_INGOT.get(), itemEntity.getItem().getCount()));
             } else {
                 entity.setDeltaMovement(entity.getDeltaMovement().add(0, 0.5, 0));
