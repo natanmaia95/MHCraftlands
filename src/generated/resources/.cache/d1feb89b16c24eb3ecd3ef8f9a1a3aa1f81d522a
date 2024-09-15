@@ -1,0 +1,3 @@
+// 1.21	2024-09-15T13:03:42.1535506	Tags for minecraft:block mod id my_neoforge_mod
+38774987a077ce5a01da4ee821a01b7f0d2ab4f1 data/minecraft/tags/block/mineable/pickaxe.json
+1498c69332d280fe57f0fae003fd7a7dc468464f data/minecraft/tags/block/needs_stone_tool.json

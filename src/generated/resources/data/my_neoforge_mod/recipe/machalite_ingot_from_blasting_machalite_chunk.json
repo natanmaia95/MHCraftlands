@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.25,
+  "group": "machalite",
+  "ingredient": {
+    "item": "my_neoforge_mod:machalite_chunk"
+  },
+  "result": {
+    "count": 1,
+    "id": "my_neoforge_mod:machalite_ingot"
+  }
+}

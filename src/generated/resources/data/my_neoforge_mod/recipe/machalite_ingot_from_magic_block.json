@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "my_neoforge_mod:magic_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "my_neoforge_mod:machalite_ingot"
+  }
+}
