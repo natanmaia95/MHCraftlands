@@ -26,20 +26,11 @@
                   }
                 }
               ],
-              "name": "my_neoforge_mod:earth_crystal_ore"
+              "name": "my_neoforge_mod:machalite_ore"
             },
             {
               "type": "minecraft:item",
               "functions": [
-                {
-                  "add": false,
-                  "count": {
-                    "type": "minecraft:uniform",
-                    "max": 2.0,
-                    "min": 1.0
-                  },
-                  "function": "minecraft:set_count"
-                },
                 {
                   "enchantment": "minecraft:fortune",
                   "formula": "minecraft:ore_drops",
@@ -49,7 +40,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "my_neoforge_mod:earth_crystal"
+              "name": "my_neoforge_mod:machalite_chunk"
             }
           ]
         }
@@ -57,5 +48,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "minecraft:blocks/copper_ore"
+  "random_sequence": "my_neoforge_mod:blocks/machalite_ore"
 }
