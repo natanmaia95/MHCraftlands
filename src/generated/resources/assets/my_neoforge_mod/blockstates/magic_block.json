@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "my_neoforge_mod:block/magic_block"
+    }
+  }
+}

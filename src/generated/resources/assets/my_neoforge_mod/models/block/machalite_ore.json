@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "my_neoforge_mod:block/machalite_ore"
+  }
+}
