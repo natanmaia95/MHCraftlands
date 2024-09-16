@@ -106,6 +106,7 @@ public class MyNeoForgeMod
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             EntityRenderers.register(ModEntities.MOSSWINE.get(), MosswineRenderer::new);
+
         }
     }
 }

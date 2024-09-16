@@ -7,14 +7,16 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.nateplays.my_neoforge_mod.entity.animations.MosswineAnimations;
 import com.nateplays.my_neoforge_mod.entity.custom.MosswineEntity;
+import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.HumanoidArm;
 
-public class MosswineModel<T extends Entity> extends HierarchicalModel<T> {
+public class MosswineModel<T extends Entity> extends HierarchicalModel<T> implements ArmedModel {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 //	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("modid", "mosswine"), "main");
 	private final ModelPart root;
@@ -104,6 +106,16 @@ public class MosswineModel<T extends Entity> extends HierarchicalModel<T> {
 	@Override
 	public ModelPart root() {
 		return this.root;
+	}
+
+	@Override
+	public void translateToHand(HumanoidArm side, PoseStack poseStack) {
+		this.getArm(side).translateAndRotate(poseStack);
+	}
+
+	public ModelPart getArm(HumanoidArm side) {
+		if (side == HumanoidArm.LEFT) return this.legfrontleft;
+		else return this.legfrontright;
 	}
 
 //	@Override

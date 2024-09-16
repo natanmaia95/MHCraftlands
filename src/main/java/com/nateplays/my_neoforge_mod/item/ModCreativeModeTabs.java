@@ -54,6 +54,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.NULBERRY);
                         output.accept(ModItems.CHISEL);
 
+                        output.accept(ModItems.MOSSWINE_SPAWN_EGG);
+
                         itemDisplayParameters.holders().lookup(Registries.ENCHANTMENT).ifPresent(enchantmentRegistryLookup -> {
                             output.accept(HuntingArmorItem.makeItemStackWithLookup(ModArmorItems.HUNTER_HELMET.get(), enchantmentRegistryLookup));
                         });

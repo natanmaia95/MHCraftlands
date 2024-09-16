@@ -2,10 +2,12 @@ package com.nateplays.my_neoforge_mod.entity.custom;
 
 import com.nateplays.my_neoforge_mod.entity.ModEntities;
 import com.nateplays.my_neoforge_mod.entity.ai.MosswineAttackGoal;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.*;
@@ -16,8 +18,10 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
@@ -25,6 +29,8 @@ import org.jetbrains.annotations.Nullable;
 public class MosswineEntity extends Animal {
 
     private static final EntityDataAccessor<Boolean> ATTACKING =
+            SynchedEntityData.defineId(MosswineEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> IS_GOLD_HEAD =
             SynchedEntityData.defineId(MosswineEntity.class, EntityDataSerializers.BOOLEAN);
 
     public final AnimationState idleAnimationState = new AnimationState();
@@ -68,6 +74,16 @@ public class MosswineEntity extends Animal {
     @Override
     public boolean canRiderInteract() {
         return true;
+    }
+
+    @Override
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
+
+        if (!level.isClientSide()) {
+            this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.IRON_SWORD));
+            setIsGoldHead(random.nextFloat() < 0.1f);
+        }
+        return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
 
     @Override
@@ -115,6 +131,27 @@ public class MosswineEntity extends Animal {
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(ATTACKING, false);
+        builder.define(IS_GOLD_HEAD, false);
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putBoolean("gold_head", isGoldHead());
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        setIsGoldHead(tag.getBoolean("gold_head"));
+    }
+
+    public void setIsGoldHead(boolean value) {
+        this.entityData.set(IS_GOLD_HEAD, value);
+    }
+
+    public boolean isGoldHead() {
+        return this.entityData.get(IS_GOLD_HEAD);
     }
 
     public void setAttacking(boolean value) {

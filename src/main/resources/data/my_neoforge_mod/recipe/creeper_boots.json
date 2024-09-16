@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "X": { "item": "minecraft:iron" },
+    "X": { "item": "minecraft:iron_ingot" },
     "Y": { "item": "minecraft:tnt" }
   },
   "pattern": [
