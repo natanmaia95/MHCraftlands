@@ -8,6 +8,8 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -35,6 +37,52 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> MACHALITE_BLOCK = registerBlock("machalite_block",
             () -> new Block(
+                    BlockBehaviour.Properties.of().strength(4f,2f).sound(SoundType.METAL)
+                            .requiresCorrectToolForDrops()
+            ));
+
+    public static final DeferredBlock<StairBlock> MACHALITE_STAIRS = registerBlock("machalite_stairs",
+            () -> new StairBlock(ModBlocks.MACHALITE_BLOCK.get().defaultBlockState(),
+                    BlockBehaviour.Properties.of().strength(4f,2f).sound(SoundType.METAL)
+                            .requiresCorrectToolForDrops()
+            ));
+    public static final DeferredBlock<SlabBlock> MACHALITE_SLAB = registerBlock("machalite_slab",
+            () -> new SlabBlock(
+                    BlockBehaviour.Properties.of().strength(4f,2f).sound(SoundType.METAL)
+                            .requiresCorrectToolForDrops()
+            ));
+    public static final DeferredBlock<PressurePlateBlock> MACHALITE_PRESSURE_PLATE = registerBlock("machalite_pressure_plate",
+            () -> new PressurePlateBlock(BlockSetType.IRON,
+                    BlockBehaviour.Properties.of().strength(4f,2f).sound(SoundType.METAL)
+                            .requiresCorrectToolForDrops()
+            ));
+    public static final DeferredBlock<ButtonBlock> MACHALITE_BUTTON = registerBlock("machalite_button",
+            () -> new ButtonBlock(BlockSetType.IRON, 20,
+                    BlockBehaviour.Properties.of().strength(4f,2f).sound(SoundType.METAL)
+                            .requiresCorrectToolForDrops().noCollission()
+            ));
+    public static final DeferredBlock<FenceBlock> MACHALITE_FENCE = registerBlock("machalite_fence",
+            () -> new FenceBlock(
+                    BlockBehaviour.Properties.of().strength(4f,2f).sound(SoundType.METAL)
+                            .requiresCorrectToolForDrops()
+            ));
+    public static final DeferredBlock<FenceGateBlock> MACHALITE_FENCE_GATE = registerBlock("machalite_fence_gate",
+            () -> new FenceGateBlock(WoodType.ACACIA,
+                    BlockBehaviour.Properties.of().strength(4f,2f).sound(SoundType.METAL)
+                            .requiresCorrectToolForDrops()
+            ));
+    public static final DeferredBlock<WallBlock> MACHALITE_WALL = registerBlock("machalite_wall",
+            () -> new WallBlock(
+                    BlockBehaviour.Properties.of().strength(4f,2f).sound(SoundType.METAL)
+                            .requiresCorrectToolForDrops()
+            ));
+    public static final DeferredBlock<DoorBlock> MACHALITE_DOOR = registerBlock("machalite_door",
+            () -> new DoorBlock(BlockSetType.IRON,
+                    BlockBehaviour.Properties.of().strength(4f,2f).sound(SoundType.METAL)
+                            .requiresCorrectToolForDrops().noOcclusion()
+            ));
+    public static final DeferredBlock<TrapDoorBlock> MACHALITE_TRAPDOOR = registerBlock("machalite_trapdoor",
+            () -> new TrapDoorBlock(BlockSetType.IRON,
                     BlockBehaviour.Properties.of().strength(4f,2f).sound(SoundType.METAL)
                             .requiresCorrectToolForDrops()
             ));

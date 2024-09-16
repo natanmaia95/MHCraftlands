@@ -25,7 +25,18 @@ public class ModCreativeModeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModBlocks.EARTH_CRYSTAL_ORE);
                         output.accept(ModBlocks.MACHALITE_ORE);
+
                         output.accept(ModBlocks.MACHALITE_BLOCK);
+                        output.accept(ModBlocks.MACHALITE_SLAB);
+                        output.accept(ModBlocks.MACHALITE_STAIRS);
+                        output.accept(ModBlocks.MACHALITE_PRESSURE_PLATE);
+                        output.accept(ModBlocks.MACHALITE_BUTTON);
+                        output.accept(ModBlocks.MACHALITE_FENCE);
+                        output.accept(ModBlocks.MACHALITE_FENCE_GATE);
+                        output.accept(ModBlocks.MACHALITE_WALL);
+                        output.accept(ModBlocks.MACHALITE_DOOR);
+                        output.accept(ModBlocks.MACHALITE_TRAPDOOR);
+
                         output.accept(ModBlocks.NULBERRY_BUSH);
                         output.accept(ModBlocks.MAGIC_BLOCK);
                     })

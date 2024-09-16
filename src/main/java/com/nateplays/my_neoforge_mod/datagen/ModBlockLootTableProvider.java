@@ -38,6 +38,17 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         HolderLookup.RegistryLookup<Enchantment> enchantmentRegistryLookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
 
         dropSelf(ModBlocks.MACHALITE_BLOCK.get());
+        dropSelf(ModBlocks.MACHALITE_STAIRS.get());
+        dropSelf(ModBlocks.MACHALITE_BUTTON.get());
+        dropSelf(ModBlocks.MACHALITE_PRESSURE_PLATE.get());
+        dropSelf(ModBlocks.MACHALITE_FENCE.get());
+        dropSelf(ModBlocks.MACHALITE_FENCE_GATE.get());
+        dropSelf(ModBlocks.MACHALITE_TRAPDOOR.get());
+        dropSelf(ModBlocks.MACHALITE_WALL.get());
+
+        add(ModBlocks.MACHALITE_SLAB.get(), block -> createSlabItemTable(ModBlocks.MACHALITE_SLAB.get()));
+        add(ModBlocks.MACHALITE_DOOR.get(), block -> createDoorTable(ModBlocks.MACHALITE_DOOR.get()));
+
         dropSelf(ModBlocks.MAGIC_BLOCK.get());
 
         add(ModBlocks.EARTH_CRYSTAL_ORE.get(),

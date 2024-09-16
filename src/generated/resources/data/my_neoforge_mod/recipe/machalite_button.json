@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "machalite",
+  "ingredients": [
+    {
+      "item": "my_neoforge_mod:machalite_ingot"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "my_neoforge_mod:machalite_button"
+  }
+}

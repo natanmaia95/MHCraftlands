@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "machalite",
+  "key": {
+    "#": {
+      "item": "my_neoforge_mod:machalite_block"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "my_neoforge_mod:machalite_slab"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_top_right_open",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "my_neoforge_mod:block/machalite_door_bottom",
+    "top": "my_neoforge_mod:block/machalite_door_top"
+  }
+}

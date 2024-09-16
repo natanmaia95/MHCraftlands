@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "my_neoforge_mod:block/machalite_pressure_plate"
+    },
+    "powered=true": {
+      "model": "my_neoforge_mod:block/machalite_pressure_plate_down"
+    }
+  }
+}

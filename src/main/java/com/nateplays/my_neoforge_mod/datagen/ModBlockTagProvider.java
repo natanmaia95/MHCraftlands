@@ -24,5 +24,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
             tag(BlockTags.NEEDS_STONE_TOOL)
                     .add(ModBlocks.MACHALITE_BLOCK.get()).add(ModBlocks.MACHALITE_ORE.get());
+
+            tag(BlockTags.FENCES)
+                    .add(ModBlocks.MACHALITE_FENCE.get());
+            tag(BlockTags.FENCE_GATES)
+                    .add(ModBlocks.MACHALITE_FENCE_GATE.get());
+            tag(BlockTags.WALLS)
+                    .add(ModBlocks.MACHALITE_WALL.get());
     }
 }

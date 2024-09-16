@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "my_neoforge_mod:block/machalite_slab"
+    },
+    "type=double": {
+      "model": "my_neoforge_mod:block/machalite_block"
+    },
+    "type=top": {
+      "model": "my_neoforge_mod:block/machalite_slab_top"
+    }
+  }
+}
