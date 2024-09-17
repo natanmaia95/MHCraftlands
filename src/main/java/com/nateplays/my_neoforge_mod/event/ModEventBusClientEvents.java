@@ -3,9 +3,18 @@ package com.nateplays.my_neoforge_mod.event;
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.entity.client.ModModelLayers;
 import com.nateplays.my_neoforge_mod.entity.client.MosswineModel;
+import com.nateplays.my_neoforge_mod.entity.interfaces.ILevelableEntity;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+
+import java.util.List;
+import java.util.function.Predicate;
 
 @EventBusSubscriber(modid = MyNeoForgeMod.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class ModEventBusClientEvents {

@@ -28,6 +28,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         wallItem(ModBlocks.MACHALITE_WALL, ModBlocks.MACHALITE_BLOCK);
 
         basicItem(ModBlocks.MACHALITE_DOOR.asItem());
+
+        withExistingParent(ModItems.MOSSWINE_SPAWN_EGG.getRegisteredName(), mcLoc("item/template_spawn_egg"));
     }
 
 

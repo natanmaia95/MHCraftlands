@@ -2,6 +2,7 @@ package com.nateplays.my_neoforge_mod.entity.custom;
 
 import com.nateplays.my_neoforge_mod.entity.ModEntities;
 import com.nateplays.my_neoforge_mod.entity.ai.MosswineAttackGoal;
+import com.nateplays.my_neoforge_mod.entity.interfaces.ILevelableEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -26,12 +27,15 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
-public class MosswineEntity extends Animal {
+public class MosswineEntity extends Animal implements ILevelableEntity {
 
     private static final EntityDataAccessor<Boolean> ATTACKING =
             SynchedEntityData.defineId(MosswineEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> IS_GOLD_HEAD =
             SynchedEntityData.defineId(MosswineEntity.class, EntityDataSerializers.BOOLEAN);
+
+    private static final EntityDataAccessor<Integer> EXP =
+            SynchedEntityData.defineId(MosswineEntity.class, EntityDataSerializers.INT);
 
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
@@ -132,18 +136,21 @@ public class MosswineEntity extends Animal {
         super.defineSynchedData(builder);
         builder.define(ATTACKING, false);
         builder.define(IS_GOLD_HEAD, false);
+        buildLevelSynchedData(builder);
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putBoolean("gold_head", isGoldHead());
+        addAdditionalLevelableSaveData(tag);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         setIsGoldHead(tag.getBoolean("gold_head"));
+        readAdditionalLevelableSaveData(tag);
     }
 
     public void setIsGoldHead(boolean value) {
@@ -175,4 +182,12 @@ public class MosswineEntity extends Animal {
     public @Nullable AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
         return ModEntities.MOSSWINE.get().create(level);
     }
+
+    @Override
+    public EntityDataAccessor<Integer> getExpAccessor() {
+        return EXP;
+    }
+
+    @Override
+    public void doLevelUp(int newLevel) {}
 }

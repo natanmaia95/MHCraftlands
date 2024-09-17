@@ -1,4 +1,4 @@
-// 1.21	2024-09-16T08:41:25.9200597	Item Models: my_neoforge_mod
+// 1.21	2024-09-16T22:25:19.1203396	Item Models: my_neoforge_mod
 942b9399a1862b2fdf135e37ca832fa30e106df1 assets/my_neoforge_mod/models/item/earth_crystal.json
 e9e0244930d674104700300695ffb9b5e56715b7 assets/my_neoforge_mod/models/item/machalite_button.json
 e0a5091af9432b070a69cf9bd6d793fdeeb7bdf6 assets/my_neoforge_mod/models/item/machalite_chunk.json
@@ -6,4 +6,5 @@ e0a5091af9432b070a69cf9bd6d793fdeeb7bdf6 assets/my_neoforge_mod/models/item/mach
 769224e5bf997734f94d98a3e0e32f52626ffcd2 assets/my_neoforge_mod/models/item/machalite_fence.json
 9ff439b8f2f423714b528eb649077bd5fe3b6890 assets/my_neoforge_mod/models/item/machalite_ingot.json
 96e31c5ad963055c19f9c9f57cc5fe41893ac9fb assets/my_neoforge_mod/models/item/machalite_wall.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/my_neoforge_mod/models/item/mosswine_spawn_egg.json
 28da87f349d70a4505cd7abf2cdb96d411718739 assets/my_neoforge_mod/models/item/nulberry.json
