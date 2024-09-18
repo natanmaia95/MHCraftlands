@@ -3,6 +3,7 @@ package com.nateplays.my_neoforge_mod.entity.custom;
 import com.nateplays.my_neoforge_mod.entity.ModEntities;
 import com.nateplays.my_neoforge_mod.entity.ai.MosswineAttackGoal;
 import com.nateplays.my_neoforge_mod.entity.interfaces.ILevelableEntity;
+import com.nateplays.my_neoforge_mod.entity.interfaces.IVaryingSizeEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -27,7 +28,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
-public class MosswineEntity extends Animal implements ILevelableEntity {
+public class MosswineEntity extends Animal implements ILevelableEntity, IVaryingSizeEntity {
 
     private static final EntityDataAccessor<Boolean> ATTACKING =
             SynchedEntityData.defineId(MosswineEntity.class, EntityDataSerializers.BOOLEAN);
@@ -86,6 +87,7 @@ public class MosswineEntity extends Animal implements ILevelableEntity {
         if (!level.isClientSide()) {
             this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.IRON_SWORD));
             setIsGoldHead(random.nextFloat() < 0.1f);
+            makeSizeToSpawn();
         }
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
