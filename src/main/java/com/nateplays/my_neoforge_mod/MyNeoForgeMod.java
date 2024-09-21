@@ -2,6 +2,7 @@ package com.nateplays.my_neoforge_mod;
 
 import com.nateplays.my_neoforge_mod.attribute.ModAttributes;
 import com.nateplays.my_neoforge_mod.block.ModBlocks;
+import com.nateplays.my_neoforge_mod.component.ModDataComponents;
 import com.nateplays.my_neoforge_mod.entity.ModEntities;
 import com.nateplays.my_neoforge_mod.entity.client.MosswineRenderer;
 import com.nateplays.my_neoforge_mod.item.ModCreativeModeTabs;
@@ -53,6 +54,7 @@ public class MyNeoForgeMod
 
         ModArmorMaterials.register(modEventBus);
         ModAttributes.register(modEventBus);
+        ModDataComponents.register(modEventBus);
 
         ModItems.register(modEventBus);
         ModArmorItems.register(modEventBus);
