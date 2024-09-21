@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "clicked=false": {
+      "model": "my_neoforge_mod:block/magic_leaf_yellow"
+    },
+    "clicked=true": {
+      "model": "my_neoforge_mod:block/magic_leaf_blue"
+    }
+  }
+}

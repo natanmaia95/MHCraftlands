@@ -1,4 +1,4 @@
-// 1.21	2024-09-16T08:40:41.4802189	Block States: my_neoforge_mod
+// 1.21	2024-09-20T22:09:54.0926998	Block States: my_neoforge_mod
 f702f327060c65ae7ccda22a7f1f5e7d9a20ea5d assets/my_neoforge_mod/blockstates/earth_crystal_ore.json
 7b7f8c2a62ff7d9afe893cefaedc261d2ca2d119 assets/my_neoforge_mod/blockstates/machalite_block.json
 82056c93041d6f9d269cafb0f29e60974110febf assets/my_neoforge_mod/blockstates/machalite_button.json
@@ -12,6 +12,7 @@ d44c2151f4581bb198075fb147b3c907a742b73a assets/my_neoforge_mod/blockstates/mach
 cd6a1c53904b1db677f28b5ed66e704fa5130d03 assets/my_neoforge_mod/blockstates/machalite_trapdoor.json
 3f003bbd0d9d6b3e42946d61c12c5853cef1c069 assets/my_neoforge_mod/blockstates/machalite_wall.json
 70961538a6a0084158eaa237c3ad24bd00beb3ea assets/my_neoforge_mod/blockstates/magic_block.json
+092ad97566d8691725e18abdbf4ec950edd23c99 assets/my_neoforge_mod/blockstates/magic_leaf.json
 90f3d0e54bd4fc49311b7d857e3aeb5a7f3d4660 assets/my_neoforge_mod/models/block/earth_crystal_ore.json
 afaddf7e9c6f746d00918307f8ca0aa094245dda assets/my_neoforge_mod/models/block/machalite_block.json
 53f865397d988deee05880d0cab7761301f9acf0 assets/my_neoforge_mod/models/block/machalite_button.json
@@ -45,6 +46,8 @@ c0fb94ee7f93ebfd2bc1359581d35df51d2908c0 assets/my_neoforge_mod/models/block/mac
 83d44772190b9acde95688f5f97a8ecc2ab6797f assets/my_neoforge_mod/models/block/machalite_wall_side.json
 a70cabaef727acaad794e10fd2757d175556dad4 assets/my_neoforge_mod/models/block/machalite_wall_side_tall.json
 24e9f51dcd02bc9b321b8137e45e2280e2320066 assets/my_neoforge_mod/models/block/magic_block.json
+4e39f5f2d6f0a11e7ab5c4bbb3cf1132d3120852 assets/my_neoforge_mod/models/block/magic_leaf_blue.json
+86c17d2f4be5690545d7ad9b176af1d69a6886af assets/my_neoforge_mod/models/block/magic_leaf_yellow.json
 7d58d53a078349009fe8c29819903535a0f336bc assets/my_neoforge_mod/models/item/earth_crystal_ore.json
 60bdd424ea7408150addf82bf1340740e9ff7e37 assets/my_neoforge_mod/models/item/machalite_block.json
 db537f91b0698e0478e1ca6e09953797aaf44ab7 assets/my_neoforge_mod/models/item/machalite_fence_gate.json
@@ -54,3 +57,4 @@ db815ef4f1a56da9f915acaba2607f35872d22f6 assets/my_neoforge_mod/models/item/mach
 7daf3d3094c631ae5b8ea9be6fbce6bf627e756e assets/my_neoforge_mod/models/item/machalite_stairs.json
 67b4bd8d3a003ff95febe820f08cb5fede3a1957 assets/my_neoforge_mod/models/item/machalite_trapdoor.json
 1d6aeb4345065931a55d658363718b7979f0e9e0 assets/my_neoforge_mod/models/item/magic_block.json
+550b5aa26dbc2644f1d0f2ff72ad7118f010fa5b assets/my_neoforge_mod/models/item/magic_leaf.json

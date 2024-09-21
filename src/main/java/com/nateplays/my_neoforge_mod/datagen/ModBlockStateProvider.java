@@ -2,9 +2,11 @@ package com.nateplays.my_neoforge_mod.datagen;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.block.ModBlocks;
+import com.nateplays.my_neoforge_mod.block.custom.MagicLeafBlock;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -42,8 +44,24 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.MACHALITE_TRAPDOOR, "_bottom");
 //        blockItem(ModBlocks.MACHALITE_DOOR);
 
+        magicLeaf();
+
     }
 
+    private void magicLeaf() {
+        getVariantBuilder(ModBlocks.MAGIC_LEAF.get()).forAllStates(state -> {
+            if (state.getValue(MagicLeafBlock.CLICKED)) {
+                return new ConfiguredModel[] {new ConfiguredModel(models().leaves("magic_leaf_blue",
+                        modLoc("block/magic_leaves_blue")).renderType("translucent"))};
+            } else {
+                return new ConfiguredModel[] {new ConfiguredModel(models().leaves("magic_leaf_yellow",
+                        modLoc("block/magic_leaves_yellow")).renderType("translucent"))};
+            }
+        });
+
+        simpleBlockItem(ModBlocks.MAGIC_LEAF.get(), models().leaves("magic_leaf_blue",
+                modLoc("block/magic_leaves_blue")));
+    }
 
     private void blockWithItem(DeferredBlock<?> deferredBlock) {
         simpleBlockWithItem(deferredBlock.get(), cubeAll(deferredBlock.get()));

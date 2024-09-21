@@ -50,6 +50,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         add(ModBlocks.MACHALITE_DOOR.get(), block -> createDoorTable(ModBlocks.MACHALITE_DOOR.get()));
 
         dropSelf(ModBlocks.MAGIC_BLOCK.get());
+        dropSelf(ModBlocks.MAGIC_LEAF.get());
 
         add(ModBlocks.EARTH_CRYSTAL_ORE.get(),
             block -> createMultipleOreDrops(ModBlocks.EARTH_CRYSTAL_ORE.get(), ModItems.EARTH_CRYSTAL.get(), 1.0F, 3.0F));

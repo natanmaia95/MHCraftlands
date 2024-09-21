@@ -39,6 +39,7 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModBlocks.NULBERRY_BUSH);
                         output.accept(ModBlocks.MAGIC_BLOCK);
+                        output.accept(ModBlocks.MAGIC_LEAF);
                     })
                     .build());
 

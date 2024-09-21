@@ -2,6 +2,7 @@ package com.nateplays.my_neoforge_mod.block;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.block.custom.MagicBlock;
+import com.nateplays.my_neoforge_mod.block.custom.MagicLeafBlock;
 import com.nateplays.my_neoforge_mod.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -93,6 +94,13 @@ public class ModBlocks {
             () -> new MagicBlock(
                     BlockBehaviour.Properties.of().strength(1f,2f).sound(SoundType.AMETHYST)
             ));
+
+    public static final DeferredBlock<MagicLeafBlock> MAGIC_LEAF = registerBlock("magic_leaf",
+            () -> new MagicLeafBlock(BlockBehaviour.Properties.of().strength(0.1f).sound(SoundType.GRASS)
+                    .lightLevel(state -> state.getValue(MagicLeafBlock.CLICKED) ? 15 : 0)
+            ));
+
+
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

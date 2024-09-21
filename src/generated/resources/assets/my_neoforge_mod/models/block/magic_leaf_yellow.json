@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/leaves",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "all": "my_neoforge_mod:block/magic_leaves_yellow"
+  }
+}
