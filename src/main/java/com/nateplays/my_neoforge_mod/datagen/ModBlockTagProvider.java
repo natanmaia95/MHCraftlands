@@ -2,6 +2,7 @@ package com.nateplays.my_neoforge_mod.datagen;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.block.ModBlocks;
+import com.nateplays.my_neoforge_mod.tags.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -31,5 +32,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                     .add(ModBlocks.MACHALITE_FENCE_GATE.get());
             tag(BlockTags.WALLS)
                     .add(ModBlocks.MACHALITE_WALL.get());
+
+        tag(ModTags.Blocks.NEEDS_MACHALITE_TOOL)
+                .addTag(BlockTags.NEEDS_IRON_TOOL);
+        tag(ModTags.Blocks.INCORRECT_FOR_MACHALITE_TOOL)
+                .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL)
+                .remove(ModTags.Blocks.NEEDS_MACHALITE_TOOL);
     }
 }

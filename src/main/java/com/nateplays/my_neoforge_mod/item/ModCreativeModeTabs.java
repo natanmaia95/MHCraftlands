@@ -57,6 +57,12 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModItems.MOSSWINE_SPAWN_EGG);
 
+                        output.accept(ModItems.MACHALITE_SWORD);
+                        output.accept(ModItems.MACHALITE_PICKAXE);
+                        output.accept(ModItems.MACHALITE_SHOVEL);
+                        output.accept(ModItems.MACHALITE_AXE);
+                        output.accept(ModItems.MACHALITE_HOE);
+
                         itemDisplayParameters.holders().lookup(Registries.ENCHANTMENT).ifPresent(enchantmentRegistryLookup -> {
                             output.accept(HuntingArmorItem.makeItemStackWithLookup(ModArmorItems.HUNTER_HELMET.get(), enchantmentRegistryLookup));
                         });

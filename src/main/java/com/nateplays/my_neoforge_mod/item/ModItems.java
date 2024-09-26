@@ -37,11 +37,37 @@ public class ModItems {
 
     );
 
+    public static final DeferredItem<SwordItem> MACHALITE_SWORD = ITEMS.register("machalite_sword",
+            () -> new SwordItem(ModToolTiers.MACHALITE, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModToolTiers.MACHALITE, 5f, -3f))));
+
+    public static final DeferredItem<PickaxeItem> MACHALITE_PICKAXE = ITEMS.register("machalite_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.MACHALITE, new Item.Properties()
+                    .attributes(PickaxeItem.createAttributes(ModToolTiers.MACHALITE, 1.4f, -2.8f))));
+
+    public static final DeferredItem<ShovelItem> MACHALITE_SHOVEL = ITEMS.register("machalite_shovel",
+            () -> new ShovelItem(ModToolTiers.MACHALITE, new Item.Properties()
+                    .attributes(ShovelItem.createAttributes(ModToolTiers.MACHALITE, 1.0f, -2.8f))));
+
+    public static final DeferredItem<AxeItem> MACHALITE_AXE = ITEMS.register("machalite_axe",
+            () -> new AxeItem(ModToolTiers.MACHALITE, new Item.Properties()
+                    .attributes(AxeItem.createAttributes(ModToolTiers.MACHALITE, 6f, -3.2f))));
+
+    public static final DeferredItem<HoeItem> MACHALITE_HOE = ITEMS.register("machalite_hoe",
+            () -> new HoeItem(ModToolTiers.MACHALITE, new Item.Properties()
+                    .attributes(HoeItem.createAttributes(ModToolTiers.MACHALITE, 0f, -0.3f))));
+
+
+
     public static final DeferredItem<SpawnEggItem> MOSSWINE_SPAWN_EGG = ITEMS.register("mosswine_spawn_egg",
             () -> new SpawnEggItem(ModEntities.MOSSWINE.get(), 0, 2, new Item.Properties()));
 
     public static final DeferredItem<Item> CHISEL = ITEMS.register("chisel",
             () -> new ChiselItem(new Item.Properties().durability(32)));
+
+
+
+
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

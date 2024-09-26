@@ -1,0 +1,8 @@
+{
+  "remove": [
+    "#my_neoforge_mod:needs_machalite_tool"
+  ],
+  "values": [
+    "#minecraft:incorrect_for_iron_tool"
+  ]
+}

@@ -1,10 +1,15 @@
-// 1.21	2024-09-16T22:25:19.1203396	Item Models: my_neoforge_mod
+// 1.21	2024-09-26T12:27:06.9418733	Item Models: my_neoforge_mod
 942b9399a1862b2fdf135e37ca832fa30e106df1 assets/my_neoforge_mod/models/item/earth_crystal.json
+4c99e5f581154c105df8558971c053c1c1f8db6b assets/my_neoforge_mod/models/item/machalite_axe.json
 e9e0244930d674104700300695ffb9b5e56715b7 assets/my_neoforge_mod/models/item/machalite_button.json
 e0a5091af9432b070a69cf9bd6d793fdeeb7bdf6 assets/my_neoforge_mod/models/item/machalite_chunk.json
 58433d063ba809278aaf5a8650d60f87786bb1f8 assets/my_neoforge_mod/models/item/machalite_door.json
 769224e5bf997734f94d98a3e0e32f52626ffcd2 assets/my_neoforge_mod/models/item/machalite_fence.json
+8ad4c8c20d4cfd460b2277c0d46a9f6819bb61a3 assets/my_neoforge_mod/models/item/machalite_hoe.json
 9ff439b8f2f423714b528eb649077bd5fe3b6890 assets/my_neoforge_mod/models/item/machalite_ingot.json
+7f046b88223b88e15bf4e8685afb8bb9934cdd3a assets/my_neoforge_mod/models/item/machalite_pickaxe.json
+f8d0a25260d5c73edf7c06b6ac7e43d3b6bfcae8 assets/my_neoforge_mod/models/item/machalite_shovel.json
+dc61c50ac342ba097803921efa1b1a9002c2fe28 assets/my_neoforge_mod/models/item/machalite_sword.json
 96e31c5ad963055c19f9c9f57cc5fe41893ac9fb assets/my_neoforge_mod/models/item/machalite_wall.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/my_neoforge_mod/models/item/mosswine_spawn_egg.json
 28da87f349d70a4505cd7abf2cdb96d411718739 assets/my_neoforge_mod/models/item/nulberry.json
