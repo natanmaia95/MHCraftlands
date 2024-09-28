@@ -62,6 +62,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.MACHALITE_SHOVEL);
                         output.accept(ModItems.MACHALITE_AXE);
                         output.accept(ModItems.MACHALITE_HOE);
+                        output.accept(ModItems.MACHALITE_HAMMER);
 
                         itemDisplayParameters.holders().lookup(Registries.ENCHANTMENT).ifPresent(enchantmentRegistryLookup -> {
                             output.accept(HuntingArmorItem.makeItemStackWithLookup(ModArmorItems.HUNTER_HELMET.get(), enchantmentRegistryLookup));

@@ -4,6 +4,7 @@ import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.block.ModBlocks;
 import com.nateplays.my_neoforge_mod.entity.ModEntities;
 import com.nateplays.my_neoforge_mod.item.custom.ChiselItem;
+import com.nateplays.my_neoforge_mod.item.custom.HammerItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.food.FoodProperties;
@@ -56,6 +57,10 @@ public class ModItems {
     public static final DeferredItem<HoeItem> MACHALITE_HOE = ITEMS.register("machalite_hoe",
             () -> new HoeItem(ModToolTiers.MACHALITE, new Item.Properties()
                     .attributes(HoeItem.createAttributes(ModToolTiers.MACHALITE, 0f, -0.3f))));
+
+    public static final DeferredItem<HammerItem> MACHALITE_HAMMER = ITEMS.register("machalite_hammer",
+            () -> new HammerItem(ModToolTiers.MACHALITE, new Item.Properties()
+                    .attributes(PickaxeItem.createAttributes(ModToolTiers.MACHALITE, 7f, -4.0f))));
 
 
 

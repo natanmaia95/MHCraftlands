@@ -37,6 +37,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.MACHALITE_AXE);
         handheldItem(ModItems.MACHALITE_HOE);
 
+        handheldItem(ModItems.MACHALITE_HAMMER);
+
         withExistingParent(ModItems.MOSSWINE_SPAWN_EGG.getRegisteredName(), mcLoc("item/template_spawn_egg"));
     }
 
