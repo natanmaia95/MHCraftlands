@@ -20,6 +20,7 @@ public class ModAttributeHandler {
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.MOSSWINE.get(), MosswineEntity.createAttributes().build());
+        event.put(ModEntities.PALICO.get(), MosswineEntity.createAttributes().build());
     }
 
     public static AttributeSupplier.Builder createPlayerHuntAttributes() {

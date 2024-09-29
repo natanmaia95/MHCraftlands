@@ -17,7 +17,9 @@ public interface ILevelableEntity {
     static final Logger LOGGER = LoggerFactory.getLogger(ILevelableEntity.class);
 
     EntityDataAccessor<Integer> getExpAccessor();
-
+    // Add one of these to your entity:
+    //    private static final EntityDataAccessor<Integer> EXP =
+    //            SynchedEntityData.defineId(ENTITYCLASSNAME.class, EntityDataSerializers.INT);
 
     public default void buildLevelSynchedData(SynchedEntityData.@NotNull Builder builder) {
         builder.define(getExpAccessor(), 0); //levelable entities start at 0 exp

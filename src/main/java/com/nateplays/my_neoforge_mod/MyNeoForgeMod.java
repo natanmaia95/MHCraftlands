@@ -5,6 +5,7 @@ import com.nateplays.my_neoforge_mod.block.ModBlocks;
 import com.nateplays.my_neoforge_mod.component.ModDataComponents;
 import com.nateplays.my_neoforge_mod.entity.ModEntities;
 import com.nateplays.my_neoforge_mod.entity.client.MosswineRenderer;
+import com.nateplays.my_neoforge_mod.entity.pets.client.PalicoRenderer;
 import com.nateplays.my_neoforge_mod.item.ModCreativeModeTabs;
 import com.nateplays.my_neoforge_mod.item.ModItems;
 import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
@@ -108,6 +109,7 @@ public class MyNeoForgeMod
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             EntityRenderers.register(ModEntities.MOSSWINE.get(), MosswineRenderer::new);
+            EntityRenderers.register(ModEntities.PALICO.get(), PalicoRenderer::new);
 
         }
     }
