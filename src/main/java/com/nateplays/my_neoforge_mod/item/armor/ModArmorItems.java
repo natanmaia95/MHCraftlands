@@ -1,9 +1,12 @@
 package com.nateplays.my_neoforge_mod.item.armor;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
+import com.nateplays.my_neoforge_mod.entity.pets.PalicoEntity;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SwordItem;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -63,6 +66,17 @@ public class ModArmorItems {
             ModArmorMaterials.CREEPER, ArmorItem.Type.BOOTS,
             new Item.Properties().durability(150)
     ));
+
+
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity>> F_ACORN_HELM = ARMOR_ITEMS.register("f_acorn_helm", () -> new PetHuntingArmorItem<PalicoEntity>(
+            ModArmorMaterials.F_ACORN, ArmorItem.Type.HELMET,
+            new Item.Properties().durability(150), PalicoEntity.class
+    ));
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity>> F_ACORN_MAIL = ARMOR_ITEMS.register("f_acorn_mail", () -> new PetHuntingArmorItem<PalicoEntity>(
+            ModArmorMaterials.F_ACORN, ArmorItem.Type.CHESTPLATE,
+            new Item.Properties().durability(150), PalicoEntity.class
+    ));
+
 
     public static void register(IEventBus eventBus) {
         ARMOR_ITEMS.register(eventBus);

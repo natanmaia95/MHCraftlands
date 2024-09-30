@@ -85,6 +85,9 @@ public class ModCreativeModeTabs {
                         outputAcceptHuntingArmorItem(ModArmorItems.CREEPER_CHESTPLATE.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(ModArmorItems.CREEPER_LEGGINGS.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(ModArmorItems.CREEPER_BOOTS.get(), itemDisplayParameters, output);
+
+                        outputAcceptHuntingArmorItem(ModArmorItems.F_ACORN_HELM.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.F_ACORN_MAIL.get(), itemDisplayParameters, output);
                     })
                     .build());
 

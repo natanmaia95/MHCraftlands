@@ -84,6 +84,13 @@ public class ModArmorMaterials {
 
 
 
+    public static final Holder<ArmorMaterial> F_ACORN = registerMaterial(
+            "f_acorn", 1, SoundEvents.ARMOR_EQUIP_TURTLE,
+            () -> Ingredient.of(Items.OAK_SAPLING)
+    );
+
+
+
 
 
 

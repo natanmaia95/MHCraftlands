@@ -25,22 +25,22 @@ public class PalicoModel<T extends PalicoEntity> extends HierarchicalModel<T> im
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(
 			ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "palico"), "main");
-	private final ModelPart root;
-	private final ModelPart body;
-	private final ModelPart armorbody;
-	private final ModelPart torso;
-	private final ModelPart armortorso;
-	private final ModelPart arml;
-	private final ModelPart armorarml;
-	private final ModelPart armr;
-	private final ModelPart armorarmr;
-	private final ModelPart weapon;
-	private final ModelPart neck;
-	private final ModelPart head;
-	private final ModelPart armorhead;
-	private final ModelPart tail;
-	private final ModelPart legl;
-	private final ModelPart legr;
+	public final ModelPart root;
+	public final ModelPart body;
+	public final ModelPart armorbody;
+	public final ModelPart torso;
+	public final ModelPart armortorso;
+	public final ModelPart arml;
+	public final ModelPart armorarml;
+	public final ModelPart armr;
+	public final ModelPart armorarmr;
+	public final ModelPart weapon;
+	public final ModelPart neck;
+	public final ModelPart head;
+	public final ModelPart armorhead;
+	public final ModelPart tail;
+	public final ModelPart legl;
+	public final ModelPart legr;
 
 	public PalicoModel(ModelPart root) {
 		this.root = root;

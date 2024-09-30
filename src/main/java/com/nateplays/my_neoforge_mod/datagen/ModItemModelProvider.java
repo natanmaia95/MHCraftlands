@@ -3,11 +3,14 @@ package com.nateplays.my_neoforge_mod.datagen;
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.block.ModBlocks;
 import com.nateplays.my_neoforge_mod.item.ModItems;
+import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -40,6 +43,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.MACHALITE_HAMMER);
 
         withExistingParent(ModItems.MOSSWINE_SPAWN_EGG.getRegisteredName(), mcLoc("item/template_spawn_egg"));
+
+        armorItem(ModArmorItems.F_ACORN_HELM);
+        armorItem(ModArmorItems.F_ACORN_MAIL);
     }
 
 
@@ -64,5 +70,10 @@ public class ModItemModelProvider extends ItemModelProvider {
     private ItemModelBuilder handheldItem(DeferredItem<?> item) {
         return withExistingParent(item.getId().getPath(), ResourceLocation.parse("item/handheld"))
                 .texture("layer0", modLoc("item/" + item.getId().getPath()));
+    }
+
+    private ItemModelBuilder armorItem(DeferredItem<?> item) {
+        return withExistingParent(item.getId().getPath(), ResourceLocation.parse("item/handheld"))
+                .texture("layer0", modLoc("item/armor/" + item.getId().getPath()));
     }
 }

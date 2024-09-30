@@ -13,4 +13,7 @@ public class ModModelLayers {
 
     public static final ModelLayerLocation PALICO_LAYER = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "palico_layer"), "main");
+
+    public static final ModelLayerLocation PALICO_ARMOR_LAYER = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "palico_armor_layer"), "main");
 }

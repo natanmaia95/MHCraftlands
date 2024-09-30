@@ -21,6 +21,8 @@ import net.minecraft.world.item.ItemStack;
 public class PalicoRenderer extends MobRenderer<PalicoEntity, PalicoModel<PalicoEntity>> {
     public PalicoRenderer(EntityRendererProvider.Context context) {
         super(context, new PalicoModel<>(context.bakeLayer(ModModelLayers.PALICO_LAYER)), 0.3f);
+        this.addLayer(new PalicoArmorLayer<PalicoEntity, PalicoModel<PalicoEntity>, PalicoModel<PalicoEntity>>(
+                this, new PalicoModel<>(context.bakeLayer(ModModelLayers.PALICO_LAYER)), context));
         this.addLayer(new ItemInHandLayer<PalicoEntity, PalicoModel<PalicoEntity>>(this, context.getItemInHandRenderer()) {
             @Override
             protected void renderArmWithItem(

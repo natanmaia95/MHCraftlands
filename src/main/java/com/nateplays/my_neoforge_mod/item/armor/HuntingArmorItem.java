@@ -79,6 +79,6 @@ public class HuntingArmorItem extends ArmorItem {
                 }
             }
 
-        } else LOGGER.debug("not hasdata");
+        } else LOGGER.debug("No data was found for armor " + stack.getItemHolder().getKey().registry().getPath());
     }
 }

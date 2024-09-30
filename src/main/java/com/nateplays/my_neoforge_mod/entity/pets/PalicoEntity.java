@@ -2,6 +2,7 @@ package com.nateplays.my_neoforge_mod.entity.pets;
 
 import com.nateplays.my_neoforge_mod.entity.ai.MosswineAttackGoal;
 import com.nateplays.my_neoforge_mod.entity.interfaces.ILevelableEntity;
+import com.nateplays.my_neoforge_mod.item.armor.PetHuntingArmorItem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -9,10 +10,8 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -82,6 +81,23 @@ public class PalicoEntity extends Animal implements ILevelableEntity {
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         readAdditionalLevelableSaveData(tag);
+    }
+
+
+
+    @Override
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        if (!player.level().isClientSide()) {
+            ItemStack handItem = player.getItemInHand(hand);
+            if (handItem.getItem() instanceof PetHuntingArmorItem<?> armorItem) {
+                EquipmentSlot slot = armorItem.getEquipmentSlot();
+                ItemStack oldArmor = this.getItemBySlot(slot);
+                this.setItemSlot(slot, handItem);
+                player.setItemInHand(hand, oldArmor);
+                return InteractionResult.SUCCESS;
+            }
+        }
+        return super.mobInteract(player, hand);
     }
 
 
