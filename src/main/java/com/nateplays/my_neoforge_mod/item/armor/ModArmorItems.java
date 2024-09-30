@@ -1,7 +1,11 @@
 package com.nateplays.my_neoforge_mod.item.armor;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
+import com.nateplays.my_neoforge_mod.entity.client.ModModelLayers;
 import com.nateplays.my_neoforge_mod.entity.pets.PalicoEntity;
+import com.nateplays.my_neoforge_mod.entity.pets.client.PalicoModel;
+import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FBoneHelmModel;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SwordItem;
@@ -68,12 +72,21 @@ public class ModArmorItems {
     ));
 
 
-    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity>> F_ACORN_HELM = ARMOR_ITEMS.register("f_acorn_helm", () -> new PetHuntingArmorItem<PalicoEntity>(
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel>> F_ACORN_HELM = ARMOR_ITEMS.register("f_acorn_helm", () -> new PetHuntingArmorItem<>(
             ModArmorMaterials.F_ACORN, ArmorItem.Type.HELMET,
             new Item.Properties().durability(150), PalicoEntity.class
     ));
-    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity>> F_ACORN_MAIL = ARMOR_ITEMS.register("f_acorn_mail", () -> new PetHuntingArmorItem<PalicoEntity>(
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel>> F_ACORN_MAIL = ARMOR_ITEMS.register("f_acorn_mail", () -> new PetHuntingArmorItem<>(
             ModArmorMaterials.F_ACORN, ArmorItem.Type.CHESTPLATE,
+            new Item.Properties().durability(150), PalicoEntity.class
+    ));
+
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel>> F_BONE_HELM = ARMOR_ITEMS.register("f_bone_helm", () -> new PetHuntingArmorItem<>(
+            new PetArmorMaterial<FBoneHelmModel>(ModArmorMaterials.F_BONE, (EntityRendererProvider.Context context) -> new FBoneHelmModel<>(context.bakeLayer(ModModelLayers.F_BONE_HELM_LAYER))),
+            ArmorItem.Type.HELMET, new Item.Properties().durability(150), PalicoEntity.class
+    ));
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel>> F_BONE_MAIL = ARMOR_ITEMS.register("f_bone_mail", () -> new PetHuntingArmorItem<>(
+            ModArmorMaterials.F_BONE, ArmorItem.Type.CHESTPLATE,
             new Item.Properties().durability(150), PalicoEntity.class
     ));
 

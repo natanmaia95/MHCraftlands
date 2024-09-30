@@ -3,6 +3,7 @@ package com.nateplays.my_neoforge_mod.entity.pets.client;
 import com.google.common.collect.Maps;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.logging.LogUtils;
 import com.nateplays.my_neoforge_mod.entity.client.ModModelLayers;
 import com.nateplays.my_neoforge_mod.entity.client.MosswineModel;
 import com.nateplays.my_neoforge_mod.entity.pets.PalicoEntity;
@@ -34,6 +35,7 @@ import net.minecraft.world.item.armortrim.ArmorTrim;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import org.slf4j.Logger;
 
 
 //public class PalicoArmorLayer<T extends PalicoEntity, M extends PalicoModel<T>, A extends PalicoModel<T>> extends RenderLayer<T, M> {
@@ -41,25 +43,42 @@ import net.neoforged.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class PalicoArmorLayer<T extends PalicoEntity, M extends PalicoModel<T>, A extends PalicoModel<T>> extends RenderLayer<T, M> {
     private final A baseArmorModel;
+    private final EntityRendererProvider.Context context;
+
+    private static final Logger LOGGER = LogUtils.getLogger();
 
 //    public PalicoArmorLayer(RenderLayerParent<T, M> renderer, A armorModel, EntityRendererProvider.Context context) {
     public PalicoArmorLayer(RenderLayerParent<T, M> renderer, A armorModel, EntityRendererProvider.Context context) {
         super(renderer);
 //        this.baseArmorModel = new PalicoModel<>(context.bakeLayer(ModModelLayers.PALICO_LAYER));
         this.baseArmorModel = armorModel;
+        this.context = context;
     }
 
     @Override
     public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T livingEntity, float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.renderArmorPiece(poseStack, bufferSource, livingEntity, EquipmentSlot.HEAD, packedLight, baseArmorModel);
-        this.renderArmorPiece(poseStack, bufferSource, livingEntity, EquipmentSlot.CHEST, packedLight, baseArmorModel);
+        this.renderArmorPiece(poseStack, bufferSource, livingEntity, EquipmentSlot.CHEST, packedLight, this.getArmorModel(livingEntity, EquipmentSlot.CHEST));
+        this.renderArmorPiece(poseStack, bufferSource, livingEntity, EquipmentSlot.HEAD, packedLight, this.getArmorModel(livingEntity, EquipmentSlot.HEAD));
     }
 
-//    private A getArmorModel(EquipmentSlot slot) {
-////        return this.usesInnerModel(slot) ? this.innerModel : this.outerModel;
-//        //return custom model
-//        return baseArmorModel;
-//    }
+    private A getArmorModel(LivingEntity livingEntity, EquipmentSlot slot) {
+//        return this.usesInnerModel(slot) ? this.innerModel : this.outerModel;
+        //return custom model
+
+        ItemStack itemStack = livingEntity.getItemBySlot(slot);
+//        LOGGER.debug("a");
+        if (itemStack.isEmpty()) return baseArmorModel;
+//        LOGGER.debug("b");
+        if (itemStack.getItem() instanceof PetHuntingArmorItem armorItem) {
+//            LOGGER.debug("c");
+            A armorModel = (A) armorItem.getArmorModel(this.context);
+            if (armorModel == null) return baseArmorModel;
+//            LOGGER.debug("d");
+            return armorModel;
+        }
+//        LOGGER.debug("e");
+        return baseArmorModel;
+    }
 
     private void renderArmorPiece(
             PoseStack poseStack, MultiBufferSource bufferSource, T livingEntity,
@@ -70,7 +89,7 @@ public class PalicoArmorLayer<T extends PalicoEntity, M extends PalicoModel<T>, 
             if (armoritem.getEquipmentSlot() != slot) return; //if incorrect slot, return
             this.getParentModel().copyPropertiesTo(p_model);
             this.copyParts(getParentModel(), p_model);
-
+//            LOGGER.debug(p_model.toString());
             //TODO: change to custom material class for pet armor
             ArmorMaterial armormaterial = armoritem.getMaterial().value();
             int probableDyeColor = itemstack.is(ItemTags.DYEABLE) ? FastColor.ARGB32.opaque(DyedItemColor.getOrDefault(itemstack, -6265536)) : -1;

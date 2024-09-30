@@ -89,6 +89,11 @@ public class ModArmorMaterials {
             () -> Ingredient.of(Items.OAK_SAPLING)
     );
 
+    public static final Holder<ArmorMaterial> F_BONE = registerMaterial(
+            "f_bone", 1, SoundEvents.ARMOR_EQUIP_TURTLE,
+            () -> Ingredient.of(Items.BONE)
+    );
+
 
 
 

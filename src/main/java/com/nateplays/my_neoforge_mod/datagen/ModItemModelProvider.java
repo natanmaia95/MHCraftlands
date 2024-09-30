@@ -46,6 +46,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         armorItem(ModArmorItems.F_ACORN_HELM);
         armorItem(ModArmorItems.F_ACORN_MAIL);
+        armorItem(ModArmorItems.F_BONE_HELM);
+        armorItem(ModArmorItems.F_BONE_MAIL);
     }
 
 

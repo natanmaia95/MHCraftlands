@@ -1,7 +1,9 @@
-// 1.21	2024-09-29T22:59:48.0289977	Item Models: my_neoforge_mod
+// 1.21	2024-09-30T14:40:19.9939287	Item Models: my_neoforge_mod
 942b9399a1862b2fdf135e37ca832fa30e106df1 assets/my_neoforge_mod/models/item/earth_crystal.json
 3270ac278198b592bdabb8a6f0abd149a45dd140 assets/my_neoforge_mod/models/item/f_acorn_helm.json
 203b8d59e71293af446427fe31353b566842c0c4 assets/my_neoforge_mod/models/item/f_acorn_mail.json
+ca7901647e1de7273a074290d64cb97ca0934b5a assets/my_neoforge_mod/models/item/f_bone_helm.json
+d8dfa061d4c77ff2320fde5e72f5b3c4dc934ab5 assets/my_neoforge_mod/models/item/f_bone_mail.json
 4c99e5f581154c105df8558971c053c1c1f8db6b assets/my_neoforge_mod/models/item/machalite_axe.json
 e9e0244930d674104700300695ffb9b5e56715b7 assets/my_neoforge_mod/models/item/machalite_button.json
 e0a5091af9432b070a69cf9bd6d793fdeeb7bdf6 assets/my_neoforge_mod/models/item/machalite_chunk.json

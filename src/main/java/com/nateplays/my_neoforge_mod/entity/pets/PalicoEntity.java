@@ -89,7 +89,7 @@ public class PalicoEntity extends Animal implements ILevelableEntity {
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         if (!player.level().isClientSide()) {
             ItemStack handItem = player.getItemInHand(hand);
-            if (handItem.getItem() instanceof PetHuntingArmorItem<?> armorItem) {
+            if (handItem.getItem() instanceof PetHuntingArmorItem<?,?> armorItem) {
                 EquipmentSlot slot = armorItem.getEquipmentSlot();
                 ItemStack oldArmor = this.getItemBySlot(slot);
                 this.setItemSlot(slot, handItem);

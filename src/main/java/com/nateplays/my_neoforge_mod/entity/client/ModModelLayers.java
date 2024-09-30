@@ -16,4 +16,6 @@ public class ModModelLayers {
 
     public static final ModelLayerLocation PALICO_ARMOR_LAYER = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "palico_armor_layer"), "main");
+    public static final ModelLayerLocation F_BONE_HELM_LAYER = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "f_bone_helm_layer"), "main");
 }
