@@ -1,6 +1,9 @@
 package com.nateplays.my_neoforge_mod.item.armor;
 
+import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
+import com.nateplays.my_neoforge_mod.attribute.ModAttributes;
 import com.nateplays.my_neoforge_mod.enchantment.ModEnchantmentHelper;
+import com.nateplays.my_neoforge_mod.item.ModToolTiers;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.PlayerModel;
@@ -14,9 +17,13 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -33,21 +40,26 @@ import java.util.List;
 import java.util.Optional;
 
 public class HuntingArmorItem extends ArmorItem {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(HuntingArmorItem.class);
+
+    public static final ResourceLocation MODIFIER_ID_BASE_DEFENSE =
+            ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID,"base_defense");
+
+
 
     public HuntingArmorItem(Holder<ArmorMaterial> material, Type type, Properties properties) {
         super(material, type,
                 properties
                         .component(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY)
                         .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, false)
+                        .attributes(createAttributes(material, type)) //this also removes Armor and Toughness attributes.
         );
     }
 
     @Override
     public void onCraftedBy(ItemStack stack, Level level, Player player) {
         super.onCraftedBy(stack, level, player);
-        LOGGER.debug("crafted hunting armor.");
+        LOGGER.debug("crafted hunting armor." + stack.toString());
         applyInitialEnchantments(stack, level);
     }
 
@@ -80,5 +92,21 @@ public class HuntingArmorItem extends ArmorItem {
             }
 
         } else LOGGER.debug("No data was found for armor " + stack.getItemHolder().getKey().registry().getPath());
+    }
+
+    //This being added as an attribute component removes EVERY OTHER ATTRIBUTE THE ARMOR WOULD HAVE
+    public static ItemAttributeModifiers createAttributes(Holder<ArmorMaterial> material, Type type) {
+        return ItemAttributeModifiers.builder()
+                .add(
+                        ModAttributes.DEFENSE,
+                        new AttributeModifier(
+                                ResourceLocation.withDefaultNamespace("armor." + type.getName()),
+                                material.value().getDefense(type),
+                                AttributeModifier.Operation.ADD_VALUE),
+                        EquipmentSlotGroup.bySlot(type.getSlot())
+                )
+                //add elemental resistances here depending on data loader.
+                .build();
+
     }
 }

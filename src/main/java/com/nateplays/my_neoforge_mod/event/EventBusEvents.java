@@ -2,6 +2,7 @@ package com.nateplays.my_neoforge_mod.event;
 
 import com.mojang.logging.LogUtils;
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
+import com.nateplays.my_neoforge_mod.attribute.ModAttributes;
 import com.nateplays.my_neoforge_mod.entity.interfaces.ILevelableEntity;
 import com.nateplays.my_neoforge_mod.item.custom.HammerItem;
 import net.minecraft.core.BlockPos;
@@ -15,6 +16,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import org.slf4j.Logger;
@@ -47,6 +49,24 @@ public class EventBusEvents {
             }
         }
     }
+
+    @SubscribeEvent
+    public static void livingPreDamageEvent(LivingDamageEvent.Pre event) {
+        livingPreDamageDefenseStep(event);
+
+    }
+
+    public static void livingPreDamageDefenseStep(LivingDamageEvent.Pre event) {
+        LivingEntity livingEntity = event.getEntity();
+        float damageAmount = event.getNewDamage();
+        if (!livingEntity.getAttributes().hasAttribute(ModAttributes.DEFENSE)) return;
+        double defense = livingEntity.getAttributeValue(ModAttributes.DEFENSE);
+        if (defense == 0) return;
+        double defenseReduction = 8.0 / (8.0 + defense);
+        double damageAfterDefense = damageAmount * defenseReduction;
+        event.setNewDamage((float)damageAfterDefense);
+    }
+
 
     private static final Set<BlockPos> HAMMER_HARVESTED_BLOCKS = new HashSet<>();
     @SubscribeEvent

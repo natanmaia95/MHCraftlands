@@ -25,11 +25,16 @@ public class ModAttributeHandler {
 
     public static AttributeSupplier.Builder createPlayerHuntAttributes() {
         return LivingEntity.createLivingAttributes()
-                .add(ModAttributes.EATING_SPEED, ModAttributes.EATING_SPEED.get().getDefaultValue());
+                .add(ModAttributes.EATING_SPEED, ModAttributes.EATING_SPEED.get().getDefaultValue())
+                .add(ModAttributes.DEFENSE, ModAttributes.DEFENSE.get().getDefaultValue());
+
     }
 
     @SubscribeEvent
     public static void entityAttributeModificationEvent(EntityAttributeModificationEvent event) {
+        event.add(EntityType.PLAYER, ModAttributes.DEFENSE);
+//        event.add(EntityType., ModAttributes.DEFENSE);
+
         event.add(EntityType.PLAYER, ModAttributes.EATING_SPEED);
     }
 

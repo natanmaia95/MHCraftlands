@@ -73,12 +73,12 @@ public class ModArmorMaterials {
 
 
     public static final Holder<ArmorMaterial> HUNTER = registerMaterial(
-            "hunter", 1, SoundEvents.ARMOR_EQUIP_LEATHER,
+            "hunter", 4, SoundEvents.ARMOR_EQUIP_LEATHER,
             () -> Ingredient.of(Items.LEATHER)
     );
 
     public static final Holder<ArmorMaterial> CREEPER = registerMaterial(
-            "creeper", 1, SoundEvents.ARMOR_EQUIP_LEATHER,
+            "creeper", 8, SoundEvents.ARMOR_EQUIP_LEATHER,
             () -> Ingredient.of(Items.TNT)
     );
 

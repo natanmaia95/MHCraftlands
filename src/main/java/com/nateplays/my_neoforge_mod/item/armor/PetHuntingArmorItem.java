@@ -57,7 +57,7 @@ public class PetHuntingArmorItem<T extends Animal, A extends Model> extends Hunt
     public A getArmorModel(EntityRendererProvider.Context context) {
         if (petArmorMaterial.modelFunction == null) return null;
         A armorModel = (A) petArmorMaterial.modelFunction.apply(context);
-        LogUtils.getLogger().debug(armorModel.toString());
+//        LogUtils.getLogger().debug(armorModel.toString());
         return armorModel;
     }
 }
