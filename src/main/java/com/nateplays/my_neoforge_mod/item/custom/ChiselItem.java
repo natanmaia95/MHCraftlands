@@ -11,11 +11,16 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentUtils;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
+import net.minecraft.network.protocol.game.ClientboundAnimatePacket;
+import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -65,6 +70,27 @@ public class ChiselItem extends Item {
                     0.0, 0.0, 0.0);
         }
         return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
+        if (entity instanceof Player player) {
+            forceServerSwing(player, InteractionHand.OFF_HAND);
+            return true;
+        }
+        return super.onEntitySwing(stack, entity);
+    }
+
+    public void forceServerSwing(Player player, InteractionHand hand) {
+        player.swingTime = -1;
+        player.swinging = true;
+        player.swingingArm = hand;
+
+        Level level = player.level();
+        if (!level.isClientSide()){
+            ServerChunkCache serverchunkcache = ((ServerLevel) level).getChunkSource();
+            serverchunkcache.broadcast(player, new ClientboundAnimatePacket(player, hand == InteractionHand.MAIN_HAND ? 0 : 3));
+        }
     }
 
     @Override

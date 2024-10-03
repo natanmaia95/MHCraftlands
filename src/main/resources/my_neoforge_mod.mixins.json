@@ -5,7 +5,9 @@
   "mixins": [
     "HuntingEnchantmentMixin",
     "PrimedTntMixin",
-    "InteractRidingEntityMixin"
+    "InteractRidingEntityMixin",
+    "ItemInHandRendererAccessor",
+    "ItemInHandLayerMixin"
   ],
   "client": [
   ],
