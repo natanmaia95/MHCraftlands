@@ -5,6 +5,7 @@ import com.mojang.math.Axis;
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.event.LivingRenderHandItemEvent;
 import com.nateplays.my_neoforge_mod.item.ModItems;
+import com.nateplays.my_neoforge_mod.item.weapons.SwordAndShieldItem;
 import com.nateplays.my_neoforge_mod.mixin.ItemInHandRendererAccessor;
 //import com.nateplays.my_neoforge_mod.mixin.ItemInHandRendererMixin;
 import net.minecraft.client.Minecraft;
@@ -41,11 +42,13 @@ public class ChiselRenderHandler {
     @SubscribeEvent
     public static void onRenderHandFirstPerson(RenderHandEvent event) {
 
-        if (event.getItemStack().getItem() instanceof ChiselItem) {
+        if (event.getItemStack().getItem() instanceof SwordAndShieldItem) {
             if (IS_ALREADY_RENDERING_HAND) {
-                return; //dont cancel! this is the new render call below.
+                event.setCanceled(false);
+                return; //dont cancel! this is the event thrown by the new render call below.
             }
-            ItemStack itemStack = new ItemStack(Items.SHIELD);
+            if (event.getHand() != InteractionHand.MAIN_HAND) return;
+            ItemStack itemStack = event.getItemStack().copy();
             ItemInHandRenderer itemInHandRenderer = Minecraft.getInstance().getEntityRenderDispatcher().getItemInHandRenderer();
             LocalPlayer localPlayer = Minecraft.getInstance().player;
 
@@ -65,8 +68,10 @@ public class ChiselRenderHandler {
     @SubscribeEvent
     public static void onRenderHandThirdPerson(LivingRenderHandItemEvent event) {
         LivingEntity livingEntity = event.getEntity();
-        if (livingEntity.getMainHandItem().getItem() instanceof ChiselItem && event.getArm() != livingEntity.getMainArm()) {
-            event.setModifiedItemStack(new ItemStack(Items.SHIELD));
+        if (livingEntity.getMainHandItem().getItem() instanceof SwordAndShieldItem && event.getArm() != livingEntity.getMainArm()) {
+            ItemStack itemStack = livingEntity.getMainHandItem().copy();
+//            itemStack.getComponents().
+            event.setModifiedItemStack(itemStack);
         }
     }
 }

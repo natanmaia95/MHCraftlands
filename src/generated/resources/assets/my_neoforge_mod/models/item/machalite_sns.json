@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:item/handheld",
+  "overrides": [
+    {
+      "model": "my_neoforge_mod:item/weapon/machalite_sns_mainhand",
+      "predicate": {
+        "my_neoforge_mod:hand": 1.0
+      }
+    },
+    {
+      "model": "my_neoforge_mod:item/weapon/machalite_sns_offhand",
+      "predicate": {
+        "my_neoforge_mod:hand": 2.0
+      }
+    },
+    {
+      "model": "my_neoforge_mod:item/weapon/machalite_sns_mainhand_blocking",
+      "predicate": {
+        "my_neoforge_mod:hand": 3.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "my_neoforge_mod:item/machalite_sns"
+  }
+}

@@ -11,6 +11,10 @@ import com.nateplays.my_neoforge_mod.item.ModItems;
 import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
 import com.nateplays.my_neoforge_mod.item.armor.ModArmorMaterials;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.item.Items;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -111,6 +115,28 @@ public class MyNeoForgeMod
             EntityRenderers.register(ModEntities.MOSSWINE.get(), MosswineRenderer::new);
             EntityRenderers.register(ModEntities.PALICO.get(), PalicoRenderer::new);
 
+
+            ItemProperties.register(ModItems.MACHALITE_SNS.get(), ResourceLocation.fromNamespaceAndPath(MODID, "hand"),
+                    (itemStack, clientLevel, livingEntity, seed) -> {
+                        if (livingEntity == null) return 0.0F;
+                        if (livingEntity.getMainHandItem() == itemStack) {
+//                            if (livingEntity.isUsingItem() && livingEntity.getUsedItemHand() == InteractionHand.MAIN_HAND) {
+//                                return 3.0F;
+//                            }
+                            if (livingEntity.isUsingItem()) return 3.0F;
+                            return 1.0F;  // Use main-hand model, sword
+                        } else if (livingEntity.getOffhandItem() == itemStack) {
+                            return 2.0F;  // Use off-hand model, shield
+                        }
+                        return 0.0F;
+                    });
+//            ItemProperties.register(ModItems.MACHALITE_SNS.get(), ResourceLocation.withDefaultNamespace("blocking"),
+//                    (itemStack, clientLevel, livingEntity, seed) -> {
+//                        if (livingEntity == null) return 0.0F;
+//                        if (!(livingEntity.isUsingItem() && livingEntity.getUsedItemHand() == InteractionHand.MAIN_HAND)) return 0.0F;
+//                        if (livingEntity.getMainHandItem() != itemStack) return 0.0F;
+//                        return livingEntity.getUseItem().getItem() == itemStack.getItem() ? 1.0F : 0.0F;
+//                    });
         }
     }
 }

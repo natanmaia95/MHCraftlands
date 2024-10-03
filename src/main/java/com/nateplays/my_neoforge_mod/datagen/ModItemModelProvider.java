@@ -4,6 +4,7 @@ import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.block.ModBlocks;
 import com.nateplays.my_neoforge_mod.item.ModItems;
 import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
+import com.nateplays.my_neoforge_mod.item.weapons.SwordAndShieldItem;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -42,6 +43,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         handheldItem(ModItems.MACHALITE_HAMMER);
 
+        snsItem(ModItems.MACHALITE_SNS);
+
         withExistingParent(ModItems.MOSSWINE_SPAWN_EGG.getRegisteredName(), mcLoc("item/template_spawn_egg"));
 
         armorItem(ModArmorItems.F_ACORN_HELM);
@@ -77,5 +80,44 @@ public class ModItemModelProvider extends ItemModelProvider {
     private ItemModelBuilder armorItem(DeferredItem<?> item) {
         return withExistingParent(item.getId().getPath(), ResourceLocation.parse("item/handheld"))
                 .texture("layer0", modLoc("item/armor/" + item.getId().getPath()));
+    }
+
+    private ItemModelBuilder snsItem(DeferredItem<SwordAndShieldItem> item) {
+        String itemId = item.getId().getPath();
+        String modelPath = "item/weapon/";
+
+        withExistingParent(modelPath + itemId + "_mainhand_blocking", modLoc("item/weapon/sns_shield_blocking"))
+//                .texture("layer0", modLoc("item/" + itemId + "_shield"));
+                .texture("layer0", modLoc("item/" + itemId + "_shield"));
+
+        withExistingParent(modelPath + itemId + "_mainhand", modLoc("item/weapon/sns_shield"))
+                .texture("layer0", modLoc("item/" + itemId + "_shield"));
+//                .override()
+//                    .predicate(mcLoc("blocking"), 1.0F)
+//                    .model(new ModelFile.UncheckedModelFile(modLoc(modelPath + itemId + "_mainhand_blocking")))
+//                    .end();
+
+        withExistingParent(modelPath + itemId + "_offhand", ResourceLocation.parse("item/handheld"))
+                .texture("layer0", modLoc("item/" + itemId));
+
+        return withExistingParent(itemId, ResourceLocation.parse("item/handheld"))
+                .texture("layer0", modLoc("item/" + itemId))
+//                .override()
+//                    .predicate(mcLoc("blocking"), 1.0F)
+//                    .model(new ModelFile.UncheckedModelFile(modLoc(modelPath + itemId + "_mainhand_blocking")))
+//                    .end();
+
+                .override()
+                    .predicate(modLoc("hand"), 1.0F)
+                    .model(new ModelFile.UncheckedModelFile(modLoc(modelPath + itemId + "_mainhand")))
+                    .end()
+                .override()
+                    .predicate(modLoc("hand"), 2.0F)
+                    .model(new ModelFile.UncheckedModelFile(modLoc(modelPath + itemId + "_offhand")))
+                    .end()
+                .override()
+                    .predicate(modLoc("hand"), 3.0F)
+                    .model(new ModelFile.UncheckedModelFile(modLoc(modelPath + itemId + "_mainhand_blocking")))
+                    .end();
     }
 }
