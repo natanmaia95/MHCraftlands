@@ -3,6 +3,7 @@ package com.nateplays.my_neoforge_mod.component;
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponentType;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.entity.HumanoidArm;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -21,6 +22,9 @@ public class ModDataComponents {
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<HumanoidArm>> FAKE_RENDER_HAND =
             register("fake_render_hand", builder -> builder.persistent(HumanoidArm.CODEC));
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> HAND_SWING =
+            register("hand_swing", builder -> builder.persistent(ExtraCodecs.POSITIVE_INT));
 
 
 

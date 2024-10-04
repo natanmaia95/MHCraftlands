@@ -50,7 +50,9 @@ public abstract class HuntingWeaponItem extends TieredItem {
         return 1.0F;
     }
 
-
+    public float getUseItemSlowdown(Player player, ItemStack stack) {
+        return 0.2F;
+    }
 
 
 

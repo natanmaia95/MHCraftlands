@@ -5,6 +5,8 @@ import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.attribute.ModAttributes;
 import com.nateplays.my_neoforge_mod.entity.interfaces.ILevelableEntity;
 import com.nateplays.my_neoforge_mod.item.custom.HammerItem;
+import com.nateplays.my_neoforge_mod.item.weapons.HuntingWeaponItem;
+import com.nateplays.my_neoforge_mod.item.weapons.SwordAndShieldItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -16,6 +18,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.MovementInputUpdateEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
@@ -96,6 +99,19 @@ public class EventBusEvents {
                 LOGGER.debug("broken at " + pos.toString());
                 HAMMER_HARVESTED_BLOCKS.remove(pos);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onMovementInputUpdated(MovementInputUpdateEvent event) {
+        Player player = event.getEntity();
+        if (player.isUsingItem() && player.getUseItem().getItem() instanceof HuntingWeaponItem) {
+            event.getInput().leftImpulse /= 0.2F;
+            event.getInput().forwardImpulse /= 0.2F;
+
+            float slowdown = ((HuntingWeaponItem) player.getUseItem().getItem()).getUseItemSlowdown(player, player.getUseItem());
+            event.getInput().leftImpulse *= slowdown;
+            event.getInput().forwardImpulse *= slowdown;
         }
     }
 }

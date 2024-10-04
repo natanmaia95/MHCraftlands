@@ -38,6 +38,9 @@ public class SwordAndShieldItem extends HuntingWeaponItem{
         return 2.5F;
     }
 
+    public float getUseItemSlowdown(Player player, ItemStack stack) {
+        return 0.5F;
+    }
 
 
     @Override

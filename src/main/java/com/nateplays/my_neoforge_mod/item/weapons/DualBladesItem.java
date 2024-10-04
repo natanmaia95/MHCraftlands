@@ -1,5 +1,6 @@
 package com.nateplays.my_neoforge_mod.item.weapons;
 
+import com.nateplays.my_neoforge_mod.component.ModDataComponents;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -13,6 +14,8 @@ import net.minecraft.world.item.component.Tool;
 import net.neoforged.neoforge.common.ItemAbilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.annotation.Nullable;
 
 public class DualBladesItem extends HuntingWeaponItem {
     static final Logger LOGGER = LoggerFactory.getLogger(DualBladesItem.class);
@@ -43,12 +46,19 @@ public class DualBladesItem extends HuntingWeaponItem {
     @Override
     public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
         if (entity instanceof Player player) {
-            RandomSource randomSource = RandomSource.create();
-            if (randomSource.nextFloat() > 0.5) {
+//            RandomSource randomSource = RandomSource.create();
+//            if (randomSource.nextFloat() > 0.5) {
+//                forceServerSwing(player, InteractionHand.OFF_HAND);
+//                return true;
+//            }
+            int handSwing = stack.getOrDefault(ModDataComponents.HAND_SWING, 1);
+            if (handSwing == 1) {
+                stack.set(ModDataComponents.HAND_SWING, 2);
                 forceServerSwing(player, InteractionHand.OFF_HAND);
                 return true;
             }
         }
+        stack.set(ModDataComponents.HAND_SWING, 1);
         return super.onEntitySwing(stack, entity);
     }
 
