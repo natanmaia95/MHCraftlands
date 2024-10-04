@@ -10,11 +10,14 @@ import com.nateplays.my_neoforge_mod.item.ModCreativeModeTabs;
 import com.nateplays.my_neoforge_mod.item.ModItems;
 import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
 import com.nateplays.my_neoforge_mod.item.armor.ModArmorMaterials;
+import com.nateplays.my_neoforge_mod.item.weapons.DualBladesItem;
+import com.nateplays.my_neoforge_mod.item.weapons.SwordAndShieldItem;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import org.slf4j.Logger;
 
@@ -116,39 +119,33 @@ public class MyNeoForgeMod
             EntityRenderers.register(ModEntities.MOSSWINE.get(), MosswineRenderer::new);
             EntityRenderers.register(ModEntities.PALICO.get(), PalicoRenderer::new);
 
-
-            ItemProperties.register(ModItems.MACHALITE_SNS.get(), ResourceLocation.fromNamespaceAndPath(MODID, "hand"),
-                    (itemStack, clientLevel, livingEntity, seed) -> {
-                        if (livingEntity == null) return 0.0F;
-                        if (livingEntity.getMainHandItem() == itemStack) {
-                            if (livingEntity.isUsingItem()) return 3.0F;
-                            return 1.0F;  // Use main-hand model, sword
-                        } else if (livingEntity.getMainHandItem().getItem() == itemStack.getItem()) {
-                            return 2.0F;  // Use off-hand model, shield
-                        }
-                        return 0.0F;
-                    });
-
-            ItemProperties.register(ModItems.MACHALITE_DB.get(), ResourceLocation.fromNamespaceAndPath(MODID, "hand"),
-                    (itemStack, clientLevel, livingEntity, seed) -> {
-                        if (livingEntity == null) return 0.0F;
-                        if (livingEntity.getMainHandItem() == itemStack) {
-                            return 1.0F;  // Use main-hand model, sword 1
-                        } else if (livingEntity.getMainHandItem().getItem() == itemStack.getItem()) {
-                            return 2.0F;  // Use off-hand model, sword 2
-                        }
-                        return 0.0F;
-                    });
-
-            ItemProperties.register(ModItems.MACHALITE_DB.get(), ResourceLocation.fromNamespaceAndPath(MODID, "fake_render_hand"),
-                    (itemStack, clientLevel, livingEntity, seed) -> {
-                        if (livingEntity == null) return 0.0F;
-                        HumanoidArm arm = itemStack.get(ModDataComponents.FAKE_RENDER_HAND);
-                        if (arm == null) return 0.0F;
-                        else if (arm == HumanoidArm.RIGHT) return 1.0F; //main
-                        else if (arm == HumanoidArm.LEFT) return 2.0F; //off
-                        return 0.0F;
-                    });
+            // Predicates
+            ModItems.ITEMS.getEntries().forEach((itemDeferredHolder) -> {
+                Item item = itemDeferredHolder.get();
+                if (item instanceof DualBladesItem || item instanceof SwordAndShieldItem) {
+                    ItemProperties.register(item, ResourceLocation.fromNamespaceAndPath(MODID, "fake_render_hand"),
+                        (itemStack, clientLevel, livingEntity, seed) -> {
+                            if (livingEntity == null) return 0.0F;
+                            HumanoidArm arm = itemStack.get(ModDataComponents.FAKE_RENDER_HAND);
+                            if (arm == null) return 0.0F;
+                            else if (arm == HumanoidArm.RIGHT) return 1.0F; //main
+                            else if (arm == HumanoidArm.LEFT) return 2.0F; //off
+                            return 0.0F;
+                        });
+                }
+                if (item instanceof SwordAndShieldItem) {
+                    ItemProperties.register(item, ResourceLocation.fromNamespaceAndPath(MODID, "blocking"),
+                        (itemStack, clientLevel, livingEntity, seed) -> {
+                            if (livingEntity == null) return 0.0F;
+                            if (itemStack.get(ModDataComponents.FAKE_RENDER_HAND) == HumanoidArm.RIGHT) {
+                                if (livingEntity.isUsingItem() && livingEntity.getUsedItemHand() == InteractionHand.MAIN_HAND) {
+                                    return 1.0F;
+                                }
+                            }
+                            return 0.0F;
+                        });
+                }
+            });
         }
     }
 }

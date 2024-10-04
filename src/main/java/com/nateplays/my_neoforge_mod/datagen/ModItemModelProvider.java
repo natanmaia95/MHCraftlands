@@ -122,17 +122,20 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent(itemId, ResourceLocation.parse("item/handheld"))
                 .texture("layer0", modLoc("item/" + itemId + "_shield"))
                 .texture("layer1", modLoc("item/" + itemId))
+
+                //RENDER PRIORITY IS BOTTOM FIRST, TOP LAST, EXIT ON FIRST MATCH.
                 .override()
-                    .predicate(modLoc("hand"), 1.0F)
+                    .predicate(modLoc("fake_render_hand"), 1.0F)
                     .model(new ModelFile.UncheckedModelFile(modLoc(modelPath + itemId + "_mainhand")))
                     .end()
                 .override()
-                    .predicate(modLoc("hand"), 2.0F)
+                    .predicate(modLoc("fake_render_hand"), 2.0F)
                     .model(new ModelFile.UncheckedModelFile(modLoc(modelPath + itemId + "_offhand")))
                     .end()
                 .override()
-                    .predicate(modLoc("hand"), 3.0F)
+                    .predicate(modLoc("blocking"), 1.0F)
                     .model(new ModelFile.UncheckedModelFile(modLoc(modelPath + itemId + "_mainhand_blocking")))
                     .end();
+
     }
 }

@@ -4,19 +4,19 @@
     {
       "model": "my_neoforge_mod:item/weapon/machalite_sns_mainhand",
       "predicate": {
-        "my_neoforge_mod:hand": 1.0
+        "my_neoforge_mod:fake_render_hand": 1.0
       }
     },
     {
       "model": "my_neoforge_mod:item/weapon/machalite_sns_offhand",
       "predicate": {
-        "my_neoforge_mod:hand": 2.0
+        "my_neoforge_mod:fake_render_hand": 2.0
       }
     },
     {
       "model": "my_neoforge_mod:item/weapon/machalite_sns_mainhand_blocking",
       "predicate": {
-        "my_neoforge_mod:hand": 3.0
+        "my_neoforge_mod:blocking": 1.0
       }
     }
   ],

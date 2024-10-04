@@ -30,7 +30,7 @@ public class ItemInHandRenderHandler {
     public static void onRenderHandFirstPerson(RenderHandEvent event) {
         Item item = event.getItemStack().getItem();
 
-        if (item instanceof DualBladesItem) {
+        if (item instanceof DualBladesItem || item instanceof SwordAndShieldItem) {
             if (IS_ALREADY_RENDERING_HAND) {
                 event.setCanceled(false);
                 return; //dont cancel! this is the event thrown by the new render call below.
@@ -59,28 +59,6 @@ public class ItemInHandRenderHandler {
             event.setCanceled(true);
             return;
         }
-
-        if (item instanceof SwordAndShieldItem) {
-            if (IS_ALREADY_RENDERING_HAND) {
-                event.setCanceled(false);
-                return; //dont cancel! this is the event thrown by the new render call below.
-            }
-            if (event.getHand() != InteractionHand.MAIN_HAND) return; //dont call this event twice
-            ItemStack newItemStack = event.getItemStack().copy();
-            ItemInHandRenderer itemInHandRenderer = Minecraft.getInstance().getEntityRenderDispatcher().getItemInHandRenderer();
-            LocalPlayer localPlayer = Minecraft.getInstance().player;
-
-            PoseStack poseStack = event.getPoseStack();
-            MultiBufferSource bufferSource = event.getMultiBufferSource();
-            int packedLight = event.getPackedLight();
-            IS_ALREADY_RENDERING_HAND = true;
-            float mainHandHeight = ((ItemInHandRendererAccessor) itemInHandRenderer).mainHandHeight();
-            ((ItemInHandRendererAccessor) itemInHandRenderer).setOffHandItem(newItemStack);
-            ((ItemInHandRendererAccessor) itemInHandRenderer).setOffHandHeight(mainHandHeight);
-            itemInHandRenderer.renderHandsWithItems(event.getPartialTick(), poseStack, (MultiBufferSource.BufferSource) bufferSource, localPlayer, packedLight);
-            IS_ALREADY_RENDERING_HAND = false;
-            event.setCanceled(true);
-        }
     }
 
     @SubscribeEvent
@@ -88,7 +66,7 @@ public class ItemInHandRenderHandler {
         LivingEntity livingEntity = event.getEntity();
         Item mainHandItem = livingEntity.getMainHandItem().getItem();
 
-        if (mainHandItem instanceof DualBladesItem) {
+        if (mainHandItem instanceof DualBladesItem || mainHandItem instanceof SwordAndShieldItem) {
             ItemStack newItemStack = livingEntity.getMainHandItem().copy();
             if (event.getArm() == livingEntity.getMainArm()) {
                 newItemStack.set(ModDataComponents.FAKE_RENDER_HAND, HumanoidArm.RIGHT);
@@ -97,13 +75,6 @@ public class ItemInHandRenderHandler {
             }
             event.setModifiedItemStack(newItemStack);
             return;
-        }
-
-        if (event.getArm() != livingEntity.getMainArm()) {
-            if (mainHandItem instanceof SwordAndShieldItem) {
-                ItemStack newItemStack = livingEntity.getMainHandItem().copy();
-                event.setModifiedItemStack(newItemStack);
-            }
         }
     }
 }
