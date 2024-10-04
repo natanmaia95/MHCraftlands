@@ -1,4 +1,4 @@
-// 1.21	2024-10-03T15:35:02.7919184	Item Models: my_neoforge_mod
+// 1.21	2024-10-03T23:26:48.3764976	Item Models: my_neoforge_mod
 942b9399a1862b2fdf135e37ca832fa30e106df1 assets/my_neoforge_mod/models/item/earth_crystal.json
 3270ac278198b592bdabb8a6f0abd149a45dd140 assets/my_neoforge_mod/models/item/f_acorn_helm.json
 203b8d59e71293af446427fe31353b566842c0c4 assets/my_neoforge_mod/models/item/f_acorn_mail.json
@@ -7,6 +7,7 @@ d8dfa061d4c77ff2320fde5e72f5b3c4dc934ab5 assets/my_neoforge_mod/models/item/f_bo
 4c99e5f581154c105df8558971c053c1c1f8db6b assets/my_neoforge_mod/models/item/machalite_axe.json
 e9e0244930d674104700300695ffb9b5e56715b7 assets/my_neoforge_mod/models/item/machalite_button.json
 e0a5091af9432b070a69cf9bd6d793fdeeb7bdf6 assets/my_neoforge_mod/models/item/machalite_chunk.json
+cdadc5584c91ba885e8f51a262f77ae5cece9258 assets/my_neoforge_mod/models/item/machalite_db.json
 58433d063ba809278aaf5a8650d60f87786bb1f8 assets/my_neoforge_mod/models/item/machalite_door.json
 769224e5bf997734f94d98a3e0e32f52626ffcd2 assets/my_neoforge_mod/models/item/machalite_fence.json
 5f71a692fbd546f7ae6617859d948de847561749 assets/my_neoforge_mod/models/item/machalite_hammer.json
@@ -14,11 +15,13 @@ e0a5091af9432b070a69cf9bd6d793fdeeb7bdf6 assets/my_neoforge_mod/models/item/mach
 9ff439b8f2f423714b528eb649077bd5fe3b6890 assets/my_neoforge_mod/models/item/machalite_ingot.json
 7f046b88223b88e15bf4e8685afb8bb9934cdd3a assets/my_neoforge_mod/models/item/machalite_pickaxe.json
 f8d0a25260d5c73edf7c06b6ac7e43d3b6bfcae8 assets/my_neoforge_mod/models/item/machalite_shovel.json
-30aa84bd1364a841d12b99240af995fcb2a7058c assets/my_neoforge_mod/models/item/machalite_sns.json
+8b162ed719ae5585dba72081c07711c4ab560458 assets/my_neoforge_mod/models/item/machalite_sns.json
 dc61c50ac342ba097803921efa1b1a9002c2fe28 assets/my_neoforge_mod/models/item/machalite_sword.json
 96e31c5ad963055c19f9c9f57cc5fe41893ac9fb assets/my_neoforge_mod/models/item/machalite_wall.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/my_neoforge_mod/models/item/mosswine_spawn_egg.json
 28da87f349d70a4505cd7abf2cdb96d411718739 assets/my_neoforge_mod/models/item/nulberry.json
+fe80b4e8e2c4d3d9937a83436aa6acfd778bb24f assets/my_neoforge_mod/models/item/weapon/machalite_db_mainhand.json
+14f8320ce45c35b5bf05111204f3b4849f561608 assets/my_neoforge_mod/models/item/weapon/machalite_db_offhand.json
 a3e7c42d9c4bc4d7870c5d2966a5b3010c38059c assets/my_neoforge_mod/models/item/weapon/machalite_sns_mainhand.json
 13a96ee80b565a1681b439ed4d75694b279889eb assets/my_neoforge_mod/models/item/weapon/machalite_sns_mainhand_blocking.json
 8b1973570ac1fca91d1b028d89d3a625f108afee assets/my_neoforge_mod/models/item/weapon/machalite_sns_offhand.json

@@ -4,6 +4,7 @@ import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.entity.ModEntities;
 import com.nateplays.my_neoforge_mod.item.custom.ChiselItem;
 import com.nateplays.my_neoforge_mod.item.custom.HammerItem;
+import com.nateplays.my_neoforge_mod.item.weapons.DualBladesItem;
 import com.nateplays.my_neoforge_mod.item.weapons.SwordAndShieldItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -67,10 +68,17 @@ public class ModItems {
     public static final DeferredItem<Item> CHISEL = ITEMS.register("chisel",
             () -> new ChiselItem(new Item.Properties().durability(32)));
 
+
+
     public static final DeferredItem<SwordAndShieldItem> MACHALITE_SNS = ITEMS.register("machalite_sns",
             () -> new SwordAndShieldItem(
                     ModToolTiers.MACHALITE, new Item.Properties()
-                    .attributes(SwordAndShieldItem.createAttributes(ModToolTiers.MACHALITE, 5f, -3f))));
+                    .attributes(SwordAndShieldItem.createAttributes(ModToolTiers.MACHALITE))));
+
+    public static final DeferredItem<DualBladesItem> MACHALITE_DB = ITEMS.register("machalite_db",
+            () -> new DualBladesItem(
+                    ModToolTiers.MACHALITE, new Item.Properties()
+                    .attributes(DualBladesItem.createAttributes(ModToolTiers.MACHALITE))));
 
 
 

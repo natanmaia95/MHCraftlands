@@ -4,6 +4,7 @@ import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.block.ModBlocks;
 import com.nateplays.my_neoforge_mod.item.ModItems;
 import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
+import com.nateplays.my_neoforge_mod.item.weapons.DualBladesItem;
 import com.nateplays.my_neoforge_mod.item.weapons.SwordAndShieldItem;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -44,6 +45,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.MACHALITE_HAMMER);
 
         snsItem(ModItems.MACHALITE_SNS);
+        dbItem(ModItems.MACHALITE_DB);
 
         withExistingParent(ModItems.MOSSWINE_SPAWN_EGG.getRegisteredName(), mcLoc("item/template_spawn_egg"));
 
@@ -82,31 +84,44 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .texture("layer0", modLoc("item/armor/" + item.getId().getPath()));
     }
 
-    private ItemModelBuilder snsItem(DeferredItem<SwordAndShieldItem> item) {
+    private void dbItem(DeferredItem<DualBladesItem> item) {
+        String itemId = item.getId().getPath();
+        String modelPath = "item/weapon/";
+
+        withExistingParent(modelPath + itemId + "_mainhand", mcLoc("item/handheld"))
+                .texture("layer0", modLoc("item/" + itemId + "_1"));
+
+        withExistingParent(modelPath + itemId + "_offhand", mcLoc("item/handheld"))
+                .texture("layer0", modLoc("item/" + itemId + "_2"));
+
+        withExistingParent(itemId, ResourceLocation.parse("item/handheld"))
+                .texture("layer0", modLoc("item/" + itemId))
+                .override()
+                    .predicate(modLoc("fake_render_hand"), 1.0F)
+                    .model(new ModelFile.UncheckedModelFile(modLoc(modelPath + itemId + "_mainhand")))
+                    .end()
+                .override()
+                    .predicate(modLoc("fake_render_hand"), 2.0F)
+                    .model(new ModelFile.UncheckedModelFile(modLoc(modelPath + itemId + "_offhand")))
+                    .end();
+    }
+
+    private void snsItem(DeferredItem<SwordAndShieldItem> item) {
         String itemId = item.getId().getPath();
         String modelPath = "item/weapon/";
 
         withExistingParent(modelPath + itemId + "_mainhand_blocking", modLoc("item/weapon/sns_shield_blocking"))
-//                .texture("layer0", modLoc("item/" + itemId + "_shield"));
                 .texture("layer0", modLoc("item/" + itemId + "_shield"));
 
         withExistingParent(modelPath + itemId + "_mainhand", modLoc("item/weapon/sns_shield"))
                 .texture("layer0", modLoc("item/" + itemId + "_shield"));
-//                .override()
-//                    .predicate(mcLoc("blocking"), 1.0F)
-//                    .model(new ModelFile.UncheckedModelFile(modLoc(modelPath + itemId + "_mainhand_blocking")))
-//                    .end();
 
         withExistingParent(modelPath + itemId + "_offhand", ResourceLocation.parse("item/handheld"))
                 .texture("layer0", modLoc("item/" + itemId));
 
-        return withExistingParent(itemId, ResourceLocation.parse("item/handheld"))
-                .texture("layer0", modLoc("item/" + itemId))
-//                .override()
-//                    .predicate(mcLoc("blocking"), 1.0F)
-//                    .model(new ModelFile.UncheckedModelFile(modLoc(modelPath + itemId + "_mainhand_blocking")))
-//                    .end();
-
+        withExistingParent(itemId, ResourceLocation.parse("item/handheld"))
+                .texture("layer0", modLoc("item/" + itemId + "_shield"))
+                .texture("layer1", modLoc("item/" + itemId))
                 .override()
                     .predicate(modLoc("hand"), 1.0F)
                     .model(new ModelFile.UncheckedModelFile(modLoc(modelPath + itemId + "_mainhand")))

@@ -9,6 +9,10 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(ItemInHandRenderer.class)
 public interface ItemInHandRendererAccessor {
 
+
+    @Accessor("mainHandItem")
+    void setMainHandItem(ItemStack value);
+
     // This creates a setter for the private field exampleValue
     @Accessor("offHandItem")
     void setOffHandItem(ItemStack value);

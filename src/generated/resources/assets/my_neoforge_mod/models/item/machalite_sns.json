@@ -21,6 +21,7 @@
     }
   ],
   "textures": {
-    "layer0": "my_neoforge_mod:item/machalite_sns"
+    "layer0": "my_neoforge_mod:item/machalite_sns_shield",
+    "layer1": "my_neoforge_mod:item/machalite_sns"
   }
 }

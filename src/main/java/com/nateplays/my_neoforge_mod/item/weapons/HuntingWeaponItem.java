@@ -3,7 +3,11 @@ package com.nateplays.my_neoforge_mod.item.weapons;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.protocol.game.ClientboundAnimatePacket;
+import net.minecraft.server.level.ServerChunkCache;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
@@ -30,13 +34,33 @@ public abstract class HuntingWeaponItem extends TieredItem {
         super(p_tier, p_properties.component(DataComponents.TOOL, toolComponentData));
     }
 
+
+
     public static Tool createToolProperties() {
         return new Tool(List.of(Tool.Rule.minesAndDrops(List.of(Blocks.COBWEB), 15.0F), Tool.Rule.overrideSpeed(BlockTags.SWORD_EFFICIENT, 1.5F)), 1.0F, 2);
     }
 
-    public static ItemAttributeModifiers createAttributes(Tier tier, float attackDamage, float attackSpeed) {
-        return ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, (double)(attackDamage + tier.getAttackDamageBonus()), AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, (double)attackSpeed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).build();
+    public static ItemAttributeModifiers createAttributes(Tier tier, float attackSpeed) {
+        return ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, (double)(getAttackDamageMultiplier() * tier.getAttackDamageBonus()), AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, (double)attackSpeed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).build();
     }
+
+
+
+    public static float getAttackDamageMultiplier() {
+        return 1.0F;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     public boolean canAttackBlock(BlockState state, Level level, BlockPos pos, Player player) {
         return false;
@@ -52,6 +76,22 @@ public abstract class HuntingWeaponItem extends TieredItem {
 
     public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility) {
         return ItemAbilities.DEFAULT_SWORD_ACTIONS.contains(itemAbility);
+    }
+
+
+
+
+
+    public void forceServerSwing(Player player, InteractionHand hand) {
+        player.swingTime = -1;
+        player.swinging = true;
+        player.swingingArm = hand;
+
+        Level level = player.level();
+        if (!level.isClientSide()){
+            ServerChunkCache serverchunkcache = ((ServerLevel) level).getChunkSource();
+            serverchunkcache.broadcast(player, new ClientboundAnimatePacket(player, hand == InteractionHand.MAIN_HAND ? 0 : 3));
+        }
     }
 
 }

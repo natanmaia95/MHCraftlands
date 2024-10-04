@@ -1,0 +1,20 @@
+{
+  "parent": "minecraft:item/handheld",
+  "overrides": [
+    {
+      "model": "my_neoforge_mod:item/weapon/machalite_db_mainhand",
+      "predicate": {
+        "my_neoforge_mod:fake_render_hand": 1.0
+      }
+    },
+    {
+      "model": "my_neoforge_mod:item/weapon/machalite_db_offhand",
+      "predicate": {
+        "my_neoforge_mod:fake_render_hand": 2.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "my_neoforge_mod:item/machalite_db"
+  }
+}

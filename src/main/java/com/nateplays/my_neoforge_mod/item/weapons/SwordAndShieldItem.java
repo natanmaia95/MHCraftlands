@@ -6,11 +6,15 @@ import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.ItemAbilities;
 import org.slf4j.Logger;
@@ -26,13 +30,22 @@ public class SwordAndShieldItem extends HuntingWeaponItem{
         super(tier, properties);
     }
 
+    public static ItemAttributeModifiers createAttributes(Tier tier) {
+        return HuntingWeaponItem.createAttributes(tier, -2.5f);
+    }
+
+    public static float getAttackDamageMultiplier() {
+        return 2.5F;
+    }
+
+
+
     @Override
     public void onUseTick(Level level, LivingEntity livingEntity, ItemStack stack, int remainingUseDuration) {
         super.onUseTick(level, livingEntity, stack, remainingUseDuration);
 //        LOGGER.debug(livingEntity.toString() + livingEntity.getUseItem().toString() + String.valueOf(livingEntity.isUsingItem()));
     }
 
-    // Called when the player uses the item (right-click)
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
@@ -48,10 +61,6 @@ public class SwordAndShieldItem extends HuntingWeaponItem{
             player.displayClientMessage(Component.literal("Attack cooldown not reset!"), true);
             return InteractionResultHolder.fail(itemStack);
         }
-
-//        player.startUsingItem(hand);
-//        return InteractionResultHolder.pass(itemStack);
-
     }
 
     @Override
@@ -75,17 +84,5 @@ public class SwordAndShieldItem extends HuntingWeaponItem{
             return true;
         }
         return super.onEntitySwing(stack, entity);
-    }
-
-    public void forceServerSwing(Player player, InteractionHand hand) {
-        player.swingTime = -1;
-        player.swinging = true;
-        player.swingingArm = hand;
-
-        Level level = player.level();
-        if (!level.isClientSide()){
-            ServerChunkCache serverchunkcache = ((ServerLevel) level).getChunkSource();
-            serverchunkcache.broadcast(player, new ClientboundAnimatePacket(player, hand == InteractionHand.MAIN_HAND ? 0 : 3));
-        }
     }
 }
