@@ -30,11 +30,11 @@ public class DualBladesItem extends HuntingWeaponItem {
     }
 
     public static ItemAttributeModifiers createAttributes(Tier tier) {
-        return HuntingWeaponItem.createAttributes(tier, -1.3f);
+        return HuntingWeaponItem.createAttributes(tier, getAttackDamageMultiplier(), -1.3f);
     }
 
     public static float getAttackDamageMultiplier() {
-        return 1.9F;
+        return 1.2F;
     }
 
 
@@ -42,6 +42,8 @@ public class DualBladesItem extends HuntingWeaponItem {
 //    public boolean canPerformAction(ItemStack stack, net.neoforged.neoforge.common.ItemAbility itemAbility) {
 //        return ItemAbilities.DEFAULT_SWORD_ACTIONS.contains(itemAbility);
 //    }
+
+
 
     @Override
     public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
@@ -66,4 +68,14 @@ public class DualBladesItem extends HuntingWeaponItem {
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
         return slotChanged;
     }
+
+    @Override
+    public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        super.postHurtEnemy(stack, target, attacker);
+        target.hurtTime = 0;
+        target.invulnerableTime = 0;
+        target.setDeltaMovement(target.getDeltaMovement().x()*0.5, target.getDeltaMovement().y(), target.getDeltaMovement().z()*0.5);
+    }
+
+
 }

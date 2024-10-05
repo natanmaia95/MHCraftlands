@@ -26,6 +26,9 @@ public class ModDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> HAND_SWING =
             register("hand_swing", builder -> builder.persistent(ExtraCodecs.POSITIVE_INT));
 
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> WEAPON_CHARGE =
+            register("weapon_charge", builder -> builder.persistent(ExtraCodecs.NON_NEGATIVE_INT));
+
 
 
     private static <T>DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String name,

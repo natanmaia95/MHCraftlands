@@ -5,6 +5,7 @@ import com.nateplays.my_neoforge_mod.block.ModBlocks;
 import com.nateplays.my_neoforge_mod.item.ModItems;
 import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
 import com.nateplays.my_neoforge_mod.item.weapons.DualBladesItem;
+import com.nateplays.my_neoforge_mod.item.weapons.GreatSwordItem;
 import com.nateplays.my_neoforge_mod.item.weapons.SwordAndShieldItem;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -46,6 +47,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         snsItem(ModItems.MACHALITE_SNS);
         dbItem(ModItems.MACHALITE_DB);
+        gsItem(ModItems.MACHALITE_GS);
 
         withExistingParent(ModItems.MOSSWINE_SPAWN_EGG.getRegisteredName(), mcLoc("item/template_spawn_egg"));
 
@@ -136,6 +138,10 @@ public class ModItemModelProvider extends ItemModelProvider {
                     .predicate(modLoc("blocking"), 1.0F)
                     .model(new ModelFile.UncheckedModelFile(modLoc(modelPath + itemId + "_mainhand_blocking")))
                     .end();
+    }
 
+    private void gsItem(DeferredItem<GreatSwordItem> item) {
+        withExistingParent(item.getId().getPath(), modLoc("item/weapon/gs"))
+                .texture("layer0", modLoc("item/" + item.getId().getPath()));
     }
 }
