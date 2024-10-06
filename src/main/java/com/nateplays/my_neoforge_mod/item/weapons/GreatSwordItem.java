@@ -24,7 +24,7 @@ public class GreatSwordItem extends HuntingWeaponItem {
     }
 
     public static ItemAttributeModifiers createAttributes(Tier tier) {
-        return HuntingWeaponItem.createAttributes(tier, getAttackDamageMultiplier(), -3.4f);
+        return HuntingWeaponItem.createAttributes(tier, getAttackDamageMultiplier(), -3.4f, 1.0f);
     }
 
     public static float getAttackDamageMultiplier() {

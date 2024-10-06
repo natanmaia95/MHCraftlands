@@ -9,6 +9,7 @@ import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.entity.animations.MosswineAnimations;
 import com.nateplays.my_neoforge_mod.entity.pets.PalicoEntity;
 import com.nateplays.my_neoforge_mod.entity.pets.animations.PalicoAnimations;
+import net.minecraft.client.animation.definitions.CamelAnimation;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HierarchicalModel;
@@ -111,7 +112,15 @@ public class PalicoModel<T extends PalicoEntity> extends HierarchicalModel<T> im
 	public void setupAnim(PalicoEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
 		this.applyHeadRotation(entity, netHeadYaw, headPitch, ageInTicks);
-		this.animateWalk(PalicoAnimations.walk, limbSwing*2, limbSwingAmount, 1f, 1f);
+
+		if (entity.isInSittingPose()) {
+			if (entity.sitAnimationState.getAccumulatedTime() < 1000) this.animate(entity.sitAnimationState, PalicoAnimations.sit, ageInTicks);
+			else this.animate(entity.sitAnimationState, PalicoAnimations.sitting, ageInTicks, 1.0F);
+		} else {
+			if (entity.standUpAnimationState.getAccumulatedTime() < 2000) this.animate(entity.standUpAnimationState, PalicoAnimations.jump_excited, ageInTicks);
+			this.animateWalk(PalicoAnimations.walk, limbSwing*2, limbSwingAmount, 1f, 1f);
+		}
+
 	}
 
 	private void applyHeadRotation(Entity entity, float netHeadYaw, float headPitch, float ageInTicks) {

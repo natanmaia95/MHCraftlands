@@ -1,4 +1,4 @@
-// 1.21	2024-10-04T23:00:32.4486363	Item Models: my_neoforge_mod
+// 1.21	2024-10-05T10:15:42.3266571	Item Models: my_neoforge_mod
 942b9399a1862b2fdf135e37ca832fa30e106df1 assets/my_neoforge_mod/models/item/earth_crystal.json
 3270ac278198b592bdabb8a6f0abd149a45dd140 assets/my_neoforge_mod/models/item/f_acorn_helm.json
 203b8d59e71293af446427fe31353b566842c0c4 assets/my_neoforge_mod/models/item/f_acorn_mail.json
@@ -11,6 +11,7 @@ cdadc5584c91ba885e8f51a262f77ae5cece9258 assets/my_neoforge_mod/models/item/mach
 58433d063ba809278aaf5a8650d60f87786bb1f8 assets/my_neoforge_mod/models/item/machalite_door.json
 769224e5bf997734f94d98a3e0e32f52626ffcd2 assets/my_neoforge_mod/models/item/machalite_fence.json
 ca3c941e05128af49c16051782c1cf8872a3cf7b assets/my_neoforge_mod/models/item/machalite_gs.json
+202516e14fc2b88718ef57b9946a31011e49dfe9 assets/my_neoforge_mod/models/item/machalite_gv.json
 5f71a692fbd546f7ae6617859d948de847561749 assets/my_neoforge_mod/models/item/machalite_hammer.json
 8ad4c8c20d4cfd460b2277c0d46a9f6819bb61a3 assets/my_neoforge_mod/models/item/machalite_hoe.json
 9ff439b8f2f423714b528eb649077bd5fe3b6890 assets/my_neoforge_mod/models/item/machalite_ingot.json

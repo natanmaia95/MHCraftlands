@@ -1,0 +1,6 @@
+{
+  "parent": "my_neoforge_mod:item/handheld_big",
+  "textures": {
+    "layer0": "my_neoforge_mod:item/machalite_gv"
+  }
+}

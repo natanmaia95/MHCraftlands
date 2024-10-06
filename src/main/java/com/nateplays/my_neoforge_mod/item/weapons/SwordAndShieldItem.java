@@ -31,7 +31,7 @@ public class SwordAndShieldItem extends HuntingWeaponItem{
     }
 
     public static ItemAttributeModifiers createAttributes(Tier tier) {
-        return HuntingWeaponItem.createAttributes(tier, getAttackDamageMultiplier(), -2.5f);
+        return HuntingWeaponItem.createAttributes(tier, getAttackDamageMultiplier(), -2.5f, -0.3f);
     }
 
     public static float getAttackDamageMultiplier() {

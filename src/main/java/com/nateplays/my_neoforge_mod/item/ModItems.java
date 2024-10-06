@@ -5,6 +5,7 @@ import com.nateplays.my_neoforge_mod.entity.ModEntities;
 import com.nateplays.my_neoforge_mod.item.custom.ChiselItem;
 import com.nateplays.my_neoforge_mod.item.custom.HammerItem;
 import com.nateplays.my_neoforge_mod.item.weapons.DualBladesItem;
+import com.nateplays.my_neoforge_mod.item.weapons.GlaiveItem;
 import com.nateplays.my_neoforge_mod.item.weapons.GreatSwordItem;
 import com.nateplays.my_neoforge_mod.item.weapons.SwordAndShieldItem;
 import net.minecraft.ChatFormatting;
@@ -85,6 +86,11 @@ public class ModItems {
             () -> new GreatSwordItem(
                     ModToolTiers.MACHALITE, new Item.Properties()
                     .attributes(GreatSwordItem.createAttributes(ModToolTiers.MACHALITE))));
+
+    public static final DeferredItem<GlaiveItem> MACHALITE_GV = ITEMS.register("machalite_gv",
+            () -> new GlaiveItem(
+                    ModToolTiers.MACHALITE, new Item.Properties()
+                    .attributes(GlaiveItem.createAttributes(ModToolTiers.MACHALITE))));
 
 
 

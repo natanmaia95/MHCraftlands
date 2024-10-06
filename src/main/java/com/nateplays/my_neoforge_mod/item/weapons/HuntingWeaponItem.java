@@ -1,9 +1,11 @@
 package com.nateplays.my_neoforge_mod.item.weapons;
 
 
+import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.protocol.game.ClientboundAnimatePacket;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
@@ -26,6 +28,8 @@ import net.neoforged.neoforge.common.ItemAbility;
 import java.util.List;
 
 public abstract class HuntingWeaponItem extends TieredItem {
+    public static final ResourceLocation HUNTING_WEAPON_EXTRA_RANGE_ID = ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "hunting_weapon_extra_range");
+
     public HuntingWeaponItem(Tier tier, Item.Properties properties) {
         super(tier, properties.component(DataComponents.TOOL, createToolProperties()));
     }
@@ -40,8 +44,15 @@ public abstract class HuntingWeaponItem extends TieredItem {
         return new Tool(List.of(Tool.Rule.minesAndDrops(List.of(Blocks.COBWEB), 15.0F), Tool.Rule.overrideSpeed(BlockTags.SWORD_EFFICIENT, 1.5F)), 1.0F, 2);
     }
 
-    public static ItemAttributeModifiers createAttributes(Tier tier, float damageMultiplier, float attackSpeed) {
-        return ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, (double)(damageMultiplier * tier.getAttackDamageBonus()), AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, (double)attackSpeed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).build();
+    public static ItemAttributeModifiers createAttributes(Tier tier, float damageMultiplier, float attackSpeed, float extraAttackRange) {
+        return ItemAttributeModifiers.builder()
+                .add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID,
+                        (double)(damageMultiplier * tier.getAttackDamageBonus()), AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                .add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID,
+                        (double)attackSpeed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                .add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(HUNTING_WEAPON_EXTRA_RANGE_ID,
+                        (double)extraAttackRange, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                .build();
     }
 
 
