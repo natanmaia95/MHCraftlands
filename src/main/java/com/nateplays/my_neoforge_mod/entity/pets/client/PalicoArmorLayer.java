@@ -102,6 +102,11 @@ public class PalicoArmorLayer<T extends PalicoEntity, M extends PalicoModel<T>, 
 
                 if (layerTexture != null) this.renderModel(poseStack, bufferSource, packedLight, p_model, dyeColor, layerTexture);
             }
+
+            //remove body parts
+//            PalicoModel palicoModel = ((PalicoModel)this.getParentModel());
+//            palicoModel.legl.visible = false;
+//            palicoModel.legr.visible = false;
         }
     }
 

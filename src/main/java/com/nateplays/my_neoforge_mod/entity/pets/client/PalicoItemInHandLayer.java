@@ -27,6 +27,10 @@ public class PalicoItemInHandLayer<T extends LivingEntity, M extends EntityModel
         if (!itemStack.isEmpty()) {
             poseStack.pushPose();
             ((ArmedModel)this.getParentModel()).translateToHand(arm, poseStack);
+//            PalicoModel palicoModel = ((PalicoModel)this.getParentModel());
+//            palicoModel.arml.visible = false;
+//            palicoModel.armr.visible = false;
+
             poseStack.scale(0.6f, 0.6f, 0.6f);
             poseStack.mulPose(Axis.XP.rotationDegrees(-90.0F));
             poseStack.mulPose(Axis.YP.rotationDegrees(180.0F));
