@@ -23,36 +23,7 @@ public class PalicoRenderer extends MobRenderer<PalicoEntity, PalicoModel<Palico
         super(context, new PalicoModel<>(context.bakeLayer(ModModelLayers.PALICO_LAYER)), 0.3f);
         this.addLayer(new PalicoArmorLayer<>(
                 this, new PalicoModel<>(context.bakeLayer(ModModelLayers.PALICO_LAYER)), context));
-        this.addLayer(new ItemInHandLayer<>(this, context.getItemInHandRenderer()) {
-            @Override
-            protected void renderArmWithItem(
-                    LivingEntity livingEntity,
-                    ItemStack itemStack,
-                    ItemDisplayContext displayContext,
-                    HumanoidArm arm,
-                    PoseStack poseStack,
-                    MultiBufferSource buffer,
-                    int packedLight
-            ) {
-                // Modify the pose stack to offset the item as needed
-                poseStack.pushPose();
-
-                poseStack.scale(0.7f,0.7f,0.7f);
-                float transX = -0.07f;
-                float transY = 1.78f;
-                float transZ = 0.21f;
-                if (arm == HumanoidArm.RIGHT) {
-                    poseStack.translate(transX, transY, transZ);  // Adjust these values to your needs
-                } else {
-                    poseStack.translate(-transX, transY, transZ); // Adjust values for offhand if necessary
-                }
-
-                // Call the parent class to render the item with the custom offset
-                super.renderArmWithItem(livingEntity, itemStack, displayContext, arm, poseStack, buffer, packedLight);
-
-                poseStack.popPose();
-            }
-        }); //add default
+        this.addLayer(new PalicoItemInHandLayer<>(this, context.getItemInHandRenderer())); //add default
     }
 
     @Override

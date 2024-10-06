@@ -148,6 +148,9 @@ public class PalicoModel<T extends PalicoEntity> extends HierarchicalModel<T> im
 
 	@Override
 	public void translateToHand(HumanoidArm side, PoseStack poseStack) {
+		this.root.translateAndRotate(poseStack);
+		this.body.translateAndRotate(poseStack);
+		this.torso.translateAndRotate(poseStack);
 		this.getArm(side).translateAndRotate(poseStack);
 	}
 
