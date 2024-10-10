@@ -15,6 +15,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.function.Supplier;
@@ -85,15 +86,16 @@ public class ModArmorMaterials {
 
 
     public static final Holder<ArmorMaterial> F_ACORN = registerMaterial(
-            "f_acorn", 1, SoundEvents.ARMOR_EQUIP_TURTLE,
-            () -> Ingredient.of(Items.OAK_SAPLING)
-    );
+            "f_acorn", 1, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(Items.OAK_SAPLING));
 
     public static final Holder<ArmorMaterial> F_BONE = registerMaterial(
-            "f_bone", 1, SoundEvents.ARMOR_EQUIP_TURTLE,
-            () -> Ingredient.of(Items.BONE)
-    );
+            "f_bone", 1, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(Items.BONE));
 
+    public static final Holder<ArmorMaterial> F_GHOST = registerMaterial("f_ghost",
+            1, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(Items.PUMPKIN), true, true);
+
+    public static final Holder<ArmorMaterial> F_MOSGHARL = registerMaterial("f_mosgharl",
+            1, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(Items.PUMPKIN), true, false);
 
 
 
@@ -122,6 +124,20 @@ public class ModArmorMaterials {
                 baseDefense, soundEvent, repairItem,
                 List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, name)))
         ));
+    }
+
+    public static Holder<ArmorMaterial> registerMaterial(String name, int baseDefense, Holder<SoundEvent> soundEvent,
+                                                         Supplier<Ingredient> repairItem, boolean hasEmissiveLayer, boolean hasDyeableLayer) {
+
+        List<ArmorMaterial.Layer> armorLayers = new ArrayList<>();
+        armorLayers.add(
+                new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, name)));
+        if (hasDyeableLayer) armorLayers.add(
+                new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, name), "_color", true));
+        if (hasEmissiveLayer) armorLayers.add(
+                new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, name), "_emissive", false));
+
+        return ARMOR_MATERIALS.register(name, makeHuntingArmorMaterial(baseDefense, soundEvent, repairItem, armorLayers));
     }
 
     public static void register(IEventBus eventBus) {

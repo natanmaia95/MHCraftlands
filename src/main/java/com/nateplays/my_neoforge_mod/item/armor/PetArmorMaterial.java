@@ -9,6 +9,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.world.item.ArmorMaterial;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -22,11 +23,11 @@ public class PetArmorMaterial<A extends Model> {
         this.modelFunction = modelFunc;
     }
 
-
     public static PetArmorMaterial newPalicoArmorMaterial(Holder<ArmorMaterial> material, Function<EntityRendererProvider.Context, ? extends Model> modelFunc) {
         if (modelFunc == null) {
             modelFunc = (EntityRendererProvider.Context context) -> new PalicoModel<>(context.bakeLayer(ModModelLayers.PALICO_LAYER));
         }
         return new PetArmorMaterial(material, modelFunc);
     }
+
 }

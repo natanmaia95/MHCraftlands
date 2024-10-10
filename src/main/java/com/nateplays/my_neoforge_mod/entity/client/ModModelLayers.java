@@ -18,4 +18,8 @@ public class ModModelLayers {
             ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "palico_armor_layer"), "main");
     public static final ModelLayerLocation F_BONE_HELM_LAYER = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "f_bone_helm_layer"), "main");
+    public static final ModelLayerLocation F_GHOST_HELM_LAYER = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "f_ghost_helm_layer"), "main");
+    public static final ModelLayerLocation F_MOSGHARL_LAYER = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "f_mosgharl_layer"), "main");
 }

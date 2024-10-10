@@ -5,10 +5,12 @@ import com.nateplays.my_neoforge_mod.entity.client.ModModelLayers;
 import com.nateplays.my_neoforge_mod.entity.pets.PalicoEntity;
 import com.nateplays.my_neoforge_mod.entity.pets.client.PalicoModel;
 import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FBoneHelmModel;
+import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FGhostHelmModel;
+import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FMosgharlModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SwordItem;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -84,11 +86,40 @@ public class ModArmorItems {
     public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel>> F_BONE_HELM = ARMOR_ITEMS.register("f_bone_helm", () -> new PetHuntingArmorItem<>(
             new PetArmorMaterial<FBoneHelmModel>(ModArmorMaterials.F_BONE, (EntityRendererProvider.Context context) -> new FBoneHelmModel<>(context.bakeLayer(ModModelLayers.F_BONE_HELM_LAYER))),
             ArmorItem.Type.HELMET, new Item.Properties().durability(150), PalicoEntity.class
-    ));
-    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel>> F_BONE_MAIL = ARMOR_ITEMS.register("f_bone_mail", () -> new PetHuntingArmorItem<>(
-            ModArmorMaterials.F_BONE, ArmorItem.Type.CHESTPLATE,
-            new Item.Properties().durability(150), PalicoEntity.class
-    ));
+    ){ @Override public boolean hideHead() { return true; }});
+
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel>> F_BONE_MAIL = ARMOR_ITEMS.register("f_bone_mail",
+            () -> new PetHuntingArmorItem<PalicoEntity, PalicoModel>(
+                    ModArmorMaterials.F_BONE, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties().durability(150), PalicoEntity.class)
+//            {
+//                @Override
+//                public boolean showLegs() { return false; }
+//            }
+    );
+
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel>> F_GHOST_HELM = ARMOR_ITEMS.register("f_ghost_helm", () -> new PetHuntingArmorItem<>(
+            new PetArmorMaterial<FGhostHelmModel>(ModArmorMaterials.F_GHOST, (EntityRendererProvider.Context context) -> new FGhostHelmModel<>(context.bakeLayer(ModModelLayers.F_GHOST_HELM_LAYER))),
+            ArmorItem.Type.HELMET, new Item.Properties().durability(150), PalicoEntity.class
+    ){ @Override public boolean hideHead() { return true; }});
+
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel>> F_GHOST_MAIL = ARMOR_ITEMS.register("f_ghost_mail", () -> new PetHuntingArmorItem<>(
+            ModArmorMaterials.F_GHOST, ArmorItem.Type.CHESTPLATE,
+            new Item.Properties().durability(150), PalicoEntity.class)
+    {
+        @Override public boolean hideLegs() { return true; }
+        @Override public boolean hideArms() { return true; }
+    }
+    );
+
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel<PalicoEntity>>> F_MOSGHARL_HELM = ARMOR_ITEMS.register("f_mosgharl_helm", () -> new PetHuntingArmorItem<>(
+            new PetArmorMaterial<>(ModArmorMaterials.F_MOSGHARL, (EntityRendererProvider.Context context) -> new FMosgharlModel<>(context.bakeLayer(ModModelLayers.F_MOSGHARL_LAYER))),
+            ArmorItem.Type.HELMET, new Item.Properties().durability(150), PalicoEntity.class
+    ){ @Override public boolean hideHead() { return true; }});
+
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel<PalicoEntity>>> F_MOSGHARL_MAIL = ARMOR_ITEMS.register("f_mosgharl_mail", () -> new PetHuntingArmorItem<>(
+            new PetArmorMaterial<>(ModArmorMaterials.F_MOSGHARL, (EntityRendererProvider.Context context) -> new FMosgharlModel<>(context.bakeLayer(ModModelLayers.F_MOSGHARL_LAYER))),
+            ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(150), PalicoEntity.class));
 
 
     public static void register(IEventBus eventBus) {

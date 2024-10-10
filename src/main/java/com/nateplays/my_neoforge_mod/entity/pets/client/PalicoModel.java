@@ -35,9 +35,10 @@ public class PalicoModel<T extends PalicoEntity> extends HierarchicalModel<T> im
 	public final ModelPart armorarml;
 	public final ModelPart armr;
 	public final ModelPart armorarmr;
-	public final ModelPart weapon;
 	public final ModelPart neck;
 	public final ModelPart head;
+	public final ModelPart earr;
+	public final ModelPart earl;
 	public final ModelPart armorhead;
 	public final ModelPart tail;
 	public final ModelPart legl;
@@ -53,9 +54,10 @@ public class PalicoModel<T extends PalicoEntity> extends HierarchicalModel<T> im
 		this.armorarml = this.arml.getChild("armorarml");
 		this.armr = this.torso.getChild("armr");
 		this.armorarmr = this.armr.getChild("armorarmr");
-		this.weapon = this.armr.getChild("weapon");
 		this.neck = this.torso.getChild("neck");
 		this.head = this.neck.getChild("head");
+		this.earr = this.head.getChild("earr");
+		this.earl = this.head.getChild("earl");
 		this.armorhead = this.head.getChild("armorhead");
 		this.tail = this.body.getChild("tail");
 		this.legl = this.body.getChild("legl");
@@ -71,7 +73,7 @@ public class PalicoModel<T extends PalicoEntity> extends HierarchicalModel<T> im
 		PartDefinition armorbody = body.addOrReplaceChild("armorbody", CubeListBuilder.create().texOffs(42, 11).addBox(-3.0F, -1.5F, -2.5F, 6.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		PartDefinition torso = body.addOrReplaceChild("torso", CubeListBuilder.create().texOffs(0, 23).addBox(-2.0F, -2.5F, -1.0F, 4.0F, 3.0F, 3.0F, new CubeDeformation(-0.1F))
-		.texOffs(0, 17).addBox(-2.0F, -5.5F, -1.0F, 4.0F, 3.0F, 3.0F, new CubeDeformation(0.1F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.5236F, 0.0F, 0.0F));
+				.texOffs(0, 17).addBox(-2.0F, -5.5F, -1.0F, 4.0F, 3.0F, 3.0F, new CubeDeformation(0.1F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.3491F, 0.0F, 0.0F));
 
 		PartDefinition armortorso = torso.addOrReplaceChild("armortorso", CubeListBuilder.create().texOffs(46, 0).addBox(-2.5F, -6.25F, -1.5F, 5.0F, 7.0F, 4.0F, new CubeDeformation(-0.1F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
@@ -83,27 +85,29 @@ public class PalicoModel<T extends PalicoEntity> extends HierarchicalModel<T> im
 
 		PartDefinition armorarmr = armr.addOrReplaceChild("armorarmr", CubeListBuilder.create().texOffs(38, 0).addBox(-1.75F, -1.0F, -1.0F, 2.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition weapon = armr.addOrReplaceChild("weapon", CubeListBuilder.create().texOffs(0, 10).addBox(0.0F, -0.3F, -0.3F, 1.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 5.0F, 0.0F, 0.7854F, 0.0F, 0.0F));
+		PartDefinition neck = torso.addOrReplaceChild("neck", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, -7.5F, 0.5F, -0.3491F, 0.0F, 0.0F));
 
-		PartDefinition neck = torso.addOrReplaceChild("neck", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, -5.0F, -0.25F, -0.5236F, 0.0F, 0.0F));
+		PartDefinition head = neck.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 7).addBox(-2.5F, -3.0F, -2.5F, 5.0F, 5.0F, 5.0F, new CubeDeformation(0.0F))
+				.texOffs(11, 17).addBox(-1.5F, 0.0F, -3.25F, 3.0F, 2.0F, 1.0F, new CubeDeformation(-0.1F))
+				.texOffs(0, 8).addBox(-3.25F, -0.5F, -3.0F, 2.0F, 3.0F, 0.0F, new CubeDeformation(0.0F))
+				.texOffs(0, 8).mirror().addBox(1.25F, -0.5F, -3.0F, 2.0F, 3.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-		PartDefinition head = neck.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 7).addBox(-2.5F, -5.0F, -2.25F, 5.0F, 5.0F, 5.0F, new CubeDeformation(0.0F))
-		.texOffs(11, 17).addBox(-1.5F, -2.0F, -3.0F, 3.0F, 2.0F, 1.0F, new CubeDeformation(-0.1F))
-		.texOffs(26, 12).addBox(-2.5F, -7.25F, -0.25F, 2.0F, 3.0F, 1.0F, new CubeDeformation(-0.1F))
-		.texOffs(20, 12).addBox(0.5F, -7.25F, -0.25F, 2.0F, 3.0F, 1.0F, new CubeDeformation(-0.1F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition earr = head.addOrReplaceChild("earr", CubeListBuilder.create().texOffs(26, 12).addBox(-1.0F, -2.5F, 0.0F, 2.0F, 3.0F, 1.0F, new CubeDeformation(-0.1F)), PartPose.offset(-1.5F, -2.5F, -0.5F));
 
-		PartDefinition armorhead = head.addOrReplaceChild("armorhead", CubeListBuilder.create().texOffs(0, 52).addBox(-3.0F, -5.5F, -3.0F, 6.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
-		.texOffs(0, 49).addBox(-2.5F, -7.15F, -0.25F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.1F))
-		.texOffs(6, 49).mirror().addBox(0.5F, -7.15F, -0.25F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.1F)).mirror(false), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition earl = head.addOrReplaceChild("earl", CubeListBuilder.create().texOffs(20, 12).addBox(-1.0F, -2.5F, 0.0F, 2.0F, 3.0F, 1.0F, new CubeDeformation(-0.1F)), PartPose.offset(1.5F, -2.5F, -0.5F));
+
+		PartDefinition armorhead = head.addOrReplaceChild("armorhead", CubeListBuilder.create().texOffs(0, 52).addBox(-3.0F, -5.5F, -2.5F, 6.0F, 6.0F, 6.0F, new CubeDeformation(-0.1F))
+				.texOffs(0, 49).addBox(-2.5F, -7.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.1F))
+				.texOffs(6, 49).mirror().addBox(0.5F, -7.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.1F)).mirror(false), PartPose.offset(0.0F, 2.0F, -0.5F));
 
 		PartDefinition tail = body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(11, 23).addBox(-0.5F, 0.0F, 0.0F, 1.0F, 1.0F, 2.0F, new CubeDeformation(0.3F))
-		.texOffs(14, 25).addBox(-0.5F, 0.0F, 2.0F, 1.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -1.0F, 1.0F, -0.3491F, 0.0F, 0.0F));
+				.texOffs(14, 25).addBox(-0.5F, 0.0F, 2.0F, 1.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -1.0F, 1.0F, -0.3491F, 0.0F, 0.0F));
 
 		PartDefinition legl = body.addOrReplaceChild("legl", CubeListBuilder.create().texOffs(16, 5).addBox(-1.0F, -0.5F, -1.5F, 2.0F, 3.0F, 2.0F, new CubeDeformation(0.1F))
-		.texOffs(24, 0).addBox(-1.0F, 1.25F, -0.5F, 2.0F, 3.0F, 2.0F, new CubeDeformation(-0.3F)), PartPose.offset(1.5F, 0.0F, 0.0F));
+				.texOffs(24, 0).addBox(-1.0F, 1.25F, -0.5F, 2.0F, 3.0F, 2.0F, new CubeDeformation(-0.3F)), PartPose.offset(1.5F, 0.0F, 0.0F));
 
 		PartDefinition legr = body.addOrReplaceChild("legr", CubeListBuilder.create().texOffs(24, 5).addBox(-1.0F, -0.5F, -1.5F, 2.0F, 3.0F, 2.0F, new CubeDeformation(0.1F))
-		.texOffs(16, 0).addBox(-1.0F, 1.25F, -0.5F, 2.0F, 3.0F, 2.0F, new CubeDeformation(-0.3F)), PartPose.offset(-1.5F, 0.0F, 0.0F));
+				.texOffs(16, 0).addBox(-1.0F, 1.25F, -0.5F, 2.0F, 3.0F, 2.0F, new CubeDeformation(-0.3F)), PartPose.offset(-1.5F, 0.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}

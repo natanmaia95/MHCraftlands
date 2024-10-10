@@ -60,4 +60,10 @@ public class PetHuntingArmorItem<T extends Animal, A extends Model> extends Hunt
 //        LogUtils.getLogger().debug(armorModel.toString());
         return armorModel;
     }
+
+    public boolean hideHead() { return false;}
+    public boolean hideEars() { return false; }
+    public boolean hideArms() { return false; }
+    public boolean hideLegs() { return false; }
+    public boolean hideTail() { return false; }
 }

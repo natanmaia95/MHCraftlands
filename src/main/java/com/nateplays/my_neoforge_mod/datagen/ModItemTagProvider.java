@@ -2,6 +2,7 @@ package com.nateplays.my_neoforge_mod.datagen;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.item.ModItems;
+import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
 import com.nateplays.my_neoforge_mod.tags.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -36,6 +37,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ItemTags.AXES).add(ModItems.MACHALITE_AXE.get());
         tag(ItemTags.HOES).add(ModItems.MACHALITE_HOE.get());
 
-
+        tag(ItemTags.DYEABLE)
+                .add(ModArmorItems.F_GHOST_HELM.get())
+                .add(ModArmorItems.F_GHOST_MAIL.get());
     }
 }
