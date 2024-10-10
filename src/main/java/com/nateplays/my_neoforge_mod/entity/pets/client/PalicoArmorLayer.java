@@ -48,8 +48,8 @@ public class PalicoArmorLayer<T extends PalicoEntity, M extends PalicoModel<T>, 
     @Override
     public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, T livingEntity, float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
         resetPartVisibility();
-        this.renderArmorPiece(poseStack, bufferSource, livingEntity, EquipmentSlot.CHEST, packedLight, this.getArmorModel(livingEntity, EquipmentSlot.CHEST));
-        this.renderArmorPiece(poseStack, bufferSource, livingEntity, EquipmentSlot.HEAD, packedLight, this.getArmorModel(livingEntity, EquipmentSlot.HEAD));
+        this.renderArmorPiece(poseStack, bufferSource, livingEntity, EquipmentSlot.CHEST, packedLight, limbSwing, limbSwingAmount, partialTick, ageInTicks, netHeadYaw, headPitch, this.getArmorModel(livingEntity, EquipmentSlot.CHEST));
+        this.renderArmorPiece(poseStack, bufferSource, livingEntity, EquipmentSlot.HEAD, packedLight, limbSwing, limbSwingAmount, partialTick, ageInTicks, netHeadYaw, headPitch, this.getArmorModel(livingEntity, EquipmentSlot.HEAD));
     }
 
     private void resetPartVisibility() {
@@ -84,13 +84,16 @@ public class PalicoArmorLayer<T extends PalicoEntity, M extends PalicoModel<T>, 
 
     private void renderArmorPiece(
             PoseStack poseStack, MultiBufferSource bufferSource, T livingEntity,
-            EquipmentSlot slot, int packedLight, A p_model
+            EquipmentSlot slot, int packedLight,
+            float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch,
+            A p_model
     ) {
         ItemStack itemstack = livingEntity.getItemBySlot(slot);
         if (itemstack.getItem() instanceof PetHuntingArmorItem armorItem) {
             if (armorItem.getEquipmentSlot() != slot) return; //if incorrect slot, return
             this.getParentModel().copyPropertiesTo(p_model);
             this.copyParts(getParentModel(), p_model);
+            p_model.setupAnim(livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 //            LOGGER.debug(p_model.toString());
             //TODO: change to custom material class for pet armor
             ArmorMaterial armormaterial = armorItem.getMaterial().value();

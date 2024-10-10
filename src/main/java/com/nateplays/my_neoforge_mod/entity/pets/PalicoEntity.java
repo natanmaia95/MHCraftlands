@@ -33,8 +33,10 @@ import org.jetbrains.annotations.Nullable;
 
 public class PalicoEntity extends HuntingBuddyEntity implements ILevelableEntity {
 
+    public final AnimationState livingAnimationState = new AnimationState();
     public final AnimationState sitAnimationState = new AnimationState();
     public final AnimationState standUpAnimationState = new AnimationState();
+
 
     public PalicoEntity(EntityType<? extends HuntingBuddyEntity> entityType, Level level) {
         super(entityType, level);
@@ -118,6 +120,8 @@ public class PalicoEntity extends HuntingBuddyEntity implements ILevelableEntity
     }
 
     public void setupAnimationStates() {
+        this.livingAnimationState.startIfStopped(this.tickCount);
+
         if (this.isInSittingPose()) {
             this.sitAnimationState.startIfStopped(this.tickCount);
             this.standUpAnimationState.stop();

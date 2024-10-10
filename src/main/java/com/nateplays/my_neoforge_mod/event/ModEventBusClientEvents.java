@@ -6,6 +6,7 @@ import com.nateplays.my_neoforge_mod.entity.client.MosswineModel;
 import com.nateplays.my_neoforge_mod.entity.interfaces.ILevelableEntity;
 import com.nateplays.my_neoforge_mod.entity.pets.client.PalicoModel;
 import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FBoneHelmModel;
+import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FFrankieModel;
 import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FGhostHelmModel;
 import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FMosgharlModel;
 import net.minecraft.server.level.ServerLevel;
@@ -34,5 +35,6 @@ public class ModEventBusClientEvents {
         event.registerLayerDefinition(ModModelLayers.F_BONE_HELM_LAYER, FBoneHelmModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.F_GHOST_HELM_LAYER, FGhostHelmModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.F_MOSGHARL_LAYER, FMosgharlModel::createBodyLayer);
+        event.registerLayerDefinition(FFrankieModel.LAYER_LOCATION, FFrankieModel::createBodyLayer);
     }
 }

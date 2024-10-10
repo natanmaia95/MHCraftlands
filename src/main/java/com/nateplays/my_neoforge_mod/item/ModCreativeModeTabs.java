@@ -94,6 +94,8 @@ public class ModCreativeModeTabs {
                         outputAcceptHuntingArmorItem(ModArmorItems.F_GHOST_MAIL.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(ModArmorItems.F_MOSGHARL_HELM.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(ModArmorItems.F_MOSGHARL_MAIL.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.F_FRANKIE_HELM.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.F_FRANKIE_MAIL.get(), itemDisplayParameters, output);
                     })
                     .build());
 

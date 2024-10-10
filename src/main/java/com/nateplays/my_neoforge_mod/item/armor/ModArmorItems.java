@@ -5,6 +5,7 @@ import com.nateplays.my_neoforge_mod.entity.client.ModModelLayers;
 import com.nateplays.my_neoforge_mod.entity.pets.PalicoEntity;
 import com.nateplays.my_neoforge_mod.entity.pets.client.PalicoModel;
 import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FBoneHelmModel;
+import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FFrankieModel;
 import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FGhostHelmModel;
 import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FMosgharlModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -119,6 +120,15 @@ public class ModArmorItems {
 
     public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel<PalicoEntity>>> F_MOSGHARL_MAIL = ARMOR_ITEMS.register("f_mosgharl_mail", () -> new PetHuntingArmorItem<>(
             new PetArmorMaterial<>(ModArmorMaterials.F_MOSGHARL, (EntityRendererProvider.Context context) -> new FMosgharlModel<>(context.bakeLayer(ModModelLayers.F_MOSGHARL_LAYER))),
+            ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(150), PalicoEntity.class));
+
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel<PalicoEntity>>> F_FRANKIE_HELM = ARMOR_ITEMS.register("f_frankie_helm", () -> new PetHuntingArmorItem<>(
+            new PetArmorMaterial<>(ModArmorMaterials.F_FRANKIE, (EntityRendererProvider.Context context) -> new FFrankieModel<>(context.bakeLayer(FFrankieModel.LAYER_LOCATION))),
+            ArmorItem.Type.HELMET, new Item.Properties().durability(150), PalicoEntity.class
+    ){ @Override public boolean hideHead() { return true; }});
+
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel<PalicoEntity>>> F_FRANKIE_MAIL = ARMOR_ITEMS.register("f_frankie_mail", () -> new PetHuntingArmorItem<>(
+            new PetArmorMaterial<>(ModArmorMaterials.F_FRANKIE, (EntityRendererProvider.Context context) -> new FFrankieModel<>(context.bakeLayer(FFrankieModel.LAYER_LOCATION))),
             ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(150), PalicoEntity.class));
 
 
