@@ -8,6 +8,7 @@ import com.nateplays.my_neoforge_mod.item.weapons.DualBladesItem;
 import com.nateplays.my_neoforge_mod.item.weapons.GlaiveItem;
 import com.nateplays.my_neoforge_mod.item.weapons.GreatSwordItem;
 import com.nateplays.my_neoforge_mod.item.weapons.SwordAndShieldItem;
+import com.nateplays.my_neoforge_mod.sound.ModSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
@@ -37,6 +38,9 @@ public class ModItems {
             }
 
     );
+
+    public static final DeferredItem<Item> MUSIC_DISC_HUNTERGOFORTH = ITEMS.register("music_disc_huntergoforth",
+            () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.DISCKEY_HUNTERGOFORTH).stacksTo(1)));
 
     public static final DeferredItem<SwordItem> MACHALITE_SWORD = ITEMS.register("machalite_sword",
             () -> new SwordItem(ModToolTiers.MACHALITE, new Item.Properties()

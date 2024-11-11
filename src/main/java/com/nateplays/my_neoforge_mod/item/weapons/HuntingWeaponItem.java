@@ -29,6 +29,8 @@ import java.util.List;
 
 public abstract class HuntingWeaponItem extends TieredItem {
     public static final ResourceLocation HUNTING_WEAPON_EXTRA_RANGE_ID = ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "hunting_weapon_extra_range");
+    public static final ResourceLocation HUNTING_WEAPON_BASE_ELEMENTAL_DAMAGE_ID = ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "hunting_weapon_base_elemental_damage");
+
 
     public HuntingWeaponItem(Tier tier, Item.Properties properties) {
         super(tier, properties.component(DataComponents.TOOL, createToolProperties()));
@@ -45,6 +47,7 @@ public abstract class HuntingWeaponItem extends TieredItem {
     }
 
     public static ItemAttributeModifiers createAttributes(Tier tier, float damageMultiplier, float attackSpeed, float extraAttackRange) {
+        damageMultiplier = 1.0f;
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID,
                         (double)(damageMultiplier * tier.getAttackDamageBonus()), AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
@@ -57,9 +60,10 @@ public abstract class HuntingWeaponItem extends TieredItem {
 
 
 
-    public static float getAttackDamageMultiplier() {
+    public float getAttackDamageMultiplier() {
         return 1.0F;
     }
+
 
     public float getUseItemSlowdown(Player player, ItemStack stack) {
         return 0.2F;

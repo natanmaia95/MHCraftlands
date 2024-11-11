@@ -30,6 +30,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.MALACHITE_CHUNK.get());
         basicItem(ModItems.MALACHITE_INGOT.get());
         basicItem(ModItems.NULBERRY.get());
+        basicItem(ModItems.MUSIC_DISC_HUNTERGOFORTH.get());
 //        basicItem(ModItems.CHISEL.get()); //custom model in assets folder
 
         buttonItem(ModBlocks.MACHALITE_BUTTON, ModBlocks.MACHALITE_BLOCK);
@@ -55,14 +56,18 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         armorItem(ModArmorItems.F_ACORN_HELM);
         armorItem(ModArmorItems.F_ACORN_MAIL);
+        armorItem(ModArmorItems.F_KAMURA_HELM);
+        armorItem(ModArmorItems.F_KAMURA_MAIL);
         armorItem(ModArmorItems.F_BONE_HELM);
         armorItem(ModArmorItems.F_BONE_MAIL);
+        armorItem(ModArmorItems.F_ALLOY_HELM);
+        armorItem(ModArmorItems.F_ALLOY_MAIL);
         armorItem(ModArmorItems.F_GHOST_HELM);
         armorItem(ModArmorItems.F_GHOST_MAIL);
         armorItem(ModArmorItems.F_MOSGHARL_HELM);
         armorItem(ModArmorItems.F_MOSGHARL_MAIL);
-        armorItem(ModArmorItems.F_FRANKIE_HELM);
-        armorItem(ModArmorItems.F_FRANKIE_MAIL);
+//        armorItem(ModArmorItems.F_FRANKIE_HELM);
+//        armorItem(ModArmorItems.F_FRANKIE_MAIL);
     }
 
 

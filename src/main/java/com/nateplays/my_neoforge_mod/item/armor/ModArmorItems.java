@@ -84,6 +84,15 @@ public class ModArmorItems {
             new Item.Properties().durability(150), PalicoEntity.class
     ));
 
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel>> F_KAMURA_HELM = ARMOR_ITEMS.register("f_kamura_helm", () -> new PetHuntingArmorItem<>(
+            ModArmorMaterials.F_KAMURA, ArmorItem.Type.HELMET,
+            new Item.Properties().durability(150), PalicoEntity.class
+    ));
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel>> F_KAMURA_MAIL = ARMOR_ITEMS.register("f_kamura_mail", () -> new PetHuntingArmorItem<>(
+            ModArmorMaterials.F_KAMURA, ArmorItem.Type.CHESTPLATE,
+            new Item.Properties().durability(150), PalicoEntity.class
+    ));
+
     public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel>> F_BONE_HELM = ARMOR_ITEMS.register("f_bone_helm", () -> new PetHuntingArmorItem<>(
             new PetArmorMaterial<FBoneHelmModel>(ModArmorMaterials.F_BONE, (EntityRendererProvider.Context context) -> new FBoneHelmModel<>(context.bakeLayer(ModModelLayers.F_BONE_HELM_LAYER))),
             ArmorItem.Type.HELMET, new Item.Properties().durability(150), PalicoEntity.class
@@ -98,6 +107,15 @@ public class ModArmorItems {
 //                public boolean showLegs() { return false; }
 //            }
     );
+
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel>> F_ALLOY_HELM = ARMOR_ITEMS.register("f_alloy_helm", () -> new PetHuntingArmorItem<>(
+            ModArmorMaterials.F_ALLOY, ArmorItem.Type.HELMET,
+            new Item.Properties().durability(150), PalicoEntity.class
+    ));
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel>> F_ALLOY_MAIL = ARMOR_ITEMS.register("f_alloy_mail", () -> new PetHuntingArmorItem<>(
+            ModArmorMaterials.F_ALLOY, ArmorItem.Type.CHESTPLATE,
+            new Item.Properties().durability(150), PalicoEntity.class
+    ));
 
     public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel>> F_GHOST_HELM = ARMOR_ITEMS.register("f_ghost_helm", () -> new PetHuntingArmorItem<>(
             new PetArmorMaterial<FGhostHelmModel>(ModArmorMaterials.F_GHOST, (EntityRendererProvider.Context context) -> new FGhostHelmModel<>(context.bakeLayer(ModModelLayers.F_GHOST_HELM_LAYER))),

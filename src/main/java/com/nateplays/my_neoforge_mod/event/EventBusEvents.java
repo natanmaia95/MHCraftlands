@@ -53,23 +53,6 @@ public class EventBusEvents {
         }
     }
 
-    @SubscribeEvent
-    public static void livingPreDamageEvent(LivingDamageEvent.Pre event) {
-        livingPreDamageDefenseStep(event);
-
-    }
-
-    public static void livingPreDamageDefenseStep(LivingDamageEvent.Pre event) {
-        LivingEntity livingEntity = event.getEntity();
-        float damageAmount = event.getNewDamage();
-        if (!livingEntity.getAttributes().hasAttribute(ModAttributes.DEFENSE)) return;
-        double defense = livingEntity.getAttributeValue(ModAttributes.DEFENSE);
-        if (defense == 0) return;
-        double defenseReduction = 8.0 / (8.0 + defense);
-        double damageAfterDefense = damageAmount * defenseReduction;
-        event.setNewDamage((float)damageAfterDefense);
-    }
-
 
     private static final Set<BlockPos> HAMMER_HARVESTED_BLOCKS = new HashSet<>();
     @SubscribeEvent

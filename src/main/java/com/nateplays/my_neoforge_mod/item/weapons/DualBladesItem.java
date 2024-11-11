@@ -30,10 +30,11 @@ public class DualBladesItem extends HuntingWeaponItem {
     }
 
     public static ItemAttributeModifiers createAttributes(Tier tier) {
-        return HuntingWeaponItem.createAttributes(tier, getAttackDamageMultiplier(), -1.3f, -0.5f);
+        return HuntingWeaponItem.createAttributes(tier, 1f, -1.3f, -0.5f);
     }
 
-    public static float getAttackDamageMultiplier() {
+    @Override
+    public float getAttackDamageMultiplier() {
         return 1.2F;
     }
 

@@ -18,7 +18,7 @@ public class WeaponChargedAttackHandler {
         if (event.getSource().getEntity() instanceof LivingEntity causingEntity) {
             LivingEntity targetEntity = event.getEntity();
 
-            ItemStack sourceStack = causingEntity.getMainHandItem();
+            ItemStack sourceStack = causingEntity.getWeaponItem();
             int chargeTicks = 0;
             float extraChargeDamage = 0.0f;
             if (sourceStack.isEmpty()) return;

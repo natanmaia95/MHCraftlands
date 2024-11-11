@@ -29,6 +29,12 @@
   "attribute.my_neoforge_mod.defense": "Defense",
   "attribute.my_neoforge_mod.player.eating_speed": "Eating Speed",
 
+  "attribute.my_neoforge_mod.fire_elemental_damage": "Fire Damage",
+  "attribute.my_neoforge_mod.water_elemental_damage": "Water Damage",
+  "attribute.my_neoforge_mod.thunder_elemental_damage": "Thunder Damage",
+  "attribute.my_neoforge_mod.ice_elemental_damage": "Ice Damage",
+  "attribute.my_neoforge_mod.dragon_elemental_damage": "Dragon Damage",
+
   "enchantment.my_neoforge_mod.quick_eating": "Quick Eating",
   "enchantment.my_neoforge_mod.muck_resistance": "Muck Resistance",
   "enchantment.my_neoforge_mod.bombardier": "Bombardier"

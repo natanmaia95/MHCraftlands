@@ -1,5 +1,6 @@
 package com.nateplays.my_neoforge_mod.item.weapons;
 
+import com.nateplays.my_neoforge_mod.attribute.ModAttributes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundAnimatePacket;
 import net.minecraft.server.level.ServerChunkCache;
@@ -31,10 +32,15 @@ public class SwordAndShieldItem extends HuntingWeaponItem{
     }
 
     public static ItemAttributeModifiers createAttributes(Tier tier) {
-        return HuntingWeaponItem.createAttributes(tier, getAttackDamageMultiplier(), -2.5f, -0.3f);
+        return HuntingWeaponItem.createAttributes(tier, 1f, -2.5f, -0.3f)
+                .withModifierAdded(ModAttributes.FIRE_DAMAGE, new AttributeModifier(
+                        HuntingWeaponItem.HUNTING_WEAPON_BASE_ELEMENTAL_DAMAGE_ID,
+                        2.0, AttributeModifier.Operation.ADD_VALUE
+                ), EquipmentSlotGroup.MAINHAND);
     }
 
-    public static float getAttackDamageMultiplier() {
+    @Override
+    public float getAttackDamageMultiplier() {
         return 1.4F;
     }
 

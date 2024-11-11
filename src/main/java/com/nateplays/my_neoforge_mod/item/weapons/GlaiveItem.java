@@ -25,10 +25,11 @@ public class GlaiveItem extends HuntingWeaponItem {
     }
 
     public static ItemAttributeModifiers createAttributes(Tier tier) {
-        return HuntingWeaponItem.createAttributes(tier, getAttackDamageMultiplier(), -2.7f, 1.0f);
+        return HuntingWeaponItem.createAttributes(tier, 1f, -2.7f, 1.0f);
     }
 
-    public static float getAttackDamageMultiplier() {
+    @Override
+    public float getAttackDamageMultiplier() {
         return 2.0F;
     }
 

@@ -21,6 +21,12 @@ public class ModAttributes {
     public static final DeferredHolder<Attribute, Attribute> DEFENSE = ATTRIBUTES.register("defense",
             () -> new RangedAttribute("attribute.my_neoforge_mod.defense", 0.0, 0.0, 1024.0).setSyncable(true));
 
+    public static final DeferredHolder<Attribute, Attribute> FIRE_DAMAGE = ATTRIBUTES.register("fire_elemental_damage",
+            () -> new RangedAttribute("attribute.my_neoforge_mod.fire_elemental_damage", 0.0, 0.0, 1024.0).setSyncable(true));
+    public static final DeferredHolder<Attribute, Attribute> WATER_DAMAGE = ATTRIBUTES.register("water_elemental_damage",
+            () -> new RangedAttribute("attribute.my_neoforge_mod.water_elemental_damage", 0.0, 0.0, 1024.0).setSyncable(true));
+
+
     private static <T extends Attribute> DeferredHolder<Attribute, Attribute> registerAttribute(String name, Supplier<Attribute> attr) {
         return ATTRIBUTES.register(name, attr);
     }

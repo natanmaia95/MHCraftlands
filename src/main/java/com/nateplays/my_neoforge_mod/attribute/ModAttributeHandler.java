@@ -3,6 +3,7 @@ package com.nateplays.my_neoforge_mod.attribute;
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.entity.ModEntities;
 import com.nateplays.my_neoforge_mod.entity.custom.MosswineEntity;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -33,9 +34,13 @@ public class ModAttributeHandler {
     @SubscribeEvent
     public static void entityAttributeModificationEvent(EntityAttributeModificationEvent event) {
         event.add(EntityType.PLAYER, ModAttributes.DEFENSE);
+//        BuiltInRegistries.ENTITY_TYPE.forEach((entityType) -> {
+//            event.add((EntityType<? extends LivingEntity>) entityType, ModAttributes.DEFENSE);
+//        });
+
+        event.add(EntityType.PLAYER, ModAttributes.FIRE_DAMAGE);
 //        event.add(EntityType., ModAttributes.DEFENSE);
 
         event.add(EntityType.PLAYER, ModAttributes.EATING_SPEED);
     }
-
 }
