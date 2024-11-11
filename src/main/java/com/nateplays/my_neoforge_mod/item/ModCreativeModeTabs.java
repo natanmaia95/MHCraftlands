@@ -54,6 +54,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.MALACHITE_INGOT);
                         output.accept(ModItems.NULBERRY);
                         output.accept(ModItems.CHISEL);
+                        output.accept(ModItems.MUSIC_DISC_HUNTERGOFORTH);
 
                         output.accept(ModItems.MOSSWINE_SPAWN_EGG);
 
@@ -88,8 +89,12 @@ public class ModCreativeModeTabs {
 
                         outputAcceptHuntingArmorItem(ModArmorItems.F_ACORN_HELM.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(ModArmorItems.F_ACORN_MAIL.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.F_KAMURA_HELM.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.F_KAMURA_MAIL.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(ModArmorItems.F_BONE_HELM.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(ModArmorItems.F_BONE_MAIL.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.F_ALLOY_HELM.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.F_ALLOY_MAIL.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(ModArmorItems.F_GHOST_HELM.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(ModArmorItems.F_GHOST_MAIL.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(ModArmorItems.F_MOSGHARL_HELM.get(), itemDisplayParameters, output);

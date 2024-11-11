@@ -12,6 +12,7 @@ import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
 import com.nateplays.my_neoforge_mod.item.armor.ModArmorMaterials;
 import com.nateplays.my_neoforge_mod.item.weapons.DualBladesItem;
 import com.nateplays.my_neoforge_mod.item.weapons.SwordAndShieldItem;
+import com.nateplays.my_neoforge_mod.sound.ModSounds;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
@@ -64,6 +65,7 @@ public class MyNeoForgeMod
         ModArmorMaterials.register(modEventBus);
         ModAttributes.register(modEventBus);
         ModDataComponents.register(modEventBus);
+        ModSounds.register(modEventBus);
 
         ModItems.register(modEventBus);
         ModArmorItems.register(modEventBus);
