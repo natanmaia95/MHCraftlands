@@ -1,5 +1,6 @@
 package com.nateplays.my_neoforge_mod.entity.pets;
 
+import com.nateplays.my_neoforge_mod.effect.ModEffects;
 import com.nateplays.my_neoforge_mod.entity.interfaces.ILevelableEntity;
 import com.nateplays.my_neoforge_mod.item.armor.PetHuntingArmorItem;
 import net.minecraft.nbt.CompoundTag;
@@ -10,22 +11,52 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.function.Predicate;
+
 public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevelableEntity {
+
     static final Logger LOGGER = LoggerFactory.getLogger(HuntingBuddyEntity.class);
-    private static final EntityDataAccessor<Integer> EXP =
-            SynchedEntityData.defineId(HuntingBuddyEntity.class, EntityDataSerializers.INT);
+
+
+    private static final EntityDataAccessor<Integer> EXP;
+    public static final Predicate<LivingEntity> ALLIED_TO_HUNTERS_SELECTOR;
+    public static final Predicate<LivingEntity> NOT_ALLIED_TO_HUNTERS_SELECTOR;
+
+
+    private boolean goalsCleared = false; //for KO effect
+
 
     protected HuntingBuddyEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
         super(entityType, level);
         this.setTame(false, false);
     }
+
+    static {
+        EXP =  SynchedEntityData.defineId(HuntingBuddyEntity.class, EntityDataSerializers.INT);
+        ALLIED_TO_HUNTERS_SELECTOR = (livingEntity) -> {
+            //TODO: change half these steps to a tag check
+            if (livingEntity instanceof Player) return true;
+            if (livingEntity instanceof HuntingBuddyEntity buddyEntity) {
+                return buddyEntity.isTame();
+            }
+            if (livingEntity instanceof TamableAnimal) return true;
+            if (livingEntity instanceof Villager) return true;
+            return false;
+        };
+        NOT_ALLIED_TO_HUNTERS_SELECTOR = (e) -> (!ALLIED_TO_HUNTERS_SELECTOR.test(e));
+    }
+
+
 
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
@@ -45,6 +76,40 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
         readAdditionalLevelableSaveData(tag);
     }
 
+    @Override
+    public void tick() {
+        super.tick();
+        this.tickKOEffect();
+    }
+
+    public void tickKOEffect() {
+        if (this.hasEffect(ModEffects.HUNTING_BUDDY_KO)) {
+            if (!goalsCleared) {
+                goalSelector.getAvailableGoals().clear();
+                goalsCleared = true;
+            }
+        } else {
+            if (goalsCleared) {
+                this.registerGoals();
+                goalsCleared = false;
+            }
+        }
+    }
+
+    @Override
+    public boolean canAttack(LivingEntity target) {
+        return super.canAttack(target) && NOT_ALLIED_TO_HUNTERS_SELECTOR.test(target);
+    }
+
+    @Override
+    public boolean canAttack(LivingEntity livingentity, TargetingConditions condition) {
+        return super.canAttack(livingentity, condition) && NOT_ALLIED_TO_HUNTERS_SELECTOR.test(livingentity);
+    }
+
+    @Override
+    public boolean wantsToAttack(LivingEntity target, LivingEntity owner) {
+        return NOT_ALLIED_TO_HUNTERS_SELECTOR.test(target);
+    }
 
 
 
@@ -113,6 +178,11 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
         return InteractionResult.CONSUME;
     }
 
+
+    @Override
+    protected void customServerAiStep() {
+        super.customServerAiStep();
+    }
 
     @Override
     public void setOrderedToSit(boolean orderedToSit) {
