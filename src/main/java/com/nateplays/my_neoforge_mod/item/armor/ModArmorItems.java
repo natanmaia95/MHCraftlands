@@ -4,10 +4,7 @@ import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.entity.client.ModModelLayers;
 import com.nateplays.my_neoforge_mod.entity.pets.PalicoEntity;
 import com.nateplays.my_neoforge_mod.entity.pets.client.PalicoModel;
-import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FBoneHelmModel;
-import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FFrankieModel;
-import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FGhostHelmModel;
-import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FMosgharlModel;
+import com.nateplays.my_neoforge_mod.entity.pets.client.armor.*;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ArmorItem;
@@ -116,6 +113,14 @@ public class ModArmorItems {
             ModArmorMaterials.F_ALLOY, ArmorItem.Type.CHESTPLATE,
             new Item.Properties().durability(150), PalicoEntity.class
     ));
+
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel<PalicoEntity>>> F_RED_HELM = ARMOR_ITEMS.register("f_red_helm", () -> new PetHuntingArmorItem<>(
+            new PetArmorMaterial<>(ModArmorMaterials.F_RED, (EntityRendererProvider.Context context) -> new FRedModel<>(context.bakeLayer(FRedModel.LAYER_LOCATION))),
+            ArmorItem.Type.HELMET, new Item.Properties().durability(150), PalicoEntity.class));
+
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel<PalicoEntity>>> F_RED_MAIL = ARMOR_ITEMS.register("f_red_mail", () -> new PetHuntingArmorItem<>(
+            new PetArmorMaterial<>(ModArmorMaterials.F_RED, (EntityRendererProvider.Context context) -> new FRedModel<>(context.bakeLayer(FRedModel.LAYER_LOCATION))),
+            ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(150), PalicoEntity.class));
 
     public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel>> F_GHOST_HELM = ARMOR_ITEMS.register("f_ghost_helm", () -> new PetHuntingArmorItem<>(
             new PetArmorMaterial<FGhostHelmModel>(ModArmorMaterials.F_GHOST, (EntityRendererProvider.Context context) -> new FGhostHelmModel<>(context.bakeLayer(ModModelLayers.F_GHOST_HELM_LAYER))),

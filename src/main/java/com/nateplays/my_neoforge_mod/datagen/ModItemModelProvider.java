@@ -54,6 +54,12 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         withExistingParent(ModItems.MOSSWINE_SPAWN_EGG.getRegisteredName(), mcLoc("item/template_spawn_egg"));
 
+        registerAllPetArmorItems();
+//        armorItem(ModArmorItems.F_FRANKIE_HELM);
+//        armorItem(ModArmorItems.F_FRANKIE_MAIL);
+    }
+
+    private void registerAllPetArmorItems() {
         armorItem(ModArmorItems.F_ACORN_HELM);
         armorItem(ModArmorItems.F_ACORN_MAIL);
         armorItem(ModArmorItems.F_KAMURA_HELM);
@@ -62,12 +68,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         armorItem(ModArmorItems.F_BONE_MAIL);
         armorItem(ModArmorItems.F_ALLOY_HELM);
         armorItem(ModArmorItems.F_ALLOY_MAIL);
+        armorItem(ModArmorItems.F_RED_HELM);
+        armorItem(ModArmorItems.F_RED_MAIL);
         armorItem(ModArmorItems.F_GHOST_HELM);
         armorItem(ModArmorItems.F_GHOST_MAIL);
         armorItem(ModArmorItems.F_MOSGHARL_HELM);
         armorItem(ModArmorItems.F_MOSGHARL_MAIL);
-//        armorItem(ModArmorItems.F_FRANKIE_HELM);
-//        armorItem(ModArmorItems.F_FRANKIE_MAIL);
     }
 
 

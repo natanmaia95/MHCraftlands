@@ -95,6 +95,8 @@ public class ModCreativeModeTabs {
                         outputAcceptHuntingArmorItem(ModArmorItems.F_BONE_MAIL.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(ModArmorItems.F_ALLOY_HELM.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(ModArmorItems.F_ALLOY_MAIL.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.F_RED_HELM.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.F_RED_MAIL.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(ModArmorItems.F_GHOST_HELM.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(ModArmorItems.F_GHOST_MAIL.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(ModArmorItems.F_MOSGHARL_HELM.get(), itemDisplayParameters, output);

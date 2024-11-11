@@ -5,10 +5,7 @@ import com.nateplays.my_neoforge_mod.entity.client.ModModelLayers;
 import com.nateplays.my_neoforge_mod.entity.client.MosswineModel;
 import com.nateplays.my_neoforge_mod.entity.interfaces.ILevelableEntity;
 import com.nateplays.my_neoforge_mod.entity.pets.client.PalicoModel;
-import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FBoneHelmModel;
-import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FFrankieModel;
-import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FGhostHelmModel;
-import com.nateplays.my_neoforge_mod.entity.pets.client.armor.FMosgharlModel;
+import com.nateplays.my_neoforge_mod.entity.pets.client.armor.*;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.AABB;
@@ -32,6 +29,7 @@ public class ModEventBusClientEvents {
         event.registerLayerDefinition(ModModelLayers.PALICO_LAYER, PalicoModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.PALICO_ARMOR_LAYER, PalicoModel::createBodyLayer);
 
+        event.registerLayerDefinition(FRedModel.LAYER_LOCATION, FRedModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.F_BONE_HELM_LAYER, FBoneHelmModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.F_GHOST_HELM_LAYER, FGhostHelmModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.F_MOSGHARL_LAYER, FMosgharlModel::createBodyLayer);

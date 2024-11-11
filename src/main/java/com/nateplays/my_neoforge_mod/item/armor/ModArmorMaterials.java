@@ -97,6 +97,9 @@ public class ModArmorMaterials {
     public static final Holder<ArmorMaterial> F_ALLOY = registerMaterial(
             "f_alloy", 1, SoundEvents.ARMOR_EQUIP_IRON, () -> Ingredient.of(Items.IRON_INGOT));
 
+    public static final Holder<ArmorMaterial> F_RED = registerMaterial(
+            "f_red", 1, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(Items.RED_WOOL));
+
     public static final Holder<ArmorMaterial> F_GHOST = registerMaterial("f_ghost",
             1, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(Items.PUMPKIN), true, true);
 
