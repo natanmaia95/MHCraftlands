@@ -10,6 +10,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -85,12 +86,15 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
 
     public void tickKOEffect() {
         if (this.hasEffect(ModEffects.HUNTING_BUDDY_KO)) {
-            if (!goalsCleared) {
+            if (!goalSelector.getAvailableGoals().isEmpty()) {
+                goalSelector.getAvailableGoals().forEach((goal) -> {
+                    goal.stop();
+                });
                 goalSelector.getAvailableGoals().clear();
                 goalsCleared = true;
             }
         } else {
-            if (goalsCleared) {
+            if (goalSelector.getAvailableGoals().isEmpty()) {
                 this.registerGoals();
                 goalsCleared = false;
             }
@@ -198,5 +202,9 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
             return result;
         }
         return false;
+    }
+
+    public boolean isKOed() {
+        return this.hasEffect(ModEffects.HUNTING_BUDDY_KO);
     }
 }

@@ -39,7 +39,8 @@ public class HuntingBuddyDeathHandler {
                 level.playLocalSound(buddyEntity,
                         SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.NEUTRAL, 1.0f, 1.0f);
 
-                buddyEntity.setHealth(0.1f);
+                buddyEntity.setHealth(0.01f);
+                buddyEntity.setInSittingPose(false);
 //                buddyEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100, 4));
                 buddyEntity.addEffect(new MobEffectInstance(ModEffects.HUNTING_BUDDY_KO, HuntingBuddyKOEffect.DURATION));
             }
