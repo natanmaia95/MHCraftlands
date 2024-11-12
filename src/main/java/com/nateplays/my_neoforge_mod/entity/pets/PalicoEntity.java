@@ -60,37 +60,36 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         public ItemStack getTheItem() {
             return PalicoEntity.this.getItemBySlot(EquipmentSlot.HEAD);
         }
-
         public void setTheItem(ItemStack stack) {
             PalicoEntity.this.setItemSlot(EquipmentSlot.HEAD, stack);
         }
-
-        public void setChanged() {
-        }
-
-        public boolean stillValid(Player p_324170_) {
-            return p_324170_.getVehicle() == PalicoEntity.this || p_324170_.canInteractWithEntity(PalicoEntity.this, 4.0);
-        }
+        public boolean stillValid(Player player) { return true; }
+        public void setChanged() {}
     };
 
     public final Container mailArmorAccess = new ContainerSingleItem() {
         public ItemStack getTheItem() {
             return PalicoEntity.this.getItemBySlot(EquipmentSlot.CHEST);
         }
-
         public void setTheItem(ItemStack stack) {
             PalicoEntity.this.setItemSlot(EquipmentSlot.CHEST, stack);
         }
-
-        public void setChanged() {
-        }
-
-        public boolean stillValid(Player p_324170_) {
-            return p_324170_.getVehicle() == PalicoEntity.this || p_324170_.canInteractWithEntity(PalicoEntity.this, 4.0);
-        }
+        public boolean stillValid(Player player) { return true; }
+        public void setChanged() {}
     };
 
-    private final SimpleContainer pouchInventory = new SimpleContainer(5);
+    public final Container weaponAccess = new ContainerSingleItem() {
+        public ItemStack getTheItem() {
+            return PalicoEntity.this.getItemBySlot(EquipmentSlot.MAINHAND);
+        }
+        public void setTheItem(ItemStack stack) {
+            PalicoEntity.this.setItemSlot(EquipmentSlot.MAINHAND, stack);
+        }
+        public boolean stillValid(Player player) { return true; }
+        public void setChanged() {}
+    };
+
+    private final SimpleContainer pouchInventory = new SimpleContainer(6);
 
 
     public PalicoEntity(EntityType<? extends HuntingBuddyEntity> entityType, Level level) {

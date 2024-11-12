@@ -35,20 +35,23 @@ public class PalicoInventoryMenu extends AbstractContainerMenu {
         // addSlot(new Slot(playerInventory, 0, 10, 10));
 
         int startX = 8;
-        int startY = 12;
+        int startY = 33;
         int slotSizePlus2 = 18;
 
         // Armor Slots?
         this.addSlot(new Slot(this.palicoEntity.helmArmorAccess, 0, startX, startY));
-        this.addSlot(new Slot(this.palicoEntity.mailArmorAccess, 0, startX + slotSizePlus2, startY));
+        this.addSlot(new Slot(this.palicoEntity.mailArmorAccess, 0, startX, startY + slotSizePlus2));
+        this.addSlot(new Slot(this.palicoEntity.weaponAccess, 0, startX, startY + slotSizePlus2*2));
 
         // Pouch slots (9 slots)
+        int currentY = startY;
         for (int i = 0; i < this.pouchInventory.getContainerSize(); i++) {
-            this.addSlot(new Slot(this.pouchInventory, i, startX + i * slotSizePlus2, startY + slotSizePlus2));
+            this.addSlot(new Slot(this.pouchInventory, i, 134 + slotSizePlus2*(i%2), currentY));
+            if (i % 2 == 1) currentY += slotSizePlus2;
         }
 
         // Add player inventory slots
-        startY = 84;
+        startY = 98;
         for (int row = 0; row < 3; ++row) {
             for (int col = 0; col < 9; ++col) {
                 this.addSlot(new Slot(playerInventory, col + row * 9 + 9, startX + col * slotSizePlus2, startY + row * slotSizePlus2));

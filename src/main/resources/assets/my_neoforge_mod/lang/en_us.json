@@ -16,6 +16,8 @@
   "block.my_neoforge_mod.machalite_ore": "Machalite Ore",
   "block.my_neoforge_mod.nulberry_bush": "Nulberry Bush",
 
+  "entity.my_neoforge_mod.felyne": "Felyne",
+
   "creativetab.my_neoforge_mod.items_tab": "MyNeoForgeMod Items",
   "creativetab.my_neoforge_mod.blocks_tab": "MyNeoForgeMod Blocks",
   "creativetab.my_neoforge_mod.armors_tab": "MyNeoForgeMod Armors",
