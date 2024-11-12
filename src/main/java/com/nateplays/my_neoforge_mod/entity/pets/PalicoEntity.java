@@ -5,22 +5,24 @@ import com.nateplays.my_neoforge_mod.entity.ai.MosswineAttackGoal;
 import com.nateplays.my_neoforge_mod.entity.interfaces.ILevelableEntity;
 import com.nateplays.my_neoforge_mod.entity.pets.client.PalicoModel;
 import com.nateplays.my_neoforge_mod.entity.pets.goals.HuntingBuddyHurtByTargetGoal;
+import com.nateplays.my_neoforge_mod.entity.pets.gui.PalicoInventoryMenu;
+import com.nateplays.my_neoforge_mod.entity.pets.gui.PalicoInventoryScreen;
 import com.nateplays.my_neoforge_mod.item.armor.PetHuntingArmorItem;
 import com.nateplays.my_neoforge_mod.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.*;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -30,24 +32,65 @@ import net.minecraft.world.entity.ai.goal.target.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.entity.animal.Wolf;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.animal.horse.Llama;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
+import net.minecraft.world.entity.npc.InventoryCarrier;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.ticks.ContainerSingleItem;
 import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevelableEntity {
+public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevelableEntity, InventoryCarrier, MenuProvider {
 
     public final AnimationState livingAnimationState = new AnimationState();
     public final AnimationState sitAnimationState = new AnimationState();
     public final AnimationState standUpAnimationState = new AnimationState();
+
+    public final Container helmArmorAccess = new ContainerSingleItem() {
+        public ItemStack getTheItem() {
+            return PalicoEntity.this.getItemBySlot(EquipmentSlot.HEAD);
+        }
+
+        public void setTheItem(ItemStack stack) {
+            PalicoEntity.this.setItemSlot(EquipmentSlot.HEAD, stack);
+        }
+
+        public void setChanged() {
+        }
+
+        public boolean stillValid(Player p_324170_) {
+            return p_324170_.getVehicle() == PalicoEntity.this || p_324170_.canInteractWithEntity(PalicoEntity.this, 4.0);
+        }
+    };
+
+    public final Container mailArmorAccess = new ContainerSingleItem() {
+        public ItemStack getTheItem() {
+            return PalicoEntity.this.getItemBySlot(EquipmentSlot.CHEST);
+        }
+
+        public void setTheItem(ItemStack stack) {
+            PalicoEntity.this.setItemSlot(EquipmentSlot.CHEST, stack);
+        }
+
+        public void setChanged() {
+        }
+
+        public boolean stillValid(Player p_324170_) {
+            return p_324170_.getVehicle() == PalicoEntity.this || p_324170_.canInteractWithEntity(PalicoEntity.this, 4.0);
+        }
+    };
+
+    private final SimpleContainer pouchInventory = new SimpleContainer(5);
 
 
     public PalicoEntity(EntityType<? extends HuntingBuddyEntity> entityType, Level level) {
@@ -103,6 +146,26 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
 
 
 
+    @Override
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        if (hand == InteractionHand.OFF_HAND && player.getItemInHand(hand).isEmpty()) return super.mobInteract(player, hand);
+
+        //open menu
+        if (player instanceof ServerPlayer serverPlayer && player.isShiftKeyDown() && player.getItemInHand(hand).isEmpty()) {
+//            serverPlayer.openMenu(new SimpleMenuProvider(
+//                    (containerId, playerInventory, menuPlayer) -> new PalicoInventoryMenu(containerId, playerInventory), PalicoInventoryScreen.TITLE)
+//            );
+            serverPlayer.openMenu(this, buffer -> buffer.writeVarInt(this.getId()));
+            return InteractionResult.PASS;
+        }
+        return super.mobInteract(player, hand);
+    }
+
+    @Nullable
+    @Override
+    public AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) {
+        return new PalicoInventoryMenu(containerId, playerInventory, this);
+    }
 
 
 
@@ -156,5 +219,10 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
     public int getAmbientSoundInterval() {
         RandomSource randomSource = RandomSource.create();
         return 300 + randomSource.nextInt(200);
+    }
+
+    @Override
+    public @NotNull SimpleContainer getInventory() {
+        return this.pouchInventory;
     }
 }

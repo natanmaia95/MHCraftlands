@@ -7,6 +7,7 @@ import com.nateplays.my_neoforge_mod.effect.ModEffects;
 import com.nateplays.my_neoforge_mod.entity.ModEntities;
 import com.nateplays.my_neoforge_mod.entity.client.MosswineRenderer;
 import com.nateplays.my_neoforge_mod.entity.pets.client.PalicoRenderer;
+import com.nateplays.my_neoforge_mod.gui.ModMenuTypes;
 import com.nateplays.my_neoforge_mod.item.ModCreativeModeTabs;
 import com.nateplays.my_neoforge_mod.item.ModItems;
 import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
@@ -74,6 +75,7 @@ public class MyNeoForgeMod
 
         ModEntities.register(modEventBus);
         ModEffects.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
