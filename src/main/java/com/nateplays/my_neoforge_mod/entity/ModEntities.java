@@ -2,6 +2,7 @@ package com.nateplays.my_neoforge_mod.entity;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.entity.custom.MosswineEntity;
+import com.nateplays.my_neoforge_mod.entity.pets.Felyne;
 import com.nateplays.my_neoforge_mod.entity.pets.PalicoEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
@@ -19,9 +20,14 @@ public class ModEntities {
                     .sized(0.8f, 0.8f).build("mosswine")
             );
 
-    public static final DeferredHolder<EntityType<?>, EntityType<PalicoEntity>> PALICO =
-            ENTITY_TYPES.register("palico", () -> EntityType.Builder.of(PalicoEntity::new, MobCategory.CREATURE)
-                    .sized(0.5f, 0.8f).build("palico")
+//    public static final DeferredHolder<EntityType<?>, EntityType<PalicoEntity>> PALICO =
+//            ENTITY_TYPES.register("palico", () -> EntityType.Builder.of(PalicoEntity::new, MobCategory.CREATURE)
+//                    .sized(0.5f, 0.8f).build("palico")
+//            );
+
+    public static final DeferredHolder<EntityType<?>, EntityType<Felyne>> FELYNE =
+            ENTITY_TYPES.register("felyne", () -> EntityType.Builder.of(Felyne::new, MobCategory.CREATURE)
+                    .sized(0.5f, 0.8f).build("felyne")
             );
 
     public static void register(IEventBus eventBus) {

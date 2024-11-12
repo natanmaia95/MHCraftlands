@@ -120,7 +120,8 @@ public class MyNeoForgeMod
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             EntityRenderers.register(ModEntities.MOSSWINE.get(), MosswineRenderer::new);
-            EntityRenderers.register(ModEntities.PALICO.get(), PalicoRenderer::new);
+//            EntityRenderers.register(ModEntities.PALICO.get(), PalicoRenderer::new);
+            EntityRenderers.register(ModEntities.FELYNE.get(), PalicoRenderer::new);
 
             // Predicates
             ModItems.ITEMS.getEntries().forEach((itemDeferredHolder) -> {

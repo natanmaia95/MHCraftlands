@@ -69,7 +69,12 @@ public class ModItems {
 
 
     public static final DeferredItem<SpawnEggItem> MOSSWINE_SPAWN_EGG = ITEMS.register("mosswine_spawn_egg",
-            () -> new SpawnEggItem(ModEntities.MOSSWINE.get(), 0, 2, new Item.Properties()));
+            () -> new SpawnEggItem(ModEntities.MOSSWINE.get(), 0x456296, 0xEF6915, new Item.Properties()));
+
+    public static final DeferredItem<SpawnEggItem> FELYNE_SPAWN_EGG = ITEMS.register("felyne_spawn_egg",
+            () -> new SpawnEggItem(ModEntities.FELYNE.get(), 0xdecc99, 0x453e2a, new Item.Properties()));
+
+
 
     public static final DeferredItem<Item> CHISEL = ITEMS.register("chisel",
             () -> new ChiselItem(new Item.Properties().durability(32)));

@@ -1,7 +1,9 @@
 package com.nateplays.my_neoforge_mod.entity.pets;
 
+import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.entity.ai.MosswineAttackGoal;
 import com.nateplays.my_neoforge_mod.entity.interfaces.ILevelableEntity;
+import com.nateplays.my_neoforge_mod.entity.pets.client.PalicoModel;
 import com.nateplays.my_neoforge_mod.entity.pets.goals.HuntingBuddyHurtByTargetGoal;
 import com.nateplays.my_neoforge_mod.item.armor.PetHuntingArmorItem;
 import com.nateplays.my_neoforge_mod.sound.ModSounds;
@@ -10,8 +12,10 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -33,12 +37,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class PalicoEntity extends HuntingBuddyEntity implements ILevelableEntity {
+public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevelableEntity {
 
     public final AnimationState livingAnimationState = new AnimationState();
     public final AnimationState sitAnimationState = new AnimationState();
@@ -51,7 +56,7 @@ public class PalicoEntity extends HuntingBuddyEntity implements ILevelableEntity
 
     public static AttributeSupplier.Builder createAttributes() {
         return createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 10.0).add(Attributes.MOVEMENT_SPEED, 0.3)
+                .add(Attributes.MAX_HEALTH, 10.0).add(Attributes.MOVEMENT_SPEED, 0.2)
                 .add(Attributes.ATTACK_DAMAGE, 1.0);
     }
 
@@ -70,8 +75,8 @@ public class PalicoEntity extends HuntingBuddyEntity implements ILevelableEntity
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
         //this.goalSelector.addGoal(3, new Wolf.WolfAvoidEntityGoal<>(this, Llama.class, 24.0F, 1.5, 1.5));
         this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.6F));
-        this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0, true));
-        this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F));
+        this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.5, true));
+        this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.5, 8.0F, 2.0F));
 
         this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 8.0F));
@@ -88,35 +93,17 @@ public class PalicoEntity extends HuntingBuddyEntity implements ILevelableEntity
 //        this.targetSelector.addGoal(8, new ResetUniversalAngerTargetGoal<>(this, true));
     }
 
-
-
-
-    @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-        if (!level.isClientSide()) {
-            this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.IRON_SWORD));
-            this.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(Items.GOAT_HORN));
-        }
-        return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
+    public static boolean checkPalicoSpawnRules(EntityType<? extends PalicoEntity> palico, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+        boolean isBrightEnough = level.getRawBrightness(pos, 0) > 0; //can't spawn in complete darkness
+        long dayTime = level.dayTime();
+        boolean isCorrectTimeOfDay = true;//dayTime < 2000 || dayTime > 12000; // don't spawn between 8am and 6pm
+        return isBrightEnough && isCorrectTimeOfDay && checkMobSpawnRules(palico, level, spawnType, pos, random);
     }
 
 
 
 
-//    @Override
-//    public InteractionResult mobInteract(Player player, InteractionHand hand) {
-//        if (!player.level().isClientSide()) {
-//            ItemStack handItem = player.getItemInHand(hand);
-//            if (handItem.getItem() instanceof PetHuntingArmorItem<?,?> armorItem) {
-//                EquipmentSlot slot = armorItem.getEquipmentSlot();
-//                ItemStack oldArmor = this.getItemBySlot(slot);
-//                this.setItemSlot(slot, handItem);
-//                player.setItemInHand(hand, oldArmor);
-//                return InteractionResult.SUCCESS;
-//            }
-//        }
-//        return super.mobInteract(player, hand);
-//    }
+
 
 
     @Override
@@ -142,20 +129,12 @@ public class PalicoEntity extends HuntingBuddyEntity implements ILevelableEntity
 
 
 
-    @Override
-    public boolean isFood(ItemStack stack) { return false; }
 
-    @Override
-    public boolean isTameItem(ItemStack stack) {
-        return stack.getItem() == Items.EMERALD;
-    }
 
     @Override
     public @Nullable AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
         return null;
     }
-
-
 
     // Sounds section
     @Override

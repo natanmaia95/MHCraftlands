@@ -7,6 +7,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -56,7 +57,7 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
         NOT_ALLIED_TO_HUNTERS_SELECTOR = (e) -> (!ALLIED_TO_HUNTERS_SELECTOR.test(e));
     }
 
-
+    public abstract ResourceLocation getTextureLocation();
 
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
@@ -134,8 +135,10 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
         if (!player.level().isClientSide()) {
             ItemStack handItem = player.getItemInHand(hand);
             LOGGER.debug("a");
-            //Try to equip armor! //TODO: player can only change armor of owned
-            if (isValidArmorItem(handItem)) return mobInteractArmorItem(player, hand, handItem);
+            //Try to equip armor!
+            if (this.isTame() && this.isOwnedBy(player)) {
+                if (isValidArmorItem(handItem)) return mobInteractArmorItem(player, hand, handItem);
+            }
             LOGGER.debug("b");
             if (this.isTame()) {
                 LOGGER.debug("c");
@@ -179,10 +182,6 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
     }
 
 
-    @Override
-    protected void customServerAiStep() {
-        super.customServerAiStep();
-    }
 
     @Override
     public void setOrderedToSit(boolean orderedToSit) {
@@ -190,10 +189,14 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
         this.setTarget(null); //forget targets.
     }
 
-    //TODO: replace this. It's here for test purposes.
     public boolean isTameItem(ItemStack stack) { return false; }
 
     public boolean isValidArmorItem(ItemStack stack) {
-        return stack.getItem() instanceof PetHuntingArmorItem<?,?>;
+        if (stack.getItem() instanceof PetHuntingArmorItem<?,?> petHuntingArmorItem) {
+            EquipmentSlot slot = petHuntingArmorItem.getEquipmentSlot();
+            boolean result = petHuntingArmorItem.canEquip(stack, slot, this);
+            return result;
+        }
+        return false;
     }
 }

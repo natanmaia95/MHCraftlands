@@ -32,7 +32,7 @@ public class PalicoRenderer extends MobRenderer<PalicoEntity, PalicoModel<Palico
 
     @Override
     public ResourceLocation getTextureLocation(PalicoEntity entity) {
-        return ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "textures/entity/pets/palico_felyne.png");
+        return entity.getTextureLocation();
     }
 
     @Override

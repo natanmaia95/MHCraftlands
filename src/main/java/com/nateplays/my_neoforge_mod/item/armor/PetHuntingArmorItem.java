@@ -2,6 +2,7 @@ package com.nateplays.my_neoforge_mod.item.armor;
 
 import com.mojang.logging.LogUtils;
 import com.nateplays.my_neoforge_mod.entity.client.ModModelLayers;
+import com.nateplays.my_neoforge_mod.entity.pets.HuntingBuddyEntity;
 import com.nateplays.my_neoforge_mod.entity.pets.client.PalicoModel;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -17,10 +18,15 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PetHuntingArmorItem<T extends Animal, A extends Model> extends HuntingArmorItem{
+    static final Logger LOGGER = LoggerFactory.getLogger(PetHuntingArmorItem.class);
+
     public final PetArmorMaterial petArmorMaterial;
     private final Class<T> entityClass;
+
 
 
     public PetHuntingArmorItem(Holder<ArmorMaterial> material, Type type, Properties properties, Class<T> wearerClass) {
@@ -38,6 +44,7 @@ public class PetHuntingArmorItem<T extends Animal, A extends Model> extends Hunt
 
     @Override
     public boolean canEquip(ItemStack stack, EquipmentSlot armorType, LivingEntity entity) {
+        LOGGER.debug("is instance? " + String.valueOf(entityClass.isInstance(entity)));
         if (entityClass.isInstance(entity)) return super.canEquip(stack, armorType, entity);
         return false;
     }
