@@ -58,6 +58,7 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModItems.MOSSWINE_SPAWN_EGG);
                         output.accept(ModItems.FELYNE_SPAWN_EGG);
+                        output.accept(ModItems.SUMMON_FELYNE_VOUCHER);
 
                         output.accept(ModItems.MACHALITE_SWORD);
                         output.accept(ModItems.MACHALITE_PICKAXE);

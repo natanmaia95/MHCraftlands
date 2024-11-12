@@ -53,6 +53,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         gvItem(ModItems.MACHALITE_GV);
 
         withExistingParent(ModItems.MOSSWINE_SPAWN_EGG.getRegisteredName(), mcLoc("item/template_spawn_egg"));
+        withExistingParent(ModItems.FELYNE_SPAWN_EGG.getRegisteredName(), mcLoc("item/template_spawn_egg"));
+        basicItem(ModItems.SUMMON_FELYNE_VOUCHER.get());
 
         registerAllPetArmorItems();
 //        armorItem(ModArmorItems.F_FRANKIE_HELM);

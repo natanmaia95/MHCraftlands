@@ -4,6 +4,7 @@ import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.entity.ModEntities;
 import com.nateplays.my_neoforge_mod.item.custom.ChiselItem;
 import com.nateplays.my_neoforge_mod.item.custom.HammerItem;
+import com.nateplays.my_neoforge_mod.item.custom.SummonFelyneItem;
 import com.nateplays.my_neoforge_mod.item.weapons.DualBladesItem;
 import com.nateplays.my_neoforge_mod.item.weapons.GlaiveItem;
 import com.nateplays.my_neoforge_mod.item.weapons.GreatSwordItem;
@@ -74,7 +75,7 @@ public class ModItems {
     public static final DeferredItem<SpawnEggItem> FELYNE_SPAWN_EGG = ITEMS.register("felyne_spawn_egg",
             () -> new SpawnEggItem(ModEntities.FELYNE.get(), 0xdecc99, 0x453e2a, new Item.Properties()));
 
-
+    public static final DeferredItem<SummonFelyneItem> SUMMON_FELYNE_VOUCHER = ITEMS.register("summon_felyne_voucher", SummonFelyneItem::new);
 
     public static final DeferredItem<Item> CHISEL = ITEMS.register("chisel",
             () -> new ChiselItem(new Item.Properties().durability(32)));
