@@ -1,25 +1,23 @@
 package com.nateplays.my_neoforge_mod.event;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
+import com.nateplays.my_neoforge_mod.entity.ModEntities;
 import com.nateplays.my_neoforge_mod.entity.client.ModModelLayers;
 import com.nateplays.my_neoforge_mod.entity.client.MosswineModel;
-import com.nateplays.my_neoforge_mod.entity.interfaces.ILevelableEntity;
+import com.nateplays.my_neoforge_mod.entity.pets.PalicoEntity;
 import com.nateplays.my_neoforge_mod.entity.pets.client.PalicoModel;
 import com.nateplays.my_neoforge_mod.entity.pets.client.armor.*;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.SpawnPlacementTypes;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
-
-import java.util.List;
-import java.util.function.Predicate;
+import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 
 @EventBusSubscriber(modid = MyNeoForgeMod.MODID, bus = EventBusSubscriber.Bus.MOD)
-public class ModEventBusClientEvents {
+public class ModEventBusEvents {
 
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
@@ -34,5 +32,11 @@ public class ModEventBusClientEvents {
         event.registerLayerDefinition(ModModelLayers.F_GHOST_HELM_LAYER, FGhostHelmModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.F_MOSGHARL_LAYER, FMosgharlModel::createBodyLayer);
         event.registerLayerDefinition(FFrankieModel.LAYER_LOCATION, FFrankieModel::createBodyLayer);
+    }
+
+    @SubscribeEvent
+    public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
+        event.register(ModEntities.FELYNE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
     }
 }
