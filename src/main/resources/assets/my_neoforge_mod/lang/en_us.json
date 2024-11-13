@@ -1,4 +1,48 @@
 {
+  "attribute.my_neoforge_mod.defense": "Defense",
+
+  "creativetab.my_neoforge_mod.items_tab": "Palico Items",
+  "creativetab.my_neoforge_mod.armors_tab": "Palico Armors",
+
+  "entity.my_neoforge_mod.felyne": "Felyne",
+
+  "item.my_neoforge_mod.felyne_spawn_egg": "Summon Felyne",
+  "item.my_neoforge_mod.summon_felyne_voucher": "Summon Felyne Voucher",
+  "item.my_neoforge_mod.dismiss_buddy_voucher": "Dismiss Palico Voucher",
+
+  "item.my_neoforge_mod.generic_scrap.desc": "Used for making Palico armor.",
+  "item.my_neoforge_mod.wood_scrap": "Wood Scrap",
+  "item.my_neoforge_mod.bone_scrap": "Bone Scrap",
+  "item.my_neoforge_mod.ore_scrap": "Ore Scrap",
+  "item.my_neoforge_mod.fur_scrap": "Fur Scrap",
+  "item.my_neoforge_mod.humble_scrap": "Humble Scrap",
+  "item.my_neoforge_mod.sinister_scrap": "Sinister Scrap",
+  "item.my_neoforge_mod.sinister_scrap.desc": "Used for making §b§5spooky§r Palico armor.",
+
+  "item.my_neoforge_mod.f_acorn_helm": "F Acorn Helm",
+  "item.my_neoforge_mod.f_acorn_mail": "F Acorn Mail",
+  "item.my_neoforge_mod.f_kamura_helm": "F Kamura Hood",
+  "item.my_neoforge_mod.f_kamura_mail": "F Kamura Garb",
+  "item.my_neoforge_mod.f_bone_helm": "F Bone Helm",
+  "item.my_neoforge_mod.f_bone_mail": "F Bone Mail",
+  "item.my_neoforge_mod.f_alloy_helm": "F Alloy Helm",
+  "item.my_neoforge_mod.f_alloy_mail": "F Alloy Mail",
+  "item.my_neoforge_mod.f_red_helm": "F Red Hood",
+  "item.my_neoforge_mod.f_red_mail": "F Red Vest",
+  "item.my_neoforge_mod.f_mosgharl_helm": "F Mosgharl Hat",
+  "item.my_neoforge_mod.f_mosgharl_mail": "F Mosgharl Mail",
+  "item.my_neoforge_mod.f_ghost_helm": "F Ghost Hat",
+  "item.my_neoforge_mod.f_ghost_mail": "F Ghost Garb",
+  "item.my_neoforge_mod.f_frankie_helm": "F Frankie Hat",
+  "item.my_neoforge_mod.f_frankie_mail": "F Frankie Vest",
+
+
+
+
+
+
+  "attribute.my_neoforge_mod.player.eating_speed": "Eating Speed",
+  "creativetab.my_neoforge_mod.blocks_tab": "MyNeoForgeMod Blocks",
   "item.my_neoforge_mod.earth_crystal": "Earth Crystal",
   "item.my_neoforge_mod.machalite_chunk": "Machalite Chunk",
   "item.my_neoforge_mod.nulberry": "Nulberry",
@@ -16,20 +60,11 @@
   "block.my_neoforge_mod.machalite_ore": "Machalite Ore",
   "block.my_neoforge_mod.nulberry_bush": "Nulberry Bush",
 
-  "entity.my_neoforge_mod.felyne": "Felyne",
-
-  "creativetab.my_neoforge_mod.items_tab": "MyNeoForgeMod Items",
-  "creativetab.my_neoforge_mod.blocks_tab": "MyNeoForgeMod Blocks",
-  "creativetab.my_neoforge_mod.armors_tab": "MyNeoForgeMod Armors",
-
   "tooltip.my_neoforge_mod.magic_block.tooltip": "This is a tooltip. Cool!",
   "tooltip.my_neoforge_mod.skill_description.quick_eating": "Makes eating and drinking faster.",
   "tooltip.my_neoforge_mod.skill_description.muck_resistance": "Reduces slowness on difficult terrain.",
   "tooltip.my_neoforge_mod.skill_description.muck_resistance.2": "[2] Completely removes slowness on difficult terrain.",
   "tooltip.my_neoforge_mod.skill_description.bombardier": "Increases TNT explosion power.",
-
-  "attribute.my_neoforge_mod.defense": "Defense",
-  "attribute.my_neoforge_mod.player.eating_speed": "Eating Speed",
 
   "attribute.my_neoforge_mod.fire_elemental_damage": "Fire Damage",
   "attribute.my_neoforge_mod.water_elemental_damage": "Water Damage",

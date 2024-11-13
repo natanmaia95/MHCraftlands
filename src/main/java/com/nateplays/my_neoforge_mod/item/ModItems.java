@@ -11,7 +11,11 @@ import com.nateplays.my_neoforge_mod.item.weapons.GreatSwordItem;
 import com.nateplays.my_neoforge_mod.item.weapons.SwordAndShieldItem;
 import com.nateplays.my_neoforge_mod.sound.ModSounds;
 import net.minecraft.ChatFormatting;
+import net.minecraft.locale.Language;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -84,12 +88,18 @@ public class ModItems {
             () -> new ChiselItem(new Item.Properties().durability(32)));
 
 
-    public static final DeferredItem<Item> SCRAP_WOOD = ITEMS.register("wood_scrap", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> SCRAP_BONE = ITEMS.register("bone_scrap", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> SCRAP_ORE = ITEMS.register("ore_scrap", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> SCRAP_FUR = ITEMS.register("fur_scrap", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> SCRAP_HUMBLE = ITEMS.register("humble_scrap", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> SCRAP_SINISTER = ITEMS.register("sinister_scrap", () -> new Item(new Item.Properties()));
+//    public static final DeferredItem<Item> SCRAP_WOOD = ITEMS.register("wood_scrap", () -> new Item(new Item.Properties()));
+//    public static final DeferredItem<Item> SCRAP_BONE = ITEMS.register("bone_scrap", () -> new Item(new Item.Properties()));
+//    public static final DeferredItem<Item> SCRAP_ORE = ITEMS.register("ore_scrap", () -> new Item(new Item.Properties()));
+//    public static final DeferredItem<Item> SCRAP_FUR = ITEMS.register("fur_scrap", () -> new Item(new Item.Properties()));
+//    public static final DeferredItem<Item> SCRAP_HUMBLE = ITEMS.register("humble_scrap", () -> new Item(new Item.Properties()));
+//    public static final DeferredItem<Item> SCRAP_SINISTER = ITEMS.register("sinister_scrap", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> SCRAP_WOOD = registerScrapItem("wood");
+    public static final DeferredItem<Item> SCRAP_BONE = registerScrapItem("bone");
+    public static final DeferredItem<Item> SCRAP_ORE = registerScrapItem("ore");
+    public static final DeferredItem<Item> SCRAP_FUR = registerScrapItem("fur");
+    public static final DeferredItem<Item> SCRAP_HUMBLE = registerScrapItem("humble");
+    public static final DeferredItem<Item> SCRAP_SINISTER = registerScrapItem("sinister");
 
 
     public static final DeferredItem<SwordAndShieldItem> MACHALITE_SNS = ITEMS.register("machalite_sns",
@@ -113,6 +123,26 @@ public class ModItems {
                     .attributes(GlaiveItem.createAttributes(ModToolTiers.MACHALITE))));
 
 
+
+
+    protected static DeferredItem<Item> registerScrapItem(String scrapName) {
+        return ITEMS.register(scrapName + "_scrap", () -> new Item(new Item.Properties()){
+            @Override
+            public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                TranslatableContents loreContents = null;
+                String genericDescKey = "item.%s.generic_scrap.desc".formatted(MyNeoForgeMod.MODID);
+                String specificDescKey = "item.%s.%s_scrap.desc".formatted(MyNeoForgeMod.MODID, scrapName);
+                if (Language.getInstance().getOrDefault(specificDescKey, "") != "") {
+                    loreContents = new TranslatableContents(specificDescKey, null, TranslatableContents.NO_ARGS);
+                } else loreContents = new TranslatableContents(genericDescKey, null, TranslatableContents.NO_ARGS);
+
+                MutableComponent loreComponent = MutableComponent.create(loreContents);
+                loreComponent = loreComponent.withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC);
+                tooltipComponents.add(loreComponent);
+            }
+        });
+
+    }
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

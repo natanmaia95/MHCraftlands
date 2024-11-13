@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "my_neoforge_mod:dismiss_felyne_voucher"
+        "recipe": "my_neoforge_mod:dismiss_buddy_voucher"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "my_neoforge_mod:dismiss_felyne_voucher"
+      "my_neoforge_mod:dismiss_buddy_voucher"
     ]
   }
 }
