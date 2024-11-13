@@ -1,26 +1,14 @@
 package com.nateplays.my_neoforge_mod.entity.pets;
 
-import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.attribute.ModAttributes;
-import com.nateplays.my_neoforge_mod.entity.ai.MosswineAttackGoal;
 import com.nateplays.my_neoforge_mod.entity.interfaces.ILevelableEntity;
-import com.nateplays.my_neoforge_mod.entity.pets.client.PalicoModel;
 import com.nateplays.my_neoforge_mod.entity.pets.goals.HuntingBuddyHurtByTargetGoal;
 import com.nateplays.my_neoforge_mod.entity.pets.gui.PalicoInventoryMenu;
-import com.nateplays.my_neoforge_mod.entity.pets.gui.PalicoInventoryScreen;
-import com.nateplays.my_neoforge_mod.item.armor.PetHuntingArmorItem;
 import com.nateplays.my_neoforge_mod.sound.ModSounds;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.*;
@@ -30,24 +18,17 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.*;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Turtle;
-import net.minecraft.world.entity.animal.Wolf;
-import net.minecraft.world.entity.animal.horse.AbstractHorse;
-import net.minecraft.world.entity.animal.horse.Llama;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.npc.InventoryCarrier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.ticks.ContainerSingleItem;
-import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -90,7 +71,9 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         public void setChanged() {}
     };
 
-    private final SimpleContainer pouchInventory = new SimpleContainer(6);
+    private final SimpleContainer pouchInventory = new SimpleContainer(6) {
+
+    };
 
 
     public PalicoEntity(EntityType<? extends HuntingBuddyEntity> entityType, Level level) {
@@ -121,6 +104,8 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.5, true));
         this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.5, 8.0F, 2.0F));
 
+//        this.goalSelector.addGoal(7, new RemoveBlockGoal(Blocks.OAK_LOG, this, 1.0, 16));
+
         this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
@@ -131,8 +116,8 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         this.targetSelector.addGoal(3, new HuntingBuddyHurtByTargetGoal(this).setAlertOthers());
 //        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
 //        this.targetSelector.addGoal(5, new NonTameRandomTargetGoal<>(this, Animal.class, false, PREY_SELECTOR));
-        this.targetSelector.addGoal(6, new NonTameRandomTargetGoal<>(this, Turtle.class, false, Turtle.BABY_ON_LAND_SELECTOR));
-        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, AbstractSkeleton.class, false));
+//        this.targetSelector.addGoal(6, new NonTameRandomTargetGoal<>(this, Turtle.class, false, Turtle.BABY_ON_LAND_SELECTOR));
+//        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, AbstractSkeleton.class, false));
 //        this.targetSelector.addGoal(8, new ResetUniversalAngerTargetGoal<>(this, true));
     }
 
@@ -151,7 +136,7 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         if (hand == InteractionHand.OFF_HAND && player.getItemInHand(hand).isEmpty()) return super.mobInteract(player, hand);
 
         //open menu
-        if (player instanceof ServerPlayer serverPlayer && player.isShiftKeyDown() && player.getItemInHand(hand).isEmpty()) {
+        if (player instanceof ServerPlayer serverPlayer && !player.isShiftKeyDown() && player.getItemInHand(hand).isEmpty()) {
 //            serverPlayer.openMenu(new SimpleMenuProvider(
 //                    (containerId, playerInventory, menuPlayer) -> new PalicoInventoryMenu(containerId, playerInventory), PalicoInventoryScreen.TITLE)
 //            );
@@ -224,5 +209,9 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
     @Override
     public @NotNull SimpleContainer getInventory() {
         return this.pouchInventory;
+    }
+
+    public boolean wantsToPickUp(ItemStack stack) {
+        return this.getInventory().canAddItem(stack);
     }
 }

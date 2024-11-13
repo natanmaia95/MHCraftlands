@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "f_alloy_armor",
+  "key": {
+    "A": {
+      "item": "my_neoforge_mod:ore_scrap"
+    },
+    "B": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "ABA",
+    " A "
+  ],
+  "result": {
+    "count": 1,
+    "id": "my_neoforge_mod:f_alloy_mail"
+  }
+}

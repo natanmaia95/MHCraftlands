@@ -56,6 +56,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent(ModItems.FELYNE_SPAWN_EGG.getRegisteredName(), mcLoc("item/template_spawn_egg"));
         basicItem(ModItems.SUMMON_FELYNE_VOUCHER.get());
 
+        registerAllCraftingMaterials();
         registerAllPetArmorItems();
 //        armorItem(ModArmorItems.F_FRANKIE_HELM);
 //        armorItem(ModArmorItems.F_FRANKIE_MAIL);
@@ -78,6 +79,21 @@ public class ModItemModelProvider extends ItemModelProvider {
         armorItem(ModArmorItems.F_MOSGHARL_MAIL);
     }
 
+    private void registerAllCraftingMaterials() {
+        String prefix = "material/";
+        basicItem(ModItems.SCRAP_WOOD, prefix);
+        basicItem(ModItems.SCRAP_ORE, prefix);
+        basicItem(ModItems.SCRAP_BONE, prefix);
+        basicItem(ModItems.SCRAP_FUR, prefix);
+        basicItem(ModItems.SCRAP_HUMBLE, prefix);
+        basicItem(ModItems.SCRAP_SINISTER, prefix);
+    }
+
+
+    public void basicItem(DeferredItem<?> item, String prefix) {
+        this.withExistingParent(item.getId().getPath(), ResourceLocation.parse("item/generated"))
+                .texture("layer0", modLoc("item/" + prefix + item.getId().getPath() ) );
+    }
 
     public void buttonItem(DeferredBlock<?> block, DeferredBlock<Block> baseBlock) {
         this.withExistingParent(block.getId().getPath(), mcLoc("block/button_inventory"))

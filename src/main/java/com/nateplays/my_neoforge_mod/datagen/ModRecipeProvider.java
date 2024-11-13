@@ -3,15 +3,21 @@ package com.nateplays.my_neoforge_mod.datagen;
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.block.ModBlocks;
 import com.nateplays.my_neoforge_mod.item.ModItems;
+import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
+import com.nateplays.my_neoforge_mod.item.armor.PetHuntingArmorItem;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -66,8 +72,91 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('F', ItemTags.FISHES).define('E', Items.EMERALD_BLOCK).define('P', Items.PAPER)
                 .pattern("FEF").pattern("EPE").pattern("FEF").unlockedBy("has_paper", has(Items.PAPER)).save(recipeOutput);
 
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SCRAP_WOOD)
+                .requires(ItemTags.LOGS).requires(Items.STICK).unlockedBy("has_logs", has(ItemTags.LOGS)).save(recipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SCRAP_BONE)
+                .requires(Items.BONE).requires(Items.STICK).unlockedBy("has_bone", has(Items.BONE)).save(recipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SCRAP_ORE)
+                .requires(ItemTags.IRON_ORES).requires(Items.STICK).unlockedBy("has_iron_ores", has(ItemTags.IRON_ORES)).save(recipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SCRAP_ORE)
+                .requires(ItemTags.COPPER_ORES).requires(ItemTags.COPPER_ORES).requires(Items.STICK).unlockedBy("has_copper_ores", has(ItemTags.COPPER_ORES))
+                .save(recipeOutput, MyNeoForgeMod.MODID+":ore_scrap_from_copper_ores");
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SCRAP_FUR)
+                .requires(ItemTags.WOOL).requires(Items.STICK).unlockedBy("has_wool", has(ItemTags.WOOL)).save(recipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SCRAP_FUR)
+                .requires(Items.LEATHER).requires(Items.STICK).unlockedBy("has_leather", has(Items.LEATHER)).save(recipeOutput, MyNeoForgeMod.MODID+":fur_scrap_from_leather");
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SCRAP_HUMBLE)
+                .requires(ItemTags.VILLAGER_PLANTABLE_SEEDS).requires(ItemTags.VILLAGER_PLANTABLE_SEEDS).requires(Items.STICK)
+                .unlockedBy("has_villager_plantable_seeds", has(ItemTags.VILLAGER_PLANTABLE_SEEDS)).save(recipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SCRAP_HUMBLE)
+                .requires(Ingredient.of(Items.RED_MUSHROOM, Items.BROWN_MUSHROOM)).requires(Items.STICK)
+                .unlockedBy("has_red_mushroom", has(Items.RED_MUSHROOM)).unlockedBy("has_brown_mushroom", has(Items.BROWN_MUSHROOM))
+                .save(recipeOutput, MyNeoForgeMod.MODID+":humble_scrap_from_mushrooms");
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SCRAP_SINISTER, 2)
+                .requires(Items.ENDER_PEARL).requires(Items.STICK).unlockedBy("has_ender_pearl", has(Items.ENDER_PEARL)).save(recipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SCRAP_SINISTER)
+                .requires(Items.SPIDER_EYE).requires(Items.STICK).unlockedBy("has_spider_eye", has(Items.SPIDER_EYE))
+                .save(recipeOutput, MyNeoForgeMod.MODID+":sinister_scrap_from_spider_eye");
+
+        palicoArmor(recipeOutput, "f_acorn_armor", ModArmorItems.F_ACORN_HELM.get(), ModItems.SCRAP_WOOD, Items.OAK_SAPLING);
+        palicoArmor(recipeOutput, "f_acorn_armor", ModArmorItems.F_ACORN_MAIL.get(), ModItems.SCRAP_WOOD, Items.OAK_SAPLING);
+        palicoArmor(recipeOutput, "f_kamura_armor", ModArmorItems.F_KAMURA_HELM.get(), ModItems.SCRAP_FUR, ItemTags.WOOL_CARPETS);
+        palicoArmor(recipeOutput, "f_kamura_armor", ModArmorItems.F_KAMURA_MAIL.get(), ModItems.SCRAP_FUR, ItemTags.WOOL_CARPETS);
+        palicoArmor(recipeOutput, "f_bone_armor", ModArmorItems.F_BONE_HELM.get(), ModItems.SCRAP_BONE, Ingredient.of(Items.FEATHER));
+        palicoArmor(recipeOutput, "f_bone_armor", ModArmorItems.F_BONE_MAIL.get(), ModItems.SCRAP_BONE, Ingredient.of(Items.FEATHER));
+        palicoArmor(recipeOutput, "f_alloy_armor", ModArmorItems.F_ALLOY_HELM.get(), ModItems.SCRAP_ORE, Items.IRON_INGOT);
+        palicoArmor(recipeOutput, "f_alloy_armor", ModArmorItems.F_ALLOY_MAIL.get(), ModItems.SCRAP_ORE, Items.IRON_INGOT);
+        palicoArmor(recipeOutput, "f_red_armor", ModArmorItems.F_RED_HELM.get(), ModItems.SCRAP_FUR, Items.RED_WOOL);
+        palicoArmor(recipeOutput, "f_red_armor", ModArmorItems.F_RED_MAIL.get(), ModItems.SCRAP_FUR, Items.RED_WOOL);
+        palicoArmor(recipeOutput, "f_mosgharl_armor", ModArmorItems.F_MOSGHARL_HELM.get(), ModItems.SCRAP_HUMBLE, Ingredient.EMPTY);
+        palicoArmor(recipeOutput, "f_mosgharl_armor", ModArmorItems.F_MOSGHARL_MAIL.get(), ModItems.SCRAP_HUMBLE, Items.CARVED_PUMPKIN);
+        palicoArmor(recipeOutput, "f_frankie_armor", ModArmorItems.F_FRANKIE_HELM.get(), ModItems.SCRAP_SINISTER, Items.ROTTEN_FLESH);
+        palicoArmor(recipeOutput, "f_frankie_armor", ModArmorItems.F_FRANKIE_MAIL.get(), ModItems.SCRAP_SINISTER, Items.ROTTEN_FLESH);
+        palicoArmor(recipeOutput, "f_ghost_armor", ModArmorItems.F_GHOST_HELM.get(), ModItems.SCRAP_SINISTER, Items.CARVED_PUMPKIN);
+        palicoArmor(recipeOutput, "f_ghost_armor", ModArmorItems.F_GHOST_MAIL.get(), ModItems.SCRAP_SINISTER, Items.WHITE_BANNER);
+
     }
 
+
+    protected static void palicoArmor(RecipeOutput recipeOutput, String group, PetHuntingArmorItem<?,?> result,
+                                      ItemLike firstMaterial, @Nullable TagKey<Item> secondMaterialTag) {
+        palicoArmor(recipeOutput, group, result, firstMaterial, secondMaterialTag != null ? Ingredient.of(secondMaterialTag) : null);
+    }
+
+    protected static void palicoArmor(RecipeOutput recipeOutput, String group, PetHuntingArmorItem<?,?> result,
+                                      ItemLike firstMaterial, @Nullable ItemLike secondMaterial) {
+        palicoArmor(recipeOutput, group, result, firstMaterial, secondMaterial != null ? Ingredient.of(secondMaterial) : null);
+    }
+
+    protected static void palicoArmor(RecipeOutput recipeOutput, String group, PetHuntingArmorItem<?,?> result,
+                                      ItemLike firstMaterial, @Nullable Ingredient secondMaterial) {
+
+        boolean noSecondMaterial = secondMaterial == null || secondMaterial.isEmpty();
+
+        String pattern1, pattern2;
+        if (result.getEquipmentSlot() == EquipmentSlot.HEAD) {
+            pattern1 = " A ";
+            pattern2 = noSecondMaterial ? "A A" : "ABA";
+        } else { //if (result.getEquipmentSlot() == EquipmentSlot.CHEST) {
+            pattern1 = noSecondMaterial ? "A A" : "ABA";
+            pattern2 = " A ";
+        }
+
+        ShapedRecipeBuilder recipeBuilder = ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result).group(group)
+                .pattern(pattern1).pattern(pattern2)
+                .define('A', firstMaterial)
+                .unlockedBy("has_" + firstMaterial.asItem().toString(), has(firstMaterial));
+
+        System.out.println("MAT" + firstMaterial.asItem().toString());
+
+        if (!noSecondMaterial) {
+            recipeBuilder = recipeBuilder.define('B', secondMaterial);
+//                    .unlockedBy("has_" + secondMaterial.asItem().toString(), has(secondMaterial));
+        }
+
+        recipeBuilder.save(recipeOutput);
+    }
 
 
     protected static void oreSmelting(RecipeOutput recipeOutput, List<ItemLike> ingredients, RecipeCategory category,

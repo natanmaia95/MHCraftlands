@@ -82,6 +82,14 @@ public class ModItems {
 
 
 
+    public static final DeferredItem<Item> SCRAP_WOOD = ITEMS.register("wood_scrap", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> SCRAP_BONE = ITEMS.register("bone_scrap", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> SCRAP_ORE = ITEMS.register("ore_scrap", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> SCRAP_FUR = ITEMS.register("fur_scrap", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> SCRAP_HUMBLE = ITEMS.register("humble_scrap", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> SCRAP_SINISTER = ITEMS.register("sinister_scrap", () -> new Item(new Item.Properties()));
+
+
     public static final DeferredItem<SwordAndShieldItem> MACHALITE_SNS = ITEMS.register("machalite_sns",
             () -> new SwordAndShieldItem(
                     ModToolTiers.MACHALITE, new Item.Properties()

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "my_neoforge_mod:item/material/humble_scrap"
+  }
+}

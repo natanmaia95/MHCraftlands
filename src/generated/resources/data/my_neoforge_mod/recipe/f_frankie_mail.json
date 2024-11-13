@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "f_frankie_armor",
+  "key": {
+    "A": {
+      "item": "my_neoforge_mod:sinister_scrap"
+    },
+    "B": {
+      "item": "minecraft:rotten_flesh"
+    }
+  },
+  "pattern": [
+    "ABA",
+    " A "
+  ],
+  "result": {
+    "count": 1,
+    "id": "my_neoforge_mod:f_frankie_mail"
+  }
+}

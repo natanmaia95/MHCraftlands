@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "f_acorn_armor",
+  "key": {
+    "A": {
+      "item": "my_neoforge_mod:wood_scrap"
+    },
+    "B": {
+      "item": "minecraft:oak_sapling"
+    }
+  },
+  "pattern": [
+    " A ",
+    "ABA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "my_neoforge_mod:f_acorn_helm"
+  }
+}

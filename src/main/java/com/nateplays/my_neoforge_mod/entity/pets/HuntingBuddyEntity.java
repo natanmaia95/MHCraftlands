@@ -134,31 +134,27 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
     @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         if (hand == InteractionHand.OFF_HAND && player.getItemInHand(hand).isEmpty()) return super.mobInteract(player, hand);
+        if (player.level().isClientSide()) return super.mobInteract(player, hand);
 
-        if (!player.level().isClientSide()) {
-            ItemStack handItem = player.getItemInHand(hand);
-            LOGGER.debug("a");
-            //Try to equip armor!
-            if (this.isTame() && this.isOwnedBy(player)) {
-                if (isValidArmorItem(handItem)) return mobInteractArmorItem(player, hand, handItem);
+        ItemStack handItem = player.getItemInHand(hand);
+
+        if (this.isTame() && this.isOwnedBy(player)) {
+            //if shift pressed, do sit actions
+            if (player.isShiftKeyDown()) {
+                this.setOrderedToSit(!this.isOrderedToSit());
+                return InteractionResult.SUCCESS_NO_ITEM_USED;
             }
-            LOGGER.debug("b");
-            if (this.isTame()) {
-                LOGGER.debug("c");
-                if (handItem.isEmpty() && isOwnedBy(player)) {
-                    this.setOrderedToSit(!this.isOrderedToSit());
-                    LOGGER.debug("d");
-                    return InteractionResult.SUCCESS_NO_ITEM_USED;
-                }
-            } else {
-                LOGGER.debug("e");
-                //Try to tame
-                if (isTameItem(handItem)) return mobInteractTryTame(player, hand, handItem);
-            }
+            //try swapping armors
+            if (isValidArmorItem(handItem)) return mobInteractArmorItem(player, hand, handItem);
         }
-        LOGGER.debug("f");
+
+        if (!this.isTame()) {
+            if (isTameItem(handItem)) return mobInteractTryTame(player, hand, handItem);
+        }
+
         return super.mobInteract(player, hand);
     }
+
 
     public InteractionResult mobInteractArmorItem(Player player, InteractionHand hand, ItemStack stack) {
         PetHuntingArmorItem<?, ?> armorItem = (PetHuntingArmorItem<?,?>) stack.getItem();
@@ -171,8 +167,9 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
         return InteractionResult.CONSUME;
     }
 
+
     public InteractionResult mobInteractTryTame(Player player, InteractionHand hand, ItemStack stack) {
-        boolean isSuccess = true;
+        boolean isSuccess = this.random.nextFloat() < 0.5;
         if (isSuccess) {
             stack.shrink(1);
             this.tame(player);
@@ -188,8 +185,8 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
 
     @Override
     public void setOrderedToSit(boolean orderedToSit) {
-        super.setOrderedToSit(orderedToSit);
         this.setTarget(null); //forget targets.
+        super.setOrderedToSit(orderedToSit);
     }
 
     public boolean isTameItem(ItemStack stack) { return false; }
@@ -204,6 +201,6 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
     }
 
     public boolean isKOed() {
-        return this.hasEffect(ModEffects.HUNTING_BUDDY_KO);
+        return this.hasEffect(ModEffects.HUNTING_BUDDY_KO); //TODO: change into entity data to sync to client
     }
 }
