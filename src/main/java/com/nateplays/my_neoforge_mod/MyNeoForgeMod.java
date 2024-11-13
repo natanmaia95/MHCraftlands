@@ -90,20 +90,9 @@ public class MyNeoForgeMod
     }
 
     // Add the example block item to the building blocks tab
-    private void addCreative(BuildCreativeModeTabContentsEvent event)
-    {
-        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.EARTH_CRYSTAL);
-            event.accept(ModItems.MALACHITE_CHUNK);
-        }
-        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
-            event.accept(ModItems.NULBERRY);
-        }
-
-        if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
-            event.accept(ModBlocks.EARTH_CRYSTAL_ORE);
-            event.accept(ModBlocks.MACHALITE_ORE);
-            event.accept(ModBlocks.NULBERRY_BUSH);
+    private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
+            event.accept(ModItems.FELYNE_SPAWN_EGG);
         }
     }
 

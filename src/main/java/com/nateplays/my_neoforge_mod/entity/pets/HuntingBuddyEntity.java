@@ -2,8 +2,12 @@ package com.nateplays.my_neoforge_mod.entity.pets;
 
 import com.nateplays.my_neoforge_mod.effect.ModEffects;
 import com.nateplays.my_neoforge_mod.entity.interfaces.ILevelableEntity;
+import com.nateplays.my_neoforge_mod.item.ModItems;
 import com.nateplays.my_neoforge_mod.item.armor.PetHuntingArmorItem;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -23,6 +27,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.spongepowered.asm.mixin.Mutable;
 
 import java.util.function.Predicate;
 
@@ -134,9 +139,11 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
     @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         if (hand == InteractionHand.OFF_HAND && player.getItemInHand(hand).isEmpty()) return super.mobInteract(player, hand);
-        if (player.level().isClientSide()) return super.mobInteract(player, hand);
-
         ItemStack handItem = player.getItemInHand(hand);
+
+        if (handItem.is(ModItems.DISMISS_BUDDY_VOUCHER)) return mobInteractDismissBuddy(player, hand, handItem);
+
+        if (player.level().isClientSide()) return super.mobInteract(player, hand);
 
         if (this.isTame() && this.isOwnedBy(player)) {
             //if shift pressed, do sit actions
@@ -181,7 +188,26 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
         return InteractionResult.CONSUME;
     }
 
+    public InteractionResult mobInteractDismissBuddy(Player player, InteractionHand hand, ItemStack stack) {
+        if (this.level().isClientSide()) {
+            for (int i = 0; i < 10; i++) {
+                this.level().addParticle(ParticleTypes.POOF,
+                        this.getX() + this.random.nextFloat()*0.2, this.getY() + 0.5, this.getZ() + this.random.nextFloat()*0.2,
+                        0.0, 0.1, 0.0);
+            }
 
+        } else {
+            stack.shrink(1);
+            MutableComponent dismissMessage = MutableComponent.create(this.getDisplayName().getContents());
+            dismissMessage.append(Component.literal(" was sent to greener pastures. Goodbye!"));
+            player.sendSystemMessage(dismissMessage);
+            //TODO: make translatable
+
+            this.remove(RemovalReason.KILLED);
+
+        }
+        return InteractionResult.CONSUME;
+    }
 
     @Override
     public void setOrderedToSit(boolean orderedToSit) {

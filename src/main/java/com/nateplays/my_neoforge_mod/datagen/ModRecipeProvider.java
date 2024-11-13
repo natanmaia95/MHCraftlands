@@ -70,6 +70,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SUMMON_FELYNE_VOUCHER)
                 .define('F', ItemTags.FISHES).define('E', Items.EMERALD_BLOCK).define('P', Items.PAPER)
+                .pattern("FEF").pattern("EPE").pattern("FEF")
+                .unlockedBy("has_paper", has(Items.PAPER)).unlockedBy("has_emerald", has(Items.EMERALD)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.DISMISS_BUDDY_VOUCHER)
+                .define('F', ItemTags.FISHES).define('E', Items.PAPER).define('P', Items.PAPER)
                 .pattern("FEF").pattern("EPE").pattern("FEF").unlockedBy("has_paper", has(Items.PAPER)).save(recipeOutput);
 
 
@@ -115,7 +120,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         palicoArmor(recipeOutput, "f_frankie_armor", ModArmorItems.F_FRANKIE_MAIL.get(), ModItems.SCRAP_SINISTER, Items.ROTTEN_FLESH);
         palicoArmor(recipeOutput, "f_ghost_armor", ModArmorItems.F_GHOST_HELM.get(), ModItems.SCRAP_SINISTER, Items.CARVED_PUMPKIN);
         palicoArmor(recipeOutput, "f_ghost_armor", ModArmorItems.F_GHOST_MAIL.get(), ModItems.SCRAP_SINISTER, Items.WHITE_BANNER);
-
     }
 
 

@@ -10,7 +10,6 @@ import com.nateplays.my_neoforge_mod.item.weapons.GreatSwordItem;
 import com.nateplays.my_neoforge_mod.item.weapons.SwordAndShieldItem;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
@@ -55,6 +54,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent(ModItems.MOSSWINE_SPAWN_EGG.getRegisteredName(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.FELYNE_SPAWN_EGG.getRegisteredName(), mcLoc("item/template_spawn_egg"));
         basicItem(ModItems.SUMMON_FELYNE_VOUCHER.get());
+        basicItem(ModItems.DISMISS_BUDDY_VOUCHER.get());
 
         registerAllCraftingMaterials();
         registerAllPetArmorItems();

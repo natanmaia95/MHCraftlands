@@ -74,12 +74,14 @@ public class ModItems {
 
     public static final DeferredItem<SpawnEggItem> FELYNE_SPAWN_EGG = ITEMS.register("felyne_spawn_egg",
             () -> new SpawnEggItem(ModEntities.FELYNE.get(), 0xdecc99, 0x453e2a, new Item.Properties()));
+    //TODO: learn how to use DeferredSpawnEggItem
 
     public static final DeferredItem<SummonFelyneItem> SUMMON_FELYNE_VOUCHER = ITEMS.register("summon_felyne_voucher", SummonFelyneItem::new);
+    public static final DeferredItem<Item> DISMISS_BUDDY_VOUCHER = ITEMS.register("dismiss_buddy_voucher",
+            () -> new Item(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> CHISEL = ITEMS.register("chisel",
             () -> new ChiselItem(new Item.Properties().durability(32)));
-
 
 
     public static final DeferredItem<Item> SCRAP_WOOD = ITEMS.register("wood_scrap", () -> new Item(new Item.Properties()));

@@ -27,7 +27,7 @@ import java.util.Objects;
 public class SummonFelyneItem extends Item {
 
     public SummonFelyneItem() {
-        super(new Properties());
+        super(new Properties().stacksTo(1));
     }
 
     @Override
