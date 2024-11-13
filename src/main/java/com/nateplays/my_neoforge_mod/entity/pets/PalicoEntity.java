@@ -1,6 +1,7 @@
 package com.nateplays.my_neoforge_mod.entity.pets;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
+import com.nateplays.my_neoforge_mod.attribute.ModAttributes;
 import com.nateplays.my_neoforge_mod.entity.ai.MosswineAttackGoal;
 import com.nateplays.my_neoforge_mod.entity.interfaces.ILevelableEntity;
 import com.nateplays.my_neoforge_mod.entity.pets.client.PalicoModel;
@@ -97,9 +98,9 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return createMobAttributes()
+        return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 10.0).add(Attributes.MOVEMENT_SPEED, 0.2)
-                .add(Attributes.ATTACK_DAMAGE, 1.0);
+                .add(Attributes.ATTACK_DAMAGE, 1.0).add(ModAttributes.DEFENSE, 0.0);
     }
 
     @Override

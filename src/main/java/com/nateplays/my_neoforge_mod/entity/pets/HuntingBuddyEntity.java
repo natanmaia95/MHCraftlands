@@ -15,6 +15,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
@@ -85,11 +86,9 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
     }
 
     public void tickKOEffect() {
-        if (this.hasEffect(ModEffects.HUNTING_BUDDY_KO)) {
+        if (this.isKOed()) {
             if (!goalSelector.getAvailableGoals().isEmpty()) {
-                goalSelector.getAvailableGoals().forEach((goal) -> {
-                    goal.stop();
-                });
+                goalSelector.getAvailableGoals().forEach(WrappedGoal::stop);
                 goalSelector.getAvailableGoals().clear();
                 goalsCleared = true;
             }

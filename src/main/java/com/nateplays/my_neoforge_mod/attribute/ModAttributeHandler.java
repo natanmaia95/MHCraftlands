@@ -4,6 +4,7 @@ import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.entity.ModEntities;
 import com.nateplays.my_neoforge_mod.entity.custom.MosswineEntity;
 import com.nateplays.my_neoforge_mod.entity.pets.Felyne;
+import com.nateplays.my_neoforge_mod.entity.pets.PalicoEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -23,7 +24,7 @@ public class ModAttributeHandler {
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.MOSSWINE.get(), MosswineEntity.createAttributes().build());
 //        event.put(ModEntities.PALICO.get(), MosswineEntity.createAttributes().build());
-        event.put(ModEntities.FELYNE.get(), Felyne.createAttributes().build());
+        event.put(ModEntities.FELYNE.get(), PalicoEntity.createAttributes().build());
     }
 
     public static AttributeSupplier.Builder createPlayerHuntAttributes() {
