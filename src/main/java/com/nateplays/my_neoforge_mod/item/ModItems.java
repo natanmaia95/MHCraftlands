@@ -2,13 +2,11 @@ package com.nateplays.my_neoforge_mod.item;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.entity.ModEntities;
+import com.nateplays.my_neoforge_mod.entity.pets.PalicoEntity;
 import com.nateplays.my_neoforge_mod.item.custom.ChiselItem;
 import com.nateplays.my_neoforge_mod.item.custom.HammerItem;
 import com.nateplays.my_neoforge_mod.item.custom.SummonFelyneItem;
-import com.nateplays.my_neoforge_mod.item.weapons.DualBladesItem;
-import com.nateplays.my_neoforge_mod.item.weapons.GlaiveItem;
-import com.nateplays.my_neoforge_mod.item.weapons.GreatSwordItem;
-import com.nateplays.my_neoforge_mod.item.weapons.SwordAndShieldItem;
+import com.nateplays.my_neoforge_mod.item.weapons.*;
 import com.nateplays.my_neoforge_mod.sound.ModSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.locale.Language;
@@ -121,6 +119,9 @@ public class ModItems {
             () -> new GlaiveItem(
                     ModToolTiers.MACHALITE, new Item.Properties()
                     .attributes(GlaiveItem.createAttributes(ModToolTiers.MACHALITE))));
+
+
+
 
 
 

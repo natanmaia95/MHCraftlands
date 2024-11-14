@@ -3,6 +3,7 @@ package com.nateplays.my_neoforge_mod.item;
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.item.armor.HuntingArmorItem;
 import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
+import com.nateplays.my_neoforge_mod.item.weapons.ModWeaponItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -77,11 +78,12 @@ public class ModCreativeModeTabs {
 //                    .backgroundTexture(ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "textures/block/earth_crystal_ore.png"))
                     .build());
 
-    public static final Supplier<CreativeModeTab> MYNEOFORGEMOD_ARMORS_TAB = CREATIVE_MODE_TABS.register("myneoforgemod_armors_tab",
+    public static final Supplier<CreativeModeTab> MYNEOFORGEMOD_ARMORS_TAB = CREATIVE_MODE_TABS.register("myneoforgemod_pet_equipment_tab",
             () -> CreativeModeTab.builder()
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "myneoforgemod_items_tab"))
                     .icon(() -> new ItemStack(ModArmorItems.F_ACORN_MAIL.get()))
-                    .title(Component.translatable("creativetab.my_neoforge_mod.armors_tab"))
+                    .title(Component.translatable("creativetab.my_neoforge_mod.pet_equipment_tab"))
+                    .withSearchBar()
                     .displayItems((itemDisplayParameters, output) -> {
 //                        outputAcceptHuntingArmorItem(ModArmorItems.HUNTER_HELMET.get(), itemDisplayParameters, output);
 //                        outputAcceptHuntingArmorItem(ModArmorItems.HUNTER_CHESTPLATE.get(), itemDisplayParameters, output);
@@ -91,6 +93,11 @@ public class ModCreativeModeTabs {
 //                        outputAcceptHuntingArmorItem(ModArmorItems.CREEPER_CHESTPLATE.get(), itemDisplayParameters, output);
 //                        outputAcceptHuntingArmorItem(ModArmorItems.CREEPER_LEGGINGS.get(), itemDisplayParameters, output);
 //                        outputAcceptHuntingArmorItem(ModArmorItems.CREEPER_BOOTS.get(), itemDisplayParameters, output);
+
+                        output.accept(ModWeaponItems.F_KAMURA_BOKKEN);
+                        output.accept(ModWeaponItems.F_BONE_PICK);
+                        output.accept(ModWeaponItems.F_BONE_HAMMER);
+                        output.accept(ModWeaponItems.F_IRON_SWORD);
 
                         outputAcceptHuntingArmorItem(ModArmorItems.F_ACORN_HELM.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(ModArmorItems.F_ACORN_MAIL.get(), itemDisplayParameters, output);

@@ -4,10 +4,7 @@ import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.block.ModBlocks;
 import com.nateplays.my_neoforge_mod.item.ModItems;
 import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
-import com.nateplays.my_neoforge_mod.item.weapons.DualBladesItem;
-import com.nateplays.my_neoforge_mod.item.weapons.GlaiveItem;
-import com.nateplays.my_neoforge_mod.item.weapons.GreatSwordItem;
-import com.nateplays.my_neoforge_mod.item.weapons.SwordAndShieldItem;
+import com.nateplays.my_neoforge_mod.item.weapons.*;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -57,12 +54,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.DISMISS_BUDDY_VOUCHER.get());
 
         registerAllCraftingMaterials();
-        registerAllPetArmorItems();
+        registerAllPetArmorWeaponItems();
 //        armorItem(ModArmorItems.F_FRANKIE_HELM);
 //        armorItem(ModArmorItems.F_FRANKIE_MAIL);
     }
 
-    private void registerAllPetArmorItems() {
+    private void registerAllPetArmorWeaponItems() {
         armorItem(ModArmorItems.F_ACORN_HELM);
         armorItem(ModArmorItems.F_ACORN_MAIL);
         armorItem(ModArmorItems.F_KAMURA_HELM);
@@ -79,6 +76,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         armorItem(ModArmorItems.F_FRANKIE_MAIL);
         armorItem(ModArmorItems.F_MOSGHARL_HELM);
         armorItem(ModArmorItems.F_MOSGHARL_MAIL);
+
+        petWeaponItem(ModWeaponItems.F_KAMURA_BOKKEN);
+        petWeaponItem(ModWeaponItems.F_BONE_PICK);
+        petWeaponItem(ModWeaponItems.F_BONE_HAMMER);
+        petWeaponItem(ModWeaponItems.F_IRON_SWORD);
     }
 
     private void registerAllCraftingMaterials() {
@@ -129,6 +131,15 @@ public class ModItemModelProvider extends ItemModelProvider {
             builder = builder.texture("layer1", modLoc("item/armor/" + item.getId().getPath() + "_color"));
         }
         return builder;
+    }
+
+    private ItemModelBuilder petWeaponItem(DeferredItem<?> item) {
+        return petWeaponItem(item, "item/handheld");
+    }
+
+    private ItemModelBuilder petWeaponItem(DeferredItem<?> item, String parentModelPath) {
+        return withExistingParent(item.getId().getPath(), ResourceLocation.parse(parentModelPath))
+                .texture("layer0", modLoc("item/weapon/" + item.getId().getPath()));
     }
 
     private void dbItem(DeferredItem<DualBladesItem> item) {

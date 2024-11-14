@@ -4,6 +4,8 @@ import com.nateplays.my_neoforge_mod.attribute.ModAttributes;
 import com.nateplays.my_neoforge_mod.entity.interfaces.ILevelableEntity;
 import com.nateplays.my_neoforge_mod.entity.pets.goals.HuntingBuddyHurtByTargetGoal;
 import com.nateplays.my_neoforge_mod.entity.pets.gui.PalicoInventoryMenu;
+import com.nateplays.my_neoforge_mod.item.armor.PetHuntingArmorItem;
+import com.nateplays.my_neoforge_mod.item.weapons.PetHuntingWeaponItem;
 import com.nateplays.my_neoforge_mod.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -38,6 +40,7 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
     public final AnimationState sitAnimationState = new AnimationState();
     public final AnimationState standUpAnimationState = new AnimationState();
 
+    //TODO: make all these containers a single class for all pets
     public final Container helmArmorAccess = new ContainerSingleItem() {
         public ItemStack getTheItem() {
             return PalicoEntity.this.getItemBySlot(EquipmentSlot.HEAD);
@@ -47,6 +50,13 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         }
         public boolean stillValid(Player player) { return true; }
         public void setChanged() {}
+
+        @Override
+        public boolean canPlaceItem(int slot, ItemStack stack) {
+            if (stack.getItem() instanceof PetHuntingArmorItem petHuntingArmorItem) {
+                return petHuntingArmorItem.canEquip(stack, EquipmentSlot.HEAD, PalicoEntity.this);
+            } else return false;
+        }
     };
 
     public final Container mailArmorAccess = new ContainerSingleItem() {
@@ -58,6 +68,13 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         }
         public boolean stillValid(Player player) { return true; }
         public void setChanged() {}
+
+        @Override
+        public boolean canPlaceItem(int slot, ItemStack stack) {
+            if (stack.getItem() instanceof PetHuntingArmorItem petHuntingArmorItem) {
+                return petHuntingArmorItem.canEquip(stack, EquipmentSlot.CHEST, PalicoEntity.this);
+            } else return false;
+        }
     };
 
     public final Container weaponAccess = new ContainerSingleItem() {
@@ -69,6 +86,13 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         }
         public boolean stillValid(Player player) { return true; }
         public void setChanged() {}
+
+        @Override
+        public boolean canPlaceItem(int slot, ItemStack stack) {
+            if (stack.getItem() instanceof PetHuntingWeaponItem petHuntingWeaponItem) {
+                return petHuntingWeaponItem.canEquip(stack, EquipmentSlot.MAINHAND, PalicoEntity.this);
+            } else return false;
+        }
     };
 
     private final SimpleContainer pouchInventory = new SimpleContainer(6) {
@@ -81,7 +105,7 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes()
+        return HuntingBuddyEntity.createAttributes()
                 .add(Attributes.MAX_HEALTH, 10.0).add(Attributes.MOVEMENT_SPEED, 0.2)
                 .add(Attributes.ATTACK_DAMAGE, 1.0).add(ModAttributes.DEFENSE, 0.0);
     }

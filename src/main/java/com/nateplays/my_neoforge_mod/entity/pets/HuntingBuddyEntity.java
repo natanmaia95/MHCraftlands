@@ -1,9 +1,11 @@
 package com.nateplays.my_neoforge_mod.entity.pets;
 
+import com.nateplays.my_neoforge_mod.attribute.ModAttributes;
 import com.nateplays.my_neoforge_mod.effect.ModEffects;
 import com.nateplays.my_neoforge_mod.entity.interfaces.ILevelableEntity;
 import com.nateplays.my_neoforge_mod.item.ModItems;
 import com.nateplays.my_neoforge_mod.item.armor.PetHuntingArmorItem;
+import com.nateplays.my_neoforge_mod.item.weapons.PetHuntingWeaponItem;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -15,10 +17,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.npc.Villager;
@@ -62,6 +63,12 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
             return false;
         };
         NOT_ALLIED_TO_HUNTERS_SELECTOR = (e) -> (!ALLIED_TO_HUNTERS_SELECTOR.test(e));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(ModAttributes.DEFENSE)
+                .add(ModAttributes.FIRE_DAMAGE).add(ModAttributes.WATER_DAMAGE); //TODO: add the rest of them
     }
 
     public abstract ResourceLocation getTextureLocation();
@@ -120,9 +127,6 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
         return NOT_ALLIED_TO_HUNTERS_SELECTOR.test(target);
     }
 
-
-
-
     @Override
     public EntityDataAccessor<Integer> getExpAccessor() {
         return EXP;
@@ -153,6 +157,7 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
             }
             //try swapping armors
             if (isValidArmorItem(handItem)) return mobInteractArmorItem(player, hand, handItem);
+            if (isValidWeaponItem(handItem)) return mobInteractWeaponItem(player, hand, handItem);
         }
 
         if (!this.isTame()) {
@@ -171,6 +176,13 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
         ItemStack oldArmor = this.getItemBySlot(slot);
         this.setItemSlot(slot, stack);
         player.setItemInHand(hand, oldArmor);
+        return InteractionResult.CONSUME;
+    }
+
+    public InteractionResult mobInteractWeaponItem(Player player, InteractionHand hand, ItemStack stack) {
+        ItemStack oldWeapon = this.getItemBySlot(EquipmentSlot.MAINHAND);
+        this.setItemSlot(EquipmentSlot.MAINHAND, stack);
+        player.setItemInHand(hand, oldWeapon);
         return InteractionResult.CONSUME;
     }
 
@@ -222,6 +234,13 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
             EquipmentSlot slot = petHuntingArmorItem.getEquipmentSlot();
             boolean result = petHuntingArmorItem.canEquip(stack, slot, this);
             return result;
+        }
+        return false;
+    }
+
+    public boolean isValidWeaponItem(ItemStack stack) {
+        if (stack.getItem() instanceof PetHuntingWeaponItem<?> petHuntingWeaponItem) {
+            return petHuntingWeaponItem.canEquip(stack, EquipmentSlot.MAINHAND, this);
         }
         return false;
     }

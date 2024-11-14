@@ -3,6 +3,7 @@ package com.nateplays.my_neoforge_mod.entity.pets.gui;
 import com.nateplays.my_neoforge_mod.entity.pets.PalicoEntity;
 import com.nateplays.my_neoforge_mod.gui.ModMenuTypes;
 import com.nateplays.my_neoforge_mod.item.armor.PetHuntingArmorItem;
+import com.nateplays.my_neoforge_mod.item.weapons.PetHuntingWeaponItem;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
@@ -43,9 +44,18 @@ public class PalicoInventoryMenu extends AbstractContainerMenu {
         int slotSizePlus2 = 18;
 
         // Armor Slots?
-        this.addSlot(new Slot(this.palicoEntity.helmArmorAccess, 0, startX, startY));
-        this.addSlot(new Slot(this.palicoEntity.mailArmorAccess, 0, startX, startY + slotSizePlus2));
-        this.addSlot(new Slot(this.palicoEntity.weaponAccess, 0, startX, startY + slotSizePlus2*2));
+        this.addSlot(new Slot(this.palicoEntity.helmArmorAccess, 0, startX, startY) {
+            @Override
+            public boolean mayPlace(ItemStack stack) { return palicoEntity.helmArmorAccess.canPlaceItem(0, stack); }
+        });
+        this.addSlot(new Slot(this.palicoEntity.mailArmorAccess, 0, startX, startY + slotSizePlus2){
+            @Override
+            public boolean mayPlace(ItemStack stack) { return palicoEntity.mailArmorAccess.canPlaceItem(0, stack); }
+        });
+        this.addSlot(new Slot(this.palicoEntity.weaponAccess, 0, startX, startY + slotSizePlus2*2){
+            @Override
+            public boolean mayPlace(ItemStack stack) { return palicoEntity.weaponAccess.canPlaceItem(0, stack); }
+        });
 
         // Pouch slots (6 slots)
         int currentY = startY;
@@ -70,6 +80,7 @@ public class PalicoInventoryMenu extends AbstractContainerMenu {
         int i = buffer.readVarInt();
         return level.getEntity(i) instanceof PalicoEntity palico ? palico : null;
     }
+
 
 //    @Override
 //    public ItemStack quickMoveStack(Player player, int index) {
@@ -105,12 +116,12 @@ public class PalicoInventoryMenu extends AbstractContainerMenu {
             quickMovedStack = rawStack.copy();
             EquipmentSlot equipmentSlot = null;//quickMovedStack.getItem().getEquipmentSlot(quickMovedStack);
 
-            if (rawStack.getItem() instanceof SwordItem || rawStack.getItem() instanceof TieredItem) {
-                equipmentSlot = EquipmentSlot.MAINHAND;
+            if (rawStack.getItem() instanceof PetHuntingWeaponItem<?> petHuntingWeaponItem) {
+                if (petHuntingWeaponItem.canEquip(rawStack, EquipmentSlot.MAINHAND, palicoEntity)) equipmentSlot = EquipmentSlot.MAINHAND;
             } else if (rawStack.getItem() instanceof PetHuntingArmorItem<?,?> huntingArmorItem) {
-                equipmentSlot = huntingArmorItem.getEquipmentSlot();
-                if (!huntingArmorItem.canEquip(rawStack, equipmentSlot, palicoEntity)) equipmentSlot = null; //can't equip anyway
+                if (huntingArmorItem.canEquip(rawStack, huntingArmorItem.getEquipmentSlot(), palicoEntity)) equipmentSlot = huntingArmorItem.getEquipmentSlot();
             }
+
             /*
             The following quick move logic can be simplified to if in data inventory,
             try to move to player inventory/hotbar and vice versa for containers

@@ -1,6 +1,7 @@
 package com.nateplays.my_neoforge_mod.entity.pets;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
+import com.nateplays.my_neoforge_mod.item.weapons.ModWeaponItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -32,8 +33,9 @@ public class Felyne extends PalicoEntity {
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
         if (!level.isClientSide()) {
-            this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.IRON_SWORD));
-            this.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(Items.GOAT_HORN));
+            if (this.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
+                this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(ModWeaponItems.F_BONE_PICK.get()));
+            }
         }
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }

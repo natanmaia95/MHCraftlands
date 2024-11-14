@@ -3,6 +3,7 @@ package com.nateplays.my_neoforge_mod.item.custom;
 import com.nateplays.my_neoforge_mod.entity.ModEntities;
 import com.nateplays.my_neoforge_mod.entity.pets.PalicoEntity;
 import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
+import com.nateplays.my_neoforge_mod.item.weapons.ModWeaponItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -68,17 +69,16 @@ public class SummonFelyneItem extends Item {
     }
 
     public static void applyStarterArmor(PalicoEntity palicoEntity, RandomSource random) {
-        int roll = random.nextInt(3);
+        int roll = random.nextInt(2);
         switch (roll) {
             case 0:
-                break;
-            case 1:
                 palicoEntity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModArmorItems.F_ACORN_HELM.get()));
                 palicoEntity.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModArmorItems.F_ACORN_MAIL.get()));
                 break;
-            case 2:
+            case 1:
                 palicoEntity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModArmorItems.F_KAMURA_HELM.get()));
                 palicoEntity.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModArmorItems.F_KAMURA_MAIL.get()));
+                palicoEntity.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModWeaponItems.F_KAMURA_BOKKEN.get()));
                 break;
             default:
                 break;
