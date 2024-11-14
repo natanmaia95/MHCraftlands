@@ -2,13 +2,15 @@ package com.nateplays.my_neoforge_mod.datagen;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.item.ModItems;
+import com.nateplays.my_neoforge_mod.item.armor.HuntingArmorItem;
 import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
 import com.nateplays.my_neoforge_mod.tags.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -37,8 +39,20 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ItemTags.AXES).add(ModItems.MACHALITE_AXE.get());
         tag(ItemTags.HOES).add(ModItems.MACHALITE_HOE.get());
 
-        tag(ItemTags.DYEABLE)
-                .add(ModArmorItems.F_GHOST_HELM.get())
-                .add(ModArmorItems.F_GHOST_MAIL.get());
+
+        IntrinsicTagAppender<Item> dyeableArmorTagAppender = tag(ModTags.Items.DYEABLE_HUNTING_ARMORS);
+//        ModArmorItems.ARMOR_ITEMS.getEntries().forEach((itemDeferredHolder -> {
+//            if (itemDeferredHolder.get() instanceof HuntingArmorItem huntingArmorItem) {
+//                for (ArmorMaterial.Layer layer : huntingArmorItem.getMaterial().value().layers()) {
+//                    if (layer.dyeable()) {
+//                        dyeableArmorTagAppender.add(itemDeferredHolder.value());
+//                        break;
+//                    }
+//                }
+//            }
+//        }));
+        ModArmorItems.DYEABLE_ARMORS_LIST.forEach(deferredItem -> dyeableArmorTagAppender.add(deferredItem.value()));
+
+        tag(ItemTags.DYEABLE).addTag(ModTags.Items.DYEABLE_HUNTING_ARMORS);
     }
 }

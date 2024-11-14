@@ -15,13 +15,20 @@ import com.nateplays.my_neoforge_mod.item.armor.ModArmorMaterials;
 import com.nateplays.my_neoforge_mod.item.weapons.DualBladesItem;
 import com.nateplays.my_neoforge_mod.item.weapons.SwordAndShieldItem;
 import com.nateplays.my_neoforge_mod.sound.ModSounds;
+import com.nateplays.my_neoforge_mod.tags.ModTags;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.DyedItemColor;
+import net.minecraft.world.level.ItemLike;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -39,6 +46,8 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+
+import java.util.ArrayList;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(MyNeoForgeMod.MODID)

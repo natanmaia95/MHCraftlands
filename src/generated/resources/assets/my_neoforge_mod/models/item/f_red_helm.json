@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "my_neoforge_mod:item/armor/f_red_helm"
+    "layer0": "my_neoforge_mod:item/armor/f_red_helm",
+    "layer1": "my_neoforge_mod:item/armor/f_red_helm_color"
   }
 }

@@ -1,4 +1,4 @@
-// 1.21	2024-11-13T17:35:11.1814864	Item Models: my_neoforge_mod
+// 1.21	2024-11-13T22:00:53.937357	Item Models: my_neoforge_mod
 083ffa5f2e47936302ff9056249f8c16c735b9f0 assets/my_neoforge_mod/models/item/bone_scrap.json
 86f6fcc40170635e63ba27f363c83fe64184f215 assets/my_neoforge_mod/models/item/dismiss_buddy_voucher.json
 942b9399a1862b2fdf135e37ca832fa30e106df1 assets/my_neoforge_mod/models/item/earth_crystal.json
@@ -12,14 +12,14 @@ ca7901647e1de7273a074290d64cb97ca0934b5a assets/my_neoforge_mod/models/item/f_bo
 d8dfa061d4c77ff2320fde5e72f5b3c4dc934ab5 assets/my_neoforge_mod/models/item/f_bone_mail.json
 b19fc5b6ba3617dd0916a767cd199a898e8bfb57 assets/my_neoforge_mod/models/item/f_frankie_helm.json
 08c8c7124a9845db3693c49af181787db660f336 assets/my_neoforge_mod/models/item/f_frankie_mail.json
-c8840038cac1cdb974a9aa5cc1855030943d77c1 assets/my_neoforge_mod/models/item/f_ghost_helm.json
-3c9f82207e7cc5ff0a55327729ad9d444e412e51 assets/my_neoforge_mod/models/item/f_ghost_mail.json
+0d14f918374c294a02cdad354e71204129c97e0a assets/my_neoforge_mod/models/item/f_ghost_helm.json
+85cb19b34fec8f40a352f931a2e04682c8122ea8 assets/my_neoforge_mod/models/item/f_ghost_mail.json
 a0ba0995948d8f4c4e12345ccd771e54af3a7c8c assets/my_neoforge_mod/models/item/f_kamura_helm.json
 e5a1e20491ed1cc4806fef0bb62bcf710fb4f0fe assets/my_neoforge_mod/models/item/f_kamura_mail.json
 ff7579ef0b78ca5ed2e6e535e9248ece95e2d12d assets/my_neoforge_mod/models/item/f_mosgharl_helm.json
 f9233d79a62641602c33b1764e6dbeccff27a400 assets/my_neoforge_mod/models/item/f_mosgharl_mail.json
-3112299816f058fe0d189e64f1b553c0afb0321a assets/my_neoforge_mod/models/item/f_red_helm.json
-648dfa1478e010e303c46e95621c765419eeb8dd assets/my_neoforge_mod/models/item/f_red_mail.json
+7a917af9950c1eb7820ad56a3ca550ef8999bacd assets/my_neoforge_mod/models/item/f_red_helm.json
+d78062484922366a5ecc75c38b38bc323e54db87 assets/my_neoforge_mod/models/item/f_red_mail.json
 c1581eb81174ad0087ba995ee2c87b03b8460c22 assets/my_neoforge_mod/models/item/humble_scrap.json
 4c99e5f581154c105df8558971c053c1c1f8db6b assets/my_neoforge_mod/models/item/machalite_axe.json
 e9e0244930d674104700300695ffb9b5e56715b7 assets/my_neoforge_mod/models/item/machalite_button.json

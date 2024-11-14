@@ -9,10 +9,13 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class ModArmorItems {
@@ -153,6 +156,11 @@ public class ModArmorItems {
     public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel<PalicoEntity>>> F_FRANKIE_MAIL = ARMOR_ITEMS.register("f_frankie_mail", () -> new PetHuntingArmorItem<>(
             new PetArmorMaterial<>(ModArmorMaterials.F_FRANKIE, (EntityRendererProvider.Context context) -> new FFrankieModel<>(context.bakeLayer(FFrankieModel.LAYER_LOCATION))),
             ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(150), PalicoEntity.class));
+
+
+    public static final List<DeferredItem<? extends Item>> DYEABLE_ARMORS_LIST = List.of(
+            F_GHOST_HELM, F_GHOST_MAIL, F_RED_HELM, F_RED_MAIL
+    );
 
 
     public static void register(IEventBus eventBus) {

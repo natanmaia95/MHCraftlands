@@ -71,10 +71,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         armorItem(ModArmorItems.F_BONE_MAIL);
         armorItem(ModArmorItems.F_ALLOY_HELM);
         armorItem(ModArmorItems.F_ALLOY_MAIL);
-        armorItem(ModArmorItems.F_RED_HELM);
-        armorItem(ModArmorItems.F_RED_MAIL);
-        armorItem(ModArmorItems.F_GHOST_HELM);
-        armorItem(ModArmorItems.F_GHOST_MAIL);
+        armorItem(ModArmorItems.F_RED_HELM, true);
+        armorItem(ModArmorItems.F_RED_MAIL, true);
+        armorItem(ModArmorItems.F_GHOST_HELM, true);
+        armorItem(ModArmorItems.F_GHOST_MAIL, true);
         armorItem(ModArmorItems.F_FRANKIE_HELM);
         armorItem(ModArmorItems.F_FRANKIE_MAIL);
         armorItem(ModArmorItems.F_MOSGHARL_HELM);
@@ -120,9 +120,15 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .texture("layer0", modLoc("item/" + item.getId().getPath()));
     }
 
-    private ItemModelBuilder armorItem(DeferredItem<?> item) {
-        return withExistingParent(item.getId().getPath(), ResourceLocation.parse("item/handheld"))
+    private ItemModelBuilder armorItem(DeferredItem<?> item) { return armorItem(item, false); }
+
+    private ItemModelBuilder armorItem(DeferredItem<?> item, boolean dyeable) {
+        ItemModelBuilder builder = withExistingParent(item.getId().getPath(), ResourceLocation.parse("item/handheld"))
                 .texture("layer0", modLoc("item/armor/" + item.getId().getPath()));
+        if (dyeable) {
+            builder = builder.texture("layer1", modLoc("item/armor/" + item.getId().getPath() + "_color"));
+        }
+        return builder;
     }
 
     private void dbItem(DeferredItem<DualBladesItem> item) {

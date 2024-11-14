@@ -25,6 +25,8 @@ public class ModTags {
     public static class Items {
         public static final TagKey<Item> TRANSFORMABLE_ITEMS = createTag("transformable_items");
 
+        public static final TagKey<Item> DYEABLE_HUNTING_ARMORS = createTag("dyeable_hunting_armors");
+
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, name));
         }

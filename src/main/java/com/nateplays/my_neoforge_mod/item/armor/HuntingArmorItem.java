@@ -91,7 +91,11 @@ public class HuntingArmorItem extends ArmorItem {
                 }
             }
 
-        } else LOGGER.debug("No data was found for armor " + stack.getItemHolder().getKey().registry().getPath());
+        } else {
+//            LOGGER.debug("No data was found for armor " + stack.getItem().toString());
+        }
+
+
     }
 
     //This being added as an attribute component removes EVERY OTHER ATTRIBUTE THE ARMOR WOULD HAVE

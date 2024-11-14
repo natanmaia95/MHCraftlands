@@ -1,8 +1,9 @@
-// 1.21	2024-10-10T02:37:14.6478412	Tags for minecraft:item mod id my_neoforge_mod
+// 1.21	2024-11-14T00:08:43.9525891	Tags for minecraft:item mod id my_neoforge_mod
 924bb23aec0919edc7b79794aea00d9b0365e2c6 data/minecraft/tags/item/axes.json
-5ae148d7bfe20282e79276e7221614f075c7b77e data/minecraft/tags/item/dyeable.json
+dd6e54de7822b17365c3fe6c46ee871a1e4521ae data/minecraft/tags/item/dyeable.json
 96c7cb929ed7b7f2059715fc0c37581874bf14b1 data/minecraft/tags/item/hoes.json
 a5e30a6ced5fe8705376133151d532e1923b59df data/minecraft/tags/item/pickaxes.json
 39f39acd93956b9090f76bf5d39e843243419ae4 data/minecraft/tags/item/shovels.json
 2bebe88000d4c80fcbff4dc851ef2bfcb5a89fb1 data/minecraft/tags/item/swords.json
+18c777df53a454a64d33719993cecf0e092cf3f4 data/my_neoforge_mod/tags/item/dyeable_hunting_armors.json
 a5745e23e0cf5aaca681f8843185af9017df3b5e data/my_neoforge_mod/tags/item/transformable_items.json
