@@ -145,9 +145,11 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
         if (hand == InteractionHand.OFF_HAND && player.getItemInHand(hand).isEmpty()) return super.mobInteract(player, hand);
         ItemStack handItem = player.getItemInHand(hand);
 
-        if (handItem.is(ModItems.DISMISS_BUDDY_VOUCHER)) return mobInteractDismissBuddy(player, hand, handItem);
-
         if (player.level().isClientSide()) return super.mobInteract(player, hand);
+
+        if (handItem.is(ModItems.DISMISS_BUDDY_VOUCHER)) {
+            if ((this.isTame() && this.isOwnedBy(player)) || player.isCreative()) return mobInteractDismissBuddy(player, hand, handItem);
+        }
 
         if (this.isTame() && this.isOwnedBy(player)) {
             //if shift pressed, do sit actions
@@ -228,6 +230,17 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
     }
 
     public boolean isTameItem(ItemStack stack) { return false; }
+
+    public boolean shouldTryTeleportToOwner() {
+        LivingEntity livingentity = this.getOwner();
+        return livingentity != null && this.distanceToSqr(this.getOwner()) >= this.maxDistanceBeforeTeleport()*this.maxDistanceBeforeTeleport();
+    }
+
+    public double maxDistanceBeforeTeleport() {
+        return 20.0;
+    }
+
+
 
     public boolean isValidArmorItem(ItemStack stack) {
         if (stack.getItem() instanceof PetHuntingArmorItem<?,?> petHuntingArmorItem) {

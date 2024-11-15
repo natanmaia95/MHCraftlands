@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
-  "group": "f_bone_armor",
+  "group": "f_bone",
   "key": {
     "A": {
       "item": "my_neoforge_mod:bone_scrap"

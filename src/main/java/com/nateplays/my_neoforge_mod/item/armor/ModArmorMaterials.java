@@ -1,6 +1,7 @@
 package com.nateplays.my_neoforge_mod.item.armor;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
+import com.nateplays.my_neoforge_mod.item.ModItems;
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -86,33 +87,33 @@ public class ModArmorMaterials {
 
 
     public static final Holder<ArmorMaterial> F_ACORN = registerMaterial(
-            "f_acorn", 1, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(Items.OAK_SAPLING));
+            "f_acorn", 5, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(ModItems.SCRAP_WOOD));
 
     public static final Holder<ArmorMaterial> F_KAMURA = registerMaterial(
-            "f_kamura", 1, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(Items.BLUE_WOOL));
+            "f_kamura", 5, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(ModItems.SCRAP_FUR));
 
     public static final Holder<ArmorMaterial> F_BONE = registerMaterial(
-            "f_bone", 1, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(Items.BONE));
+            "f_bone", 7, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(ModItems.SCRAP_BONE));
 
     public static final Holder<ArmorMaterial> F_ALLOY = registerMaterial(
-            "f_alloy", 1, SoundEvents.ARMOR_EQUIP_IRON, () -> Ingredient.of(Items.IRON_INGOT));
+            "f_alloy", 9, SoundEvents.ARMOR_EQUIP_IRON, () -> Ingredient.of(ModItems.SCRAP_ORE));
 
     public static final Holder<ArmorMaterial> F_RED = registerMaterial(
-            "f_red", 1, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(Items.RED_WOOL), false, true);
+            "f_red", 7, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(ModItems.SCRAP_FUR), false, true);
 
     public static final Holder<ArmorMaterial> F_GHOST = registerMaterial("f_ghost",
-            1, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(Items.PUMPKIN), true, true);
+            15, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(ModItems.SCRAP_SINISTER), true, true);
 
     public static final Holder<ArmorMaterial> F_MOSGHARL = registerMaterial("f_mosgharl",
-            1, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(Items.PUMPKIN), true, false);
+            9, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(ModItems.SCRAP_HUMBLE), true, false);
 
     public static final Holder<ArmorMaterial> F_FRANKIE = registerMaterial("f_frankie",
-            1, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(Items.ROTTEN_FLESH), false, false);
+            15, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(ModItems.SCRAP_SINISTER), false, false);
 
 
 
 
-
+    // NOTE: The actual defense is 1/10th the baseDefense supplied here, for balancing
     public static Supplier<ArmorMaterial> makeHuntingArmorMaterial(
             int baseDefense, Holder<SoundEvent> soundEvent,
             Supplier<Ingredient> repairItem, List<ArmorMaterial.Layer> layers) {

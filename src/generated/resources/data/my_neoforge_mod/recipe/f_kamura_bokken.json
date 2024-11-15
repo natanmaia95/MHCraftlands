@@ -1,21 +1,25 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
-  "group": "f_acorn",
+  "group": "f_kamura",
   "key": {
     "A": {
       "item": "my_neoforge_mod:wood_scrap"
     },
     "B": {
-      "item": "minecraft:oak_sapling"
+      "item": "my_neoforge_mod:wood_scrap"
+    },
+    "I": {
+      "item": "minecraft:stick"
     }
   },
   "pattern": [
     " A ",
-    "ABA"
+    " B ",
+    "AIA"
   ],
   "result": {
     "count": 1,
-    "id": "my_neoforge_mod:f_acorn_helm"
+    "id": "my_neoforge_mod:f_kamura_bokken"
   }
 }

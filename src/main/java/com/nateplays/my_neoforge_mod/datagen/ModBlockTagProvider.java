@@ -6,6 +6,7 @@ import com.nateplays.my_neoforge_mod.tags.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -38,5 +39,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.INCORRECT_FOR_MACHALITE_TOOL)
                 .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL)
                 .remove(ModTags.Blocks.NEEDS_MACHALITE_TOOL);
+
+
+        tag(ModTags.Blocks.PALICO_HARVESTABLE_PLANTS)
+                .addTag(BlockTags.SMALL_FLOWERS)
+                .addTag(BlockTags.COAL_ORES).addTag(BlockTags.IRON_ORES)
+                .add(Blocks.SWEET_BERRY_BUSH);
     }
 }

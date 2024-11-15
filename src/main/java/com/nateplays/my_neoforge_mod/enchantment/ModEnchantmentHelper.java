@@ -38,6 +38,7 @@ public class ModEnchantmentHelper {
     public static int getTotalEnchantmentLevel(LivingEntity livingEntity, Holder<Enchantment> enchantment) {
         int totalLevel = 0;
         for (EquipmentSlot slot : EquipmentSlot.values()) {
+            if (slot == EquipmentSlot.OFFHAND) continue;
             ItemStack itemStack = livingEntity.getItemBySlot(slot);
             if (enchantment.value().matchingSlot(slot)) {
                 int level = itemStack.getEnchantmentLevel(enchantment);

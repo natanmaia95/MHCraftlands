@@ -8,11 +8,13 @@ import com.nateplays.my_neoforge_mod.tags.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -41,18 +43,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
 
         IntrinsicTagAppender<Item> dyeableArmorTagAppender = tag(ModTags.Items.DYEABLE_HUNTING_ARMORS);
-//        ModArmorItems.ARMOR_ITEMS.getEntries().forEach((itemDeferredHolder -> {
-//            if (itemDeferredHolder.get() instanceof HuntingArmorItem huntingArmorItem) {
-//                for (ArmorMaterial.Layer layer : huntingArmorItem.getMaterial().value().layers()) {
-//                    if (layer.dyeable()) {
-//                        dyeableArmorTagAppender.add(itemDeferredHolder.value());
-//                        break;
-//                    }
-//                }
-//            }
-//        }));
         ModArmorItems.DYEABLE_ARMORS_LIST.forEach(deferredItem -> dyeableArmorTagAppender.add(deferredItem.value()));
-
         tag(ItemTags.DYEABLE).addTag(ModTags.Items.DYEABLE_HUNTING_ARMORS);
     }
 }

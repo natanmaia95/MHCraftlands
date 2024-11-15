@@ -98,14 +98,14 @@ public class HuntingArmorItem extends ArmorItem {
 
     }
 
-    //This being added as an attribute component removes EVERY OTHER ATTRIBUTE THE ARMOR WOULD HAVE
+    //This being added as an attribute component removes EVERY OTHER ATTRIBUTE THE ARMOR WOULD HAVE INCLUDING ARMOR VALUE :D
     public static ItemAttributeModifiers createAttributes(Holder<ArmorMaterial> material, Type type) {
         return ItemAttributeModifiers.builder()
                 .add(
                         ModAttributes.DEFENSE,
                         new AttributeModifier(
                                 ResourceLocation.withDefaultNamespace("armor." + type.getName()),
-                                material.value().getDefense(type),
+                                (double) material.value().getDefense(type) / 10.0, //Defense has 1 decimal digit
                                 AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.bySlot(type.getSlot())
                 )

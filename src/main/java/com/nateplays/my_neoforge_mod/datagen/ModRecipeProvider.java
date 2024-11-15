@@ -2,9 +2,12 @@ package com.nateplays.my_neoforge_mod.datagen;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.block.ModBlocks;
+import com.nateplays.my_neoforge_mod.entity.pets.PalicoEntity;
 import com.nateplays.my_neoforge_mod.item.ModItems;
 import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
 import com.nateplays.my_neoforge_mod.item.armor.PetHuntingArmorItem;
+import com.nateplays.my_neoforge_mod.item.weapons.ModWeaponItems;
+import com.nateplays.my_neoforge_mod.item.weapons.PetHuntingWeaponItem;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -16,6 +19,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
+import net.neoforged.neoforge.registries.DeferredItem;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -92,7 +97,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SCRAP_FUR)
                 .requires(Items.LEATHER).requires(Items.STICK).unlockedBy("has_leather", has(Items.LEATHER)).save(recipeOutput, MyNeoForgeMod.MODID+":fur_scrap_from_leather");
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SCRAP_HUMBLE)
-                .requires(ItemTags.VILLAGER_PLANTABLE_SEEDS).requires(ItemTags.VILLAGER_PLANTABLE_SEEDS).requires(Items.STICK)
+                .requires(ItemTags.VILLAGER_PLANTABLE_SEEDS).requires(ItemTags.VILLAGER_PLANTABLE_SEEDS).requires(ItemTags.VILLAGER_PLANTABLE_SEEDS).requires(Items.STICK)
                 .unlockedBy("has_villager_plantable_seeds", has(ItemTags.VILLAGER_PLANTABLE_SEEDS)).save(recipeOutput);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SCRAP_HUMBLE)
                 .requires(Ingredient.of(Items.RED_MUSHROOM, Items.BROWN_MUSHROOM)).requires(Items.STICK)
@@ -104,32 +109,37 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Items.SPIDER_EYE).requires(Items.STICK).unlockedBy("has_spider_eye", has(Items.SPIDER_EYE))
                 .save(recipeOutput, MyNeoForgeMod.MODID+":sinister_scrap_from_spider_eye");
 
-        palicoArmor(recipeOutput, "f_acorn_armor", ModArmorItems.F_ACORN_HELM.get(), ModItems.SCRAP_WOOD, Items.OAK_SAPLING);
-        palicoArmor(recipeOutput, "f_acorn_armor", ModArmorItems.F_ACORN_MAIL.get(), ModItems.SCRAP_WOOD, Items.OAK_SAPLING);
-        palicoArmor(recipeOutput, "f_kamura_armor", ModArmorItems.F_KAMURA_HELM.get(), ModItems.SCRAP_FUR, ItemTags.WOOL_CARPETS);
-        palicoArmor(recipeOutput, "f_kamura_armor", ModArmorItems.F_KAMURA_MAIL.get(), ModItems.SCRAP_FUR, ItemTags.WOOL_CARPETS);
-        palicoArmor(recipeOutput, "f_bone_armor", ModArmorItems.F_BONE_HELM.get(), ModItems.SCRAP_BONE, Ingredient.of(Items.FEATHER));
-        palicoArmor(recipeOutput, "f_bone_armor", ModArmorItems.F_BONE_MAIL.get(), ModItems.SCRAP_BONE, Ingredient.of(Items.FEATHER));
-        palicoArmor(recipeOutput, "f_alloy_armor", ModArmorItems.F_ALLOY_HELM.get(), ModItems.SCRAP_ORE, Items.IRON_INGOT);
-        palicoArmor(recipeOutput, "f_alloy_armor", ModArmorItems.F_ALLOY_MAIL.get(), ModItems.SCRAP_ORE, Items.IRON_INGOT);
-        palicoArmor(recipeOutput, "f_red_armor", ModArmorItems.F_RED_HELM.get(), ModItems.SCRAP_FUR, Items.RED_WOOL);
-        palicoArmor(recipeOutput, "f_red_armor", ModArmorItems.F_RED_MAIL.get(), ModItems.SCRAP_FUR, Items.RED_WOOL);
-        palicoArmor(recipeOutput, "f_mosgharl_armor", ModArmorItems.F_MOSGHARL_HELM.get(), ModItems.SCRAP_HUMBLE, Ingredient.EMPTY);
-        palicoArmor(recipeOutput, "f_mosgharl_armor", ModArmorItems.F_MOSGHARL_MAIL.get(), ModItems.SCRAP_HUMBLE, Items.CARVED_PUMPKIN);
-        palicoArmor(recipeOutput, "f_frankie_armor", ModArmorItems.F_FRANKIE_HELM.get(), ModItems.SCRAP_SINISTER, Items.ROTTEN_FLESH);
-        palicoArmor(recipeOutput, "f_frankie_armor", ModArmorItems.F_FRANKIE_MAIL.get(), ModItems.SCRAP_SINISTER, Items.ROTTEN_FLESH);
-        palicoArmor(recipeOutput, "f_ghost_armor", ModArmorItems.F_GHOST_HELM.get(), ModItems.SCRAP_SINISTER, Items.CARVED_PUMPKIN);
-        palicoArmor(recipeOutput, "f_ghost_armor", ModArmorItems.F_GHOST_MAIL.get(), ModItems.SCRAP_SINISTER, Items.WHITE_BANNER);
+        palicoArmor(recipeOutput, "f_acorn", ModArmorItems.F_ACORN_HELM.get(), ModItems.SCRAP_WOOD, Items.OAK_SAPLING);
+        palicoArmor(recipeOutput, "f_acorn", ModArmorItems.F_ACORN_MAIL.get(), ModItems.SCRAP_WOOD, Items.OAK_SAPLING);
+        palicoArmor(recipeOutput, "f_kamura", ModArmorItems.F_KAMURA_HELM.get(), ModItems.SCRAP_FUR, ItemTags.WOOL_CARPETS);
+        palicoArmor(recipeOutput, "f_kamura", ModArmorItems.F_KAMURA_MAIL.get(), ModItems.SCRAP_FUR, ItemTags.WOOL_CARPETS);
+        palicoArmor(recipeOutput, "f_bone", ModArmorItems.F_BONE_HELM.get(), ModItems.SCRAP_BONE, Ingredient.of(Items.FEATHER));
+        palicoArmor(recipeOutput, "f_bone", ModArmorItems.F_BONE_MAIL.get(), ModItems.SCRAP_BONE, Ingredient.of(Items.FEATHER));
+        palicoArmor(recipeOutput, "f_alloy", ModArmorItems.F_ALLOY_HELM.get(), ModItems.SCRAP_ORE, Items.IRON_INGOT);
+        palicoArmor(recipeOutput, "f_alloy", ModArmorItems.F_ALLOY_MAIL.get(), ModItems.SCRAP_ORE, Items.IRON_INGOT);
+        palicoArmor(recipeOutput, "f_red", ModArmorItems.F_RED_HELM.get(), ModItems.SCRAP_FUR, Items.RED_WOOL);
+        palicoArmor(recipeOutput, "f_red", ModArmorItems.F_RED_MAIL.get(), ModItems.SCRAP_FUR, Items.RED_WOOL);
+        palicoArmor(recipeOutput, "f_mosgharl", ModArmorItems.F_MOSGHARL_HELM.get(), ModItems.SCRAP_HUMBLE, Ingredient.EMPTY);
+        palicoArmor(recipeOutput, "f_mosgharl", ModArmorItems.F_MOSGHARL_MAIL.get(), ModItems.SCRAP_HUMBLE, Items.CARVED_PUMPKIN);
+        palicoArmor(recipeOutput, "f_frankie", ModArmorItems.F_FRANKIE_HELM.get(), ModItems.SCRAP_SINISTER, Items.ROTTEN_FLESH);
+        palicoArmor(recipeOutput, "f_frankie", ModArmorItems.F_FRANKIE_MAIL.get(), ModItems.SCRAP_SINISTER, Items.ROTTEN_FLESH);
+        palicoArmor(recipeOutput, "f_ghost", ModArmorItems.F_GHOST_HELM.get(), ModItems.SCRAP_SINISTER, Items.CARVED_PUMPKIN);
+        palicoArmor(recipeOutput, "f_ghost", ModArmorItems.F_GHOST_MAIL.get(), ModItems.SCRAP_SINISTER, Items.WHITE_BANNER);
+
+        palicoWeapon(recipeOutput, "f_kamura", ModWeaponItems.F_KAMURA_BOKKEN.get(), ModItems.SCRAP_WOOD, Ingredient.EMPTY, 0);
+        palicoWeapon(recipeOutput, "f_acorn", ModWeaponItems.F_BONE_PICK.get(), ModItems.SCRAP_BONE, Ingredient.EMPTY, 2);
+        palicoWeapon(recipeOutput, "f_bone", ModWeaponItems.F_BONE_HAMMER.get(), ModItems.SCRAP_BONE, Items.BONE, 1);
+        palicoWeapon(recipeOutput, "f_alloy", ModWeaponItems.F_IRON_SWORD.get(), ModItems.SCRAP_ORE, Ingredient.EMPTY, 0);
     }
 
 
     protected static void palicoArmor(RecipeOutput recipeOutput, String group, PetHuntingArmorItem<?,?> result,
-                                      ItemLike firstMaterial, @Nullable TagKey<Item> secondMaterialTag) {
+                                      ItemLike firstMaterial, TagKey<Item> secondMaterialTag) {
         palicoArmor(recipeOutput, group, result, firstMaterial, secondMaterialTag != null ? Ingredient.of(secondMaterialTag) : null);
     }
 
     protected static void palicoArmor(RecipeOutput recipeOutput, String group, PetHuntingArmorItem<?,?> result,
-                                      ItemLike firstMaterial, @Nullable ItemLike secondMaterial) {
+                                      ItemLike firstMaterial, ItemLike secondMaterial) {
         palicoArmor(recipeOutput, group, result, firstMaterial, secondMaterial != null ? Ingredient.of(secondMaterial) : null);
     }
 
@@ -158,6 +168,52 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             recipeBuilder = recipeBuilder.define('B', secondMaterial);
 //                    .unlockedBy("has_" + secondMaterial.asItem().toString(), has(secondMaterial));
         }
+
+        recipeBuilder.save(recipeOutput);
+    }
+
+
+
+    protected static void palicoWeapon(RecipeOutput recipeOutput, String group, PetHuntingWeaponItem<?> result,
+                                       ItemLike firstMaterial, @NotNull TagKey<Item> secondMaterialTag, int shape) {
+        palicoWeapon(recipeOutput, group, result, firstMaterial, Ingredient.of(secondMaterialTag), shape);
+    }
+
+    protected static void palicoWeapon(RecipeOutput recipeOutput, String group, PetHuntingWeaponItem<?> result,
+                                       ItemLike firstMaterial, @NotNull ItemLike secondMaterialItem, int shape) {
+        palicoWeapon(recipeOutput, group, result, firstMaterial, Ingredient.of(secondMaterialItem), shape);
+    }
+
+    protected static void palicoWeapon(RecipeOutput recipeOutput, String group, PetHuntingWeaponItem<?> result,
+                                      ItemLike firstMaterial, @Nullable Ingredient secondMaterial, int shape) {
+
+        boolean noSecondMaterial = secondMaterial == null || secondMaterial.isEmpty();
+
+        String pattern1, pattern2, pattern3;
+        if (shape > 4 || shape < 0) shape = 0;
+        switch (shape) {
+            case 0: //sword
+                pattern1 = " A "; pattern2 = " B "; pattern3 = "AIA"; break;
+            case 1: //hammer
+                pattern1 = "ABA"; pattern2 = " A "; pattern3 = " I "; break;
+            case 2: //stick
+                pattern1 = " B "; pattern2 = " A "; pattern3 = " I "; break;
+            case 3: //boomerang
+                pattern1 = "ABI"; pattern2 = "  A"; pattern3 = "  A"; break;
+            case 4: //shuriken
+                pattern1 = " B "; pattern2 = "AIA"; pattern3 = " A "; break;
+            default:
+                shape = 0; pattern1 = pattern2 = pattern3 = "";
+                System.out.println("ERROR: NO PATTERN CHOSEN");
+        }
+
+        ShapedRecipeBuilder recipeBuilder = ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result).group(group)
+                .pattern(pattern1).pattern(pattern2).pattern(pattern3)
+                .define('I', Items.STICK).define('A', firstMaterial)
+                .unlockedBy("has_" + firstMaterial.asItem().toString(), has(firstMaterial));
+
+        if (noSecondMaterial) recipeBuilder = recipeBuilder.define('B', firstMaterial);
+        else recipeBuilder = recipeBuilder.define('B', secondMaterial);
 
         recipeBuilder.save(recipeOutput);
     }

@@ -7,15 +7,19 @@
       "item": "my_neoforge_mod:bone_scrap"
     },
     "B": {
-      "item": "minecraft:feather"
+      "item": "minecraft:bone"
+    },
+    "I": {
+      "item": "minecraft:stick"
     }
   },
   "pattern": [
+    "ABA",
     " A ",
-    "ABA"
+    " I "
   ],
   "result": {
     "count": 1,
-    "id": "my_neoforge_mod:f_bone_helm"
+    "id": "my_neoforge_mod:f_bone_hammer"
   }
 }

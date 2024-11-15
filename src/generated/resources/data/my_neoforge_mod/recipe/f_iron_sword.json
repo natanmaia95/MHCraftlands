@@ -7,15 +7,19 @@
       "item": "my_neoforge_mod:ore_scrap"
     },
     "B": {
-      "item": "minecraft:iron_ingot"
+      "item": "my_neoforge_mod:ore_scrap"
+    },
+    "I": {
+      "item": "minecraft:stick"
     }
   },
   "pattern": [
-    "ABA",
-    " A "
+    " A ",
+    " B ",
+    "AIA"
   ],
   "result": {
     "count": 1,
-    "id": "my_neoforge_mod:f_alloy_mail"
+    "id": "my_neoforge_mod:f_iron_sword"
   }
 }

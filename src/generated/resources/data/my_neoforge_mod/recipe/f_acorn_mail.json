@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
-  "group": "f_acorn_armor",
+  "group": "f_acorn",
   "key": {
     "A": {
       "item": "my_neoforge_mod:wood_scrap"

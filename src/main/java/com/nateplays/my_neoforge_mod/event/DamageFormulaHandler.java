@@ -7,6 +7,7 @@ import com.nateplays.my_neoforge_mod.item.weapons.HuntingWeaponItem;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -25,7 +26,7 @@ public class DamageFormulaHandler {
         DamageSource damageSource = event.getSource();
         damageFormulaRawStep(event, damageSource);
 //        damageFormulaMotionValueStep(event);
-        damageFormulaElementalStep(event);
+//        damageFormulaElementalStep(event);
 
 
         damageFormulaDefenseStep(event);
@@ -56,7 +57,10 @@ public class DamageFormulaHandler {
             double finalElementalDamage = 0.0;
 
             if (entity instanceof LivingEntity livingEntity) {
-                double elementalDamage = livingEntity.getAttributeValue(ModAttributes.FIRE_DAMAGE);
+                double elementalDamage = 0.0;
+
+                AttributeInstance fireDamageAttribute = livingEntity.getAttribute(ModAttributes.FIRE_DAMAGE);
+                if (fireDamageAttribute != null) elementalDamage += fireDamageAttribute.getValue();
 
                 if (livingEntity instanceof Player player) { //half elem damage if spamming attack
                     if (player.getAttackStrengthScale(0) <= 0.8f) elementalDamage *= 0.5;
@@ -87,17 +91,17 @@ public class DamageFormulaHandler {
     }
 
 
-    @SubscribeEvent
-    public static void criticalHitEvent(CriticalHitEvent event) {
-        //cancel vanilla crit events
-        if (event.isVanillaCritical()) {
-            event.setDamageMultiplier(1.0f);
-            event.setCriticalHit(false);
-        }
-        //roll affinity
-//        event.setDamageMultiplier(1.25f);
-//        if (event.getTarget().getRandom().nextFloat() <= 0.5) {
-//            event.setCriticalHit(true);
+//    @SubscribeEvent
+//    public static void criticalHitEvent(CriticalHitEvent event) {
+//        //cancel vanilla crit events
+//        if (event.isVanillaCritical()) {
+////            event.setDamageMultiplier(1.0f);
+////            event.setCriticalHit(false);
 //        }
-    }
+//        //roll affinity
+////        event.setDamageMultiplier(1.25f);
+////        if (event.getTarget().getRandom().nextFloat() <= 0.5) {
+////            event.setCriticalHit(true);
+////        }
+//    }
 }

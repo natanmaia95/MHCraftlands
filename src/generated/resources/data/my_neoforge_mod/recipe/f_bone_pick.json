@@ -4,18 +4,22 @@
   "group": "f_acorn",
   "key": {
     "A": {
-      "item": "my_neoforge_mod:wood_scrap"
+      "item": "my_neoforge_mod:bone_scrap"
     },
     "B": {
-      "item": "minecraft:oak_sapling"
+      "item": "my_neoforge_mod:bone_scrap"
+    },
+    "I": {
+      "item": "minecraft:stick"
     }
   },
   "pattern": [
+    " B ",
     " A ",
-    "ABA"
+    " I "
   ],
   "result": {
     "count": 1,
-    "id": "my_neoforge_mod:f_acorn_helm"
+    "id": "my_neoforge_mod:f_bone_pick"
   }
 }

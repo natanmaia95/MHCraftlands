@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_my_neoforge_mod:ore_scrap": {
+      "conditions": {
+        "items": [
+          {
+            "items": "my_neoforge_mod:ore_scrap"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "my_neoforge_mod:f_iron_sword"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_my_neoforge_mod:ore_scrap"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "my_neoforge_mod:f_iron_sword"
+    ]
+  }
+}

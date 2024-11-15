@@ -3,14 +3,17 @@ package com.nateplays.my_neoforge_mod.entity.pets;
 import com.nateplays.my_neoforge_mod.attribute.ModAttributes;
 import com.nateplays.my_neoforge_mod.entity.interfaces.ILevelableEntity;
 import com.nateplays.my_neoforge_mod.entity.pets.goals.HuntingBuddyHurtByTargetGoal;
+import com.nateplays.my_neoforge_mod.entity.pets.goals.PalicoTamedHarvestBlockGoal;
 import com.nateplays.my_neoforge_mod.entity.pets.gui.PalicoInventoryMenu;
 import com.nateplays.my_neoforge_mod.item.armor.PetHuntingArmorItem;
 import com.nateplays.my_neoforge_mod.item.weapons.PetHuntingWeaponItem;
 import com.nateplays.my_neoforge_mod.sound.ModSounds;
+import com.nateplays.my_neoforge_mod.tags.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.*;
@@ -26,13 +29,22 @@ import net.minecraft.world.entity.npc.InventoryCarrier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SweetBerryBushBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.ticks.ContainerSingleItem;
+import net.neoforged.neoforge.event.level.BlockEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevelableEntity, InventoryCarrier, MenuProvider {
 
@@ -126,9 +138,12 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         //this.goalSelector.addGoal(3, new Wolf.WolfAvoidEntityGoal<>(this, Llama.class, 24.0F, 1.5, 1.5));
         this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.6F));
         this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.5, true));
-        this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.5, 8.0F, 2.0F));
+        this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.5, 12.0F, 4.0F));
 
 //        this.goalSelector.addGoal(7, new RemoveBlockGoal(Blocks.OAK_LOG, this, 1.0, 16));
+
+        this.goalSelector.addGoal(7, new PalicoTamedHarvestBlockGoal(this, BlockTags.CROPS, 1.2, 16, 4));
+        this.goalSelector.addGoal(7, new PalicoTamedHarvestBlockGoal(this, ModTags.Blocks.PALICO_HARVESTABLE_PLANTS, 1.2, 16, 4));
 
         this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 8.0F));
