@@ -43,7 +43,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         tag(ModTags.Blocks.PALICO_HARVESTABLE_PLANTS)
                 .addTag(BlockTags.SMALL_FLOWERS)
-                .addTag(BlockTags.COAL_ORES).addTag(BlockTags.IRON_ORES)
                 .add(Blocks.SWEET_BERRY_BUSH);
+
+        tag(ModTags.Blocks.PALICO_HARVESTABLE_ORES)
+                .addTag(BlockTags.COAL_ORES).addTag(BlockTags.IRON_ORES).addTag(BlockTags.COPPER_ORES)
+                .addTag(BlockTags.LAPIS_ORES).addTag(BlockTags.EMERALD_ORES);
+
     }
 }

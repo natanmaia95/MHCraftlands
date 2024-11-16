@@ -124,14 +124,6 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
 
     @Override
     protected void registerGoals() {
-//        this.goalSelector.addGoal(0, new FloatGoal(this));
-//        this.goalSelector.addGoal(1, new BreedGoal(this, 1.2));
-//        this.goalSelector.addGoal(2, new TemptGoal(this, 1.2, Ingredient.of(Tags.Items.GEMS_EMERALD), false));
-//        this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1.0));
-//        this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 8f));
-//        this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
-//
-//        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(1, new TamableAnimal.TamableAnimalPanicGoal(2.0, DamageTypeTags.PANIC_ENVIRONMENTAL_CAUSES));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
@@ -142,8 +134,8 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
 
 //        this.goalSelector.addGoal(7, new RemoveBlockGoal(Blocks.OAK_LOG, this, 1.0, 16));
 
-        this.goalSelector.addGoal(7, new PalicoTamedHarvestBlockGoal(this, BlockTags.CROPS, 1.2, 16, 4));
-        this.goalSelector.addGoal(7, new PalicoTamedHarvestBlockGoal(this, ModTags.Blocks.PALICO_HARVESTABLE_PLANTS, 1.2, 16, 4));
+        this.goalSelector.addGoal(7, new PalicoTamedHarvestBlockGoal(this, ModTags.Blocks.PALICO_HARVESTABLE_ORES, 1.2, 8, 2, 100));
+        this.goalSelector.addGoal(7, new PalicoTamedHarvestBlockGoal(this, ModTags.Blocks.PALICO_HARVESTABLE_PLANTS, 1.2, 8, 2, 200));
 
         this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 8.0F));
@@ -153,11 +145,6 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
         this.targetSelector.addGoal(3, new HuntingBuddyHurtByTargetGoal(this).setAlertOthers());
-//        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
-//        this.targetSelector.addGoal(5, new NonTameRandomTargetGoal<>(this, Animal.class, false, PREY_SELECTOR));
-//        this.targetSelector.addGoal(6, new NonTameRandomTargetGoal<>(this, Turtle.class, false, Turtle.BABY_ON_LAND_SELECTOR));
-//        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, AbstractSkeleton.class, false));
-//        this.targetSelector.addGoal(8, new ResetUniversalAngerTargetGoal<>(this, true));
     }
 
     public static boolean checkPalicoSpawnRules(EntityType<? extends PalicoEntity> palico, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
@@ -215,8 +202,10 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
 
 
 
-
-
+    //Extend attack range because palico is tiny!
+    public boolean isWithinMeleeAttackRange(LivingEntity entity) {
+        return this.getAttackBoundingBox().inflate(0.5).intersects(entity.getHitbox());
+    }
 
     @Override
     public @Nullable AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {

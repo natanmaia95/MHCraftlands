@@ -14,8 +14,10 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -136,7 +138,24 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
     public void doLevelUp(int newLevel) { return; }
 
 
+    @Override
+    protected void hurtArmor(DamageSource damageSource, float damageAmount) {
+        if (damageAmount > 0 && !damageSource.is(DamageTypeTags.PANIC_ENVIRONMENTAL_CAUSES)) {
+            this.doHurtEquipment(damageSource, 1.0f, new EquipmentSlot[]{EquipmentSlot.CHEST, EquipmentSlot.HEAD});
+        }
+    }
 
+    @Override
+    public boolean doHurtTarget(Entity target) {
+        boolean result = super.doHurtTarget(target);
+        if (result && target instanceof LivingEntity) {
+            ItemStack weapon = this.getMainHandItem(); // Get the item in the mob's main hand.
+            if (!weapon.isEmpty() && weapon.isDamageableItem()) {
+                weapon.hurtAndBreak(1, this, EquipmentSlot.MAINHAND);
+            }
+        }
+        return result;
+    }
 
 
 

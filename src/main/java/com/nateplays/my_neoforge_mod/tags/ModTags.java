@@ -18,6 +18,7 @@ public class ModTags {
         public static final TagKey<Block> INCORRECT_FOR_MACHALITE_TOOL = createTag("incorrect_for_machalite_tool");
 
         public static final TagKey<Block> PALICO_HARVESTABLE_PLANTS = createTag("palico_harvestable_plants");
+        public static final TagKey<Block> PALICO_HARVESTABLE_ORES = createTag("palico_harvestable_ores");
 
         private static TagKey<Block> createTag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, name));
