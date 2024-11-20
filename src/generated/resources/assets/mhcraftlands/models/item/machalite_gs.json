@@ -1,0 +1,6 @@
+{
+  "parent": "mhcraftlands:item/weapon/gs",
+  "textures": {
+    "layer0": "mhcraftlands:item/machalite_gs"
+  }
+}

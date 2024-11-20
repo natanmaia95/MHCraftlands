@@ -1,0 +1,27 @@
+{
+  "parent": "minecraft:item/handheld",
+  "overrides": [
+    {
+      "model": "mhcraftlands:item/weapon/machalite_sns_mainhand",
+      "predicate": {
+        "mhcraftlands:fake_render_hand": 1.0
+      }
+    },
+    {
+      "model": "mhcraftlands:item/weapon/machalite_sns_offhand",
+      "predicate": {
+        "mhcraftlands:fake_render_hand": 2.0
+      }
+    },
+    {
+      "model": "mhcraftlands:item/weapon/machalite_sns_mainhand_blocking",
+      "predicate": {
+        "mhcraftlands:blocking": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "mhcraftlands:item/machalite_sns_shield",
+    "layer1": "mhcraftlands:item/machalite_sns"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "mhcraftlands:item/handheld_big",
+  "textures": {
+    "layer0": "mhcraftlands:item/machalite_gv"
+  }
+}

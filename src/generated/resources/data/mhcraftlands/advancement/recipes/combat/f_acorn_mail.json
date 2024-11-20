@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_mhcraftlands:wood_scrap": {
+      "conditions": {
+        "items": [
+          {
+            "items": "mhcraftlands:wood_scrap"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "mhcraftlands:f_acorn_mail"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_mhcraftlands:wood_scrap"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "mhcraftlands:f_acorn_mail"
+    ]
+  }
+}

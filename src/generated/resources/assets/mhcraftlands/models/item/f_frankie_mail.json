@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mhcraftlands:item/armor/f_frankie_mail"
+  }
+}

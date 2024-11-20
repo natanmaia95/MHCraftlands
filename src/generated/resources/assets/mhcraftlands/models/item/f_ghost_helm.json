@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mhcraftlands:item/armor/f_ghost_helm",
+    "layer1": "mhcraftlands:item/armor/f_ghost_helm_color"
+  }
+}

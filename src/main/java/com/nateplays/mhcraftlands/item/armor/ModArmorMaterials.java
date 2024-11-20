@@ -1,0 +1,159 @@
+package com.nateplays.mhcraftlands.item.armor;
+
+import com.nateplays.mhcraftlands.MHMod;
+import com.nateplays.mhcraftlands.item.ModItems;
+import net.minecraft.Util;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.function.Supplier;
+
+public class ModArmorMaterials {
+
+    public static final DeferredRegister<ArmorMaterial> ARMOR_MATERIALS = DeferredRegister.create(Registries.ARMOR_MATERIAL, MHMod.MOD_ID);
+
+    // We place copper somewhere between chainmail and iron.
+    public static final Holder<ArmorMaterial> COPPER_ARMOR_MATERIAL =
+            ARMOR_MATERIALS.register("copper", () -> new ArmorMaterial(
+                    // Determines the defense value of this armor material, depending on what armor piece it is.
+                    Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                        map.put(ArmorItem.Type.BOOTS, 2);
+                        map.put(ArmorItem.Type.LEGGINGS, 4);
+                        map.put(ArmorItem.Type.CHESTPLATE, 6);
+                        map.put(ArmorItem.Type.HELMET, 2);
+                        map.put(ArmorItem.Type.BODY, 4);
+                    }),
+                    // Determines the enchantability of the tier. This represents how good the enchantments on this armor will be.
+                    // Gold uses 25, we put copper slightly below that.
+                    20,
+                    // Determines the sound played when equipping this armor.
+                    // This is wrapped with a Holder.
+                    SoundEvents.ARMOR_EQUIP_GENERIC,
+                    // Determines the repair item for this armor.
+                    () -> Ingredient.of(Tags.Items.INGOTS_COPPER),
+                    // Determines the texture locations of the armor to apply when rendering
+                    // This can also be specified by overriding 'IItemExtension#getArmorTexture' on your item if the armor texture needs to be more dynamic
+                    List.of(
+                            // Creates a new armor texture that will be located at:
+                            // - 'assets/mod_id/textures/models/armor/copper_layer_1.png' for the outer texture
+                            // - 'assets/mod_id/textures/models/armor/copper_layer_2.png' for the inner texture (only legs)
+                            new ArmorMaterial.Layer(
+                                    ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "copper")
+                            ),
+                            // Creates a new armor texture that will be rendered on top of the previous at:
+                            // - 'assets/mod_id/textures/models/armor/copper_layer_1_overlay.png' for the outer texture
+                            // - 'assets/mod_id/textures/models/armor/copper_layer_2_overlay.png' for the inner texture (only legs)
+                            // 'true' means that the armor material is dyeable; however, the item must also be added to the 'minecraft:dyeable' tag
+                            new ArmorMaterial.Layer(
+                                    ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "copper"), "_overlay", true
+                            )
+                    ),
+                    // Returns the toughness value of the armor. The toughness value is an additional value included in
+                    // damage calculation, for more information, refer to the Minecraft Wiki's article on armor mechanics:
+                    // https://minecraft.wiki/w/Armor#Armor_toughness
+                    // Only diamond and netherite have values greater than 0 here, so we just return 0.
+                    0,
+                    // Returns the knockback resistance value of the armor. While wearing this armor, the player is
+                    // immune to knockback to some degree. If the player has a total knockback resistance value of 1 or greater
+                    // from all armor pieces combined, they will not take any knockback at all.
+                    // Only netherite has values greater than 0 here, so we just return 0.
+                    0
+            ));
+
+
+    public static final Holder<ArmorMaterial> HUNTER = registerMaterial(
+            "hunter", 4, SoundEvents.ARMOR_EQUIP_LEATHER,
+            () -> Ingredient.of(Items.LEATHER)
+    );
+
+    public static final Holder<ArmorMaterial> CREEPER = registerMaterial(
+            "creeper", 8, SoundEvents.ARMOR_EQUIP_LEATHER,
+            () -> Ingredient.of(Items.TNT)
+    );
+
+
+
+    public static final Holder<ArmorMaterial> F_ACORN = registerMaterial(
+            "f_acorn", 5, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(ModItems.SCRAP_WOOD));
+
+    public static final Holder<ArmorMaterial> F_KAMURA = registerMaterial(
+            "f_kamura", 5, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(ModItems.SCRAP_FUR));
+
+    public static final Holder<ArmorMaterial> F_BONE = registerMaterial(
+            "f_bone", 7, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(ModItems.SCRAP_BONE));
+
+    public static final Holder<ArmorMaterial> F_ALLOY = registerMaterial(
+            "f_alloy", 9, SoundEvents.ARMOR_EQUIP_IRON, () -> Ingredient.of(ModItems.SCRAP_ORE));
+
+    public static final Holder<ArmorMaterial> F_RED = registerMaterial(
+            "f_red", 7, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(ModItems.SCRAP_FUR), false, true);
+
+    public static final Holder<ArmorMaterial> F_GHOST = registerMaterial("f_ghost",
+            15, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(ModItems.SCRAP_SINISTER), true, true);
+
+    public static final Holder<ArmorMaterial> F_MOSGHARL = registerMaterial("f_mosgharl",
+            9, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(ModItems.SCRAP_HUMBLE), true, false);
+
+    public static final Holder<ArmorMaterial> F_FRANKIE = registerMaterial("f_frankie",
+            15, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(ModItems.SCRAP_SINISTER), false, false);
+
+
+
+
+    // NOTE: The actual defense is 1/10th the baseDefense supplied here, for balancing
+    public static Supplier<ArmorMaterial> makeHuntingArmorMaterial(
+            int baseDefense, Holder<SoundEvent> soundEvent,
+            Supplier<Ingredient> repairItem, List<ArmorMaterial.Layer> layers) {
+
+        return () -> new ArmorMaterial(
+                Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                    map.put(ArmorItem.Type.BOOTS, baseDefense);
+                    map.put(ArmorItem.Type.LEGGINGS, baseDefense);
+                    map.put(ArmorItem.Type.CHESTPLATE, baseDefense);
+                    map.put(ArmorItem.Type.HELMET, baseDefense);
+                    map.put(ArmorItem.Type.BODY, baseDefense);
+                }),
+                0, soundEvent, repairItem, layers, 0, 0
+        );
+    }
+
+    public static Holder<ArmorMaterial> registerMaterial(String name, int baseDefense, Holder<SoundEvent> soundEvent,
+                                                         Supplier<Ingredient> repairItem) {
+
+        return ARMOR_MATERIALS.register(name, makeHuntingArmorMaterial(
+                baseDefense, soundEvent, repairItem,
+                List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, name)))
+        ));
+    }
+
+    public static Holder<ArmorMaterial> registerMaterial(String name, int baseDefense, Holder<SoundEvent> soundEvent,
+                                                         Supplier<Ingredient> repairItem, boolean hasEmissiveLayer, boolean hasDyeableLayer) {
+
+        List<ArmorMaterial.Layer> armorLayers = new ArrayList<>();
+        armorLayers.add(
+                new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, name)));
+        if (hasDyeableLayer) armorLayers.add(
+                new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, name), "_color", true));
+        if (hasEmissiveLayer) armorLayers.add(
+                new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, name), "_emissive", false));
+
+        return ARMOR_MATERIALS.register(name, makeHuntingArmorMaterial(baseDefense, soundEvent, repairItem, armorLayers));
+    }
+
+    public static void register(IEventBus eventBus) {
+        ARMOR_MATERIALS.register(eventBus);
+    }
+}

@@ -1,6 +1,0 @@
-{
-  "parent": "my_neoforge_mod:item/handheld_low",
-  "textures": {
-    "layer0": "my_neoforge_mod:item/weapon/f_red_basket"
-  }
-}

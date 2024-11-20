@@ -1,0 +1,12 @@
+{
+  "values": [
+    "minecraft:respiration",
+    "minecraft:swift_sneak",
+    "minecraft:feather_falling",
+    "minecraft:blast_protection",
+
+    "mhcraftlands:quick_eating",
+    "mhcraftlands:muck_resistance",
+    "mhcraftlands:bombardier"
+  ]
+}

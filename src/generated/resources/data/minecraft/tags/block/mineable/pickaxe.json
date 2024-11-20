@@ -1,8 +1,8 @@
 {
   "values": [
-    "my_neoforge_mod:machalite_block",
-    "my_neoforge_mod:machalite_ore",
-    "my_neoforge_mod:earth_crystal_ore",
-    "my_neoforge_mod:magic_block"
+    "mhcraftlands:machalite_block",
+    "mhcraftlands:machalite_ore",
+    "mhcraftlands:earth_crystal_ore",
+    "mhcraftlands:magic_block"
   ]
 }

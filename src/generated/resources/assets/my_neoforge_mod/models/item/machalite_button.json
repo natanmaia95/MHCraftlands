@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/button_inventory",
-  "textures": {
-    "texture": "my_neoforge_mod:block/machalite_block"
-  }
-}

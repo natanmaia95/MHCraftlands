@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/button_pressed",
-  "textures": {
-    "texture": "my_neoforge_mod:block/machalite_block"
-  }
-}

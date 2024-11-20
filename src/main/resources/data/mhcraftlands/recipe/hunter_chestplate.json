@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": { "item": "minecraft:leather" },
+    "Y": { "item": "minecraft:copper_ingot" }
+  },
+  "pattern": [
+    "Y Y",
+    "XYX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mhcraftlands:hunter_chestplate"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mhcraftlands:item/armor/f_red_mail",
+    "layer1": "mhcraftlands:item/armor/f_red_mail_color"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": { "item": "minecraft:tnt" },
+    "C": { "item": "minecraft:iron_ingot" }
+  },
+  "pattern": [
+    "CCC",
+    "L L"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mhcraftlands:creeper_helmet"
+  }
+}

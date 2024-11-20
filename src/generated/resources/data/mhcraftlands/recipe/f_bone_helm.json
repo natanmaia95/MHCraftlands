@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "f_bone",
+  "key": {
+    "A": {
+      "item": "mhcraftlands:bone_scrap"
+    },
+    "B": {
+      "item": "minecraft:feather"
+    }
+  },
+  "pattern": [
+    " A ",
+    "ABA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mhcraftlands:f_bone_helm"
+  }
+}

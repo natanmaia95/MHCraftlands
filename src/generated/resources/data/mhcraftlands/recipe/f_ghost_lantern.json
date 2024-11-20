@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "f_alloy",
+  "key": {
+    "A": {
+      "item": "mhcraftlands:sinister_scrap"
+    },
+    "B": {
+      "item": "minecraft:jack_o_lantern"
+    },
+    "I": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " A ",
+    " B ",
+    "AIA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mhcraftlands:f_ghost_lantern"
+  }
+}

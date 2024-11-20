@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "minecraft:paper"
+    },
+    "F": {
+      "tag": "minecraft:fishes"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    }
+  },
+  "pattern": [
+    "FEF",
+    "EPE",
+    "FEF"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mhcraftlands:dismiss_buddy_voucher"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "mhcraftlands:item/weapon/sns_shield",
+  "textures": {
+    "layer0": "mhcraftlands:item/machalite_sns_shield"
+  }
+}

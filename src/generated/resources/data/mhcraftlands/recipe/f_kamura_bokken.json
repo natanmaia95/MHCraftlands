@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "f_kamura",
+  "key": {
+    "A": {
+      "item": "mhcraftlands:wood_scrap"
+    },
+    "B": {
+      "item": "mhcraftlands:wood_scrap"
+    },
+    "I": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " A ",
+    " B ",
+    "AIA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mhcraftlands:f_kamura_bokken"
+  }
+}

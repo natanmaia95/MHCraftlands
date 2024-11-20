@@ -1,0 +1,35 @@
+{
+  "palico/felyne_ambient":{
+    "subtitle": "sounds.mhcraftlands.felyne_ambient",
+    "sounds": [
+      "mhcraftlands:palico/felyne_ambient_1",
+      "mhcraftlands:palico/felyne_ambient_2",
+      "mhcraftlands:palico/felyne_ambient_3"
+    ]
+  },
+  "palico/felyne_hurt":{
+    "subtitle": "sounds.mhcraftlands.felyne_hurt",
+    "sounds": [
+      "mhcraftlands:palico/felyne_hurt",
+      "mhcraftlands:palico/felyne_hurt_2",
+      "mhcraftlands:palico/felyne_hurt_3"
+    ]
+  },
+  "palico/felyne_death":{
+    "subtitle": "sounds.mhcraftlands.felyne_death",
+    "sounds": [
+      "mhcraftlands:palico/felyne_death"
+    ]
+  },
+
+
+  "music/disc_huntergoforth":{
+    "subtitle": "sounds.mhcraftlands.disc_huntergoforth",
+    "sounds": [
+      {
+        "name": "mhcraftlands:music/disc_huntergoforth",
+        "stream": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "package": "com.nateplays.mhcraftlands.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "HuntingEnchantmentMixin",
+    "PrimedTntMixin",
+    "InteractRidingEntityMixin",
+    "ItemInHandRendererAccessor",
+    "ArmorMaterialLayerAccessor",
+    "ItemInHandLayerMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

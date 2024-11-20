@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "my_neoforge_mod:block/machalite_block",
-    "side": "my_neoforge_mod:block/machalite_block",
-    "top": "my_neoforge_mod:block/machalite_block"
-  }
-}

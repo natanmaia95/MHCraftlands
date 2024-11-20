@@ -1,0 +1,89 @@
+{
+  "attribute.mhcraftlands.defense": "Defense",
+
+  "creativetab.mhcraftlands.items_tab": "Palico Items",
+  "creativetab.mhcraftlands.pet_equipment_tab": "Palico Equipment",
+
+  "entity.mhcraftlands.felyne": "Felyne",
+
+  "item.mhcraftlands.felyne_spawn_egg": "Summon Felyne",
+  "item.mhcraftlands.summon_felyne_voucher": "Summon Felyne Voucher",
+  "item.mhcraftlands.dismiss_buddy_voucher": "Dismiss Palico Voucher",
+
+  "item.mhcraftlands.generic_scrap.desc": "Used for making Palico armor.",
+  "item.mhcraftlands.wood_scrap": "Wood Scrap",
+  "item.mhcraftlands.bone_scrap": "Bone Scrap",
+  "item.mhcraftlands.ore_scrap": "Ore Scrap",
+  "item.mhcraftlands.fur_scrap": "Fur Scrap",
+  "item.mhcraftlands.humble_scrap": "Humble Scrap",
+  "item.mhcraftlands.sinister_scrap": "Sinister Scrap",
+  "item.mhcraftlands.sinister_scrap.desc": "Used for making §b§5spooky§r Palico armor.",
+
+  "item.mhcraftlands.f_acorn_helm": "F Acorn Helm",
+  "item.mhcraftlands.f_acorn_mail": "F Acorn Mail",
+  "item.mhcraftlands.f_kamura_helm": "F Kamura Hood",
+  "item.mhcraftlands.f_kamura_mail": "F Kamura Garb",
+  "item.mhcraftlands.f_bone_helm": "F Bone Helm",
+  "item.mhcraftlands.f_bone_mail": "F Bone Mail",
+  "item.mhcraftlands.f_alloy_helm": "F Alloy Helm",
+  "item.mhcraftlands.f_alloy_mail": "F Alloy Mail",
+  "item.mhcraftlands.f_red_helm": "F Red Hood",
+  "item.mhcraftlands.f_red_mail": "F Red Vest",
+  "item.mhcraftlands.f_mosgharl_helm": "F Mosgharl Hat",
+  "item.mhcraftlands.f_mosgharl_mail": "F Mosgharl Mail",
+  "item.mhcraftlands.f_ghost_helm": "F Meowloween Mask",
+  "item.mhcraftlands.f_ghost_mail": "F Ghost Garb",
+  "item.mhcraftlands.f_frankie_helm": "F Frankie Hat",
+  "item.mhcraftlands.f_frankie_mail": "F Frankie Vest",
+
+  "item.mhcraftlands.f_kamura_bokken": "F Kamura Bokken",
+  "item.mhcraftlands.f_bone_pick": "F Bone Pick",
+  "item.mhcraftlands.f_bone_hammer": "F Bone Hammer",
+  "item.mhcraftlands.f_iron_sword": "F Iron Sword",
+  "item.mhcraftlands.f_red_basket": "F Red Basket",
+  "item.mhcraftlands.f_mosgharl_broom": "F Mosgharl Broom",
+  "item.mhcraftlands.f_ghost_lantern": "F Jack-o'-Lantern",
+  "item.mhcraftlands.f_frankie_ball": "F Frankie Steel Ball",
+
+  "sounds.mhcraftlands.felyne_ambient": "Felyne meows",
+  "sounds.mhcraftlands.felyne_hurt": "Felyne hurts",
+  "sounds.mhcraftlands.felyne_death": "Felyne dies",
+
+
+
+
+  "attribute.mhcraftlands.player.eating_speed": "Eating Speed",
+  "creativetab.mhcraftlands.blocks_tab": "MyNeoForgeMod Blocks",
+  "item.mhcraftlands.earth_crystal": "Earth Crystal",
+  "item.mhcraftlands.machalite_chunk": "Machalite Chunk",
+  "item.mhcraftlands.nulberry": "Nulberry",
+
+  "item.mhcraftlands.hunter_helmet": "Hunter's Helmet",
+  "item.mhcraftlands.hunter_chestplate": "Hunter's Chestplate",
+  "item.mhcraftlands.hunter_leggings": "Hunter's Leggings",
+  "item.mhcraftlands.hunter_boots": "Hunter's Boots",
+  "item.mhcraftlands.creeper_helmet": "Creeper Helmet",
+  "item.mhcraftlands.creeper_chestplate": "Creeper Chestplate",
+  "item.mhcraftlands.creeper_leggings": "Creeper Leggings",
+  "item.mhcraftlands.creeper_boots": "Creeper Boots",
+
+  "block.mhcraftlands.earth_crystal_ore": "Earth Crystal Ore",
+  "block.mhcraftlands.machalite_ore": "Machalite Ore",
+  "block.mhcraftlands.nulberry_bush": "Nulberry Bush",
+
+  "tooltip.mhcraftlands.magic_block.tooltip": "This is a tooltip. Cool!",
+  "tooltip.mhcraftlands.skill_description.quick_eating": "Makes eating and drinking faster.",
+  "tooltip.mhcraftlands.skill_description.muck_resistance": "Reduces slowness on difficult terrain.",
+  "tooltip.mhcraftlands.skill_description.muck_resistance.2": "[2] Completely removes slowness on difficult terrain.",
+  "tooltip.mhcraftlands.skill_description.bombardier": "Increases TNT explosion power.",
+
+  "attribute.mhcraftlands.fire_elemental_damage": "Fire Damage",
+  "attribute.mhcraftlands.water_elemental_damage": "Water Damage",
+  "attribute.mhcraftlands.thunder_elemental_damage": "Thunder Damage",
+  "attribute.mhcraftlands.ice_elemental_damage": "Ice Damage",
+  "attribute.mhcraftlands.dragon_elemental_damage": "Dragon Damage",
+
+  "enchantment.mhcraftlands.quick_eating": "Quick Eating",
+  "enchantment.mhcraftlands.muck_resistance": "Muck Resistance",
+  "enchantment.mhcraftlands.bombardier": "Bombardier"
+}

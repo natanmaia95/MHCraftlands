@@ -1,0 +1,8 @@
+{
+  "comparator_output": 15,
+  "description": {
+    "translate": "item.mhcraftlands.music_disc_huntergoforth.desc"
+  },
+  "length_in_seconds": 299,
+  "sound_event": "mhcraftlands:music/disc_huntergoforth"
+}

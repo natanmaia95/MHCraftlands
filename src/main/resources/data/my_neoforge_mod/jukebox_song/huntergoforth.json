@@ -1,8 +1,0 @@
-{
-  "comparator_output": 15,
-  "description": {
-    "translate": "item.my_neoforge_mod.music_disc_huntergoforth.desc"
-  },
-  "length_in_seconds": 299,
-  "sound_event": "my_neoforge_mod:music/disc_huntergoforth"
-}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "mhcraftlands:block/machalite_slab"
+    },
+    "type=double": {
+      "model": "mhcraftlands:block/machalite_block"
+    },
+    "type=top": {
+      "model": "mhcraftlands:block/machalite_slab_top"
+    }
+  }
+}

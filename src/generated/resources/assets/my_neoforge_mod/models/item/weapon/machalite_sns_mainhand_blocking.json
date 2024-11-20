@@ -1,6 +1,0 @@
-{
-  "parent": "my_neoforge_mod:item/weapon/sns_shield_blocking",
-  "textures": {
-    "layer0": "my_neoforge_mod:item/machalite_sns_shield"
-  }
-}

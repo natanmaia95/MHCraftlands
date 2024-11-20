@@ -1,0 +1,6 @@
+{
+  "parent": "mhcraftlands:item/handheld_flipped",
+  "textures": {
+    "layer0": "mhcraftlands:item/weapon/f_ghost_lantern"
+  }
+}

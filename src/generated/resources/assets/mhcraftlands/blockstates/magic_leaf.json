@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "clicked=false": {
+      "model": "mhcraftlands:block/magic_leaf_yellow"
+    },
+    "clicked=true": {
+      "model": "mhcraftlands:block/magic_leaf_blue"
+    }
+  }
+}

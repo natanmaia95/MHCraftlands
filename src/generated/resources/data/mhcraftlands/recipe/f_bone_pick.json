@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "f_acorn",
+  "key": {
+    "A": {
+      "item": "mhcraftlands:bone_scrap"
+    },
+    "B": {
+      "item": "mhcraftlands:bone_scrap"
+    },
+    "I": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " B ",
+    " A ",
+    " I "
+  ],
+  "result": {
+    "count": 1,
+    "id": "mhcraftlands:f_bone_pick"
+  }
+}

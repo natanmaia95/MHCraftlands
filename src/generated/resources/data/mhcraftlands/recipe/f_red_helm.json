@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "f_red",
+  "key": {
+    "A": {
+      "item": "mhcraftlands:fur_scrap"
+    },
+    "B": {
+      "item": "minecraft:red_wool"
+    }
+  },
+  "pattern": [
+    " A ",
+    "ABA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mhcraftlands:f_red_helm"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "mhcraftlands:block/machalite_block",
+    "side": "mhcraftlands:block/machalite_block",
+    "top": "mhcraftlands:block/machalite_block"
+  }
+}

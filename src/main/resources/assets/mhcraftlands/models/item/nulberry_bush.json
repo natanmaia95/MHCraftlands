@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "mhcraftlands:block/nulberry_bush_stage3"
+  }
+}

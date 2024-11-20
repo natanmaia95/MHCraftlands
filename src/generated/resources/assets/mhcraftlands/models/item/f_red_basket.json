@@ -1,0 +1,6 @@
+{
+  "parent": "mhcraftlands:item/handheld_low",
+  "textures": {
+    "layer0": "mhcraftlands:item/weapon/f_red_basket"
+  }
+}

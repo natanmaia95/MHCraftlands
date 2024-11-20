@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "f_mosgharl",
+  "key": {
+    "A": {
+      "item": "mhcraftlands:humble_scrap"
+    }
+  },
+  "pattern": [
+    " A ",
+    "A A"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mhcraftlands:f_mosgharl_helm"
+  }
+}

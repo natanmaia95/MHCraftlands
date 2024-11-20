@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "machalite",
+  "key": {
+    "#": {
+      "item": "mhcraftlands:machalite_block"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "mhcraftlands:machalite_stairs"
+  }
+}

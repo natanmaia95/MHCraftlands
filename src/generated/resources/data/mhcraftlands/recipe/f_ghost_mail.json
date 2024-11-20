@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "f_ghost",
+  "key": {
+    "A": {
+      "item": "mhcraftlands:sinister_scrap"
+    },
+    "B": {
+      "item": "minecraft:white_banner"
+    }
+  },
+  "pattern": [
+    "ABA",
+    " A "
+  ],
+  "result": {
+    "count": 1,
+    "id": "mhcraftlands:f_ghost_mail"
+  }
+}
