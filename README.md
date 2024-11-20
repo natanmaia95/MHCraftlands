@@ -1,30 +1,25 @@
-**Asset Information**
+About
 =======
+Monster Hunter Craftlands intends to add mechanics and features, like hunting armor and weapons, pets, items and materials. It is in alpha.
+Currently the focus is on implementing Palicos as hunting pets, with their equipment and behaviors.
 
-Textures are either vanilla edits or sourced from the internet. They are placeholder and not intended to be shared or distributed.
+MHCraftlands is a project I make for fun as a pastime so don't expect it to be updated frequently. The repository also contains other features that aren't fully implemented but can be accessed via commands.
 
-
-Installation information
+Current Features
 =======
+- **Palicos**: Find and recruit wild Felynes, or summon one yourself with a Summon Voucher. They will help you defeat mobs and gather materials.
+- **Palico Equipment**: Use _scraps_ to make unique armor and weapons for your Palico.
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+To-Do
+=======
+[] Implement Palico leveling and skills
+[] Balance equipment progression to be vanilla-friendly
+[] Add other lynians like Shakalaka, Melynx, Grimalkyne
+[] Add Palamutes and their own systems
+[] Work on Hunter weapons and armor
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+Asset Information
+=======
+Humanoid armor textures have been sourced from the internet as placeholders and are not final.
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
-
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
-
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+Audio files are ripped from the source games.
