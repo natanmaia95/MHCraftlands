@@ -28,6 +28,7 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spongepowered.asm.mixin.Mutable;
@@ -111,21 +112,25 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
                 this.registerGoals();
                 goalsCleared = false;
             }
+            // passive health regen, 1 health every minute
+            if ((this.tickCount+1) % 1200 == 0) this.heal(1.0f);
+
         }
     }
 
     @Override
-    public boolean canAttack(LivingEntity target) {
-        return super.canAttack(target) && NOT_ALLIED_TO_HUNTERS_SELECTOR.test(target);
+    public boolean canAttack(@NotNull LivingEntity target) {
+        return super.canAttack(target) && !(this.isTame() && ALLIED_TO_HUNTERS_SELECTOR.test(target));
     }
 
     @Override
-    public boolean canAttack(LivingEntity livingentity, TargetingConditions condition) {
-        return super.canAttack(livingentity, condition) && NOT_ALLIED_TO_HUNTERS_SELECTOR.test(livingentity);
+    public boolean canAttack(@NotNull LivingEntity livingentity, @NotNull TargetingConditions condition) {
+        return super.canAttack(livingentity, condition) && !(this.isTame() && ALLIED_TO_HUNTERS_SELECTOR.test(livingentity));
     }
 
     @Override
-    public boolean wantsToAttack(LivingEntity target, LivingEntity owner) {
+    public boolean wantsToAttack(@NotNull LivingEntity target, @NotNull LivingEntity owner) {
+        if (!this.isTame()) return true;
         return NOT_ALLIED_TO_HUNTERS_SELECTOR.test(target);
     }
 
@@ -139,14 +144,14 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
 
 
     @Override
-    protected void hurtArmor(DamageSource damageSource, float damageAmount) {
+    protected void hurtArmor(@NotNull DamageSource damageSource, float damageAmount) {
         if (damageAmount > 0 && !damageSource.is(DamageTypeTags.PANIC_ENVIRONMENTAL_CAUSES)) {
             this.doHurtEquipment(damageSource, 1.0f, new EquipmentSlot[]{EquipmentSlot.CHEST, EquipmentSlot.HEAD});
         }
     }
 
     @Override
-    public boolean doHurtTarget(Entity target) {
+    public boolean doHurtTarget(@NotNull Entity target) {
         boolean result = super.doHurtTarget(target);
         if (result && target instanceof LivingEntity) {
             ItemStack weapon = this.getMainHandItem(); // Get the item in the mob's main hand.

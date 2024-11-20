@@ -16,6 +16,8 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.TimeUtil;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.*;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -45,6 +47,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.UUID;
 
 public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevelableEntity, InventoryCarrier, MenuProvider {
 
@@ -107,10 +110,11 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         }
     };
 
-    private final SimpleContainer pouchInventory = new SimpleContainer(6) {
+    private final SimpleContainer pouchInventory = new SimpleContainer(6) {};
 
-    };
-
+    private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
+    @Nullable
+    private UUID persistentAngerTarget;
 
     public PalicoEntity(EntityType<? extends HuntingBuddyEntity> entityType, Level level) {
         super(entityType, level);
@@ -145,6 +149,10 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
         this.targetSelector.addGoal(3, new HuntingBuddyHurtByTargetGoal(this).setAlertOthers());
+        this.targetSelector.addGoal(4, new HurtByTargetGoal(this));
+//        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
+//        this.targetSelector.addGoal(8, new ResetUniversalAngerTargetGoal<>(this, true));
+
     }
 
     public static boolean checkPalicoSpawnRules(EntityType<? extends PalicoEntity> palico, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
