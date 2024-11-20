@@ -81,6 +81,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         petWeaponItem(ModWeaponItems.F_BONE_PICK);
         petWeaponItem(ModWeaponItems.F_BONE_HAMMER);
         petWeaponItem(ModWeaponItems.F_IRON_SWORD);
+        petWeaponItem(ModWeaponItems.F_RED_BASKET, modLoc("item/handheld_low"));
+        petWeaponItem(ModWeaponItems.F_MOSGHARL_BROOM);
+        petWeaponItem(ModWeaponItems.F_GHOST_LANTERN, modLoc("item/handheld_flipped"));
+        petWeaponItem(ModWeaponItems.F_FRANKIE_BALL, modLoc("item/handheld_low"));
     }
 
     private void registerAllCraftingMaterials() {
@@ -134,11 +138,11 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
     private ItemModelBuilder petWeaponItem(DeferredItem<?> item) {
-        return petWeaponItem(item, "item/handheld");
+        return petWeaponItem(item, mcLoc("item/handheld"));
     }
 
-    private ItemModelBuilder petWeaponItem(DeferredItem<?> item, String parentModelPath) {
-        return withExistingParent(item.getId().getPath(), ResourceLocation.parse(parentModelPath))
+    private ItemModelBuilder petWeaponItem(DeferredItem<?> item, ResourceLocation parentModelPath) {
+        return withExistingParent(item.getId().getPath(), parentModelPath)
                 .texture("layer0", modLoc("item/weapon/" + item.getId().getPath()));
     }
 

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "f_alloy",
+  "key": {
+    "A": {
+      "item": "my_neoforge_mod:sinister_scrap"
+    },
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "I": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " A ",
+    " B ",
+    "AIA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "my_neoforge_mod:f_frankie_ball"
+  }
+}

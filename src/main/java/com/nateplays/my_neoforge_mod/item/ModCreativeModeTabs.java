@@ -98,6 +98,10 @@ public class ModCreativeModeTabs {
                         output.accept(ModWeaponItems.F_BONE_PICK);
                         output.accept(ModWeaponItems.F_BONE_HAMMER);
                         output.accept(ModWeaponItems.F_IRON_SWORD);
+                        output.accept(ModWeaponItems.F_RED_BASKET);
+                        output.accept(ModWeaponItems.F_MOSGHARL_BROOM);
+                        output.accept(ModWeaponItems.F_GHOST_LANTERN);
+                        output.accept(ModWeaponItems.F_FRANKIE_BALL);
 
                         outputAcceptHuntingArmorItem(ModArmorItems.F_ACORN_HELM.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(ModArmorItems.F_ACORN_MAIL.get(), itemDisplayParameters, output);

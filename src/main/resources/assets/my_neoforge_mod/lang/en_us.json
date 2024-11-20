@@ -31,12 +31,23 @@
   "item.my_neoforge_mod.f_red_mail": "F Red Vest",
   "item.my_neoforge_mod.f_mosgharl_helm": "F Mosgharl Hat",
   "item.my_neoforge_mod.f_mosgharl_mail": "F Mosgharl Mail",
-  "item.my_neoforge_mod.f_ghost_helm": "F Ghost Hat",
+  "item.my_neoforge_mod.f_ghost_helm": "F Meowloween Mask",
   "item.my_neoforge_mod.f_ghost_mail": "F Ghost Garb",
   "item.my_neoforge_mod.f_frankie_helm": "F Frankie Hat",
   "item.my_neoforge_mod.f_frankie_mail": "F Frankie Vest",
 
+  "item.my_neoforge_mod.f_kamura_bokken": "F Kamura Bokken",
+  "item.my_neoforge_mod.f_bone_pick": "F Bone Pick",
+  "item.my_neoforge_mod.f_bone_hammer": "F Bone Hammer",
+  "item.my_neoforge_mod.f_iron_sword": "F Iron Sword",
+  "item.my_neoforge_mod.f_red_basket": "F Red Basket",
+  "item.my_neoforge_mod.f_mosgharl_broom": "F Mosgharl Broom",
+  "item.my_neoforge_mod.f_ghost_lantern": "F Jack-o'-Lantern",
+  "item.my_neoforge_mod.f_frankie_ball": "F Frankie Steel Ball",
 
+  "sounds.my_neoforge_mod.felyne_ambient": "Felyne meows",
+  "sounds.my_neoforge_mod.felyne_hurt": "Felyne hurts",
+  "sounds.my_neoforge_mod.felyne_death": "Felyne dies",
 
 
 

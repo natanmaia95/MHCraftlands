@@ -2,7 +2,6 @@ package com.nateplays.my_neoforge_mod.datagen;
 
 import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.block.ModBlocks;
-import com.nateplays.my_neoforge_mod.entity.pets.PalicoEntity;
 import com.nateplays.my_neoforge_mod.item.ModItems;
 import com.nateplays.my_neoforge_mod.item.armor.ModArmorItems;
 import com.nateplays.my_neoforge_mod.item.armor.PetHuntingArmorItem;
@@ -19,7 +18,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
-import net.neoforged.neoforge.registries.DeferredItem;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -97,10 +95,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SCRAP_FUR)
                 .requires(Items.LEATHER).requires(Items.STICK).unlockedBy("has_leather", has(Items.LEATHER)).save(recipeOutput, MyNeoForgeMod.MODID+":fur_scrap_from_leather");
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SCRAP_HUMBLE)
-                .requires(ItemTags.VILLAGER_PLANTABLE_SEEDS).requires(ItemTags.VILLAGER_PLANTABLE_SEEDS).requires(ItemTags.VILLAGER_PLANTABLE_SEEDS).requires(Items.STICK)
-                .unlockedBy("has_villager_plantable_seeds", has(ItemTags.VILLAGER_PLANTABLE_SEEDS)).save(recipeOutput);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SCRAP_HUMBLE)
-                .requires(Ingredient.of(Items.RED_MUSHROOM, Items.BROWN_MUSHROOM)).requires(Items.STICK)
+                .requires(Ingredient.of(Items.RED_MUSHROOM, Items.BROWN_MUSHROOM))
+                .requires(Ingredient.of(Items.RED_MUSHROOM, Items.BROWN_MUSHROOM))
+                .requires(Ingredient.of(Items.RED_MUSHROOM, Items.BROWN_MUSHROOM))
+                .requires(Items.STICK)
                 .unlockedBy("has_red_mushroom", has(Items.RED_MUSHROOM)).unlockedBy("has_brown_mushroom", has(Items.BROWN_MUSHROOM))
                 .save(recipeOutput, MyNeoForgeMod.MODID+":humble_scrap_from_mushrooms");
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SCRAP_SINISTER, 2)
@@ -130,6 +128,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         palicoWeapon(recipeOutput, "f_acorn", ModWeaponItems.F_BONE_PICK.get(), ModItems.SCRAP_BONE, Ingredient.EMPTY, 2);
         palicoWeapon(recipeOutput, "f_bone", ModWeaponItems.F_BONE_HAMMER.get(), ModItems.SCRAP_BONE, Items.BONE, 1);
         palicoWeapon(recipeOutput, "f_alloy", ModWeaponItems.F_IRON_SWORD.get(), ModItems.SCRAP_ORE, Ingredient.EMPTY, 0);
+
+        palicoWeapon(recipeOutput, "f_alloy", ModWeaponItems.F_RED_BASKET.get(), ModItems.SCRAP_WOOD, Items.APPLE, 4);
+        palicoWeapon(recipeOutput, "f_alloy", ModWeaponItems.F_MOSGHARL_BROOM.get(), ModItems.SCRAP_HUMBLE, Items.HAY_BLOCK, 2);
+        palicoWeapon(recipeOutput, "f_alloy", ModWeaponItems.F_GHOST_LANTERN.get(), ModItems.SCRAP_SINISTER, Items.JACK_O_LANTERN, 5);
+        palicoWeapon(recipeOutput, "f_alloy", ModWeaponItems.F_FRANKIE_BALL.get(), ModItems.SCRAP_SINISTER, Items.IRON_BLOCK, 5);
     }
 
 
@@ -202,6 +205,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 pattern1 = "ABI"; pattern2 = "  A"; pattern3 = "  A"; break;
             case 4: //shuriken
                 pattern1 = " B "; pattern2 = "AIA"; pattern3 = " A "; break;
+            case 5: //hook
+                pattern1 = " A "; pattern2 = "A A"; pattern3 = "I B"; break;
             default:
                 shape = 0; pattern1 = pattern2 = pattern3 = "";
                 System.out.println("ERROR: NO PATTERN CHOSEN");

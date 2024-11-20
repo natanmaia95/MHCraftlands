@@ -4,7 +4,6 @@ import com.nateplays.my_neoforge_mod.MyNeoForgeMod;
 import com.nateplays.my_neoforge_mod.entity.pets.PalicoEntity;
 import com.nateplays.my_neoforge_mod.item.ModToolTiers;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Tiers;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -31,6 +30,22 @@ public class ModWeaponItems {
     public static final DeferredItem<PetHuntingWeaponItem<PalicoEntity>> F_IRON_SWORD = WEAPON_ITEMS.register("f_iron_sword",
             () -> new PetHuntingWeaponItem<PalicoEntity>(ModToolTiers.F_IRON_SWORD,
                     new Item.Properties().attributes(PetHuntingWeaponItem.createAttributes(ModToolTiers.F_IRON_SWORD)), PalicoEntity.class));
+
+    public static final DeferredItem<PetHuntingWeaponItem<PalicoEntity>> F_RED_BASKET = WEAPON_ITEMS.register("f_red_basket",
+            () -> new PetHuntingWeaponItem<PalicoEntity>(ModToolTiers.F_RED_BASKET,
+                    new Item.Properties().attributes(PetHuntingWeaponItem.createAttributes(ModToolTiers.F_RED_BASKET)), PalicoEntity.class));
+
+    public static final DeferredItem<PetHuntingWeaponItem<PalicoEntity>> F_MOSGHARL_BROOM = WEAPON_ITEMS.register("f_mosgharl_broom",
+            () -> new PetHuntingWeaponItem<PalicoEntity>(ModToolTiers.F_MOSGHARL_BROOM,
+                    new Item.Properties().attributes(PetHuntingWeaponItem.createAttributes(ModToolTiers.F_MOSGHARL_BROOM)), PalicoEntity.class));
+
+    public static final DeferredItem<PetHuntingWeaponItem<PalicoEntity>> F_GHOST_LANTERN = WEAPON_ITEMS.register("f_ghost_lantern",
+            () -> new PetHuntingWeaponItem<PalicoEntity>(ModToolTiers.F_GHOST_LANTERN,
+                    new Item.Properties().attributes(PetHuntingWeaponItem.createAttributes(ModToolTiers.F_GHOST_LANTERN)), PalicoEntity.class));
+
+    public static final DeferredItem<PetHuntingWeaponItem<PalicoEntity>> F_FRANKIE_BALL = WEAPON_ITEMS.register("f_frankie_ball",
+            () -> new PetHuntingWeaponItem<PalicoEntity>(ModToolTiers.F_FRANKIE_BALL,
+                    new Item.Properties().attributes(PetHuntingWeaponItem.createAttributes(ModToolTiers.F_FRANKIE_BALL)), PalicoEntity.class));
 
 
 

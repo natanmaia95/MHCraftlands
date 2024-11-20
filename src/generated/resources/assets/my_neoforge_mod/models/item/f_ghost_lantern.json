@@ -1,0 +1,6 @@
+{
+  "parent": "my_neoforge_mod:item/handheld_flipped",
+  "textures": {
+    "layer0": "my_neoforge_mod:item/weapon/f_ghost_lantern"
+  }
+}
