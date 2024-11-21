@@ -1,5 +1,11 @@
+Download
+=======
+You can find releases over on [Modrinth](https://modrinth.com/mod/mhcraftlands).
+
 About
 =======
+![Screenshot of palicos and their armor sets](https://github.com/natanmaia95/MHCraftlands/blob/main/repo_assets/ss1.jpg)
+
 Monster Hunter Craftlands intends to add mechanics and features, like hunting armor and weapons, pets, items and materials. It is in alpha.
 Currently the focus is on implementing Palicos as hunting pets, with their equipment and behaviors.
 
