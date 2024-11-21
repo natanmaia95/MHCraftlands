@@ -1,9 +1,12 @@
 package com.nateplays.mhcraftlands.item;
 
 import com.nateplays.mhcraftlands.MHMod;
-import com.nateplays.mhcraftlands.item.armor.HuntingArmorItem;
-import com.nateplays.mhcraftlands.item.armor.ModArmorItems;
-import com.nateplays.mhcraftlands.item.weapons.ModWeaponItems;
+import com.nateplays.mhcraftlands.common.armor.HuntingArmorItem;
+import com.nateplays.mhcraftlands.common.armor.ModArmorItems;
+import com.nateplays.mhcraftlands.common.weapon.ModWeaponItems;
+import com.nateplays.mhcraftlands.pet.item.MHPetItems;
+import com.nateplays.mhcraftlands.pet.item.armor.MHPetArmorItems;
+import com.nateplays.mhcraftlands.pet.item.weapon.MHPetWeaponItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -46,7 +49,7 @@ public class ModCreativeModeTabs {
     public static final Supplier<CreativeModeTab> MYNEOFORGEMOD_ITEMS_TAB = CREATIVE_MODE_TABS.register("myneoforgemod_items_tab",
             () -> CreativeModeTab.builder()
 //                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "myneoforgemod_blocks_tab"))
-                    .icon(() -> new ItemStack(ModItems.SUMMON_FELYNE_VOUCHER.get()))
+                    .icon(() -> new ItemStack(MHPetItems.SUMMON_FELYNE_VOUCHER.get()))
                     .title(Component.translatable("creativetab.mhcraftlands.items_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
 //                        output.accept(ModItems.EARTH_CRYSTAL);
@@ -57,9 +60,9 @@ public class ModCreativeModeTabs {
 //                        output.accept(ModItems.MUSIC_DISC_HUNTERGOFORTH);
 
 //                        output.accept(ModItems.MOSSWINE_SPAWN_EGG);
-                        output.accept(ModItems.FELYNE_SPAWN_EGG);
-                        output.accept(ModItems.SUMMON_FELYNE_VOUCHER);
-                        output.accept(ModItems.DISMISS_BUDDY_VOUCHER);
+                        output.accept(MHPetItems.FELYNE_SPAWN_EGG);
+                        output.accept(MHPetItems.SUMMON_FELYNE_VOUCHER);
+                        output.accept(MHPetItems.DISMISS_BUDDY_VOUCHER);
 
 //                        output.accept(ModItems.MACHALITE_SWORD);
 //                        output.accept(ModItems.MACHALITE_PICKAXE);
@@ -68,12 +71,12 @@ public class ModCreativeModeTabs {
 //                        output.accept(ModItems.MACHALITE_HOE);
 //                        output.accept(ModItems.MACHALITE_HAMMER);
 
-                        output.accept(ModItems.SCRAP_WOOD);
-                        output.accept(ModItems.SCRAP_ORE);
-                        output.accept(ModItems.SCRAP_BONE);
-                        output.accept(ModItems.SCRAP_FUR);
-                        output.accept(ModItems.SCRAP_HUMBLE);
-                        output.accept(ModItems.SCRAP_SINISTER);
+                        output.accept(MHPetItems.SCRAP_WOOD);
+                        output.accept(MHPetItems.SCRAP_ORE);
+                        output.accept(MHPetItems.SCRAP_BONE);
+                        output.accept(MHPetItems.SCRAP_FUR);
+                        output.accept(MHPetItems.SCRAP_HUMBLE);
+                        output.accept(MHPetItems.SCRAP_SINISTER);
                     })
 //                    .backgroundTexture(ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "textures/block/earth_crystal_ore.png"))
                     .build());
@@ -81,7 +84,7 @@ public class ModCreativeModeTabs {
     public static final Supplier<CreativeModeTab> MYNEOFORGEMOD_ARMORS_TAB = CREATIVE_MODE_TABS.register("myneoforgemod_pet_equipment_tab",
             () -> CreativeModeTab.builder()
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "myneoforgemod_items_tab"))
-                    .icon(() -> new ItemStack(ModArmorItems.F_ACORN_MAIL.get()))
+                    .icon(() -> new ItemStack(MHPetArmorItems.F_ACORN_MAIL.get()))
                     .title(Component.translatable("creativetab.mhcraftlands.pet_equipment_tab"))
                     .withSearchBar()
                     .displayItems((itemDisplayParameters, output) -> {
@@ -94,31 +97,31 @@ public class ModCreativeModeTabs {
 //                        outputAcceptHuntingArmorItem(ModArmorItems.CREEPER_LEGGINGS.get(), itemDisplayParameters, output);
 //                        outputAcceptHuntingArmorItem(ModArmorItems.CREEPER_BOOTS.get(), itemDisplayParameters, output);
 
-                        output.accept(ModWeaponItems.F_KAMURA_BOKKEN);
-                        output.accept(ModWeaponItems.F_BONE_PICK);
-                        output.accept(ModWeaponItems.F_BONE_HAMMER);
-                        output.accept(ModWeaponItems.F_IRON_SWORD);
-                        output.accept(ModWeaponItems.F_RED_BASKET);
-                        output.accept(ModWeaponItems.F_MOSGHARL_BROOM);
-                        output.accept(ModWeaponItems.F_GHOST_LANTERN);
-                        output.accept(ModWeaponItems.F_FRANKIE_BALL);
+                        output.accept(MHPetWeaponItems.F_KAMURA_BOKKEN);
+                        output.accept(MHPetWeaponItems.F_BONE_PICK);
+                        output.accept(MHPetWeaponItems.F_BONE_HAMMER);
+                        output.accept(MHPetWeaponItems.F_IRON_SWORD);
+                        output.accept(MHPetWeaponItems.F_RED_BASKET);
+                        output.accept(MHPetWeaponItems.F_MOSGHARL_BROOM);
+                        output.accept(MHPetWeaponItems.F_GHOST_LANTERN);
+                        output.accept(MHPetWeaponItems.F_FRANKIE_BALL);
 
-                        outputAcceptHuntingArmorItem(ModArmorItems.F_ACORN_HELM.get(), itemDisplayParameters, output);
-                        outputAcceptHuntingArmorItem(ModArmorItems.F_ACORN_MAIL.get(), itemDisplayParameters, output);
-                        outputAcceptHuntingArmorItem(ModArmorItems.F_KAMURA_HELM.get(), itemDisplayParameters, output);
-                        outputAcceptHuntingArmorItem(ModArmorItems.F_KAMURA_MAIL.get(), itemDisplayParameters, output);
-                        outputAcceptHuntingArmorItem(ModArmorItems.F_BONE_HELM.get(), itemDisplayParameters, output);
-                        outputAcceptHuntingArmorItem(ModArmorItems.F_BONE_MAIL.get(), itemDisplayParameters, output);
-                        outputAcceptHuntingArmorItem(ModArmorItems.F_ALLOY_HELM.get(), itemDisplayParameters, output);
-                        outputAcceptHuntingArmorItem(ModArmorItems.F_ALLOY_MAIL.get(), itemDisplayParameters, output);
-                        outputAcceptHuntingArmorItem(ModArmorItems.F_RED_HELM.get(), itemDisplayParameters, output);
-                        outputAcceptHuntingArmorItem(ModArmorItems.F_RED_MAIL.get(), itemDisplayParameters, output);
-                        outputAcceptHuntingArmorItem(ModArmorItems.F_GHOST_HELM.get(), itemDisplayParameters, output);
-                        outputAcceptHuntingArmorItem(ModArmorItems.F_GHOST_MAIL.get(), itemDisplayParameters, output);
-                        outputAcceptHuntingArmorItem(ModArmorItems.F_MOSGHARL_HELM.get(), itemDisplayParameters, output);
-                        outputAcceptHuntingArmorItem(ModArmorItems.F_MOSGHARL_MAIL.get(), itemDisplayParameters, output);
-                        outputAcceptHuntingArmorItem(ModArmorItems.F_FRANKIE_HELM.get(), itemDisplayParameters, output);
-                        outputAcceptHuntingArmorItem(ModArmorItems.F_FRANKIE_MAIL.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_ACORN_HELM.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_ACORN_MAIL.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_KAMURA_HELM.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_KAMURA_MAIL.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_BONE_HELM.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_BONE_MAIL.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_ALLOY_HELM.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_ALLOY_MAIL.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_RED_HELM.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_RED_MAIL.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_GHOST_HELM.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_GHOST_MAIL.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_MOSGHARL_HELM.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_MOSGHARL_MAIL.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_FRANKIE_HELM.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_FRANKIE_MAIL.get(), itemDisplayParameters, output);
                     })
                     .build());
 

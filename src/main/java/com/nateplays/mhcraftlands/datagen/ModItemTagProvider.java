@@ -2,7 +2,8 @@ package com.nateplays.mhcraftlands.datagen;
 
 import com.nateplays.mhcraftlands.MHMod;
 import com.nateplays.mhcraftlands.item.ModItems;
-import com.nateplays.mhcraftlands.item.armor.ModArmorItems;
+import com.nateplays.mhcraftlands.common.armor.ModArmorItems;
+import com.nateplays.mhcraftlands.pet.item.armor.MHPetArmorItems;
 import com.nateplays.mhcraftlands.tags.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -39,7 +40,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
 
         IntrinsicTagAppender<Item> dyeableArmorTagAppender = tag(ModTags.Items.DYEABLE_HUNTING_ARMORS);
-        ModArmorItems.DYEABLE_ARMORS_LIST.forEach(deferredItem -> dyeableArmorTagAppender.add(deferredItem.value()));
+        MHPetArmorItems.DYEABLE_ARMORS_LIST.forEach(deferredItem -> dyeableArmorTagAppender.add(deferredItem.value()));
         tag(ItemTags.DYEABLE).addTag(ModTags.Items.DYEABLE_HUNTING_ARMORS);
     }
 }

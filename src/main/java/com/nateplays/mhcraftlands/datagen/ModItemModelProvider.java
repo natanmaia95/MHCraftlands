@@ -2,9 +2,16 @@ package com.nateplays.mhcraftlands.datagen;
 
 import com.nateplays.mhcraftlands.MHMod;
 import com.nateplays.mhcraftlands.block.ModBlocks;
+import com.nateplays.mhcraftlands.common.weapon.*;
+import com.nateplays.mhcraftlands.hunter.weapon.DualBladesItem;
+import com.nateplays.mhcraftlands.hunter.weapon.GlaiveItem;
+import com.nateplays.mhcraftlands.hunter.weapon.GreatSwordItem;
+import com.nateplays.mhcraftlands.hunter.weapon.SwordAndShieldItem;
 import com.nateplays.mhcraftlands.item.ModItems;
-import com.nateplays.mhcraftlands.item.armor.ModArmorItems;
-import com.nateplays.mhcraftlands.item.weapons.*;
+import com.nateplays.mhcraftlands.common.armor.ModArmorItems;
+import com.nateplays.mhcraftlands.pet.item.MHPetItems;
+import com.nateplays.mhcraftlands.pet.item.armor.MHPetArmorItems;
+import com.nateplays.mhcraftlands.pet.item.weapon.MHPetWeaponItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -49,9 +56,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         gvItem(ModItems.MACHALITE_GV);
 
         withExistingParent(ModItems.MOSSWINE_SPAWN_EGG.getRegisteredName(), mcLoc("item/template_spawn_egg"));
-        withExistingParent(ModItems.FELYNE_SPAWN_EGG.getRegisteredName(), mcLoc("item/template_spawn_egg"));
-        basicItem(ModItems.SUMMON_FELYNE_VOUCHER.get());
-        basicItem(ModItems.DISMISS_BUDDY_VOUCHER.get());
+        withExistingParent(MHPetItems.FELYNE_SPAWN_EGG.getRegisteredName(), mcLoc("item/template_spawn_egg"));
+        basicItem(MHPetItems.SUMMON_FELYNE_VOUCHER.get());
+        basicItem(MHPetItems.DISMISS_BUDDY_VOUCHER.get());
 
         registerAllCraftingMaterials();
         registerAllPetArmorWeaponItems();
@@ -60,41 +67,41 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
     private void registerAllPetArmorWeaponItems() {
-        armorItem(ModArmorItems.F_ACORN_HELM);
-        armorItem(ModArmorItems.F_ACORN_MAIL);
-        armorItem(ModArmorItems.F_KAMURA_HELM);
-        armorItem(ModArmorItems.F_KAMURA_MAIL);
-        armorItem(ModArmorItems.F_BONE_HELM);
-        armorItem(ModArmorItems.F_BONE_MAIL);
-        armorItem(ModArmorItems.F_ALLOY_HELM);
-        armorItem(ModArmorItems.F_ALLOY_MAIL);
-        armorItem(ModArmorItems.F_RED_HELM, true);
-        armorItem(ModArmorItems.F_RED_MAIL, true);
-        armorItem(ModArmorItems.F_GHOST_HELM, true);
-        armorItem(ModArmorItems.F_GHOST_MAIL, true);
-        armorItem(ModArmorItems.F_FRANKIE_HELM);
-        armorItem(ModArmorItems.F_FRANKIE_MAIL);
-        armorItem(ModArmorItems.F_MOSGHARL_HELM);
-        armorItem(ModArmorItems.F_MOSGHARL_MAIL);
+        armorItem(MHPetArmorItems.F_ACORN_HELM);
+        armorItem(MHPetArmorItems.F_ACORN_MAIL);
+        armorItem(MHPetArmorItems.F_KAMURA_HELM);
+        armorItem(MHPetArmorItems.F_KAMURA_MAIL);
+        armorItem(MHPetArmorItems.F_BONE_HELM);
+        armorItem(MHPetArmorItems.F_BONE_MAIL);
+        armorItem(MHPetArmorItems.F_ALLOY_HELM);
+        armorItem(MHPetArmorItems.F_ALLOY_MAIL);
+        armorItem(MHPetArmorItems.F_RED_HELM, true);
+        armorItem(MHPetArmorItems.F_RED_MAIL, true);
+        armorItem(MHPetArmorItems.F_GHOST_HELM, true);
+        armorItem(MHPetArmorItems.F_GHOST_MAIL, true);
+        armorItem(MHPetArmorItems.F_FRANKIE_HELM);
+        armorItem(MHPetArmorItems.F_FRANKIE_MAIL);
+        armorItem(MHPetArmorItems.F_MOSGHARL_HELM);
+        armorItem(MHPetArmorItems.F_MOSGHARL_MAIL);
 
-        petWeaponItem(ModWeaponItems.F_KAMURA_BOKKEN);
-        petWeaponItem(ModWeaponItems.F_BONE_PICK);
-        petWeaponItem(ModWeaponItems.F_BONE_HAMMER);
-        petWeaponItem(ModWeaponItems.F_IRON_SWORD);
-        petWeaponItem(ModWeaponItems.F_RED_BASKET, modLoc("item/handheld_low"));
-        petWeaponItem(ModWeaponItems.F_MOSGHARL_BROOM);
-        petWeaponItem(ModWeaponItems.F_GHOST_LANTERN, modLoc("item/handheld_flipped"));
-        petWeaponItem(ModWeaponItems.F_FRANKIE_BALL, modLoc("item/handheld_low"));
+        petWeaponItem(MHPetWeaponItems.F_KAMURA_BOKKEN);
+        petWeaponItem(MHPetWeaponItems.F_BONE_PICK);
+        petWeaponItem(MHPetWeaponItems.F_BONE_HAMMER);
+        petWeaponItem(MHPetWeaponItems.F_IRON_SWORD);
+        petWeaponItem(MHPetWeaponItems.F_RED_BASKET, modLoc("item/handheld_low"));
+        petWeaponItem(MHPetWeaponItems.F_MOSGHARL_BROOM);
+        petWeaponItem(MHPetWeaponItems.F_GHOST_LANTERN, modLoc("item/handheld_flipped"));
+        petWeaponItem(MHPetWeaponItems.F_FRANKIE_BALL, modLoc("item/handheld_low"));
     }
 
     private void registerAllCraftingMaterials() {
         String prefix = "material/";
-        basicItem(ModItems.SCRAP_WOOD, prefix);
-        basicItem(ModItems.SCRAP_ORE, prefix);
-        basicItem(ModItems.SCRAP_BONE, prefix);
-        basicItem(ModItems.SCRAP_FUR, prefix);
-        basicItem(ModItems.SCRAP_HUMBLE, prefix);
-        basicItem(ModItems.SCRAP_SINISTER, prefix);
+        basicItem(MHPetItems.SCRAP_WOOD, prefix);
+        basicItem(MHPetItems.SCRAP_ORE, prefix);
+        basicItem(MHPetItems.SCRAP_BONE, prefix);
+        basicItem(MHPetItems.SCRAP_FUR, prefix);
+        basicItem(MHPetItems.SCRAP_HUMBLE, prefix);
+        basicItem(MHPetItems.SCRAP_SINISTER, prefix);
     }
 
 

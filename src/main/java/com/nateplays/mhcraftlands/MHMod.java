@@ -1,20 +1,21 @@
 package com.nateplays.mhcraftlands;
 
-import com.nateplays.mhcraftlands.attribute.ModAttributes;
+import com.nateplays.mhcraftlands.common.attribute.ModAttributes;
 import com.nateplays.mhcraftlands.block.ModBlocks;
-import com.nateplays.mhcraftlands.component.ModDataComponents;
+import com.nateplays.mhcraftlands.common.component.ModDataComponents;
 import com.nateplays.mhcraftlands.effect.ModEffects;
 import com.nateplays.mhcraftlands.entity.ModEntities;
 import com.nateplays.mhcraftlands.entity.client.MosswineRenderer;
-import com.nateplays.mhcraftlands.entity.pets.client.PalicoRenderer;
-import com.nateplays.mhcraftlands.gui.ModMenuTypes;
+import com.nateplays.mhcraftlands.pet.MHPetSubRegistry;
+import com.nateplays.mhcraftlands.pet.client.rendering.PalicoRenderer;
 import com.nateplays.mhcraftlands.item.ModCreativeModeTabs;
 import com.nateplays.mhcraftlands.item.ModItems;
-import com.nateplays.mhcraftlands.item.armor.ModArmorItems;
-import com.nateplays.mhcraftlands.item.armor.ModArmorMaterials;
-import com.nateplays.mhcraftlands.item.weapons.DualBladesItem;
-import com.nateplays.mhcraftlands.item.weapons.ModWeaponItems;
-import com.nateplays.mhcraftlands.item.weapons.SwordAndShieldItem;
+import com.nateplays.mhcraftlands.common.armor.ModArmorItems;
+import com.nateplays.mhcraftlands.common.armor.ModArmorMaterials;
+import com.nateplays.mhcraftlands.hunter.weapon.DualBladesItem;
+import com.nateplays.mhcraftlands.common.weapon.ModWeaponItems;
+import com.nateplays.mhcraftlands.hunter.weapon.SwordAndShieldItem;
+import com.nateplays.mhcraftlands.pet.item.MHPetItems;
 import com.nateplays.mhcraftlands.sound.ModSounds;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -76,7 +77,9 @@ public class MHMod
 
         ModEntities.register(modEventBus);
         ModEffects.register(modEventBus);
-        ModMenuTypes.register(modEventBus);
+
+        //pet subregistry
+        MHPetSubRegistry.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -93,7 +96,7 @@ public class MHMod
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
-            event.accept(ModItems.FELYNE_SPAWN_EGG);
+            event.accept(MHPetItems.FELYNE_SPAWN_EGG);
         }
     }
 
@@ -112,8 +115,7 @@ public class MHMod
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             EntityRenderers.register(ModEntities.MOSSWINE.get(), MosswineRenderer::new);
-//            EntityRenderers.register(ModEntities.PALICO.get(), PalicoRenderer::new);
-            EntityRenderers.register(ModEntities.FELYNE.get(), PalicoRenderer::new);
+
 
             // Predicates
             ModItems.ITEMS.getEntries().forEach((itemDeferredHolder) -> {

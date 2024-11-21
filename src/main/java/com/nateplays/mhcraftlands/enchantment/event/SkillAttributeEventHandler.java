@@ -2,7 +2,7 @@ package com.nateplays.mhcraftlands.enchantment.event;
 
 import com.mojang.logging.LogUtils;
 import com.nateplays.mhcraftlands.MHMod;
-import com.nateplays.mhcraftlands.attribute.ModAttributes;
+import com.nateplays.mhcraftlands.common.attribute.ModAttributes;
 import com.nateplays.mhcraftlands.enchantment.ModEnchantmentHelper;
 import com.nateplays.mhcraftlands.enchantment.ModEnchantments;
 import net.minecraft.core.Holder;

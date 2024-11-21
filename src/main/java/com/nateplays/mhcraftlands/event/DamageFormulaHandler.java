@@ -2,8 +2,8 @@ package com.nateplays.mhcraftlands.event;
 
 import com.mojang.logging.LogUtils;
 import com.nateplays.mhcraftlands.MHMod;
-import com.nateplays.mhcraftlands.attribute.ModAttributes;
-import com.nateplays.mhcraftlands.item.weapons.HuntingWeaponItem;
+import com.nateplays.mhcraftlands.common.attribute.ModAttributes;
+import com.nateplays.mhcraftlands.common.weapon.HuntingWeaponItem;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;

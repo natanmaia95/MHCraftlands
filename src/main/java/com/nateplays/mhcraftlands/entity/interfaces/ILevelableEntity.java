@@ -1,12 +1,8 @@
 package com.nateplays.mhcraftlands.entity.interfaces;
 
-import com.nateplays.mhcraftlands.entity.custom.MosswineEntity;
-import com.nateplays.mhcraftlands.item.armor.ArmorSkillDataLoader;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;

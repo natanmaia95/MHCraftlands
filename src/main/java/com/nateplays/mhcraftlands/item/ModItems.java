@@ -1,11 +1,14 @@
 package com.nateplays.mhcraftlands.item;
 
 import com.nateplays.mhcraftlands.MHMod;
+import com.nateplays.mhcraftlands.hunter.weapon.DualBladesItem;
+import com.nateplays.mhcraftlands.hunter.weapon.GlaiveItem;
+import com.nateplays.mhcraftlands.hunter.weapon.GreatSwordItem;
+import com.nateplays.mhcraftlands.hunter.weapon.SwordAndShieldItem;
 import com.nateplays.mhcraftlands.entity.ModEntities;
 import com.nateplays.mhcraftlands.item.custom.ChiselItem;
 import com.nateplays.mhcraftlands.item.custom.HammerItem;
 import com.nateplays.mhcraftlands.item.custom.SummonFelyneItem;
-import com.nateplays.mhcraftlands.item.weapons.*;
 import com.nateplays.mhcraftlands.sound.ModSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.locale.Language;
@@ -72,30 +75,8 @@ public class ModItems {
     public static final DeferredItem<SpawnEggItem> MOSSWINE_SPAWN_EGG = ITEMS.register("mosswine_spawn_egg",
             () -> new SpawnEggItem(ModEntities.MOSSWINE.get(), 0x456296, 0xEF6915, new Item.Properties()));
 
-    public static final DeferredItem<SpawnEggItem> FELYNE_SPAWN_EGG = ITEMS.register("felyne_spawn_egg",
-            () -> new SpawnEggItem(ModEntities.FELYNE.get(), 0xdecc99, 0x453e2a, new Item.Properties()));
-    //TODO: learn how to use DeferredSpawnEggItem
-
-    public static final DeferredItem<SummonFelyneItem> SUMMON_FELYNE_VOUCHER = ITEMS.register("summon_felyne_voucher", SummonFelyneItem::new);
-    public static final DeferredItem<Item> DISMISS_BUDDY_VOUCHER = ITEMS.register("dismiss_buddy_voucher",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-
     public static final DeferredItem<Item> CHISEL = ITEMS.register("chisel",
             () -> new ChiselItem(new Item.Properties().durability(32)));
-
-
-//    public static final DeferredItem<Item> SCRAP_WOOD = ITEMS.register("wood_scrap", () -> new Item(new Item.Properties()));
-//    public static final DeferredItem<Item> SCRAP_BONE = ITEMS.register("bone_scrap", () -> new Item(new Item.Properties()));
-//    public static final DeferredItem<Item> SCRAP_ORE = ITEMS.register("ore_scrap", () -> new Item(new Item.Properties()));
-//    public static final DeferredItem<Item> SCRAP_FUR = ITEMS.register("fur_scrap", () -> new Item(new Item.Properties()));
-//    public static final DeferredItem<Item> SCRAP_HUMBLE = ITEMS.register("humble_scrap", () -> new Item(new Item.Properties()));
-//    public static final DeferredItem<Item> SCRAP_SINISTER = ITEMS.register("sinister_scrap", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> SCRAP_WOOD = registerScrapItem("wood");
-    public static final DeferredItem<Item> SCRAP_BONE = registerScrapItem("bone");
-    public static final DeferredItem<Item> SCRAP_ORE = registerScrapItem("ore");
-    public static final DeferredItem<Item> SCRAP_FUR = registerScrapItem("fur");
-    public static final DeferredItem<Item> SCRAP_HUMBLE = registerScrapItem("humble");
-    public static final DeferredItem<Item> SCRAP_SINISTER = registerScrapItem("sinister");
 
 
     public static final DeferredItem<SwordAndShieldItem> MACHALITE_SNS = ITEMS.register("machalite_sns",
@@ -123,25 +104,6 @@ public class ModItems {
 
 
 
-
-    protected static DeferredItem<Item> registerScrapItem(String scrapName) {
-        return ITEMS.register(scrapName + "_scrap", () -> new Item(new Item.Properties()){
-            @Override
-            public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                TranslatableContents loreContents = null;
-                String genericDescKey = "item.%s.generic_scrap.desc".formatted(MHMod.MOD_ID);
-                String specificDescKey = "item.%s.%s_scrap.desc".formatted(MHMod.MOD_ID, scrapName);
-                if (Language.getInstance().getOrDefault(specificDescKey, "") != "") {
-                    loreContents = new TranslatableContents(specificDescKey, null, TranslatableContents.NO_ARGS);
-                } else loreContents = new TranslatableContents(genericDescKey, null, TranslatableContents.NO_ARGS);
-
-                MutableComponent loreComponent = MutableComponent.create(loreContents);
-                loreComponent = loreComponent.withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC);
-                tooltipComponents.add(loreComponent);
-            }
-        });
-
-    }
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

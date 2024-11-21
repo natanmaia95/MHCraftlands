@@ -1,9 +1,12 @@
 package com.nateplays.mhcraftlands.item.custom;
 
 import com.nateplays.mhcraftlands.entity.ModEntities;
-import com.nateplays.mhcraftlands.entity.pets.PalicoEntity;
-import com.nateplays.mhcraftlands.item.armor.ModArmorItems;
-import com.nateplays.mhcraftlands.item.weapons.ModWeaponItems;
+import com.nateplays.mhcraftlands.pet.entity.MHPetEntities;
+import com.nateplays.mhcraftlands.pet.entity.PalicoEntity;
+import com.nateplays.mhcraftlands.common.armor.ModArmorItems;
+import com.nateplays.mhcraftlands.common.weapon.ModWeaponItems;
+import com.nateplays.mhcraftlands.pet.item.armor.MHPetArmorItems;
+import com.nateplays.mhcraftlands.pet.item.weapon.MHPetWeaponItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -17,12 +20,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 
-import javax.annotation.CheckForNull;
-import javax.annotation.Nullable;
 import java.util.Objects;
 
 public class SummonFelyneItem extends Item {
@@ -50,7 +50,7 @@ public class SummonFelyneItem extends Item {
                 actualBlockPos = blockpos.relative(direction);
             }
 
-            EntityType<?> entityType = ModEntities.FELYNE.get();
+            EntityType<?> entityType = MHPetEntities.FELYNE.get();
             boolean shouldOffsetYMore = !Objects.equals(blockpos, actualBlockPos) && direction == Direction.UP;
             PalicoEntity possibleEntity = (PalicoEntity) entityType.spawn((ServerLevel)level, itemstack, player, actualBlockPos, MobSpawnType.BUCKET, true, shouldOffsetYMore);
             if (possibleEntity != null) {
@@ -72,13 +72,13 @@ public class SummonFelyneItem extends Item {
         int roll = random.nextInt(2);
         switch (roll) {
             case 0:
-                palicoEntity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModArmorItems.F_ACORN_HELM.get()));
-                palicoEntity.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModArmorItems.F_ACORN_MAIL.get()));
+                palicoEntity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MHPetArmorItems.F_ACORN_HELM.get()));
+                palicoEntity.setItemSlot(EquipmentSlot.CHEST, new ItemStack(MHPetArmorItems.F_ACORN_MAIL.get()));
                 break;
             case 1:
-                palicoEntity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModArmorItems.F_KAMURA_HELM.get()));
-                palicoEntity.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModArmorItems.F_KAMURA_MAIL.get()));
-                palicoEntity.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModWeaponItems.F_KAMURA_BOKKEN.get()));
+                palicoEntity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MHPetArmorItems.F_KAMURA_HELM.get()));
+                palicoEntity.setItemSlot(EquipmentSlot.CHEST, new ItemStack(MHPetArmorItems.F_KAMURA_MAIL.get()));
+                palicoEntity.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(MHPetWeaponItems.F_KAMURA_BOKKEN.get()));
                 break;
             default:
                 break;

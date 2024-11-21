@@ -4,7 +4,7 @@ import com.mojang.logging.LogUtils;
 import com.nateplays.mhcraftlands.MHMod;
 import com.nateplays.mhcraftlands.entity.interfaces.ILevelableEntity;
 import com.nateplays.mhcraftlands.item.custom.HammerItem;
-import com.nateplays.mhcraftlands.item.weapons.HuntingWeaponItem;
+import com.nateplays.mhcraftlands.common.weapon.HuntingWeaponItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;

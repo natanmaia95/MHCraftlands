@@ -1,6 +1,6 @@
 package com.nateplays.mhcraftlands.effect;
 
-import com.nateplays.mhcraftlands.entity.pets.HuntingBuddyEntity;
+import com.nateplays.mhcraftlands.pet.entity.HuntingBuddyEntity;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
