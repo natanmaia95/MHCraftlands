@@ -1,10 +1,10 @@
-package com.nateplays.mhcraftlands.enchantment.event;
+package com.nateplays.mhcraftlands.common.skill.event;
 
 import com.mojang.logging.LogUtils;
 import com.nateplays.mhcraftlands.MHMod;
 import com.nateplays.mhcraftlands.common.attribute.ModAttributes;
-import com.nateplays.mhcraftlands.enchantment.ModEnchantmentHelper;
-import com.nateplays.mhcraftlands.enchantment.ModEnchantments;
+import com.nateplays.mhcraftlands.common.skill.ModEnchantmentHelper;
+import com.nateplays.mhcraftlands.common.skill.ModEnchantments;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;

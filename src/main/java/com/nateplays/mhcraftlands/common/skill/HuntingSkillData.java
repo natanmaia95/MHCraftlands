@@ -10,11 +10,11 @@ import net.minecraft.util.GsonHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArmorSkillData {
+public class HuntingSkillData {
     private final ResourceLocation armorItem;
     private final List<EnchantmentData> enchantments;
 
-    public ArmorSkillData(ResourceLocation armorItem, List<EnchantmentData> enchantments) {
+    public HuntingSkillData(ResourceLocation armorItem, List<EnchantmentData> enchantments) {
         this.armorItem = armorItem;
         this.enchantments = enchantments;
     }
@@ -27,7 +27,7 @@ public class ArmorSkillData {
         return enchantments;
     }
 
-    public static ArmorSkillData fromJson(ResourceLocation armorId, JsonObject json) {
+    public static HuntingSkillData fromJson(ResourceLocation armorId, JsonObject json) {
         List<EnchantmentData> enchantments = new ArrayList<>();
 
         JsonArray enchantmentsArray = GsonHelper.getAsJsonArray(json, "enchantments");
@@ -39,7 +39,7 @@ public class ArmorSkillData {
             enchantments.add(new EnchantmentData(enchantment, level));
         }
 
-        return new ArmorSkillData(armorId, enchantments);
+        return new HuntingSkillData(armorId, enchantments);
     }
 
     public static class EnchantmentData {

@@ -1,4 +1,4 @@
-package com.nateplays.mhcraftlands.event;
+package com.nateplays.mhcraftlands.common.client.event;
 
 import net.minecraft.world.entity.HumanoidArm;
 import net.neoforged.bus.api.Event;

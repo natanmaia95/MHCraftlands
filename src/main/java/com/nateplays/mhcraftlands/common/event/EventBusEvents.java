@@ -1,4 +1,4 @@
-package com.nateplays.mhcraftlands.event;
+package com.nateplays.mhcraftlands.common.event;
 
 import com.mojang.logging.LogUtils;
 import com.nateplays.mhcraftlands.MHMod;

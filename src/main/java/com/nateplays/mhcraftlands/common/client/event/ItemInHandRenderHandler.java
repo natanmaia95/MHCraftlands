@@ -3,7 +3,6 @@ package com.nateplays.mhcraftlands.common.client.event;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.nateplays.mhcraftlands.MHMod;
 import com.nateplays.mhcraftlands.common.component.ModDataComponents;
-import com.nateplays.mhcraftlands.event.LivingRenderHandItemEvent;
 import com.nateplays.mhcraftlands.hunter.weapon.DualBladesItem;
 import com.nateplays.mhcraftlands.hunter.weapon.SwordAndShieldItem;
 import com.nateplays.mhcraftlands.mixin.ItemInHandRendererAccessor;

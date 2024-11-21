@@ -6,6 +6,7 @@ import com.nateplays.mhcraftlands.pet.item.MHPetItems;
 import com.nateplays.mhcraftlands.pet.item.armor.MHPetArmorItems;
 import com.nateplays.mhcraftlands.pet.item.armor.MHPetArmorMaterials;
 import com.nateplays.mhcraftlands.pet.item.weapon.MHPetWeaponItems;
+import com.nateplays.mhcraftlands.pet.sound.MHPetSounds;
 import net.neoforged.bus.api.IEventBus;
 
 public class MHPetSubRegistry {
@@ -18,5 +19,6 @@ public class MHPetSubRegistry {
         MHPetWeaponItems.register(eventBus);
 
         MHPetEntities.register(eventBus);
+        MHPetSounds.register(eventBus);
     }
 }

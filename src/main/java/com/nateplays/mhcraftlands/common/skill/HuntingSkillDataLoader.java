@@ -20,14 +20,14 @@ import java.util.Map;
 
 //@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = MyNeoForgeMod.MODID)
 @EventBusSubscriber(modid = MHMod.MOD_ID)
-public class ArmorSkillDataLoader extends SimpleJsonResourceReloadListener {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ArmorSkillDataLoader.class);
+public class HuntingSkillDataLoader extends SimpleJsonResourceReloadListener {
+    private static final Logger LOGGER = LoggerFactory.getLogger(HuntingSkillDataLoader.class);
     private static final Gson GSON = new Gson();
 
     // Map to store the loaded data
-    private static final Map<ResourceLocation, ArmorSkillData> ARMOR_SKILL_DATA_MAP = new HashMap<>();
+    private static final Map<ResourceLocation, HuntingSkillData> ARMOR_SKILL_DATA_MAP = new HashMap<>();
 
-    public ArmorSkillDataLoader() {
+    public HuntingSkillDataLoader() {
         super(GSON, "armor_skills");
     }
 
@@ -39,7 +39,7 @@ public class ArmorSkillDataLoader extends SimpleJsonResourceReloadListener {
             ResourceLocation id = entry.getKey();
             try {
                 JsonObject json = GsonHelper.convertToJsonObject(entry.getValue(), "armor_skill");
-                ArmorSkillData data = ArmorSkillData.fromJson(id, json);
+                HuntingSkillData data = HuntingSkillData.fromJson(id, json);
                 ARMOR_SKILL_DATA_MAP.put(id, data);
             } catch (Exception e) {
                 LOGGER.error("Failed to load armor skill data for {}", id, e);
@@ -49,12 +49,12 @@ public class ArmorSkillDataLoader extends SimpleJsonResourceReloadListener {
         LOGGER.info("Loaded {} armor skill data files", ARMOR_SKILL_DATA_MAP.size());
     }
 
-    public static ArmorSkillData getArmorEnchantmentData(ResourceLocation id) {
+    public static HuntingSkillData getArmorEnchantmentData(ResourceLocation id) {
         return ARMOR_SKILL_DATA_MAP.get(id);
     }
 
     @SubscribeEvent
     public static void onAddReloadListener(AddReloadListenerEvent event) {
-        event.addListener(new ArmorSkillDataLoader());
+        event.addListener(new HuntingSkillDataLoader());
     }
 }

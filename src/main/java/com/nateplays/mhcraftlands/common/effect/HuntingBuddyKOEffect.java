@@ -1,4 +1,4 @@
-package com.nateplays.mhcraftlands.effect;
+package com.nateplays.mhcraftlands.common.effect;
 
 import com.nateplays.mhcraftlands.pet.entity.HuntingBuddyEntity;
 import net.minecraft.world.effect.MobEffect;

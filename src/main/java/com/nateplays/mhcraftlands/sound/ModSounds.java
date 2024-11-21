@@ -16,9 +16,6 @@ public class ModSounds {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS =
         DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, MHMod.MOD_ID);
 
-    public static final Supplier<SoundEvent> FELYNE_AMBIENT = registerSoundEvent("palico/felyne_ambient");
-    public static final Supplier<SoundEvent> FELYNE_HURT = registerSoundEvent("palico/felyne_hurt");
-    public static final Supplier<SoundEvent> FELYNE_DEATH = registerSoundEvent("palico/felyne_death");
 
 
 

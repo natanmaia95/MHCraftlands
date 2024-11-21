@@ -2,9 +2,9 @@ package com.nateplays.mhcraftlands.common.armor;
 
 import com.nateplays.mhcraftlands.MHMod;
 import com.nateplays.mhcraftlands.common.attribute.ModAttributes;
-import com.nateplays.mhcraftlands.common.skill.ArmorSkillData;
-import com.nateplays.mhcraftlands.common.skill.ArmorSkillDataLoader;
-import com.nateplays.mhcraftlands.enchantment.ModEnchantmentHelper;
+import com.nateplays.mhcraftlands.common.skill.HuntingSkillData;
+import com.nateplays.mhcraftlands.common.skill.HuntingSkillDataLoader;
+import com.nateplays.mhcraftlands.common.skill.ModEnchantmentHelper;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
@@ -60,12 +60,12 @@ public class HuntingArmorItem extends ArmorItem {
     public static void applyInitialEnchantmentsWithLookup (ItemStack stack, HolderLookup.RegistryLookup<Enchantment> registryLookup) {
         ResourceLocation armorId = stack.getItemHolder().getKey().location();
 //        LOGGER.debug("armorid: " + armorTypeId.toString());
-        ArmorSkillData data = ArmorSkillDataLoader.getArmorEnchantmentData(armorId);
+        HuntingSkillData data = HuntingSkillDataLoader.getArmorEnchantmentData(armorId);
 
         if (data != null) {
 //            LOGGER.debug("hasdata");
 
-            for (ArmorSkillData.EnchantmentData enchantmentData : data.getEnchantments()) {
+            for (HuntingSkillData.EnchantmentData enchantmentData : data.getEnchantments()) {
                 Holder<Enchantment> holder = ModEnchantmentHelper.getEnchantmentFromLocationAndLookup(
                         ModEnchantmentHelper.getKey(enchantmentData.getEnchantment()), registryLookup);
                 if (holder != null) {

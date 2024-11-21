@@ -1,4 +1,4 @@
-package com.nateplays.mhcraftlands.enchantment;
+package com.nateplays.mhcraftlands.common.skill;
 
 import com.nateplays.mhcraftlands.MHMod;
 import net.minecraft.core.registries.Registries;

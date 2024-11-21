@@ -21,7 +21,7 @@ public class PetArmorMaterial<A extends Model> {
 
     public static PetArmorMaterial newPalicoArmorMaterial(Holder<ArmorMaterial> material, Function<EntityRendererProvider.Context, ? extends Model> modelFunc) {
         if (modelFunc == null) {
-            modelFunc = (EntityRendererProvider.Context context) -> new PalicoModel<>(context.bakeLayer(ModModelLayers.PALICO_LAYER));
+            modelFunc = (EntityRendererProvider.Context context) -> new PalicoModel<>(context.bakeLayer(PalicoModel.LAYER_LOCATION));
         }
         return new PetArmorMaterial(material, modelFunc);
     }

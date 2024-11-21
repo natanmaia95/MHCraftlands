@@ -24,13 +24,13 @@ public class PetClientEventHandler {
 
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(ModModelLayers.PALICO_LAYER, PalicoModel::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.PALICO_ARMOR_LAYER, PalicoModel::createBodyLayer);
+        event.registerLayerDefinition(PalicoModel.LAYER_LOCATION, PalicoModel::createBodyLayer);
+        event.registerLayerDefinition(PalicoModel.ARMOR_LAYER_LOCATION, PalicoModel::createBodyLayer);
 
+        event.registerLayerDefinition(FBoneHelmModel.LAYER_LOCATION, FBoneHelmModel::createBodyLayer);
+        event.registerLayerDefinition(FGhostHelmModel.LAYER_LOCATION, FGhostHelmModel::createBodyLayer);
         event.registerLayerDefinition(FRedModel.LAYER_LOCATION, FRedModel::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.F_BONE_HELM_LAYER, FBoneHelmModel::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.F_GHOST_HELM_LAYER, FGhostHelmModel::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.F_MOSGHARL_LAYER, FMosgharlModel::createBodyLayer);
+        event.registerLayerDefinition(FMosgharlModel.LAYER_LOCATION, FMosgharlModel::createBodyLayer);
         event.registerLayerDefinition(FFrankieModel.LAYER_LOCATION, FFrankieModel::createBodyLayer);
     }
 }

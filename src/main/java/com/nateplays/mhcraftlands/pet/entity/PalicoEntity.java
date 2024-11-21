@@ -7,6 +7,7 @@ import com.nateplays.mhcraftlands.pet.goals.PalicoTamedHarvestBlockGoal;
 import com.nateplays.mhcraftlands.pet.gui.PalicoInventoryMenu;
 import com.nateplays.mhcraftlands.pet.item.armor.PetHuntingArmorItem;
 import com.nateplays.mhcraftlands.pet.item.weapon.PetHuntingWeaponItem;
+import com.nateplays.mhcraftlands.pet.sound.MHPetSounds;
 import com.nateplays.mhcraftlands.sound.ModSounds;
 import com.nateplays.mhcraftlands.tags.ModTags;
 import net.minecraft.core.BlockPos;
@@ -210,19 +211,15 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
 
     // Sounds section
     @Override
-    protected @Nullable SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
-        return ModSounds.FELYNE_HURT.get();
-    }
+    protected @Nullable SoundEvent getHurtSound(@NotNull DamageSource damageSource) { return MHPetSounds.FELYNE_HURT.get(); }
 
     @Override
     protected @Nullable SoundEvent getDeathSound() {
-        return ModSounds.FELYNE_DEATH.get();
+        return MHPetSounds.FELYNE_DEATH.get();
     }
 
     @Override
-    protected @Nullable SoundEvent getAmbientSound() {
-        return ModSounds.FELYNE_AMBIENT.get();
-    }
+    protected @Nullable SoundEvent getAmbientSound() { return MHPetSounds.FELYNE_AMBIENT.get(); }
 
     @Override
     public int getAmbientSoundInterval() {

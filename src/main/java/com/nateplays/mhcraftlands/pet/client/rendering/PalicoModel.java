@@ -23,6 +23,9 @@ public class PalicoModel<T extends PalicoEntity> extends HierarchicalModel<T> im
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(
 			ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "palico"), "main");
+	public static final ModelLayerLocation ARMOR_LAYER_LOCATION = new ModelLayerLocation(
+			ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "palico"), "armor");
+
 	public final ModelPart root;
 	public final ModelPart body;
 	public final ModelPart armorbody;

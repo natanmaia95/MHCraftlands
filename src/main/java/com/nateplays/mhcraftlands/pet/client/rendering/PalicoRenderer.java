@@ -15,9 +15,9 @@ import java.util.List;
 
 public class PalicoRenderer extends MobRenderer<PalicoEntity, PalicoModel<PalicoEntity>> {
     public PalicoRenderer(EntityRendererProvider.Context context) {
-        super(context, new PalicoModel<>(context.bakeLayer(ModModelLayers.PALICO_LAYER)), 0.3f);
+        super(context, new PalicoModel<>(context.bakeLayer(PalicoModel.LAYER_LOCATION)), 0.3f);
         this.addLayer(new PalicoArmorLayer<>(
-                this, new PalicoModel<>(context.bakeLayer(ModModelLayers.PALICO_LAYER)), context));
+                this, new PalicoModel<>(context.bakeLayer(PalicoModel.ARMOR_LAYER_LOCATION)), context));
         this.addLayer(new PalicoItemInHandLayer<>(this, context.getItemInHandRenderer())); //add default
     }
 

@@ -2,8 +2,8 @@ package com.nateplays.mhcraftlands.pet.event;
 
 import com.mojang.logging.LogUtils;
 import com.nateplays.mhcraftlands.MHMod;
-import com.nateplays.mhcraftlands.effect.HuntingBuddyKOEffect;
-import com.nateplays.mhcraftlands.effect.ModEffects;
+import com.nateplays.mhcraftlands.common.effect.HuntingBuddyKOEffect;
+import com.nateplays.mhcraftlands.common.effect.ModEffects;
 import com.nateplays.mhcraftlands.pet.entity.HuntingBuddyEntity;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;

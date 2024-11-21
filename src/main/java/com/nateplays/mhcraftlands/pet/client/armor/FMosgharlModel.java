@@ -15,7 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 public class FMosgharlModel<T extends PalicoEntity> extends PalicoModel<T> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 	public static final ModelLayerLocation LAYER_LOCATION =
-			new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "f_ghost_helm"), "main");
+			new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "f_mosgharl_layer"), "main");
 
 	public FMosgharlModel(ModelPart root) {
 		super(root);

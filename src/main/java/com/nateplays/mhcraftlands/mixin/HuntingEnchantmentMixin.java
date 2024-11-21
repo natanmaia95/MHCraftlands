@@ -1,14 +1,12 @@
 package com.nateplays.mhcraftlands.mixin;
 
-import com.nateplays.mhcraftlands.enchantment.ModEnchantments;
+import com.nateplays.mhcraftlands.common.skill.ModEnchantments;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.Holder;
 import net.minecraft.locale.Language;
 import net.minecraft.network.chat.*;
 import net.minecraft.network.chat.contents.TranslatableContents;
-import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.enchantment.Enchantment;
 import org.slf4j.Logger;

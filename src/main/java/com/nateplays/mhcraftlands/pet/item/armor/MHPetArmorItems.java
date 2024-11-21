@@ -40,7 +40,7 @@ public class MHPetArmorItems {
     ));
 
     public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel<PalicoEntity>>> F_BONE_HELM = PET_ARMOR_ITEMS.register("f_bone_helm", () -> new PetHuntingArmorItem<>(
-            new PetArmorMaterial<>(MHPetArmorMaterials.F_BONE, (EntityRendererProvider.Context context) -> new FBoneHelmModel<>(context.bakeLayer(ModModelLayers.F_BONE_HELM_LAYER))),
+            new PetArmorMaterial<>(MHPetArmorMaterials.F_BONE, (EntityRendererProvider.Context context) -> new FBoneHelmModel<>(context.bakeLayer(FBoneHelmModel.LAYER_LOCATION))),
             ArmorItem.Type.HELMET, new Item.Properties().durability(150), PalicoEntity.class
     ){ @Override public boolean hideHead() { return true; }});
 
@@ -67,7 +67,7 @@ public class MHPetArmorItems {
             ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(150), PalicoEntity.class));
 
     public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel<PalicoEntity>>> F_GHOST_HELM = PET_ARMOR_ITEMS.register("f_ghost_helm", () -> new PetHuntingArmorItem<>(
-            new PetArmorMaterial<>(MHPetArmorMaterials.F_GHOST, (EntityRendererProvider.Context context) -> new FGhostHelmModel<>(context.bakeLayer(ModModelLayers.F_GHOST_HELM_LAYER))),
+            new PetArmorMaterial<>(MHPetArmorMaterials.F_GHOST, (EntityRendererProvider.Context context) -> new FGhostHelmModel<>(context.bakeLayer(FGhostHelmModel.LAYER_LOCATION))),
             ArmorItem.Type.HELMET, new Item.Properties().durability(150), PalicoEntity.class){
                     @Override public boolean hideHead() { return true; }
     });
@@ -80,12 +80,12 @@ public class MHPetArmorItems {
     });
 
     public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel<PalicoEntity>>> F_MOSGHARL_HELM = PET_ARMOR_ITEMS.register("f_mosgharl_helm", () -> new PetHuntingArmorItem<>(
-            new PetArmorMaterial<>(MHPetArmorMaterials.F_MOSGHARL, (EntityRendererProvider.Context context) -> new FMosgharlModel<>(context.bakeLayer(ModModelLayers.F_MOSGHARL_LAYER))),
+            new PetArmorMaterial<>(MHPetArmorMaterials.F_MOSGHARL, (EntityRendererProvider.Context context) -> new FMosgharlModel<>(context.bakeLayer(FMosgharlModel.LAYER_LOCATION))),
             ArmorItem.Type.HELMET, new Item.Properties().durability(150), PalicoEntity.class
     ){ @Override public boolean hideHead() { return true; }});
 
     public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel<PalicoEntity>>> F_MOSGHARL_MAIL = PET_ARMOR_ITEMS.register("f_mosgharl_mail", () -> new PetHuntingArmorItem<>(
-            new PetArmorMaterial<>(MHPetArmorMaterials.F_MOSGHARL, (EntityRendererProvider.Context context) -> new FMosgharlModel<>(context.bakeLayer(ModModelLayers.F_MOSGHARL_LAYER))),
+            new PetArmorMaterial<>(MHPetArmorMaterials.F_MOSGHARL, (EntityRendererProvider.Context context) -> new FMosgharlModel<>(context.bakeLayer(FMosgharlModel.LAYER_LOCATION))),
             ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(150), PalicoEntity.class));
 
     public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel<PalicoEntity>>> F_FRANKIE_HELM = PET_ARMOR_ITEMS.register("f_frankie_helm", () -> new PetHuntingArmorItem<>(

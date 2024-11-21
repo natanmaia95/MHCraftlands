@@ -1,9 +1,8 @@
-package com.nateplays.mhcraftlands.event;
+package com.nateplays.mhcraftlands.common.event;
 
 import com.nateplays.mhcraftlands.MHMod;
 import com.nateplays.mhcraftlands.entity.client.ModModelLayers;
 import com.nateplays.mhcraftlands.entity.client.MosswineModel;
-import com.nateplays.mhcraftlands.common.armor.ModArmorItems;
 import com.nateplays.mhcraftlands.pet.item.armor.MHPetArmorItems;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.world.item.component.DyedItemColor;

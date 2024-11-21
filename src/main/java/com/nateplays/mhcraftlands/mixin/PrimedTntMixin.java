@@ -1,7 +1,7 @@
 package com.nateplays.mhcraftlands.mixin;
 
-import com.nateplays.mhcraftlands.enchantment.ModEnchantmentHelper;
-import com.nateplays.mhcraftlands.enchantment.ModEnchantments;
+import com.nateplays.mhcraftlands.common.skill.ModEnchantmentHelper;
+import com.nateplays.mhcraftlands.common.skill.ModEnchantments;
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.item.PrimedTnt;

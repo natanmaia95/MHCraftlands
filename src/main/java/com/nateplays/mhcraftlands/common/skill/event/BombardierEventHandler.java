@@ -1,4 +1,4 @@
-package com.nateplays.mhcraftlands.enchantment.event;
+package com.nateplays.mhcraftlands.common.skill.event;
 
 import com.nateplays.mhcraftlands.MHMod;
 import net.minecraft.world.level.Explosion;

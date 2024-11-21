@@ -1,9 +1,8 @@
 package com.nateplays.mhcraftlands.pet.entity;
 
 import com.nateplays.mhcraftlands.common.attribute.ModAttributes;
-import com.nateplays.mhcraftlands.effect.ModEffects;
+import com.nateplays.mhcraftlands.common.effect.ModEffects;
 import com.nateplays.mhcraftlands.entity.interfaces.ILevelableEntity;
-import com.nateplays.mhcraftlands.item.ModItems;
 import com.nateplays.mhcraftlands.pet.item.MHPetItems;
 import com.nateplays.mhcraftlands.pet.item.armor.PetHuntingArmorItem;
 import com.nateplays.mhcraftlands.pet.item.weapon.PetHuntingWeaponItem;

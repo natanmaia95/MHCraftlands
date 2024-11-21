@@ -2,7 +2,7 @@ package com.nateplays.mhcraftlands.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import com.nateplays.mhcraftlands.event.LivingRenderHandItemEvent;
+import com.nateplays.mhcraftlands.common.client.event.LivingRenderHandItemEvent;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.ItemInHandRenderer;
