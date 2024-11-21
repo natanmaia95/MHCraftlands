@@ -1,0 +1,9 @@
+// 1.21	2024-11-20T20:54:08.1814104	Tags for minecraft:item mod id mhcraftlands
+88ee98f3ad1df758d96074df2a2695879b659f7e data/mhcraftlands/tags/item/dyeable_hunting_armors.json
+a5e3205a3d5b2f5c1081d1c439382c94a86ce590 data/mhcraftlands/tags/item/transformable_items.json
+41b61c392ca5d9c539c202a58112dd8645cd5a3e data/minecraft/tags/item/axes.json
+d223d7f0049e8e6d451962b7d4533882fe072e4a data/minecraft/tags/item/dyeable.json
+815907faa6bcd8e18f8cdd04b0ccfc6894cacd6f data/minecraft/tags/item/hoes.json
+370a1f990921a7eb6d7e1024301250d51a94699d data/minecraft/tags/item/pickaxes.json
+880896526738fce93cf85e231f26756c392b5d77 data/minecraft/tags/item/shovels.json
+2d0c8a44272a08ffe2106e511d8fae139ebfc980 data/minecraft/tags/item/swords.json

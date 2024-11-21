@@ -1,0 +1,10 @@
+// 1.21	2024-11-20T20:54:08.1864111	Tags for minecraft:block mod id mhcraftlands
+33806fc261c0a1c2729f6f7e2675d880c0caeb90 data/mhcraftlands/tags/block/incorrect_for_machalite_tool.json
+32b13946c4cd1f944b029659ccce5fcb2adad4ff data/mhcraftlands/tags/block/needs_machalite_tool.json
+a46ea952243effd7ee4138cfa9129e37d59d26d7 data/mhcraftlands/tags/block/palico_harvestable_ores.json
+815eb201c122b840c72ce760f6ac3630a4735a82 data/mhcraftlands/tags/block/palico_harvestable_plants.json
+aadd03946ff023562dc42f2e9b9d4be0f7cc0a72 data/minecraft/tags/block/fences.json
+8fc406e896ba788eeea78576c72db0de835bded5 data/minecraft/tags/block/fence_gates.json
+ac26f10b4e10be1b472d4b20ac6de031dca7a19c data/minecraft/tags/block/mineable/pickaxe.json
+56121c7b6bb9bdf51f87bc36d24f2cd53e8fd882 data/minecraft/tags/block/needs_stone_tool.json
+445962bc60a7ce4388dfbc51e467813a15e7ad18 data/minecraft/tags/block/walls.json
