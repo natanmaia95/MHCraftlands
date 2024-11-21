@@ -18,11 +18,12 @@ Current Features
 
 To-Do
 =======
-[] Implement Palico leveling and skills
-[] Balance equipment progression to be vanilla-friendly
-[] Add other lynians like Shakalaka, Melynx, Grimalkyne
-[] Add Palamutes and their own systems
-[] Work on Hunter weapons and armor
+- [ ] Implement Palico leveling and skills
+- [ ] Balance equipment progression to be vanilla-friendly
+- [ ] Add other lynians like Shakalaka, Melynx, Grimalkyne
+- [ ] Make plants and ores from the games
+- [ ] Add Palamutes and their own systems
+- [ ] Work on Hunter weapons and armor
 
 Asset Information
 =======
