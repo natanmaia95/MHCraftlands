@@ -5,6 +5,9 @@ import com.nateplays.mhcraftlands.entity.client.ModModelLayers;
 import com.nateplays.mhcraftlands.entity.client.MosswineModel;
 import com.nateplays.mhcraftlands.pet.item.armor.MHPetArmorItems;
 import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.model.HumanoidArmorModel;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -18,6 +21,9 @@ public class ModEventBusEvents {
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(ModModelLayers.MOSSWINE_LAYER, MosswineModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.MOSSWINE_GOLD_LAYER, MosswineModel::createBodyLayer);
+
+        event.registerLayerDefinition(ModModelLayers.PLAYER_DEFAULT_HUNTING_ARMOR_LAYER,
+                () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(new CubeDeformation(0.3F)), 64, 32));
     }
 
 

@@ -3,6 +3,8 @@
   "package": "com.nateplays.mhcraftlands.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "PlayerRendererHuntingArmorLayerMixin",
+    "HumanoidArmorLayerMixin",
     "HuntingEnchantmentMixin",
     "PrimedTntMixin",
     "InteractRidingEntityMixin",
