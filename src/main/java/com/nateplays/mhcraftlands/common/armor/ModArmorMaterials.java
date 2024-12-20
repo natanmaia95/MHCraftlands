@@ -1,7 +1,6 @@
 package com.nateplays.mhcraftlands.common.armor;
 
 import com.nateplays.mhcraftlands.MHMod;
-import com.nateplays.mhcraftlands.item.ModItems;
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -13,7 +12,6 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.ArrayList;
@@ -41,6 +39,17 @@ public class ModArmorMaterials {
     );
 
 
+    public static final Holder<ArmorMaterial> CHAOSHROOM_HELMET_A = registerHunterMaterial(ARMOR_MATERIALS,
+            "chaoshroom_helmet_a", 12, SoundEvents.ARMOR_EQUIP_LEATHER,
+            () -> Ingredient.of(Items.BROWN_MUSHROOM)
+    );
+
+    public static final Holder<ArmorMaterial> CHAOSHROOM_HELMET_B = registerHunterMaterial(ARMOR_MATERIALS,
+            "chaoshroom_helmet_b", 12, SoundEvents.ARMOR_EQUIP_LEATHER,
+            () -> Ingredient.of(Items.BROWN_MUSHROOM)
+    );
+
+
 
 
 
@@ -62,6 +71,19 @@ public class ModArmorMaterials {
                 0, soundEvent, repairItem, layers, 0, 0
         );
     }
+
+
+    public static Holder<ArmorMaterial> registerHunterMaterial(DeferredRegister<ArmorMaterial> register, String name, int baseDefense, Holder<SoundEvent> soundEvent,
+                                                            Supplier<Ingredient> repairItem) {
+        return ModArmorMaterials.registerMaterial(register, "hunter/"+name, baseDefense, soundEvent, repairItem);
+    }
+
+    public static Holder<ArmorMaterial> registerHunterMaterial(DeferredRegister<ArmorMaterial> register, String name, int baseDefense, Holder<SoundEvent> soundEvent,
+                                                            Supplier<Ingredient> repairItem, boolean hasEmissiveLayer, boolean hasDyeableLayer) {
+        return ModArmorMaterials.registerMaterial(register, "hunter/"+name, baseDefense, soundEvent, repairItem, hasEmissiveLayer, hasDyeableLayer);
+    }
+
+
 
     public static Holder<ArmorMaterial> registerMaterial(DeferredRegister<ArmorMaterial> register, String name, int baseDefense, Holder<SoundEvent> soundEvent,
                                                          Supplier<Ingredient> repairItem) {

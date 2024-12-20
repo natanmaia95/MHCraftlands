@@ -5,6 +5,8 @@ import com.nateplays.mhcraftlands.common.attribute.ModAttributes;
 import com.nateplays.mhcraftlands.common.skill.HuntingSkillData;
 import com.nateplays.mhcraftlands.common.skill.HuntingSkillDataLoader;
 import com.nateplays.mhcraftlands.common.skill.ModEnchantmentHelper;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
@@ -37,6 +39,8 @@ public class HuntingArmorItem extends ArmorItem {
                         .attributes(createAttributes(material, type)) //this also removes Armor and Toughness attributes.
         );
     }
+
+
 
     @Override
     public void onCraftedBy(ItemStack stack, Level level, Player player) {

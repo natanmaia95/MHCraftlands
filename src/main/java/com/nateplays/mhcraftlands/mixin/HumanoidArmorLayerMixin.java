@@ -1,7 +1,7 @@
 package com.nateplays.mhcraftlands.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.nateplays.mhcraftlands.common.armor.PlayerHuntingArmorItem;
+import com.nateplays.mhcraftlands.hunter.armor.PlayerHuntingArmorItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;

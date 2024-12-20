@@ -1,7 +1,8 @@
 package com.nateplays.mhcraftlands.mixin;
 
 
-import com.nateplays.mhcraftlands.common.armor.PlayerHuntingArmorLayer;
+import com.nateplays.mhcraftlands.common.client.rendering.BaseHuntingArmorModel;
+import com.nateplays.mhcraftlands.hunter.armor.client.PlayerHuntingArmorLayer;
 import com.nateplays.mhcraftlands.entity.client.ModModelLayers;
 import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -21,7 +22,7 @@ public abstract class PlayerRendererHuntingArmorLayerMixin {
         playerRenderer.addLayer(
                 new PlayerHuntingArmorLayer<>(
                         playerRenderer,
-                        new HumanoidArmorModel<>(context.bakeLayer(ModModelLayers.PLAYER_DEFAULT_HUNTING_ARMOR_LAYER)),
+                        new HumanoidArmorModel<>(context.bakeLayer(BaseHuntingArmorModel.DEFAULT_HUNTING_ARMOR_LAYER)),
                         context)
         );
     }
