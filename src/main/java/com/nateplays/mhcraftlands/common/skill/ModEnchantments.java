@@ -18,6 +18,7 @@ public class ModEnchantments {
     public static final ResourceKey<Enchantment> QUICK_EATING = key("quick_eating");
     public static final ResourceKey<Enchantment> MUCK_RESISTANCE = key("muck_resistance");
     public static final ResourceKey<Enchantment> BOMBARDIER = key("muck_resistance");
+    public static final ResourceKey<Enchantment> MUSHROOMANCER = key("mushroomancer");
 
     private static ResourceKey<Enchantment> key(String name) {
         return ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, name));

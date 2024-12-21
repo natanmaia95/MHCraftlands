@@ -1,0 +1,20 @@
+{
+  "anvil_cost": 100,
+  "description": {
+    "translate": "enchantment.mhcraftlands.mushroomancer"
+  },
+  "max_cost": {
+    "base": 0,
+    "per_level_above_first": 0
+  },
+  "max_level": 2,
+  "min_cost": {
+    "base": 0,
+    "per_level_above_first": 0
+  },
+  "slots": [
+    "armor"
+  ],
+  "supported_items": "#minecraft:enchantable/armor",
+  "weight": 5
+}
