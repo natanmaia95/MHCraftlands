@@ -2,7 +2,10 @@ package com.nateplays.mhcraftlands.hunter.armor.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.nateplays.mhcraftlands.MHMod;
+import com.nateplays.mhcraftlands.common.client.rendering.BaseHuntingArmorModel;
 import com.nateplays.mhcraftlands.hunter.armor.PlayerHuntingArmorItem;
+import com.nateplays.mhcraftlands.mixin.ArmorMaterialLayerMixin;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -61,10 +64,20 @@ public class PlayerHuntingArmorLayer <T extends Player, M extends HumanoidModel<
                 if (armorLayer.dyeable() && probableDyeColor == -1) continue;
                 int dyeColor = armorLayer.dyeable() ? probableDyeColor : -1;
 
-                ResourceLocation layerTexture = armorLayer.texture(false); //TODO: composite layer with part name, get texture from armor Item
-                layerTexture = armorLayer.texture(this.usesInnerModel(slot));
-//                ResourceLocation layerTexture = ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "textures/models/armor/hunter_layer_1.png");
-                this.renderModel(poseStack, bufferSource, packedLight, p_model, dyeColor, layerTexture);
+                ResourceLocation layerTexture;
+                String suffix = ((ArmorMaterialLayerMixin) (Object) armorLayer).getSuffix();
+
+                if (p_model.getClass() == BaseHuntingArmorModel.class) {
+                    layerTexture = armorLayer.texture(this.usesInnerModel(slot));
+                } else { //subclasses
+                    String assetName = ((ArmorMaterialLayerMixin) (Object) armorLayer).getAssetName().getPath();
+                    String namespace = ((ArmorMaterialLayerMixin) (Object) armorLayer).getAssetName().getNamespace();
+                    layerTexture = ResourceLocation.fromNamespaceAndPath(namespace, "textures/models/armor/" + assetName + suffix + ".png");
+                }
+                // = ((ArmorMaterialLayerMixin) (Object) armorLayer).resolveSingleTexture(MHMod.MOD_ID);
+
+                RenderType renderType = RenderType.armorCutoutNoCull(layerTexture);
+                this.renderModel(poseStack, bufferSource, packedLight, p_model, dyeColor, layerTexture, renderType);
             }
 
             if (itemstack.hasFoil()) {
@@ -73,12 +86,12 @@ public class PlayerHuntingArmorLayer <T extends Player, M extends HumanoidModel<
         }
     }
 
-    private void renderModel(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, A model, int dyeColor, ResourceLocation textureLocation) {
-        this.renderModel(poseStack, bufferSource, packedLight, (Model)model, dyeColor, textureLocation);
+    private void renderModel(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, A model, int dyeColor, ResourceLocation textureLocation, RenderType renderType) {
+        this.renderModel(poseStack, bufferSource, packedLight, (Model)model, dyeColor, textureLocation, renderType);
     }
 
-    private void renderModel(PoseStack p_289664_, MultiBufferSource p_289689_, int p_289681_, Model p_289658_, int p_350798_, ResourceLocation p_324344_) {
-        VertexConsumer vertexconsumer = p_289689_.getBuffer(RenderType.armorCutoutNoCull(p_324344_));
+    private void renderModel(PoseStack p_289664_, MultiBufferSource p_289689_, int p_289681_, Model p_289658_, int p_350798_, ResourceLocation p_324344_, RenderType renderType) {
+        VertexConsumer vertexconsumer = p_289689_.getBuffer(renderType);
         p_289658_.renderToBuffer(p_289664_, vertexconsumer, p_289681_, OverlayTexture.NO_OVERLAY, p_350798_);
     }
 

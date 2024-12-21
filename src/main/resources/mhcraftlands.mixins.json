@@ -9,7 +9,7 @@
     "PrimedTntMixin",
     "InteractRidingEntityMixin",
     "ItemInHandRendererAccessor",
-    "ArmorMaterialLayerAccessor",
+    "ArmorMaterialLayerMixin",
     "ItemInHandLayerMixin"
   ],
   "client": [

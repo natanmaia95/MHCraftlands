@@ -3,6 +3,8 @@ package com.nateplays.mhcraftlands.common.armor;
 import com.nateplays.mhcraftlands.MHMod;
 import com.nateplays.mhcraftlands.common.client.rendering.BaseHuntingArmorModel;
 import com.nateplays.mhcraftlands.hunter.armor.PlayerHuntingArmorItem;
+import com.nateplays.mhcraftlands.hunter.armor.model.ChaosPlateAModel;
+import com.nateplays.mhcraftlands.hunter.armor.model.ChaosPlateBModel;
 import com.nateplays.mhcraftlands.hunter.armor.model.ChaoshroomHelmetBModel;
 import com.nateplays.mhcraftlands.hunter.armor.model.ChaoshroomHelmetAModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -69,14 +71,26 @@ public class ModArmorItems {
 
     public static final Supplier<PlayerHuntingArmorItem<Player, ChaoshroomHelmetAModel<Player>>> CHAOSHROOM_HELMET_A =
             ARMOR_ITEMS.register("chaoshroom_helmet_a", () -> new PlayerHuntingArmorItem<>(
-                    ModArmorMaterials.CHAOSHROOM_HELMET_A, ArmorItem.Type.HELMET, new Item.Properties().durability(150),
+                    ModArmorMaterials.CHAOSHROOM_HELMET, ArmorItem.Type.HELMET, new Item.Properties().durability(150),
                     ChaoshroomHelmetAModel.class
             ));
 
     public static final Supplier<PlayerHuntingArmorItem<Player, ChaoshroomHelmetBModel<Player>>> CHAOSHROOM_HELMET_B =
             ARMOR_ITEMS.register("chaoshroom_helmet_b", () -> new PlayerHuntingArmorItem<>(
-                    ModArmorMaterials.CHAOSHROOM_HELMET_B, ArmorItem.Type.HELMET, new Item.Properties().durability(150),
+                    ModArmorMaterials.CHAOSHROOM_HELMET, ArmorItem.Type.HELMET, new Item.Properties().durability(150),
                     ChaoshroomHelmetBModel.class
+            ));
+
+    public static final Supplier<PlayerHuntingArmorItem<Player, ChaosPlateAModel<Player>>> CHAOS_PLATE_A =
+            ARMOR_ITEMS.register("chaos_plate_a", () -> new PlayerHuntingArmorItem<>(
+                    ModArmorMaterials.CHAOS_PLATE, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(150),
+                    ChaosPlateAModel.class
+            ));
+
+    public static final Supplier<PlayerHuntingArmorItem<Player, ChaosPlateBModel<Player>>> CHAOS_PLATE_B =
+            ARMOR_ITEMS.register("chaos_plate_b", () -> new PlayerHuntingArmorItem<>(
+                    ModArmorMaterials.CHAOS_PLATE, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(150),
+                    ChaosPlateBModel.class
             ));
 
 

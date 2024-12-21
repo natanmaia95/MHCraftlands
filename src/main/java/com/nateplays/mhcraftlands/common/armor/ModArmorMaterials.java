@@ -39,13 +39,13 @@ public class ModArmorMaterials {
     );
 
 
-    public static final Holder<ArmorMaterial> CHAOSHROOM_HELMET_A = registerHunterMaterial(ARMOR_MATERIALS,
-            "chaoshroom_helmet_a", 12, SoundEvents.ARMOR_EQUIP_LEATHER,
+    public static final Holder<ArmorMaterial> CHAOSHROOM_HELMET = registerHunterMaterial(ARMOR_MATERIALS,
+            "chaoshroom_helmet", 12, SoundEvents.ARMOR_EQUIP_LEATHER,
             () -> Ingredient.of(Items.BROWN_MUSHROOM)
     );
 
-    public static final Holder<ArmorMaterial> CHAOSHROOM_HELMET_B = registerHunterMaterial(ARMOR_MATERIALS,
-            "chaoshroom_helmet_b", 12, SoundEvents.ARMOR_EQUIP_LEATHER,
+    public static final Holder<ArmorMaterial> CHAOS_PLATE = registerHunterMaterial(ARMOR_MATERIALS,
+            "chaos_plate", 12, SoundEvents.ARMOR_EQUIP_LEATHER,
             () -> Ingredient.of(Items.BROWN_MUSHROOM)
     );
 

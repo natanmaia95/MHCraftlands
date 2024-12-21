@@ -1,8 +1,9 @@
 {
   "attribute.mhcraftlands.defense": "Defense",
 
-  "creativetab.mhcraftlands.items_tab": "Palico Items",
-  "creativetab.mhcraftlands.pet_equipment_tab": "Palico Equipment",
+  "creativetab.mhcraftlands.palico_items_tab": "Palico Items",
+  "creativetab.mhcraftlands.palico_equipment_tab": "Palico Equipment",
+  "creativetab.mhcraftlands.hunter_armor_tab": "Hunter Armor",
 
   "entity.mhcraftlands.felyne": "Felyne",
 
@@ -67,6 +68,11 @@
   "item.mhcraftlands.creeper_leggings": "Creeper Leggings",
   "item.mhcraftlands.creeper_boots": "Creeper Boots",
 
+  "item.mhcraftlands.chaoshroom_helmet_a": "Chaoshroom A",
+  "item.mhcraftlands.chaoshroom_helmet_b": "Chaoshroom B",
+  "item.mhcraftlands.chaos_plate_a": "Chaos Plate A",
+  "item.mhcraftlands.chaos_plate_b": "Chaos Plate B",
+
   "block.mhcraftlands.earth_crystal_ore": "Earth Crystal Ore",
   "block.mhcraftlands.machalite_ore": "Machalite Ore",
   "block.mhcraftlands.nulberry_bush": "Nulberry Bush",
@@ -76,6 +82,8 @@
   "tooltip.mhcraftlands.skill_description.muck_resistance": "Reduces slowness on difficult terrain.",
   "tooltip.mhcraftlands.skill_description.muck_resistance.2": "[2] Completely removes slowness on difficult terrain.",
   "tooltip.mhcraftlands.skill_description.bombardier": "Increases TNT explosion power.",
+  "tooltip.mhcraftlands.skill_description.mushroomancer": "Allows consumption of mushrooms.",
+  "tooltip.mhcraftlands.skill_description.mushroomancer.2": "[2] Allows consumption of mushrooms and fungi.",
 
   "attribute.mhcraftlands.fire_elemental_damage": "Fire Damage",
   "attribute.mhcraftlands.water_elemental_damage": "Water Damage",
@@ -85,5 +93,6 @@
 
   "enchantment.mhcraftlands.quick_eating": "Quick Eating",
   "enchantment.mhcraftlands.muck_resistance": "Muck Resistance",
-  "enchantment.mhcraftlands.bombardier": "Bombardier"
+  "enchantment.mhcraftlands.bombardier": "Bombardier",
+  "enchantment.mhcraftlands.mushroomancer": "Mushroomancer"
 }

@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.logging.LogUtils;
 import com.nateplays.mhcraftlands.pet.entity.PalicoEntity;
 import com.nateplays.mhcraftlands.pet.item.armor.PetHuntingArmorItem;
-import com.nateplays.mhcraftlands.mixin.ArmorMaterialLayerAccessor;
+import com.nateplays.mhcraftlands.mixin.ArmorMaterialLayerMixin;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -115,7 +115,7 @@ public class PalicoArmorLayer<T extends PalicoEntity, M extends PalicoModel<T>, 
                 if (layerTexture == null) continue;
 
                 RenderType renderType = RenderType.entityCutoutNoCull(layerTexture);
-                String suffix = ((ArmorMaterialLayerAccessor) (Object) armorLayer).suffix();
+                String suffix = ((ArmorMaterialLayerMixin) (Object) armorLayer).getSuffix();
                 if (Objects.equals(suffix, "_emissive")) {
                     renderType = RenderType.eyes(layerTexture);
 //                    LOGGER.debug("ligjt:" + String.valueOf(packedLight));

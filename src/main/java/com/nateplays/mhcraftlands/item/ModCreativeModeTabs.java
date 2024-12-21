@@ -12,6 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -46,11 +47,11 @@ public class ModCreativeModeTabs {
 //                    })
 //                    .build());
 
-    public static final Supplier<CreativeModeTab> MYNEOFORGEMOD_ITEMS_TAB = CREATIVE_MODE_TABS.register("myneoforgemod_items_tab",
+    public static final Supplier<CreativeModeTab> PALICO_ITEMS_TAB = CREATIVE_MODE_TABS.register("mhcraftlands_palico_items_tab",
             () -> CreativeModeTab.builder()
 //                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "myneoforgemod_blocks_tab"))
                     .icon(() -> new ItemStack(MHPetItems.SUMMON_FELYNE_VOUCHER.get()))
-                    .title(Component.translatable("creativetab.mhcraftlands.items_tab"))
+                    .title(Component.translatable("creativetab.mhcraftlands.palico_items_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
 //                        output.accept(ModItems.EARTH_CRYSTAL);
 //                        output.accept(ModItems.MALACHITE_CHUNK);
@@ -81,11 +82,11 @@ public class ModCreativeModeTabs {
 //                    .backgroundTexture(ResourceLocation.fromNamespaceAndPath(MyNeoForgeMod.MODID, "textures/block/earth_crystal_ore.png"))
                     .build());
 
-    public static final Supplier<CreativeModeTab> MYNEOFORGEMOD_ARMORS_TAB = CREATIVE_MODE_TABS.register("myneoforgemod_pet_equipment_tab",
+    public static final Supplier<CreativeModeTab> PALICO_EQUIPMENT_TAB = CREATIVE_MODE_TABS.register("mhcraftlands_palico_equipment_tab",
             () -> CreativeModeTab.builder()
-                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "myneoforgemod_items_tab"))
+                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "mhcraftlands_palico_items_tab"))
                     .icon(() -> new ItemStack(MHPetArmorItems.F_ACORN_MAIL.get()))
-                    .title(Component.translatable("creativetab.mhcraftlands.pet_equipment_tab"))
+                    .title(Component.translatable("creativetab.mhcraftlands.palico_equipment_tab"))
                     .withSearchBar()
                     .displayItems((itemDisplayParameters, output) -> {
 //                        outputAcceptHuntingArmorItem(ModArmorItems.HUNTER_HELMET.get(), itemDisplayParameters, output);
@@ -122,6 +123,27 @@ public class ModCreativeModeTabs {
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_MOSGHARL_MAIL.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_FRANKIE_HELM.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_FRANKIE_MAIL.get(), itemDisplayParameters, output);
+                    })
+                    .build());
+
+    public static final Supplier<CreativeModeTab> HUNTER_ARMOR_TAB = CREATIVE_MODE_TABS.register("mhcraftlands_hunter_armor_tab",
+            () -> CreativeModeTab.builder()
+                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "mhcraftlands_palico_equipment_tab"))
+                    .icon(() -> new ItemStack(Items.LEATHER_CHESTPLATE))
+                    .title(Component.translatable("creativetab.mhcraftlands.hunter_armor_tab"))
+                    .withSearchBar()
+                    .displayItems((itemDisplayParameters, output) -> {
+
+                        outputAcceptHuntingArmorItem(ModArmorItems.HUNTER_HELMET.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.HUNTER_CHESTPLATE.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.HUNTER_LEGGINGS.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.HUNTER_BOOTS.get(), itemDisplayParameters, output);
+
+                        outputAcceptHuntingArmorItem(ModArmorItems.CHAOSHROOM_HELMET_A.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.CHAOSHROOM_HELMET_B.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.CHAOS_PLATE_A.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(ModArmorItems.CHAOS_PLATE_B.get(), itemDisplayParameters, output);
+
                     })
                     .build());
 

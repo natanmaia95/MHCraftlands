@@ -28,13 +28,14 @@ public class ChaoshroomHelmetAModel<T extends Player> extends BaseHuntingArmorMo
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(32, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.3F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(32, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.3F))
+				.texOffs(30, 5).addBox(-1.5F, -6.5F, -4.5F, 3.0F, 1.0F, 2.0F, new CubeDeformation(0.2F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		PartDefinition shroom = head.addOrReplaceChild("shroom", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -3.0F, -2.0F, 4.0F, 2.0F, 4.0F, new CubeDeformation(0.0F))
-				.texOffs(0, 6).addBox(-1.5F, -1.0F, -1.5F, 3.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -7.0F, 3.25F, -0.6109F, 0.0F, 0.0F));
+				.texOffs(0, 10).addBox(-2.5F, -1.0F, -2.5F, 5.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -7.5F, 3.75F, -0.6109F, 0.0F, 0.0F));
 
 		PartDefinition tie = head.addOrReplaceChild("tie", CubeListBuilder.create().texOffs(16, 0).addBox(0.5F, 0.0F, 0.0F, 1.0F, 10.0F, 0.0F, new CubeDeformation(0.0F))
-				.texOffs(16, 0).addBox(-1.5F, 0.0F, 0.0F, 1.0F, 10.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -7.0F, 5.0F, 0.1745F, 0.0F, 0.0F));
+				.texOffs(16, 0).addBox(-1.5F, 0.0F, 0.0F, 1.0F, 10.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -7.5F, 6.25F, 0.1745F, 0.0F, 0.0F));
 
 		PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 

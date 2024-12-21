@@ -3,6 +3,8 @@ package com.nateplays.mhcraftlands.hunter.event;
 import com.nateplays.mhcraftlands.MHMod;
 import com.nateplays.mhcraftlands.common.client.rendering.BaseHuntingArmorModel;
 import com.nateplays.mhcraftlands.entity.client.ModModelLayers;
+import com.nateplays.mhcraftlands.hunter.armor.model.ChaosPlateAModel;
+import com.nateplays.mhcraftlands.hunter.armor.model.ChaosPlateBModel;
 import com.nateplays.mhcraftlands.hunter.armor.model.ChaoshroomHelmetAModel;
 import com.nateplays.mhcraftlands.hunter.armor.model.ChaoshroomHelmetBModel;
 import net.minecraft.client.model.HumanoidArmorModel;
@@ -28,9 +30,11 @@ public class HunterArmorModelLayerHandler {
                 () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(new CubeDeformation(0.3F)), 64, 32));
 
 
-         List<Class<?>> modelClasses = List.of(
+        List<Class<?>> modelClasses = List.of(
                 ChaoshroomHelmetAModel.class,
-                ChaoshroomHelmetBModel.class
+                ChaoshroomHelmetBModel.class,
+                ChaosPlateAModel.class,
+                ChaosPlateBModel.class
         );
 
         for (Class<?> modelClass : modelClasses) {

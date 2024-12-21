@@ -36,16 +36,16 @@ public class ChaoshroomHelmetBModel<T extends Player> extends BaseHuntingArmorMo
 		PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		PartDefinition shroom_left = head.addOrReplaceChild("shroom_left", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -3.0F, -2.0F, 4.0F, 2.0F, 4.0F, new CubeDeformation(0.0F))
-				.texOffs(0, 6).addBox(-1.5F, -1.0F, -1.5F, 3.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.0F, -7.0F, 0.25F, -0.6109F, 1.5708F, 0.0F));
+				.texOffs(0, 10).addBox(-2.5F, -1.0F, -2.5F, 5.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.0F, -7.0F, 0.25F, -0.6109F, 1.5708F, 0.0F));
 
 		PartDefinition tie_left = shroom_left.addOrReplaceChild("tie_left", CubeListBuilder.create().texOffs(16, 0).addBox(0.5F, 0.0F, 0.0F, 1.0F, 10.0F, 0.0F, new CubeDeformation(0.0F))
-				.texOffs(16, 0).addBox(-1.5F, 0.0F, 0.0F, 1.0F, 10.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -1.0F, 1.75F, 0.7854F, 0.0F, 0.0F));
+				.texOffs(16, 0).addBox(-1.5F, 0.0F, 0.0F, 1.0F, 10.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -1.25F, 2.25F, 0.7854F, 0.0F, 0.0F));
 
 		PartDefinition shroom_right = head.addOrReplaceChild("shroom_right", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -3.0F, -2.0F, 4.0F, 2.0F, 4.0F, new CubeDeformation(0.0F))
-				.texOffs(0, 6).addBox(-1.5F, -1.0F, -1.5F, 3.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-3.0F, -7.0F, 0.25F, -0.6109F, -1.5708F, 0.0F));
+				.texOffs(0, 10).addBox(-2.5F, -1.0F, -2.5F, 5.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-3.0F, -7.0F, 0.25F, -0.6109F, -1.5708F, 0.0F));
 
 		PartDefinition tie_right = shroom_right.addOrReplaceChild("tie_right", CubeListBuilder.create().texOffs(16, 0).addBox(0.5F, 0.0F, 0.0F, 1.0F, 10.0F, 0.0F, new CubeDeformation(0.0F))
-				.texOffs(16, 0).addBox(-1.5F, 0.0F, 0.0F, 1.0F, 10.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -1.0F, 1.75F, 0.7854F, 0.0F, 0.0F));
+				.texOffs(16, 0).addBox(-1.5F, 0.0F, 0.0F, 1.0F, 10.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -1.25F, 2.25F, 0.7854F, 0.0F, 0.0F));
 
 		PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
