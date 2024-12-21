@@ -18,19 +18,20 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.DyedItemColor;
 
-public class PlayerHuntingArmorLayer <T extends Player, M extends HumanoidModel<T>, A extends HumanoidModel<T>> extends RenderLayer<T, M> {
+public class PlayerHuntingArmorLayer <T extends LivingEntity, M extends HumanoidModel<T>, A extends HumanoidModel<T>> extends RenderLayer<T, M> {
 //    private static final Map<String, ResourceLocation> ARMOR_LOCATION_CACHE = Maps.newHashMap();
     private final A baseArmorModel;
     private final EntityRendererProvider.Context context;
 
-    public PlayerHuntingArmorLayer(RenderLayerParent<T, M> renderer, A baseArmorModel, EntityRendererProvider.Context context) {
+    public PlayerHuntingArmorLayer(RenderLayerParent<T, M> renderer, EntityRendererProvider.Context context) {
         super(renderer);
-        this.baseArmorModel = baseArmorModel;
+        this.baseArmorModel = null;
         this.context = context;
     }
 
@@ -50,7 +51,7 @@ public class PlayerHuntingArmorLayer <T extends Player, M extends HumanoidModel<
 
             this.getParentModel().copyPropertiesTo(p_model);
             this.copyProperties(getParentModel(), p_model);
-            this.setPartVisibility(p_model, slot);
+            if (p_model.getClass() == BaseHuntingArmorModel.class) this.setPartVisibility(p_model, slot);
 
             ArmorMaterial armorMaterial = armorItem.getMaterial().value();
 
@@ -116,18 +117,6 @@ public class PlayerHuntingArmorLayer <T extends Player, M extends HumanoidModel<
 
     private void copyProperties(M from, A to) {
         from.copyPropertiesTo(to);
-        //runs this:
-//        to.leftArmPose = from.leftArmPose;
-//        to.rightArmPose = from.rightArmPose;
-//        to.crouching = from.crouching;
-//        to.head.copyFrom(from.head);
-//        to.hat.copyFrom(from.hat);
-//        to.body.copyFrom(from.body);
-//        to.rightArm.copyFrom(from.rightArm);
-//        to.leftArm.copyFrom(from.leftArm);
-//        to.rightLeg.copyFrom(from.rightLeg);
-//        to.leftLeg.copyFrom(from.leftLeg);
-        //add extra stipulations later
     }
 
     private void setPartVisibility(A model, EquipmentSlot slot) {

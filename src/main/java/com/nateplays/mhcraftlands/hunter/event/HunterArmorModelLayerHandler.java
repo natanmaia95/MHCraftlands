@@ -11,6 +11,7 @@ import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
@@ -20,14 +21,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
-@EventBusSubscriber(modid = MHMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = MHMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class HunterArmorModelLayerHandler {
 
     @SubscribeEvent
     public static <T extends BaseHuntingArmorModel<?>> void registerHunterArmorLayers(EntityRenderersEvent.RegisterLayerDefinitions event) throws NoSuchMethodException, NoSuchFieldException, IllegalAccessException {
 
         event.registerLayerDefinition(BaseHuntingArmorModel.DEFAULT_HUNTING_ARMOR_LAYER,
-                () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(new CubeDeformation(0.3F)), 64, 32));
+                () -> LayerDefinition.create(BaseHuntingArmorModel.createMesh(new CubeDeformation(0.3F), 0.0f), 64, 32));
 
 
         List<Class<?>> modelClasses = List.of(
