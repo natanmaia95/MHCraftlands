@@ -8,7 +8,6 @@ import com.nateplays.mhcraftlands.pet.gui.PalicoInventoryMenu;
 import com.nateplays.mhcraftlands.pet.item.armor.PetHuntingArmorItem;
 import com.nateplays.mhcraftlands.pet.item.weapon.PetHuntingWeaponItem;
 import com.nateplays.mhcraftlands.pet.sound.MHPetSounds;
-import com.nateplays.mhcraftlands.sound.ModSounds;
 import com.nateplays.mhcraftlands.tags.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -30,19 +29,23 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.ticks.ContainerSingleItem;
+import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
 public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevelableEntity, InventoryCarrier, MenuProvider {
+    //Base class for all sorts of Lynians.
 
-    public final AnimationState livingAnimationState = new AnimationState();
-    public final AnimationState sitAnimationState = new AnimationState();
-    public final AnimationState standUpAnimationState = new AnimationState();
+    public final AnimationState livingAnimState = new AnimationState();
+    public final AnimationState sitAnimState = new AnimationState();
+    public final AnimationState standUpAnimState = new AnimationState();
+    public final AnimationState faintAnimState = new AnimationState();
 
     //TODO: make all these containers a single class for all pet
     public final Container helmArmorAccess = new ContainerSingleItem() {
@@ -131,6 +134,7 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         this.goalSelector.addGoal(7, new PalicoTamedHarvestBlockGoal(this, ModTags.Blocks.PALICO_HARVESTABLE_PLANTS, 1.2, 8, 2, 200));
 
         this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0));
+        this.goalSelector.addGoal(1, new TemptGoal(this, 1.2, Ingredient.of(Tags.Items.GEMS_EMERALD), false));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
 
@@ -186,18 +190,29 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
     }
 
     public void setupAnimationStates() {
-        this.livingAnimationState.startIfStopped(this.tickCount);
+        if (this.isKOed()) {
+            this.resetLivingAnimations();
+            this.faintAnimState.startIfStopped(this.tickCount);
 
-        if (this.isInSittingPose()) {
-            this.sitAnimationState.startIfStopped(this.tickCount);
-            this.standUpAnimationState.stop();
         } else {
-            this.sitAnimationState.stop();
-            this.standUpAnimationState.startIfStopped(this.tickCount);
+            this.faintAnimState.stop();
+
+            this.livingAnimState.startIfStopped(this.tickCount);
+            if (this.isInSittingPose()) {
+                this.sitAnimState.startIfStopped(this.tickCount);
+                this.standUpAnimState.stop();
+            } else {
+                this.sitAnimState.stop();
+                this.standUpAnimState.startIfStopped(this.tickCount);
+            }
         }
     }
 
-
+    public void resetLivingAnimations() {
+        this.livingAnimState.stop();
+        this.standUpAnimState.stop();
+        this.sitAnimState.stop();
+    }
 
     //Extend attack range because palico is tiny!
     public boolean isWithinMeleeAttackRange(LivingEntity entity) {

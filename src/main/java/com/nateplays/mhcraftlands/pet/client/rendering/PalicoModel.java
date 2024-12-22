@@ -115,16 +115,21 @@ public class PalicoModel<T extends PalicoEntity> extends HierarchicalModel<T> im
 	@Override
 	public void setupAnim(PalicoEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
+
+		if (entity.isKOed()) {
+			this.animate(entity.faintAnimState, PalicoAnimations.faint, ageInTicks, 1.0F);
+			return;
+		}
+
 		this.applyHeadRotation(entity, netHeadYaw, headPitch, ageInTicks);
 
 		if (entity.isInSittingPose()) {
-			if (entity.sitAnimationState.getAccumulatedTime() < 1000) this.animate(entity.sitAnimationState, PalicoAnimations.sit, ageInTicks);
-			else this.animate(entity.sitAnimationState, PalicoAnimations.sitting, ageInTicks, 1.0F);
+			if (entity.sitAnimState.getAccumulatedTime() < 1000) this.animate(entity.sitAnimState, PalicoAnimations.sit, ageInTicks);
+			else this.animate(entity.sitAnimState, PalicoAnimations.sitting, ageInTicks, 1.0F);
 		} else {
-			if (entity.standUpAnimationState.getAccumulatedTime() < 2000) this.animate(entity.standUpAnimationState, PalicoAnimations.jump_excited, ageInTicks);
+			if (entity.standUpAnimState.getAccumulatedTime() < 2000) this.animate(entity.standUpAnimState, PalicoAnimations.jump_excited, ageInTicks);
 			this.animateWalk(PalicoAnimations.walk, limbSwing*2, limbSwingAmount, 1f, 1f);
 		}
-
 	}
 
 	private void applyHeadRotation(Entity entity, float netHeadYaw, float headPitch, float ageInTicks) {

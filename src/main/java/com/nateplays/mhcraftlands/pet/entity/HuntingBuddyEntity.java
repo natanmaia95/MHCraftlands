@@ -2,6 +2,7 @@ package com.nateplays.mhcraftlands.pet.entity;
 
 import com.nateplays.mhcraftlands.common.attribute.ModAttributes;
 import com.nateplays.mhcraftlands.common.effect.ModEffects;
+import com.nateplays.mhcraftlands.entity.custom.MosswineEntity;
 import com.nateplays.mhcraftlands.entity.interfaces.ILevelableEntity;
 import com.nateplays.mhcraftlands.pet.item.MHPetItems;
 import com.nateplays.mhcraftlands.pet.item.armor.PetHuntingArmorItem;
@@ -18,6 +19,7 @@ import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
@@ -30,6 +32,8 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevelableEntity {
@@ -37,9 +41,14 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
     static final Logger LOGGER = LoggerFactory.getLogger(HuntingBuddyEntity.class);
 
 
+
     private static final EntityDataAccessor<Integer> EXP;
     public static final Predicate<LivingEntity> ALLIED_TO_HUNTERS_SELECTOR;
     public static final Predicate<LivingEntity> NOT_ALLIED_TO_HUNTERS_SELECTOR;
+
+    private static final EntityDataAccessor<Byte> BUDDY_DATA_FLAGS =
+            SynchedEntityData.defineId(HuntingBuddyEntity.class, EntityDataSerializers.BYTE);
+    private static final int FLAG_KO_ID = 0b00000001;
 
 
     private boolean goalsCleared = false; //for KO effect
@@ -76,18 +85,21 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
+        builder.define(BUDDY_DATA_FLAGS, (byte)0);
         buildLevelSynchedData(builder);
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
+        tag.putBoolean("is_knocked_out", isKOed());
         addAdditionalLevelableSaveData(tag);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
+        this.setKOed(tag.getBoolean("is_knocked_out"));
         readAdditionalLevelableSaveData(tag);
     }
 
@@ -280,6 +292,19 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
     }
 
     public boolean isKOed() {
-        return this.hasEffect(ModEffects.HUNTING_BUDDY_KO); //TODO: change into entity data to sync to client
+        return (this.entityData.get(BUDDY_DATA_FLAGS) & FLAG_KO_ID) != 0;
+//        return this.hasEffect(ModEffects.HUNTING_BUDDY_KO); //TODO: change into entity data to sync to client
+    }
+
+    public void setKOed(boolean value) {
+//        System.out.println("ERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRROR");
+        System.out.println("KOed " + String.valueOf(value));
+        byte oldFlags = this.entityData.get(BUDDY_DATA_FLAGS);
+        if (value) {
+            this.entityData.set(BUDDY_DATA_FLAGS, (byte) (oldFlags | FLAG_KO_ID));
+        } else {
+            int mask = ~FLAG_KO_ID;
+            this.entityData.set(BUDDY_DATA_FLAGS, (byte) (oldFlags & mask));
+        }
     }
 }

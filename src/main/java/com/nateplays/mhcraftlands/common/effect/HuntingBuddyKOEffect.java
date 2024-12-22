@@ -23,13 +23,15 @@ public class HuntingBuddyKOEffect extends MobEffect {
 
     @Override
     public boolean applyEffectTick(LivingEntity livingEntity, int amplifier) {
-        if (!(livingEntity instanceof HuntingBuddyEntity)) return false;
+        if (!(livingEntity instanceof HuntingBuddyEntity buddy)) return false;
 
         float maxHealth = livingEntity.getMaxHealth();
         if (livingEntity.getHealth() < maxHealth) {
+            buddy.setKOed(true);
             livingEntity.heal(maxHealth / 20);
             return true;
         } else {
+            buddy.setKOed(false);
             return false; //this triggers removal
         }
     }
