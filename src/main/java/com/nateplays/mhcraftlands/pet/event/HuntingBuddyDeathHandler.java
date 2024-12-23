@@ -2,12 +2,10 @@ package com.nateplays.mhcraftlands.pet.event;
 
 import com.mojang.logging.LogUtils;
 import com.nateplays.mhcraftlands.MHMod;
-import com.nateplays.mhcraftlands.common.effect.HuntingBuddyKOEffect;
 import com.nateplays.mhcraftlands.common.effect.ModEffects;
 import com.nateplays.mhcraftlands.pet.entity.HuntingBuddyEntity;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -33,9 +31,11 @@ public class HuntingBuddyDeathHandler {
                         SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.NEUTRAL, 1.0f, 1.0f);
 
                 buddyEntity.setHealth(0.01f);
+                buddyEntity.setOrderedToSit(false);
                 buddyEntity.setInSittingPose(false);
 //                buddyEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100, 4));
-                buddyEntity.addEffect(new MobEffectInstance(ModEffects.HUNTING_BUDDY_KO, HuntingBuddyKOEffect.DURATION));
+//                buddyEntity.addEffect(new MobEffectInstance(ModEffects.HUNTING_BUDDY_KO, HuntingBuddyKOEffect.DURATION));
+                buddyEntity.setKOed(true);
             }
         }
     }
@@ -43,7 +43,7 @@ public class HuntingBuddyDeathHandler {
     @SubscribeEvent
     public static void livingDamageEvent(LivingIncomingDamageEvent event) {
         if (event.getEntity() instanceof HuntingBuddyEntity buddyEntity) {
-            if (buddyEntity.hasEffect(ModEffects.HUNTING_BUDDY_KO)) {
+            if (buddyEntity.isKOed()) {
                 event.setCanceled(true);
             } else if (buddyEntity.isTame()) {
                 if (event.getSource().getEntity() != null) {

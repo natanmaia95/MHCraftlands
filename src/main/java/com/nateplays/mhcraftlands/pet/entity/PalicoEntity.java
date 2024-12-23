@@ -5,6 +5,7 @@ import com.nateplays.mhcraftlands.entity.interfaces.ILevelableEntity;
 import com.nateplays.mhcraftlands.pet.goals.HuntingBuddyHurtByTargetGoal;
 import com.nateplays.mhcraftlands.pet.goals.PalicoTamedHarvestBlockGoal;
 import com.nateplays.mhcraftlands.pet.gui.PalicoInventoryMenu;
+import com.nateplays.mhcraftlands.pet.gui.PetSingleEquipContainer;
 import com.nateplays.mhcraftlands.pet.item.armor.PetHuntingArmorItem;
 import com.nateplays.mhcraftlands.pet.item.weapon.PetHuntingWeaponItem;
 import com.nateplays.mhcraftlands.pet.sound.MHPetSounds;
@@ -47,61 +48,10 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
     public final AnimationState standUpAnimState = new AnimationState();
     public final AnimationState faintAnimState = new AnimationState();
 
-    //TODO: make all these containers a single class for all pet
-    public final Container helmArmorAccess = new ContainerSingleItem() {
-        public ItemStack getTheItem() {
-            return PalicoEntity.this.getItemBySlot(EquipmentSlot.HEAD);
-        }
-        public void setTheItem(ItemStack stack) {
-            PalicoEntity.this.setItemSlot(EquipmentSlot.HEAD, stack);
-        }
-        public boolean stillValid(Player player) { return true; }
-        public void setChanged() {}
 
-        @Override
-        public boolean canPlaceItem(int slot, ItemStack stack) {
-            if (stack.getItem() instanceof PetHuntingArmorItem petHuntingArmorItem) {
-                return petHuntingArmorItem.canEquip(stack, EquipmentSlot.HEAD, PalicoEntity.this);
-            } else return false;
-        }
-    };
-
-    public final Container mailArmorAccess = new ContainerSingleItem() {
-        public ItemStack getTheItem() {
-            return PalicoEntity.this.getItemBySlot(EquipmentSlot.CHEST);
-        }
-        public void setTheItem(ItemStack stack) {
-            PalicoEntity.this.setItemSlot(EquipmentSlot.CHEST, stack);
-        }
-        public boolean stillValid(Player player) { return true; }
-        public void setChanged() {}
-
-        @Override
-        public boolean canPlaceItem(int slot, ItemStack stack) {
-            if (stack.getItem() instanceof PetHuntingArmorItem petHuntingArmorItem) {
-                return petHuntingArmorItem.canEquip(stack, EquipmentSlot.CHEST, PalicoEntity.this);
-            } else return false;
-        }
-    };
-
-    public final Container weaponAccess = new ContainerSingleItem() {
-        public ItemStack getTheItem() {
-            return PalicoEntity.this.getItemBySlot(EquipmentSlot.MAINHAND);
-        }
-        public void setTheItem(ItemStack stack) {
-            PalicoEntity.this.setItemSlot(EquipmentSlot.MAINHAND, stack);
-        }
-        public boolean stillValid(Player player) { return true; }
-        public void setChanged() {}
-
-        @Override
-        public boolean canPlaceItem(int slot, ItemStack stack) {
-            if (stack.getItem() instanceof PetHuntingWeaponItem petHuntingWeaponItem) {
-                return petHuntingWeaponItem.canEquip(stack, EquipmentSlot.MAINHAND, PalicoEntity.this);
-            } else return false;
-        }
-    };
-
+    public final Container helmArmorAccess = new PetSingleEquipContainer(this, EquipmentSlot.HEAD);
+    public final Container mailArmorAccess = new PetSingleEquipContainer(this, EquipmentSlot.CHEST);
+    public final Container weaponAccess = new PetSingleEquipContainer(this, EquipmentSlot.MAINHAND);
     private final SimpleContainer pouchInventory = new SimpleContainer(6) {};
 
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
@@ -185,11 +135,11 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
     public void tick() {
         super.tick();
         if (this.level().isClientSide()) {
-            setupAnimationStates();
+            tickAnimationStates();
         }
     }
 
-    public void setupAnimationStates() {
+    public void tickAnimationStates() {
         if (this.isKOed()) {
             this.resetLivingAnimations();
             this.faintAnimState.startIfStopped(this.tickCount);

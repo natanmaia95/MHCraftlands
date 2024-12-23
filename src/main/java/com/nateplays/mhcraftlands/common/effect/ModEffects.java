@@ -14,8 +14,8 @@ public class ModEffects {
 
 
 
-    public static final Holder<MobEffect> HUNTING_BUDDY_KO = MOB_EFFECTS.register("hunting_buddy_ko",
-            () -> new HuntingBuddyKOEffect(MobEffectCategory.BENEFICIAL));
+//    public static final Holder<MobEffect> HUNTING_BUDDY_KO = MOB_EFFECTS.register("hunting_buddy_ko",
+//            () -> new HuntingBuddyKOEffect(MobEffectCategory.BENEFICIAL));
 
     public static void register(IEventBus eventBus) {
         MOB_EFFECTS.register(eventBus);

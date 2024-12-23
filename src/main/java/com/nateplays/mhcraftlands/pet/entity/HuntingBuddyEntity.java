@@ -50,6 +50,9 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
             SynchedEntityData.defineId(HuntingBuddyEntity.class, EntityDataSerializers.BYTE);
     private static final int FLAG_KO_ID = 0b00000001;
 
+    public static final int KO_DURATION = 1200;
+
+
 
     private boolean goalsCleared = false; //for KO effect
 
@@ -111,12 +114,20 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
 
     public void tickKOEffect() {
         if (this.isKOed()) {
+            // reset goals
             if (!goalSelector.getAvailableGoals().isEmpty()) {
                 goalSelector.getAvailableGoals().forEach(WrappedGoal::stop);
                 goalSelector.getAvailableGoals().clear();
                 goalsCleared = true;
             }
+            // KO regen, 5% every 3 seconds
+            if ((this.tickCount+1) % (KO_DURATION / 20) == 0) {
+                this.heal(this.getMaxHealth() / 20);
+                if (this.getMaxHealth() <= this.getHealth()) this.setKOed(false);
+            }
+
         } else {
+            // return goals
             if (goalSelector.getAvailableGoals().isEmpty()) {
                 this.registerGoals();
                 goalsCleared = false;
@@ -293,12 +304,9 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
 
     public boolean isKOed() {
         return (this.entityData.get(BUDDY_DATA_FLAGS) & FLAG_KO_ID) != 0;
-//        return this.hasEffect(ModEffects.HUNTING_BUDDY_KO); //TODO: change into entity data to sync to client
     }
 
     public void setKOed(boolean value) {
-//        System.out.println("ERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRROR");
-        System.out.println("KOed " + String.valueOf(value));
         byte oldFlags = this.entityData.get(BUDDY_DATA_FLAGS);
         if (value) {
             this.entityData.set(BUDDY_DATA_FLAGS, (byte) (oldFlags | FLAG_KO_ID));
