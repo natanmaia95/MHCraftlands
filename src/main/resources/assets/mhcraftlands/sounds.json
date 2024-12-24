@@ -1,4 +1,18 @@
 {
+  "item/heal":{
+    "subtitle": "sounds.mhcraftlands.item_heal",
+    "sounds": ["mhcraftlands:item/heal"]
+  },
+  "item/horn_1":{
+    "subtitle": "sounds.mhcraftlands.item_horn_1",
+    "sounds": ["mhcraftlands:item/horn_1"]
+  },
+  "item/horn_2":{
+    "subtitle": "sounds.mhcraftlands.item_horn_2",
+    "sounds": ["mhcraftlands:item/horn_2"]
+  },
+
+
   "palico/felyne_ambient":{
     "subtitle": "sounds.mhcraftlands.felyne_ambient",
     "sounds": [

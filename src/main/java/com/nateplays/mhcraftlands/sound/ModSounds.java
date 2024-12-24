@@ -10,6 +10,7 @@ import net.minecraft.world.item.JukeboxSong;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 public class ModSounds {
@@ -24,7 +25,9 @@ public class ModSounds {
     public static final Supplier<SoundEvent> DISC_HUNTERGOFORTH = registerSoundEvent("music/disc_huntergoforth");
     public static final ResourceKey<JukeboxSong> DISCKEY_HUNTERGOFORTH = createSong("huntergoforth");
 
-
+    public static final Supplier<SoundEvent> ITEM_HEAL = registerSoundEvent("item/heal");
+    public static final Supplier<SoundEvent> ITEM_HORN_1 = registerSoundEvent("item/horn_1", 2.0f);
+    public static final Supplier<SoundEvent> ITEM_HORN_2 = registerSoundEvent("item/horn_2");
 
 
 
@@ -33,8 +36,16 @@ public class ModSounds {
     }
 
     private static Supplier<SoundEvent> registerSoundEvent(String name) {
+        return registerSoundEvent(name, -1f);
+    }
+
+    private static Supplier<SoundEvent> registerSoundEvent(String name, float range) {
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, name);
-        return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(id));
+        if (range == -1f) {
+            return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(id));
+        } else {
+            return SOUND_EVENTS.register(name, () -> SoundEvent.createFixedRangeEvent(id, range));
+        }
     }
 
     public static void register(IEventBus eventBus) {
