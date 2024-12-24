@@ -17,6 +17,7 @@ public class PalicoInventoryMenu extends AbstractContainerMenu {
 
     public final PalicoEntity palicoEntity;
     private final Container pouchInventory;
+    private final Container toolsContainer;
 
     protected int currentTab = 0;
 
@@ -30,6 +31,7 @@ public class PalicoInventoryMenu extends AbstractContainerMenu {
         super(MHPetMenuTypes.PALICO_INVENTORY.get(), containerId);
         this.palicoEntity = palicoIn;
         this.pouchInventory = palicoEntity.getInventory();
+        this.toolsContainer = palicoEntity.getToolsContainer();
 
         // Add inventory slots here, for example:
         // addSlot(new Slot(playerInventory, 0, 10, 10));
@@ -84,6 +86,16 @@ public class PalicoInventoryMenu extends AbstractContainerMenu {
         for (int col = 0; col < 9; ++col) {
             this.addSlot(new Slot(playerInventory, col, startX + col * slotSizePlus2, startY + 58));
         }
+
+        // Tools container
+        for (int i = 0; i < this.toolsContainer.getContainerSize(); i++) {
+            this.addSlot(new Slot(this.toolsContainer, i, 80 + slotSizePlus2*i, 69) {
+                @Override
+                public boolean isActive() {
+                    return currentTab == 1;
+                }
+            });
+        }
     }
 
     public static PalicoEntity decodeBuffer(Level level, FriendlyByteBuf buffer) {
@@ -106,6 +118,7 @@ public class PalicoInventoryMenu extends AbstractContainerMenu {
         ItemStack quickMovedStack = ItemStack.EMPTY;
         // The quick moved slot
         Slot quickMovedSlot = this.slots.get(quickMovedSlotIndex);
+        int lastToolsSlot = 44 + toolsContainer.getContainerSize();
 
         // If the slot is in the valid range and the slot is not empty
         if (quickMovedSlot != null && quickMovedSlot.hasItem()) {
@@ -158,9 +171,13 @@ public class PalicoInventoryMenu extends AbstractContainerMenu {
                 }
                 if (!moveResult) return ItemStack.EMPTY;
             }
+
+            // Else if quick move was made from tools screen
+            else if (quickMovedSlotIndex < lastToolsSlot+1) {
+                if (!this.moveItemStackTo(rawStack, 9, 45, true)) return ItemStack.EMPTY; // If cannot move, no longer quick move
+            }
+
             //if none of these attempts worked, quit
-
-
             if (rawStack.isEmpty()) {
                 // If the raw stack has completely moved out of the slot, set the slot to the empty stack
                 quickMovedSlot.set(ItemStack.EMPTY);

@@ -3,9 +3,11 @@ package com.nateplays.mhcraftlands.pet.entity;
 import com.nateplays.mhcraftlands.common.attribute.ModAttributes;
 import com.nateplays.mhcraftlands.entity.interfaces.ILevelableEntity;
 import com.nateplays.mhcraftlands.pet.item.MHPetItems;
+import com.nateplays.mhcraftlands.pet.item.PetToolItem;
 import com.nateplays.mhcraftlands.pet.item.armor.PetHuntingArmorItem;
 import com.nateplays.mhcraftlands.pet.item.custom.PetTrainingBookItem;
 import com.nateplays.mhcraftlands.pet.item.weapon.PetHuntingWeaponItem;
+import com.nateplays.mhcraftlands.pet.skills.PetToolUser;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -28,15 +30,15 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.function.Predicate;
 
-public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevelableEntity {
+public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevelableEntity, PetToolUser {
 
     static final Logger LOGGER = LoggerFactory.getLogger(HuntingBuddyEntity.class);
-
 
 
     private static final EntityDataAccessor<Integer> EXP;
@@ -49,9 +51,17 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
 
     public static final int KO_DURATION = 1200;
 
-
-
     private boolean goalsCleared = false; //for KO effect
+    protected boolean usingTool = false;
+
+    private SimpleContainer toolsContainer = new SimpleContainer(5) {
+        @Override
+        public boolean canAddItem(ItemStack stack) {
+            return (stack.getItem() instanceof PetToolItem<?>) && super.canAddItem(stack);
+        }
+    };
+
+
 
 
     protected HuntingBuddyEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
@@ -94,6 +104,7 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
         super.addAdditionalSaveData(tag);
         tag.putBoolean("is_knocked_out", isKOed());
         addAdditionalLevelableSaveData(tag);
+        writeBuddyToolsToTag(tag, this.registryAccess());
     }
 
     @Override
@@ -101,6 +112,7 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
         super.readAdditionalSaveData(tag);
         this.setKOed(tag.getBoolean("is_knocked_out"));
         readAdditionalLevelableSaveData(tag);
+        readBuddyToolsFromTag(tag, this.registryAccess());
     }
 
     @Override
@@ -321,10 +333,21 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
         }
     }
 
-    //Related to Tool use
-    public abstract SimpleContainer getToolsContainer();
+    @Override
+    public SimpleContainer getToolsContainer() {
+        return toolsContainer;
+    }
 
     public boolean isInCombat() {
         return this.getTarget() != null;
+    }
+
+    @Nullable
+    public ItemStack getCurrentTool() {
+        ItemStack offHand = getItemInHand(InteractionHand.OFF_HAND);
+        if (offHand.getItem() instanceof PetToolItem<?> petToolItem) {
+            if (petToolItem.canUsePetTool(offHand, this)) return offHand;
+        }
+        return null;
     }
 }

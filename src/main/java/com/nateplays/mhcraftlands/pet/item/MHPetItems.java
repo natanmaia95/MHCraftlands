@@ -1,6 +1,7 @@
 package com.nateplays.mhcraftlands.pet.item;
 
 import com.nateplays.mhcraftlands.MHMod;
+import com.nateplays.mhcraftlands.common.effect.ModEffects;
 import com.nateplays.mhcraftlands.entity.ModEntities;
 import com.nateplays.mhcraftlands.item.custom.SummonFelyneItem;
 import com.nateplays.mhcraftlands.pet.entity.MHPetEntities;
@@ -12,6 +13,9 @@ import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SpawnEggItem;
@@ -39,6 +43,18 @@ public class MHPetItems {
 
     public static final DeferredItem<HornPetTool> F_HERB_HORN = PET_ITEMS.register("f_herb_horn",
             () -> new HornPetTool(PalicoEntity.class, 150, new Item.Properties()));
+    public static final DeferredItem<HornPetTool> F_DEMON_HORN = PET_ITEMS.register("f_demon_horn",
+            () -> new HornPetTool(PalicoEntity.class, 150, new Item.Properties()) {
+                @Override public void applyActualEffectToEntity(LivingEntity livingEntity) {
+                    livingEntity.addEffect(new MobEffectInstance(ModEffects.ATTACK_BOOST_BUFF, 20*60*3, 2));
+                }
+            });
+    public static final DeferredItem<HornPetTool> F_ARMOR_HORN = PET_ITEMS.register("f_armor_horn",
+            () -> new HornPetTool(PalicoEntity.class, 150, new Item.Properties()) {
+                @Override public void applyActualEffectToEntity(LivingEntity livingEntity) {
+                    livingEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20*60*3, 0));
+                }
+            });
 
     public static final DeferredItem<Item> SCRAP_WOOD = registerScrapItem("wood");
     public static final DeferredItem<Item> SCRAP_BONE = registerScrapItem("bone");

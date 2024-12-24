@@ -89,7 +89,7 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         this.goalSelector.addGoal(7, new PalicoTamedHarvestBlockGoal(this, ModTags.Blocks.PALICO_HARVESTABLE_PLANTS, 1.2, 8, 2, 200));
 
         this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0));
-        this.goalSelector.addGoal(1, new TemptGoal(this, 1.2, Ingredient.of(Tags.Items.GEMS_EMERALD), false));
+        this.goalSelector.addGoal(9, new TemptGoal(this, 1.2, Ingredient.of(Tags.Items.GEMS_EMERALD), false));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
 
@@ -216,11 +216,5 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
 
     public boolean wantsToPickUp(ItemStack stack) {
         return this.getInventory().canAddItem(stack);
-    }
-
-    // Tool use
-    @Override
-    public SimpleContainer getToolsContainer() {
-        return getInventory();
     }
 }

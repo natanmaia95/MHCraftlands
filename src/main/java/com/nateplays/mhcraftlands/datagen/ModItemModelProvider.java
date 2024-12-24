@@ -62,6 +62,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(MHPetItems.TRAINING_BOOK.get());
 
         basicItem(MHPetItems.F_HERB_HORN.get());
+        basicItem(MHPetItems.F_DEMON_HORN.get());
+        basicItem(MHPetItems.F_ARMOR_HORN.get());
 
         registerAllCraftingMaterials();
         registerAllPetArmorWeaponItems();

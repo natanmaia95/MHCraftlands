@@ -27,6 +27,8 @@ public class PalicoInventoryScreen extends AbstractContainerScreen<PalicoInvento
             ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "textures/gui/palico_inventory.png");
     private static final ResourceLocation BACKGROUND_TEXTURE_SKILLS =
             ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "textures/gui/palico_skills.png");
+    private static final ResourceLocation BACKGROUND_TEXTURE_TOOLS =
+            ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "textures/gui/palico_tools.png");
 
 
     private static final ResourceLocation HEART_CONTAINER_SPRITE = ResourceLocation.withDefaultNamespace("hud/heart/container");
@@ -56,7 +58,6 @@ public class PalicoInventoryScreen extends AbstractContainerScreen<PalicoInvento
     }
 
     private void addButtons() {
-        System.out.println("HELLOW!");
         // Add the Inventory Tab Button
         this.addRenderableWidget(Button.builder(
                                 Component.literal("Inv"), // Button label
@@ -68,7 +69,7 @@ public class PalicoInventoryScreen extends AbstractContainerScreen<PalicoInvento
 
         // Add the Skills Tab Button
         this.addRenderableWidget(Button.builder(
-                                Component.literal("Skills"),
+                                Component.literal("Tools"),
                                 button -> switchTab(1)
                         )
                         .bounds(this.leftPos + 60,  this.topPos - 20, 40, 20)
@@ -89,7 +90,7 @@ public class PalicoInventoryScreen extends AbstractContainerScreen<PalicoInvento
         }
 
         else if (currentTab == 1) {
-            guiGraphics.blit(BACKGROUND_TEXTURE_SKILLS, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+            guiGraphics.blit(BACKGROUND_TEXTURE_TOOLS, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
         }
     }
 
@@ -97,6 +98,7 @@ public class PalicoInventoryScreen extends AbstractContainerScreen<PalicoInvento
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         guiGraphics.drawString(this.font, this.palicoEntity.getDisplayName(), this.titleLabelX, 7, 4210752, false);
         guiGraphics.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, 87, 4210752, false);
+
 
 
         if (currentTab == 0) { // Inventory Screen
@@ -130,6 +132,7 @@ public class PalicoInventoryScreen extends AbstractContainerScreen<PalicoInvento
         this.mouseY = (float)mouseY;
         super.render(guiGraphics, mouseX, mouseY, partialTick);
         renderPalicoHealth(guiGraphics, this.palicoEntity, this.leftPos + 7, this.topPos + 20);
+        this.renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
     @Override
@@ -152,6 +155,7 @@ public class PalicoInventoryScreen extends AbstractContainerScreen<PalicoInvento
     public void renderPalicoHealth(GuiGraphics guiGraphics, LivingEntity entity, int x, int y) {
         if (entity == null || entity.isRemoved()) return;
 //        int x = 0; int y = 0;
+        guiGraphics.flush();
         int sprSize = 9;
 
         int maxHealth = Math.round(entity.getMaxHealth());
@@ -186,6 +190,8 @@ public class PalicoInventoryScreen extends AbstractContainerScreen<PalicoInvento
                 roundedHealthIter -= 1;
             }
         }
+
+        guiGraphics.flush();
 
     }
 

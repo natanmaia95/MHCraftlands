@@ -13,6 +13,10 @@
   "item.mhcraftlands.training_book": "Training Book",
   "item.mhcraftlands.training_book.desc": "[WIP] Use on a hunting buddy to transfer their EXP to another buddy.",
 
+  "item.mhcraftlands.f_herb_horn": "F Herb Horn",
+  "item.mhcraftlands.f_demon_horn": "F Demon Horn",
+  "item.mhcraftlands.f_armor_horn": "F Armor Horn",
+
   "item.mhcraftlands.generic_scrap.desc": "Used for making Palico armor.",
   "item.mhcraftlands.wood_scrap": "Wood Scrap",
   "item.mhcraftlands.bone_scrap": "Bone Scrap",

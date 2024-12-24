@@ -5,9 +5,13 @@ import com.nateplays.mhcraftlands.pet.item.PetToolItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.pathfinder.Path;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -21,6 +25,8 @@ public class HuntingBuddyUseToolGoal extends Goal {
     protected final HuntingBuddyEntity mob;
     protected int cooldownTicks = 40;
     protected int remainingUseTicks = 0;
+    protected int useDelayTicks = 0;
+    protected boolean hasAvoidPath = false;
     private ItemStack currentTool = ItemStack.EMPTY;
 
     public HuntingBuddyUseToolGoal(HuntingBuddyEntity mob) {
@@ -38,7 +44,7 @@ public class HuntingBuddyUseToolGoal extends Goal {
             --this.cooldownTicks;
             return false;
         } else {
-            this.cooldownTicks = 40 + mob.getRandom().nextInt(0, 40);
+            this.cooldownTicks = 40 + mob.getRandom().nextInt(0, 40); //TODO: change cooldown logic
 
             boolean hasToolToUse = this.tryUseTool();
 //            if (!hasToolToUse) System.out.println("Buddy has no valid tool to use");
@@ -49,6 +55,8 @@ public class HuntingBuddyUseToolGoal extends Goal {
 
     @Override
     public boolean canContinueToUse() {
+        if (useDelayTicks > 0) return true;
+
         boolean isUsingItem = mob.isUsingItem();
         boolean freeToUseTool = isMobFreeToUseTool();
         return isUsingItem && freeToUseTool;
@@ -56,13 +64,16 @@ public class HuntingBuddyUseToolGoal extends Goal {
 
     @Override
     public void start() {
+        this.hasAvoidPath = false;
+        this.useDelayTicks = 20;
         this.remainingUseTicks = currentTool.getUseDuration(mob);
-        this.mob.setItemInHand(InteractionHand.OFF_HAND, this.currentTool);
-        mob.startUsingItem(InteractionHand.OFF_HAND);
+        this.hasAvoidPath = tryPathfindAvoidTarget();
     }
 
     @Override
     public void stop() {
+        this.hasAvoidPath = false;
+        this.useDelayTicks = 0;
         this.remainingUseTicks = 0;
 
         mob.stopUsingItem();
@@ -72,9 +83,22 @@ public class HuntingBuddyUseToolGoal extends Goal {
 
     @Override
     public void tick() {
+        if (useDelayTicks > 0) {
+            if (!hasAvoidPath) hasAvoidPath = tryPathfindAvoidTarget();
+            useDelayTicks--;
+            if (useDelayTicks == 0) actuallyStart();
+            return;
+        }
+
         //debug for using item
 //        this.mob.getJumpControl().jump();
         this.remainingUseTicks--;
+    }
+
+    public void actuallyStart() {
+        this.remainingUseTicks = currentTool.getUseDuration(mob);
+        this.mob.setItemInHand(InteractionHand.OFF_HAND, this.currentTool);
+        mob.startUsingItem(InteractionHand.OFF_HAND);
     }
 
     public boolean isMobFreeToUseTool() {
@@ -84,16 +108,7 @@ public class HuntingBuddyUseToolGoal extends Goal {
     public boolean tryUseTool() {
 //        this.currentTool = ItemStack.EMPTY;
 
-        SimpleContainer toolsContainer = mob.getToolsContainer();
-        if (toolsContainer.isEmpty()) return false;
-
-        List<ItemStack> possibleTools = new ArrayList<>();
-        for (ItemStack stack : toolsContainer.getItems()) {
-            boolean shouldAddItem = false;
-            if (stack.getItem() instanceof PetToolItem<?> toolItem) shouldAddItem = toolItem.canUsePetTool(stack, mob);
-
-            if (shouldAddItem) possibleTools.add(stack);
-        }
+        List<ItemStack> possibleTools = mob.getAllUsableTools();
         if (possibleTools.isEmpty()) return false;
 
         this.currentTool = possibleTools.get(mob.getRandom().nextInt(possibleTools.size()));
@@ -107,5 +122,26 @@ public class HuntingBuddyUseToolGoal extends Goal {
         if (mob.getItemInHand(InteractionHand.OFF_HAND) != ItemStack.EMPTY) {
             mob.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
         }
+    }
+
+    private boolean tryPathfindAvoidTarget() {
+        LivingEntity target = mob.getTarget();
+        Path avoidPath;
+
+        if (target == null) return false;
+
+        Vec3 vec3 = DefaultRandomPos.getPosAway(this.mob, 12, 7, target.position());
+        // if no valid position was found
+        if (vec3 == null) {
+            return false;
+        }
+
+        // try create path
+        avoidPath = mob.getNavigation().createPath(vec3.x, vec3.y, vec3.z, 0);
+        if (avoidPath == null) return false;
+
+        mob.getNavigation().stop();
+        mob.getNavigation().moveTo(avoidPath, 3.0);
+        return true;
     }
 }

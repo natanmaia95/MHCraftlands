@@ -32,8 +32,12 @@ public class HornPetTool<T extends HuntingBuddyEntity> extends PetToolItem<T> {
     }
 
     //Override this!
-    public void applyEffectToEntity(LivingEntity livingEntity) {
+    public void applyActualEffectToEntity(LivingEntity livingEntity) {
         livingEntity.heal(4.0f);
+    }
+
+    public void applyEffectToEntity(LivingEntity livingEntity) {
+        applyActualEffectToEntity(livingEntity);
 
         if (livingEntity.level() instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER,
@@ -95,9 +99,9 @@ public class HornPetTool<T extends HuntingBuddyEntity> extends PetToolItem<T> {
             }
 
             if ((remainingUseDuration+1) % 40 == 0) {
-                System.out.println("HOOO");
-                livingEntity.playSound(ModSounds.ITEM_HORN_1.get()); //doesn't work
-                livingEntity.playSound(SoundEvents.GOAT_HORN_SOUND_VARIANTS.get(1).value()); //works
+                serverLevel.playSound(null, livingEntity.blockPosition(),
+                        this.getHornTootSound(),
+                        SoundSource.NEUTRAL);
             }
         }
     }
