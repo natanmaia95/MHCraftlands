@@ -41,7 +41,7 @@ public class SkillAttributeEventHandler {
         AttributeInstance attributeInstance = livingEntity.getAttribute(ModAttributes.EATING_SPEED);
         if (attributeInstance == null) return;
         ResourceLocation modifierId = ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "skill."+enchantmentKey.registry().getPath());
-        Holder<Enchantment> enchantment = ModEnchantmentHelper.getEnchantmentFromLocation(enchantmentKey, livingEntity.level());
+        Holder<Enchantment> enchantment = ModEnchantmentHelper.getEnchantmentFromKey(enchantmentKey, livingEntity.level());
         int enchantLevel = ModEnchantmentHelper.getTotalEnchantmentLevel(livingEntity, enchantment);
         if (enchantLevel > 0) {
             AttributeModifier modifier = new AttributeModifier(modifierId, enchantLevel * 1.0d, AttributeModifier.Operation.ADD_VALUE);
@@ -56,7 +56,7 @@ public class SkillAttributeEventHandler {
         AttributeInstance attributeInstance = livingEntity.getAttribute(Attributes.MOVEMENT_EFFICIENCY);
         if (attributeInstance == null) return;
         ResourceLocation modifierId = ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "skill."+enchantmentKey.registry().getPath());
-        Holder<Enchantment> enchantment = ModEnchantmentHelper.getEnchantmentFromLocation(enchantmentKey, livingEntity.level());
+        Holder<Enchantment> enchantment = ModEnchantmentHelper.getEnchantmentFromKey(enchantmentKey, livingEntity.level());
         int enchantLevel = ModEnchantmentHelper.getTotalEnchantmentLevel(livingEntity, enchantment);
         if (enchantLevel > 0) {
             AttributeModifier modifier = new AttributeModifier(modifierId, enchantLevel * 0.5d, AttributeModifier.Operation.ADD_VALUE);

@@ -8,7 +8,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -20,7 +19,6 @@ import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ModEnchantmentHelper {
@@ -34,12 +32,12 @@ public class ModEnchantmentHelper {
     }
 
     @Nullable
-    public static Holder<Enchantment> getEnchantmentFromLocation(ResourceKey<Enchantment> key, Level level) {
+    public static Holder<Enchantment> getEnchantmentFromKey(ResourceKey<Enchantment> key, Level level) {
         HolderLookup.RegistryLookup<Enchantment> registryLookup = level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
-        return getEnchantmentFromLocationAndLookup(key, registryLookup);
+        return getEnchantmentFromKeyAndLookup(key, registryLookup);
     }
 
-    @Nullable public static Holder<Enchantment> getEnchantmentFromLocationAndLookup(ResourceKey<Enchantment> key, HolderLookup.RegistryLookup<Enchantment> lookup) {
+    @Nullable public static Holder<Enchantment> getEnchantmentFromKeyAndLookup(ResourceKey<Enchantment> key, HolderLookup.RegistryLookup<Enchantment> lookup) {
         return lookup.getOrThrow(key).getDelegate();
     }
 
@@ -59,7 +57,7 @@ public class ModEnchantmentHelper {
         return totalLevel;
     }
 
-    public static ItemEnchantments getAllPlayerSkills(Player player) {
+    public static ItemEnchantments getAllEntitySkills(LivingEntity livingEntity) {
         Map<Holder<Enchantment>, Integer> map = new HashMap<>();
         ItemEnchantments.Mutable skills = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
 
@@ -67,7 +65,7 @@ public class ModEnchantmentHelper {
 //                EnchantmentHelper.getEnchantmentsForCrafting(player.getItemInHand(InteractionHand.MAIN_HAND)).
 //        );
 
-        for (ItemStack stack : player.getAllSlots()) {
+        for (ItemStack stack : livingEntity.getAllSlots()) {
             if (stack.isEmpty()) continue;
 
             ItemEnchantments stackEnchants = EnchantmentHelper.getEnchantmentsForCrafting(stack);

@@ -3,7 +3,6 @@ package com.nateplays.mhcraftlands.common.skill.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.nateplays.mhcraftlands.MHMod;
 import com.nateplays.mhcraftlands.common.skill.ModEnchantmentHelper;
-import com.nateplays.mhcraftlands.common.skill.ModEnchantments;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -18,7 +17,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -26,10 +24,8 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.ClientHooks;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 //@EventBusSubscriber(modid = MHMod.MOD_ID)
@@ -43,7 +39,7 @@ public class InventorySkillOverlayEvent {
             if (player == null) return;
 
             GuiGraphics guiGraphics = event.getGuiGraphics();
-            ItemEnchantments skills = ModEnchantmentHelper.getAllPlayerSkills(player);
+            ItemEnchantments skills = ModEnchantmentHelper.getAllEntitySkills(player);
             if (!skills.isEmpty()) drawSkills(guiGraphics, inventoryScreen, skills);
         }
     }

@@ -3,6 +3,7 @@ package com.nateplays.mhcraftlands.pet.entity;
 import com.nateplays.mhcraftlands.common.attribute.ModAttributes;
 import com.nateplays.mhcraftlands.entity.interfaces.ILevelableEntity;
 import com.nateplays.mhcraftlands.pet.goals.HuntingBuddyHurtByTargetGoal;
+import com.nateplays.mhcraftlands.pet.goals.HuntingBuddyUseToolGoal;
 import com.nateplays.mhcraftlands.pet.goals.PalicoTamedHarvestBlockGoal;
 import com.nateplays.mhcraftlands.pet.gui.PalicoInventoryMenu;
 import com.nateplays.mhcraftlands.pet.gui.PetSingleEquipContainer;
@@ -11,6 +12,7 @@ import com.nateplays.mhcraftlands.pet.item.weapon.PetHuntingWeaponItem;
 import com.nateplays.mhcraftlands.pet.sound.MHPetSounds;
 import com.nateplays.mhcraftlands.tags.ModTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -73,6 +75,9 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(1, new TamableAnimal.TamableAnimalPanicGoal(2.0, DamageTypeTags.PANIC_ENVIRONMENTAL_CAUSES));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
+
+        this.goalSelector.addGoal(3, new HuntingBuddyUseToolGoal(this));
+
         //this.goalSelector.addGoal(3, new Wolf.WolfAvoidEntityGoal<>(this, Llama.class, 24.0F, 1.5, 1.5));
         this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.6F));
         this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.5, true));
@@ -105,6 +110,18 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         return isBrightEnough && isCorrectTimeOfDay && checkMobSpawnRules(palico, level, spawnType, pos, random);
     }
 
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        this.writeInventoryToTag(tag, this.registryAccess());
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        this.readInventoryFromTag(tag, this.registryAccess());
+    }
 
 
 
@@ -199,5 +216,11 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
 
     public boolean wantsToPickUp(ItemStack stack) {
         return this.getInventory().canAddItem(stack);
+    }
+
+    // Tool use
+    @Override
+    public SimpleContainer getToolsContainer() {
+        return getInventory();
     }
 }

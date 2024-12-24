@@ -1,11 +1,10 @@
 package com.nateplays.mhcraftlands.pet.entity;
 
 import com.nateplays.mhcraftlands.common.attribute.ModAttributes;
-import com.nateplays.mhcraftlands.common.effect.ModEffects;
-import com.nateplays.mhcraftlands.entity.custom.MosswineEntity;
 import com.nateplays.mhcraftlands.entity.interfaces.ILevelableEntity;
 import com.nateplays.mhcraftlands.pet.item.MHPetItems;
 import com.nateplays.mhcraftlands.pet.item.armor.PetHuntingArmorItem;
+import com.nateplays.mhcraftlands.pet.item.custom.PetTrainingBookItem;
 import com.nateplays.mhcraftlands.pet.item.weapon.PetHuntingWeaponItem;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -18,8 +17,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
@@ -32,8 +31,6 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.function.Predicate;
 
 public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevelableEntity {
@@ -189,10 +186,15 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
         if (hand == InteractionHand.OFF_HAND && player.getItemInHand(hand).isEmpty()) return super.mobInteract(player, hand);
         ItemStack handItem = player.getItemInHand(hand);
 
-        if (player.level().isClientSide()) return super.mobInteract(player, hand);
+//        if (player.level().isClientSide()) return super.mobInteract(player, hand);
 
         if (handItem.is(MHPetItems.DISMISS_BUDDY_VOUCHER)) {
             if ((this.isTame() && this.isOwnedBy(player)) || player.isCreative()) return mobInteractDismissBuddy(player, hand, handItem);
+        }
+
+        if (handItem.is(MHPetItems.TRAINING_BOOK)) {
+            if ((this.isTame() && this.isOwnedBy(player)) || player.isCreative())
+                return PetTrainingBookItem.interactWithBuddy(handItem, this, player);
         }
 
         if (this.isTame() && this.isOwnedBy(player)) {
@@ -215,6 +217,7 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
 
 
     public InteractionResult mobInteractArmorItem(Player player, InteractionHand hand, ItemStack stack) {
+        if (player.level().isClientSide()) return InteractionResult.CONSUME;
         PetHuntingArmorItem<?, ?> armorItem = (PetHuntingArmorItem<?,?>) stack.getItem();
 //        LOGGER.debug(stack.toString());
         EquipmentSlot slot = armorItem.getEquipmentSlot();
@@ -226,6 +229,7 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
     }
 
     public InteractionResult mobInteractWeaponItem(Player player, InteractionHand hand, ItemStack stack) {
+        if (player.level().isClientSide()) return InteractionResult.CONSUME;
         ItemStack oldWeapon = this.getItemBySlot(EquipmentSlot.MAINHAND);
         this.setItemSlot(EquipmentSlot.MAINHAND, stack);
         player.setItemInHand(hand, oldWeapon);
@@ -308,11 +312,19 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
 
     public void setKOed(boolean value) {
         byte oldFlags = this.entityData.get(BUDDY_DATA_FLAGS);
-        if (value) {
+        if (value == true) {
             this.entityData.set(BUDDY_DATA_FLAGS, (byte) (oldFlags | FLAG_KO_ID));
+            this.navigation.stop();
         } else {
             int mask = ~FLAG_KO_ID;
             this.entityData.set(BUDDY_DATA_FLAGS, (byte) (oldFlags & mask));
         }
+    }
+
+    //Related to Tool use
+    public abstract SimpleContainer getToolsContainer();
+
+    public boolean isInCombat() {
+        return this.getTarget() != null;
     }
 }

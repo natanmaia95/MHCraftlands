@@ -1,4 +1,4 @@
-// 1.21	2024-11-20T20:54:08.1789951	Item Models: mhcraftlands
+// 1.21	2024-12-23T14:49:55.9356547	Item Models: mhcraftlands
 08ea91963f2a430f21a37d6cf7c8c8409444bf6d assets/mhcraftlands/models/item/bone_scrap.json
 eea418b550e8141fbcb3c1319739e74b469e6c7a assets/mhcraftlands/models/item/dismiss_buddy_voucher.json
 4e66352f14f40ff3f77d85c61be43af6ddd3431b assets/mhcraftlands/models/item/earth_crystal.json
@@ -18,6 +18,7 @@ d25a5dab9bd001725377802072ce4bfb49bedb47 assets/mhcraftlands/models/item/f_frank
 ce2de3ad6f0f65f5ebb9be5102b8fea592a09dd8 assets/mhcraftlands/models/item/f_ghost_helm.json
 323d96e787505c9606c2719a1013a4bdb021d3c8 assets/mhcraftlands/models/item/f_ghost_lantern.json
 6d009c2cbc148b647e0c821da9f474c3383559fd assets/mhcraftlands/models/item/f_ghost_mail.json
+0669a72b65f273f2f963cabb5c4da1f82146a95b assets/mhcraftlands/models/item/f_herb_horn.json
 c52dc751842f1c8660b3103d3bfded56ddf6db27 assets/mhcraftlands/models/item/f_iron_sword.json
 5a56c07b8a29b2da9edea87abe9fcf6f71b592c8 assets/mhcraftlands/models/item/f_kamura_bokken.json
 50f096aacd8efba2d48d3d125e123fd48003b8ec assets/mhcraftlands/models/item/f_kamura_helm.json
@@ -51,6 +52,7 @@ b42a4d0523333640a64b7d852388ec5698f24efb assets/mhcraftlands/models/item/machali
 d3b8fbe1060e3bcb33251a800f1e0b0ac68ac6e5 assets/mhcraftlands/models/item/ore_scrap.json
 3ee2c15d50904a72c701a6c7217ea741e7f74769 assets/mhcraftlands/models/item/sinister_scrap.json
 410b1558e721b9f9071bf5e8eca572b8cd6ce8f2 assets/mhcraftlands/models/item/summon_felyne_voucher.json
+f587e5caf1d0133d70626ffca14e9d426b971a6c assets/mhcraftlands/models/item/training_book.json
 f7dfc183e13c9b1da3c4dfa3f85795f073e4882f assets/mhcraftlands/models/item/weapon/machalite_db_mainhand.json
 a27192c5b0f766b9544cab432ff96ce113e5feeb assets/mhcraftlands/models/item/weapon/machalite_db_offhand.json
 73508f48c4d497de62822f1d67cb155bc7e14ae9 assets/mhcraftlands/models/item/weapon/machalite_sns_mainhand.json

@@ -8,13 +8,19 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.goal.GoalSelector;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.slf4j.Logger;
+
+import java.util.List;
 
 @EventBusSubscriber(modid = MHMod.MOD_ID)
 public class HuntingBuddyDeathHandler {
@@ -33,9 +39,39 @@ public class HuntingBuddyDeathHandler {
                 buddyEntity.setHealth(0.01f);
                 buddyEntity.setOrderedToSit(false);
                 buddyEntity.setInSittingPose(false);
-//                buddyEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100, 4));
-//                buddyEntity.addEffect(new MobEffectInstance(ModEffects.HUNTING_BUDDY_KO, HuntingBuddyKOEffect.DURATION));
                 buddyEntity.setKOed(true);
+
+                // remove buddy as target from nearby entities
+                // Doesn't work?
+//                double radius = 20.0;
+//                AABB boundingBox = buddyEntity.getBoundingBox().inflate(radius);
+//                List<Mob> nearbyMobs = level.getEntitiesOfClass(Mob.class, boundingBox);
+//                for (Mob mob : nearbyMobs) {
+//                    System.out.println("mob: " + mob.toString());
+//                    if (mob.getTarget() == buddyEntity) {
+//                        LivingEntity owner = buddyEntity.getOwner();
+//                        if (owner != null) {
+//                            mob.setTarget(owner);
+////                            mob.setLastHurtByMob(null);
+//                        }
+//                        System.out.println("mob had target cleared");
+////                        mob.setTarget(null); // Clear target
+////                        mob.setLastHurtMob(null);
+////                        mob.setLastHurtByMob(null);
+//////                        mob.setLastHurtByPlayer((Player) buddyEntity.getOwner());
+////                        mob.targetSelector.tick();
+////                        mob.getNavigation().stop(); // Stop navigation
+////                        mob.getNavigation().recomputePath();
+////
+////                        GoalSelector targetSelector = mob.targetSelector;
+////                        targetSelector.getAvailableGoals().forEach(wrappedGoal -> {
+////                            if (wrappedGoal.getGoal() instanceof NearestAttackableTargetGoal<?> nearestAttackableTargetGoal) {
+////                                nearestAttackableTargetGoal.stop();
+////                            }
+////                        });
+//                    }
+//                }
+
             }
         }
     }

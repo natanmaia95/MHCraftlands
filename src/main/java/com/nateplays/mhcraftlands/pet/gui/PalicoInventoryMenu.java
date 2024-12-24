@@ -16,8 +16,9 @@ import net.minecraft.world.level.Level;
 public class PalicoInventoryMenu extends AbstractContainerMenu {
 
     public final PalicoEntity palicoEntity;
-//    private final Container armorContainer;
     private final Container pouchInventory;
+
+    protected int currentTab = 0;
 
     // Client menu constructor
     public PalicoInventoryMenu(int containerId, Inventory playerInventory, FriendlyByteBuf buf) { // optional FriendlyByteBuf parameter if reading data from server
@@ -54,7 +55,22 @@ public class PalicoInventoryMenu extends AbstractContainerMenu {
         // Pouch slots (6 slots)
         int currentY = startY;
         for (int i = 0; i < this.pouchInventory.getContainerSize(); i++) {
-            this.addSlot(new Slot(this.pouchInventory, i, 134 + slotSizePlus2*(i%2), currentY));
+            this.addSlot(new Slot(this.pouchInventory, i, 134 + slotSizePlus2*(i%2), currentY) {
+                @Override
+                public boolean isActive() {
+                    return currentTab == 0;
+                }
+//
+//                @Override
+//                public boolean mayPlace(ItemStack stack) {
+//                    return currentTab == 0 && super.mayPlace(stack);
+//                }
+//
+//                @Override
+//                public boolean mayPickup(Player player) {
+//                    return currentTab == 0 && super.mayPickup(player);
+//                }
+            });
             if (i % 2 == 1) currentY += slotSizePlus2;
         }
 
@@ -76,17 +92,6 @@ public class PalicoInventoryMenu extends AbstractContainerMenu {
     }
 
 
-//    @Override
-//    public ItemStack quickMoveStack(Player player, int index) {
-//        ItemStack itemstack = ItemStack.EMPTY;
-//        Slot slot = this.slots.get(index);
-//
-//        if (slot != null && slot.hasItem()) {
-//            ItemStack slotItemStack = slot.getItem();
-//        }
-//
-//        return null;
-//    }
 
     // Assume we have a data inventory of size 5
     // The inventory has 4 inputs (index 1 - 4) which outputs to a result slot (index 0)
@@ -128,7 +133,7 @@ public class PalicoInventoryMenu extends AbstractContainerMenu {
             }
 
             // If the quick move was performed on pouch, also move to player inventory
-            else if (quickMovedSlotIndex <= 8) {
+            else if (quickMovedSlotIndex <= 8 && this.canAccessPouch()) { // only tab 0 can see palico inventory
                 // Try to move the result slot into the player inventory/hotbar
                 if (!this.moveItemStackTo(rawStack, 9, 45, true)) return ItemStack.EMPTY; // If cannot move, no longer quick move
             }
@@ -142,10 +147,10 @@ public class PalicoInventoryMenu extends AbstractContainerMenu {
                 if (equipmentSlot == EquipmentSlot.CHEST) moveResult = this.moveItemStackTo(rawStack, 1, 1 + 1, false);
                 if (equipmentSlot == EquipmentSlot.MAINHAND) moveResult = this.moveItemStackTo(rawStack, 2, 2 + 1, false);
                 //then if not, try moving to pouch
-                if (!moveResult) moveResult = this.moveItemStackTo(rawStack, 3, 9, false);
+                if (!moveResult && this.canAccessPouch()) moveResult = this.moveItemStackTo(rawStack, 3, 9, false);
                 //if that also doesn't work, move from inv to hotbar or vice-versa
                 if (!moveResult) {
-                    if (quickMovedSlotIndex < 36) { //if in inventory
+                    if (quickMovedSlotIndex < 36) {
                         moveResult = this.moveItemStackTo(rawStack, 36, 45, false); //move to hotbar
                     } else { //if in hotbar
                         moveResult = this.moveItemStackTo(rawStack, 9, 36, false); //move to inventory
@@ -178,6 +183,11 @@ public class PalicoInventoryMenu extends AbstractContainerMenu {
         }
 
         return quickMovedStack; // Return the slot stack
+    }
+
+    private boolean canAccessPouch() {
+//        return currentTab == 0;
+        return true;
     }
 
     @Override

@@ -64,6 +64,7 @@ public class ModCreativeModeTabs {
                         output.accept(MHPetItems.FELYNE_SPAWN_EGG);
                         output.accept(MHPetItems.SUMMON_FELYNE_VOUCHER);
                         output.accept(MHPetItems.DISMISS_BUDDY_VOUCHER);
+                        output.accept(MHPetItems.TRAINING_BOOK);
 
 //                        output.accept(ModItems.MACHALITE_SWORD);
 //                        output.accept(ModItems.MACHALITE_PICKAXE);

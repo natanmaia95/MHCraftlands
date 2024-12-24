@@ -5,8 +5,6 @@ import com.nateplays.mhcraftlands.common.attribute.ModAttributes;
 import com.nateplays.mhcraftlands.common.skill.HuntingSkillData;
 import com.nateplays.mhcraftlands.common.skill.HuntingSkillDataLoader;
 import com.nateplays.mhcraftlands.common.skill.ModEnchantmentHelper;
-import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
@@ -70,7 +68,7 @@ public class HuntingArmorItem extends ArmorItem {
 //            LOGGER.debug("hasdata");
 
             for (HuntingSkillData.EnchantmentData enchantmentData : data.getEnchantments()) {
-                Holder<Enchantment> holder = ModEnchantmentHelper.getEnchantmentFromLocationAndLookup(
+                Holder<Enchantment> holder = ModEnchantmentHelper.getEnchantmentFromKeyAndLookup(
                         ModEnchantmentHelper.getKey(enchantmentData.getEnchantment()), registryLookup);
                 if (holder != null) {
                     stack.enchant(holder, enchantmentData.getLevel());

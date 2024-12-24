@@ -10,6 +10,8 @@
   "item.mhcraftlands.felyne_spawn_egg": "Summon Felyne",
   "item.mhcraftlands.summon_felyne_voucher": "Summon Felyne Voucher",
   "item.mhcraftlands.dismiss_buddy_voucher": "Dismiss Palico Voucher",
+  "item.mhcraftlands.training_book": "Training Book",
+  "item.mhcraftlands.training_book.desc": "[WIP] Use on a hunting buddy to transfer their EXP to another buddy.",
 
   "item.mhcraftlands.generic_scrap.desc": "Used for making Palico armor.",
   "item.mhcraftlands.wood_scrap": "Wood Scrap",

@@ -4,6 +4,7 @@ import com.nateplays.mhcraftlands.MHMod;
 import com.nateplays.mhcraftlands.common.attribute.ModAttributes;
 import com.nateplays.mhcraftlands.pet.entity.PalicoEntity;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.network.chat.Component;
@@ -22,8 +23,12 @@ public class PalicoInventoryScreen extends AbstractContainerScreen<PalicoInvento
 
     public static final Component TITLE = Component.translatable("gui." + MHMod.MOD_ID + ".palico_inventory.title");
 
-    private static final ResourceLocation BACKGROUND_TEXTURE =
+    private static final ResourceLocation BACKGROUND_TEXTURE_INVENTORY =
             ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "textures/gui/palico_inventory.png");
+    private static final ResourceLocation BACKGROUND_TEXTURE_SKILLS =
+            ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "textures/gui/palico_skills.png");
+
+
     private static final ResourceLocation HEART_CONTAINER_SPRITE = ResourceLocation.withDefaultNamespace("hud/heart/container");
     private static final ResourceLocation HEART_FULL_SPRITE = ResourceLocation.withDefaultNamespace("hud/heart/full");
     private static final ResourceLocation HEART_HALF_SPRITE = ResourceLocation.withDefaultNamespace("hud/heart/half");
@@ -31,8 +36,10 @@ public class PalicoInventoryScreen extends AbstractContainerScreen<PalicoInvento
     private static final ResourceLocation HEART_KO_HALF_SPRITE = ResourceLocation.withDefaultNamespace("hud/heart/withered_half");
 
     private final PalicoEntity palicoEntity;
-    private float xMouse;
-    private float yMouse;
+    private float mouseX;
+    private float mouseY;
+
+    private int currentTab = 0;
 
     public PalicoInventoryScreen(PalicoInventoryMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, TITLE);
@@ -42,13 +49,104 @@ public class PalicoInventoryScreen extends AbstractContainerScreen<PalicoInvento
     }
 
     @Override
+    protected void init() {
+        super.init();
+        this.clearWidgets();
+        addButtons();
+    }
+
+    private void addButtons() {
+        System.out.println("HELLOW!");
+        // Add the Inventory Tab Button
+        this.addRenderableWidget(Button.builder(
+                                Component.literal("Inv"), // Button label
+                                button -> switchTab(0)    // OnClick action
+                        )
+                        .bounds(this.leftPos + 10, this.topPos - 20, 40, 20) // Position and size
+                        .build()
+        );
+
+        // Add the Skills Tab Button
+        this.addRenderableWidget(Button.builder(
+                                Component.literal("Skills"),
+                                button -> switchTab(1)
+                        )
+                        .bounds(this.leftPos + 60,  this.topPos - 20, 40, 20)
+                        .build()
+        );
+    }
+
+    @Override
     protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
-        guiGraphics.blit(BACKGROUND_TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+        if (currentTab == 0) { // Inventory Screen
+            guiGraphics.blit(BACKGROUND_TEXTURE_INVENTORY, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 
-        int i = (this.width - this.imageWidth) / 2;
-        int j = (this.height - this.imageHeight) / 2;
-        InventoryScreen.renderEntityInInventoryFollowsMouse(guiGraphics, i + 26, j + 33, i + 75, j + 85, 35, 0.25F, this.xMouse, this.yMouse, this.palicoEntity);
+            int i = (this.width - this.imageWidth) / 2;
+            int j = (this.height - this.imageHeight) / 2;
+            InventoryScreen.renderEntityInInventoryFollowsMouse(guiGraphics, i + 26, j + 33, i + 75, j + 85,
+                    35, 0.25F, this.mouseX, this.mouseY, this.palicoEntity);
 
+        }
+
+        else if (currentTab == 1) {
+            guiGraphics.blit(BACKGROUND_TEXTURE_SKILLS, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+        }
+    }
+
+    @Override
+    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+        guiGraphics.drawString(this.font, this.palicoEntity.getDisplayName(), this.titleLabelX, 7, 4210752, false);
+        guiGraphics.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, 87, 4210752, false);
+
+
+        if (currentTab == 0) { // Inventory Screen
+//            renderPalicoHealth(guiGraphics, this.palicoEntity, this.leftPos + 7, this.topPos + 20);
+
+            double heldItemDamage = palicoEntity.getAttributeValue(Attributes.ATTACK_DAMAGE);
+            ItemStack mainHandStack = palicoEntity.getMainHandItem();
+            if (!mainHandStack.isEmpty()) {
+                heldItemDamage = getFinalAttackDamage(mainHandStack);
+            }
+            guiGraphics.drawString(this.font, "%.1f".formatted((float) heldItemDamage), 92,  39, 4210752, false);
+            guiGraphics.drawString(this.font, "%.1f".formatted((float) palicoEntity.getAttributeValue(ModAttributes.DEFENSE)), 92,  49, 4210752, false);
+            guiGraphics.drawString(this.font, "%d".formatted(palicoEntity.getExpLevel()), 92,  59, 4210752, false);
+            guiGraphics.drawString(this.font, "%d".formatted(palicoEntity.getExp()), 92,  69, 4210752, false);
+
+
+        }
+
+
+        else if (currentTab == 1) { // Skills Screen
+            guiGraphics.drawString(this.font, "Skills go here!", 92,  39, 4210752, false);
+        }
+
+    }
+
+
+
+    @Override
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        this.mouseX = (float)mouseX;
+        this.mouseY = (float)mouseY;
+        super.render(guiGraphics, mouseX, mouseY, partialTick);
+        renderPalicoHealth(guiGraphics, this.palicoEntity, this.leftPos + 7, this.topPos + 20);
+    }
+
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+//        if (currentTab == 1) currentTab = 0;
+//        else currentTab = 1;
+//        updateSlotVisibility();
+
+//        System.out.println("%.2f %.2f".formatted(mouseX, mouseY));
+        return super.mouseClicked(mouseX, mouseY, button);
+    }
+
+
+
+    protected void switchTab(int tab) {
+        this.currentTab = tab;
+        this.getMenu().currentTab = this.currentTab; // only syncs client side
     }
 
     public void renderPalicoHealth(GuiGraphics guiGraphics, LivingEntity entity, int x, int y) {
@@ -91,34 +189,6 @@ public class PalicoInventoryScreen extends AbstractContainerScreen<PalicoInvento
 
     }
 
-    @Override
-    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-//        super.renderLabels(guiGraphics, mouseX, mouseY);
-        guiGraphics.drawString(this.font, this.palicoEntity.getDisplayName(), this.titleLabelX, 7, 4210752, false);
-        guiGraphics.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, 87, 4210752, false);
-//        guiGraphics.drawString(this.font, "Health: %.1f/%.1f".formatted(palicoEntity.getHealth(), palicoEntity.getMaxHealth()), this.titleLabelX, this.titleLabelY + 18, 4210752, false);
-
-        double heldItemDamage = palicoEntity.getAttributeValue(Attributes.ATTACK_DAMAGE);
-        ItemStack mainHandStack = palicoEntity.getMainHandItem();
-        if (!mainHandStack.isEmpty()) {
-            heldItemDamage = getFinalAttackDamage(mainHandStack);
-        }
-        guiGraphics.drawString(this.font, "%.1f".formatted((float) heldItemDamage), 92,  39, 4210752, false);
-        guiGraphics.drawString(this.font, "%.1f".formatted((float) palicoEntity.getAttributeValue(ModAttributes.DEFENSE)), 92,  49, 4210752, false);
-        guiGraphics.drawString(this.font, "%d".formatted(palicoEntity.getExpLevel()), 92,  59, 4210752, false);
-        guiGraphics.drawString(this.font, "%d".formatted(palicoEntity.getExp()), 92,  69, 4210752, false);
-    }
-
-    @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        this.xMouse = (float)mouseX;
-        this.yMouse = (float)mouseY;
-        super.render(guiGraphics, mouseX, mouseY, partialTick);
-        renderPalicoHealth(guiGraphics, this.palicoEntity, this.leftPos + 7, this.topPos + 20);
-        this.renderTooltip(guiGraphics, mouseX, mouseY);
-    }
-
-
 
     private double getFinalAttackDamage(ItemStack itemStack) {
         double base = this.palicoEntity.getAttributeValue(Attributes.ATTACK_DAMAGE); //unsynced
@@ -149,4 +219,6 @@ public class PalicoInventoryScreen extends AbstractContainerScreen<PalicoInvento
         });
         return finalValue.get();
     }
+
+
 }

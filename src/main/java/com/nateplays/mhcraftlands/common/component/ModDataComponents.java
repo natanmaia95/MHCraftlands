@@ -20,6 +20,9 @@ public class ModDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<BlockPos>> COORDINATES =
             register("coordinates", builder -> builder.persistent(BlockPos.CODEC));
 
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> BUDDY_EXP =
+            register("buddy_experience", builder -> builder.persistent(ExtraCodecs.POSITIVE_INT));
+
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<HumanoidArm>> FAKE_RENDER_HAND =
             register("fake_render_hand", builder -> builder.persistent(HumanoidArm.CODEC));
 

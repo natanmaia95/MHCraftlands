@@ -4,6 +4,9 @@ import com.nateplays.mhcraftlands.MHMod;
 import com.nateplays.mhcraftlands.entity.ModEntities;
 import com.nateplays.mhcraftlands.item.custom.SummonFelyneItem;
 import com.nateplays.mhcraftlands.pet.entity.MHPetEntities;
+import com.nateplays.mhcraftlands.pet.entity.PalicoEntity;
+import com.nateplays.mhcraftlands.pet.item.custom.PetTrainingBookItem;
+import com.nateplays.mhcraftlands.pet.item.tool.HornPetTool;
 import net.minecraft.ChatFormatting;
 import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
@@ -30,6 +33,12 @@ public class MHPetItems {
     public static final DeferredItem<SummonFelyneItem> SUMMON_FELYNE_VOUCHER = PET_ITEMS.register("summon_felyne_voucher", SummonFelyneItem::new);
     public static final DeferredItem<Item> DISMISS_BUDDY_VOUCHER = PET_ITEMS.register("dismiss_buddy_voucher",
             () -> new Item(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<PetTrainingBookItem> TRAINING_BOOK = PET_ITEMS.register("training_book",
+            () -> new PetTrainingBookItem(new Item.Properties()));
+
+    public static final DeferredItem<HornPetTool> F_HERB_HORN = PET_ITEMS.register("f_herb_horn",
+            () -> new HornPetTool(PalicoEntity.class, 150, new Item.Properties()));
 
     public static final DeferredItem<Item> SCRAP_WOOD = registerScrapItem("wood");
     public static final DeferredItem<Item> SCRAP_BONE = registerScrapItem("bone");

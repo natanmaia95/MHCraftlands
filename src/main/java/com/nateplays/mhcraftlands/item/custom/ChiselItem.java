@@ -96,7 +96,7 @@ public class ChiselItem extends Item {
         if (Screen.hasShiftDown()) {
             tooltipComponents.add(Component.literal("Shift is being pressed!"));
             MutableComponent newComponent = Component.literal("[COOL STUFF]");
-            ComponentUtils.mergeStyles(newComponent, Style.EMPTY.withBold(true).withObfuscated(true).withColor(ChatFormatting.DARK_BLUE));
+
             tooltipComponents.add(newComponent);
         } else {
             tooltipComponents.add(Component.literal("Press Shift to see cool stuff!"));

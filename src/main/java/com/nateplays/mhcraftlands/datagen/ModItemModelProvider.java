@@ -59,6 +59,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent(MHPetItems.FELYNE_SPAWN_EGG.getRegisteredName(), mcLoc("item/template_spawn_egg"));
         basicItem(MHPetItems.SUMMON_FELYNE_VOUCHER.get());
         basicItem(MHPetItems.DISMISS_BUDDY_VOUCHER.get());
+        basicItem(MHPetItems.TRAINING_BOOK.get());
+
+        basicItem(MHPetItems.F_HERB_HORN.get());
 
         registerAllCraftingMaterials();
         registerAllPetArmorWeaponItems();

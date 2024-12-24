@@ -17,7 +17,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
 import java.util.List;
-import java.util.Map;
 
 @EventBusSubscriber(modid = MHMod.MOD_ID)
 public class MushroomancerInteractEvent {
@@ -39,7 +38,7 @@ public class MushroomancerInteractEvent {
         if (!COMPATIBLE_ITEMS.contains(item)) return; //gate clause
 
         Player player = event.getEntity();
-        Holder<Enchantment> enchantmentHolder = ModEnchantmentHelper.getEnchantmentFromLocation(ModEnchantments.MUSHROOMANCER, player.level());
+        Holder<Enchantment> enchantmentHolder = ModEnchantmentHelper.getEnchantmentFromKey(ModEnchantments.MUSHROOMANCER, player.level());
         int mushroomancerLevel = ModEnchantmentHelper.getTotalEnchantmentLevel(player, enchantmentHolder);
         if (mushroomancerLevel == 0) return;
         boolean hasEaten = false;

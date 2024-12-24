@@ -28,7 +28,7 @@ public abstract class PrimedTntMixin {
     private void modifyExplosionStrength(CallbackInfo info) {
         PrimedTnt tnt = (PrimedTnt) (Object) this;
         if (tnt.getOwner() instanceof Player player) {
-            Holder<Enchantment> enchantmentHolder = ModEnchantmentHelper.getEnchantmentFromLocation(ModEnchantments.BOMBARDIER, player.level());
+            Holder<Enchantment> enchantmentHolder = ModEnchantmentHelper.getEnchantmentFromKey(ModEnchantments.BOMBARDIER, player.level());
 
             int enchantmentLevel = ModEnchantmentHelper.getTotalEnchantmentLevel(player, enchantmentHolder);
 
