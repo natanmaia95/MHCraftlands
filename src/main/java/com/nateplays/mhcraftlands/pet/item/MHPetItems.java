@@ -2,12 +2,13 @@ package com.nateplays.mhcraftlands.pet.item;
 
 import com.nateplays.mhcraftlands.MHMod;
 import com.nateplays.mhcraftlands.common.effect.ModEffects;
-import com.nateplays.mhcraftlands.entity.ModEntities;
 import com.nateplays.mhcraftlands.item.custom.SummonFelyneItem;
 import com.nateplays.mhcraftlands.pet.entity.MHPetEntities;
 import com.nateplays.mhcraftlands.pet.entity.PalicoEntity;
 import com.nateplays.mhcraftlands.pet.item.custom.PetTrainingBookItem;
+import com.nateplays.mhcraftlands.pet.item.tool.EmergencyRetreatPetTool;
 import com.nateplays.mhcraftlands.pet.item.tool.HornPetTool;
+import com.nateplays.mhcraftlands.pet.item.tool.TauntPetTool;
 import net.minecraft.ChatFormatting;
 import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
@@ -55,6 +56,12 @@ public class MHPetItems {
                     livingEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20*60*3, 0));
                 }
             });
+
+    public static final DeferredItem<EmergencyRetreatPetTool> F_EMERGENCY_RETREAT_KIT = PET_ITEMS.register("f_emergency_retreat_kit",
+            () -> new EmergencyRetreatPetTool<>(PalicoEntity.class, 10, new Item.Properties()));
+
+    public static final DeferredItem<TauntPetTool> F_TAUNT_SHIELD = PET_ITEMS.register("f_taunt_shield",
+            () -> new TauntPetTool<>(PalicoEntity.class, 10, new Item.Properties()));
 
     public static final DeferredItem<Item> SCRAP_WOOD = registerScrapItem("wood");
     public static final DeferredItem<Item> SCRAP_BONE = registerScrapItem("bone");

@@ -84,9 +84,14 @@ public class HuntingBuddyUseToolGoal extends Goal {
     @Override
     public void tick() {
         if (useDelayTicks > 0) {
-            if (!hasAvoidPath) hasAvoidPath = tryPathfindAvoidTarget();
             useDelayTicks--;
-            if (useDelayTicks == 0) actuallyStart();
+            if (useDelayTicks == 0) {
+                actuallyStart();
+                return;
+            }
+            if (hasAvoidPath) {
+                if (mob.getNavigation().isDone()) actuallyStart();
+            } else hasAvoidPath = tryPathfindAvoidTarget();
             return;
         }
 
@@ -96,6 +101,7 @@ public class HuntingBuddyUseToolGoal extends Goal {
     }
 
     public void actuallyStart() {
+        this.useDelayTicks = 0;
         this.remainingUseTicks = currentTool.getUseDuration(mob);
         this.mob.setItemInHand(InteractionHand.OFF_HAND, this.currentTool);
         mob.startUsingItem(InteractionHand.OFF_HAND);

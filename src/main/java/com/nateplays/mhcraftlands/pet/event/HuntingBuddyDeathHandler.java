@@ -40,38 +40,6 @@ public class HuntingBuddyDeathHandler {
                 buddyEntity.setOrderedToSit(false);
                 buddyEntity.setInSittingPose(false);
                 buddyEntity.setKOed(true);
-
-                // remove buddy as target from nearby entities
-                // Doesn't work?
-//                double radius = 20.0;
-//                AABB boundingBox = buddyEntity.getBoundingBox().inflate(radius);
-//                List<Mob> nearbyMobs = level.getEntitiesOfClass(Mob.class, boundingBox);
-//                for (Mob mob : nearbyMobs) {
-//                    System.out.println("mob: " + mob.toString());
-//                    if (mob.getTarget() == buddyEntity) {
-//                        LivingEntity owner = buddyEntity.getOwner();
-//                        if (owner != null) {
-//                            mob.setTarget(owner);
-////                            mob.setLastHurtByMob(null);
-//                        }
-//                        System.out.println("mob had target cleared");
-////                        mob.setTarget(null); // Clear target
-////                        mob.setLastHurtMob(null);
-////                        mob.setLastHurtByMob(null);
-//////                        mob.setLastHurtByPlayer((Player) buddyEntity.getOwner());
-////                        mob.targetSelector.tick();
-////                        mob.getNavigation().stop(); // Stop navigation
-////                        mob.getNavigation().recomputePath();
-////
-////                        GoalSelector targetSelector = mob.targetSelector;
-////                        targetSelector.getAvailableGoals().forEach(wrappedGoal -> {
-////                            if (wrappedGoal.getGoal() instanceof NearestAttackableTargetGoal<?> nearestAttackableTargetGoal) {
-////                                nearestAttackableTargetGoal.stop();
-////                            }
-////                        });
-//                    }
-//                }
-
             }
         }
     }

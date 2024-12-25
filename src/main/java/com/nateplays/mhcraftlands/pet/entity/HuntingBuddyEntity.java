@@ -334,6 +334,11 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
     }
 
     @Override
+    public boolean isAlive() {
+        return super.isAlive() && !isKOed();
+    }
+
+    @Override
     public SimpleContainer getToolsContainer() {
         return toolsContainer;
     }
