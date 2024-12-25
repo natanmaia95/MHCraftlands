@@ -1,5 +1,6 @@
 package com.nateplays.mhcraftlands.pet;
 
+import com.nateplays.mhcraftlands.pet.effect.MHPetMobEffects;
 import com.nateplays.mhcraftlands.pet.entity.MHPetEntities;
 import com.nateplays.mhcraftlands.pet.gui.MHPetMenuTypes;
 import com.nateplays.mhcraftlands.pet.item.MHPetItems;
@@ -19,6 +20,7 @@ public class MHPetSubRegistry {
         MHPetWeaponItems.register(eventBus);
 
         MHPetEntities.register(eventBus);
+        MHPetMobEffects.register(eventBus);
         MHPetSounds.register(eventBus);
     }
 }

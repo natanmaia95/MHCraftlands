@@ -11,7 +11,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class ModEffects {
     public static final DeferredRegister<MobEffect> MOB_EFFECTS =

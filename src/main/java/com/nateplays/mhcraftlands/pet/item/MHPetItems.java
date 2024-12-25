@@ -7,6 +7,7 @@ import com.nateplays.mhcraftlands.pet.entity.MHPetEntities;
 import com.nateplays.mhcraftlands.pet.entity.PalicoEntity;
 import com.nateplays.mhcraftlands.pet.item.custom.PetTrainingBookItem;
 import com.nateplays.mhcraftlands.pet.item.tool.EmergencyRetreatPetTool;
+import com.nateplays.mhcraftlands.pet.item.tool.FurbiddenAcornPetTool;
 import com.nateplays.mhcraftlands.pet.item.tool.HornPetTool;
 import com.nateplays.mhcraftlands.pet.item.tool.TauntPetTool;
 import net.minecraft.ChatFormatting;
@@ -62,6 +63,8 @@ public class MHPetItems {
 
     public static final DeferredItem<TauntPetTool> F_TAUNT_SHIELD = PET_ITEMS.register("f_taunt_shield",
             () -> new TauntPetTool<>(PalicoEntity.class, 10, new Item.Properties()));
+    public static final DeferredItem<FurbiddenAcornPetTool> F_FURBIDDEN_ACORN = PET_ITEMS.register("f_furbidden_acorn",
+            () -> new FurbiddenAcornPetTool<>(PalicoEntity.class, new Item.Properties().stacksTo(4)));
 
     public static final DeferredItem<Item> SCRAP_WOOD = registerScrapItem("wood");
     public static final DeferredItem<Item> SCRAP_BONE = registerScrapItem("bone");

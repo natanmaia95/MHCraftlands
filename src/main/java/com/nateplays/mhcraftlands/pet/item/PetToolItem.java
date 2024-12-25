@@ -19,12 +19,10 @@ import net.minecraft.world.level.Level;
 import java.util.function.Consumer;
 
 public class PetToolItem<T extends HuntingBuddyEntity> extends Item {
-    private final Class<T> entityClass;
+    protected final Class<T> entityClass;
 
     public PetToolItem(Class<T> entityClass, int durability, Properties properties) {
-        super(properties
-                .durability(durability)
-        );
+        super(durability > 0 ? properties.durability(durability) : properties);
         this.entityClass = entityClass;
     }
 
@@ -75,7 +73,7 @@ public class PetToolItem<T extends HuntingBuddyEntity> extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
         ItemStack stack = player.getItemInHand(usedHand);
-        if (this.isDamageable(stack) && this.canUsePetTool(stack, player)) {
+        if (this.canUsePetTool(stack, player)) {
             player.startUsingItem(usedHand);
             return InteractionResultHolder.consume(stack);
         }
