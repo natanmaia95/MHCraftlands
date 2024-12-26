@@ -7,6 +7,14 @@
 
   "entity.mhcraftlands.felyne": "Felyne",
 
+  "entity.mhcraftlands.tool_preference.0": "No Pref",
+  "entity.mhcraftlands.tool_preference.1": "Healing",
+  "entity.mhcraftlands.tool_preference.2": "Fighting",
+  "entity.mhcraftlands.tool_preference.3": "Protection",
+  "entity.mhcraftlands.tool_preference.4": "Gathering",
+  "entity.mhcraftlands.tool_preference.5": "Bombing",
+  "entity.mhcraftlands.tool_preference.6": "Assistance",
+
   "item.mhcraftlands.felyne_spawn_egg": "Summon Felyne",
   "item.mhcraftlands.summon_felyne_voucher": "Summon Felyne Voucher",
   "item.mhcraftlands.dismiss_buddy_voucher": "Dismiss Palico Voucher",

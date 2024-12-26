@@ -3,29 +3,40 @@ package com.nateplays.mhcraftlands.pet.item;
 import com.nateplays.mhcraftlands.MHMod;
 import com.nateplays.mhcraftlands.common.effect.ModEffects;
 import com.nateplays.mhcraftlands.item.custom.SummonFelyneItem;
+import com.nateplays.mhcraftlands.pet.entity.HuntingBuddyEntity;
 import com.nateplays.mhcraftlands.pet.entity.MHPetEntities;
 import com.nateplays.mhcraftlands.pet.entity.PalicoEntity;
 import com.nateplays.mhcraftlands.pet.item.custom.PetTrainingBookItem;
-import com.nateplays.mhcraftlands.pet.item.tool.EmergencyRetreatPetTool;
-import com.nateplays.mhcraftlands.pet.item.tool.FurbiddenAcornPetTool;
-import com.nateplays.mhcraftlands.pet.item.tool.HornPetTool;
-import com.nateplays.mhcraftlands.pet.item.tool.TauntPetTool;
+import com.nateplays.mhcraftlands.pet.item.tool.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.boss.wither.WitherBoss;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.Collections;
 import java.util.List;
 
 public class MHPetItems {
@@ -57,6 +68,37 @@ public class MHPetItems {
                     livingEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20*60*3, 0));
                 }
             });
+    public static final DeferredItem<HornPetTool> F_PLUNDER_HORN = PET_ITEMS.register("f_plunder_horn",
+            () -> new HornPetTool(PalicoEntity.class, 20, new Item.Properties()) {
+                @Override public void applyActualEffectToEntity(LivingEntity livingEntity) {
+                    if (livingEntity.level() instanceof ServerLevel serverLevel) {
+                        LootTable lootTable = serverLevel.getServer().reloadableRegistries().getLootTable(livingEntity.getLootTable());
+                        LootParams.Builder builder = new LootParams.Builder(serverLevel)
+                                .withParameter(LootContextParams.THIS_ENTITY, livingEntity)
+                                .withParameter(LootContextParams.DAMAGE_SOURCE, livingEntity.damageSources().genericKill())
+                                .withParameter(LootContextParams.ORIGIN, livingEntity.position());
+
+//                                .withParameter(LootContextParams.ATTACKING_ENTITY, livingEntity)
+//                                .withRandom(mob.getRandom());
+
+                        List<ItemStack> dropsList = lootTable.getRandomItems(builder.create(LootContextParamSets.ENTITY), serverLevel.getRandom());
+                        Collections.shuffle(dropsList);
+//                        System.out.println(dropsList.toString());
+                        if (!dropsList.isEmpty()) {
+                            ItemStack drop = dropsList.getFirst();
+                            drop.setCount(1);
+                            livingEntity.spawnAtLocation(drop);
+                        }
+                    }
+                }
+
+                @Override
+                public boolean isValidTarget(LivingEntity entity) {
+                    if (!(entity instanceof Mob mob)) return false;
+                    if (HuntingBuddyEntity.ALLIED_TO_HUNTERS_SELECTOR.test(entity)) return false;
+                    return true;
+                }
+            });
 
     public static final DeferredItem<EmergencyRetreatPetTool> F_EMERGENCY_RETREAT_KIT = PET_ITEMS.register("f_emergency_retreat_kit",
             () -> new EmergencyRetreatPetTool<>(PalicoEntity.class, 10, new Item.Properties()));
@@ -65,6 +107,9 @@ public class MHPetItems {
             () -> new TauntPetTool<>(PalicoEntity.class, 10, new Item.Properties()));
     public static final DeferredItem<FurbiddenAcornPetTool> F_FURBIDDEN_ACORN = PET_ITEMS.register("f_furbidden_acorn",
             () -> new FurbiddenAcornPetTool<>(PalicoEntity.class, new Item.Properties().stacksTo(4)));
+    public static final DeferredItem<SumoStompPetTool> F_SUMO_STOMP = PET_ITEMS.register("f_sumo_stomp",
+            () -> new SumoStompPetTool<>(PalicoEntity.class, 100, new Item.Properties()));
+
 
     public static final DeferredItem<Item> SCRAP_WOOD = registerScrapItem("wood");
     public static final DeferredItem<Item> SCRAP_BONE = registerScrapItem("bone");

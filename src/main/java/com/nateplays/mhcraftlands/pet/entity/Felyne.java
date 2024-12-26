@@ -15,6 +15,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 public class Felyne extends PalicoEntity {
     public Felyne(EntityType<? extends HuntingBuddyEntity> entityType, Level level) {
         super(entityType, level);
@@ -32,6 +34,7 @@ public class Felyne extends PalicoEntity {
             if (this.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
                 this.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(MHPetWeaponItems.F_BONE_PICK.get()));
             }
+            this.setToolPreference(PetToolPreference.getRandom(this.getRandom()));
         }
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }

@@ -2,12 +2,12 @@ package com.nateplays.mhcraftlands.pet.entity;
 
 import com.nateplays.mhcraftlands.common.attribute.ModAttributes;
 import com.nateplays.mhcraftlands.entity.interfaces.ILevelableEntity;
+import com.nateplays.mhcraftlands.pet.gui.PetToolContainer;
 import com.nateplays.mhcraftlands.pet.item.MHPetItems;
 import com.nateplays.mhcraftlands.pet.item.PetToolItem;
 import com.nateplays.mhcraftlands.pet.item.armor.PetHuntingArmorItem;
 import com.nateplays.mhcraftlands.pet.item.custom.PetTrainingBookItem;
 import com.nateplays.mhcraftlands.pet.item.weapon.PetHuntingWeaponItem;
-import com.nateplays.mhcraftlands.pet.skills.PetToolUser;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -42,6 +42,7 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
 
 
     private static final EntityDataAccessor<Integer> EXP;
+    private static final EntityDataAccessor<Integer> TOOL_PREFERENCE;
     public static final Predicate<LivingEntity> ALLIED_TO_HUNTERS_SELECTOR;
     public static final Predicate<LivingEntity> NOT_ALLIED_TO_HUNTERS_SELECTOR;
 
@@ -54,12 +55,7 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
     private boolean goalsCleared = false; //for KO effect
     protected boolean usingTool = false;
 
-    private SimpleContainer toolsContainer = new SimpleContainer(5) {
-        @Override
-        public boolean canAddItem(ItemStack stack) {
-            return (stack.getItem() instanceof PetToolItem<?>) && super.canAddItem(stack);
-        }
-    };
+    private PetToolContainer toolsContainer = new PetToolContainer(this,5);
 
 
 
@@ -70,7 +66,8 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
     }
 
     static {
-        EXP =  SynchedEntityData.defineId(HuntingBuddyEntity.class, EntityDataSerializers.INT);
+        EXP = SynchedEntityData.defineId(HuntingBuddyEntity.class, EntityDataSerializers.INT);
+        TOOL_PREFERENCE = SynchedEntityData.defineId(HuntingBuddyEntity.class, EntityDataSerializers.INT);
         ALLIED_TO_HUNTERS_SELECTOR = (livingEntity) -> {
             //TODO: change half these steps to a tag check
             if (livingEntity instanceof Player) return true;
@@ -97,6 +94,7 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
         super.defineSynchedData(builder);
         builder.define(BUDDY_DATA_FLAGS, (byte)0);
         buildLevelSynchedData(builder);
+        buildBuddyToolsSynchedData(builder);
     }
 
     @Override
@@ -327,6 +325,7 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
         if (value == true) {
             this.entityData.set(BUDDY_DATA_FLAGS, (byte) (oldFlags | FLAG_KO_ID));
             this.navigation.stop();
+            this.setAggressive(false);
         } else {
             int mask = ~FLAG_KO_ID;
             this.entityData.set(BUDDY_DATA_FLAGS, (byte) (oldFlags & mask));
@@ -338,14 +337,20 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
         return super.isAlive() && !isKOed();
     }
 
-    @Override
-    public SimpleContainer getToolsContainer() {
-        return toolsContainer;
-    }
-
     public boolean isInCombat() {
         return this.getTarget() != null;
     }
+
+    @Override
+    public EntityDataAccessor<Integer> getToolPreferenceAccessor() {
+        return TOOL_PREFERENCE;
+    }
+
+    @Override
+    public PetToolContainer getToolsContainer() {
+        return toolsContainer;
+    }
+
 
     @Nullable
     public ItemStack getCurrentTool() {

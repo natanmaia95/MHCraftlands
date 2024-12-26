@@ -89,10 +89,16 @@ public class PalicoInventoryMenu extends AbstractContainerMenu {
 
         // Tools container
         for (int i = 0; i < this.toolsContainer.getContainerSize(); i++) {
-            this.addSlot(new Slot(this.toolsContainer, i, 80 + slotSizePlus2*i, 69) {
+            int finalI = i;
+            this.addSlot(new Slot(this.toolsContainer, finalI, 80 + slotSizePlus2*i, 69) {
                 @Override
                 public boolean isActive() {
                     return currentTab == 1;
+                }
+
+                @Override
+                public boolean mayPlace(ItemStack stack) {
+                    return toolsContainer.canPlaceItem(finalI, stack);
                 }
             });
         }

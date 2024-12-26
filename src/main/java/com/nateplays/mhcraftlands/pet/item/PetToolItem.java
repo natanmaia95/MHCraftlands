@@ -34,13 +34,19 @@ public class PetToolItem<T extends HuntingBuddyEntity> extends Item {
         return this.isDamageable(stack);
     }
 
+    public int getPointCost(LivingEntity entity) {
+        return 2;
+    }
+
     //    Tool can't break past 1 durability
     @Override
     public boolean isDamageable(ItemStack stack) {
         return super.isDamageable(stack) && (stack.getDamageValue() < stack.getMaxDamage()-1);
     }
 
-
+    public boolean canEquipPetTool(ItemStack stack, LivingEntity entity) {
+        return entityClass.isInstance(entity);
+    }
 
 
 
@@ -53,8 +59,7 @@ public class PetToolItem<T extends HuntingBuddyEntity> extends Item {
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
-        stack.hurtAndBreak(1, livingEntity,
-                livingEntity.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
+        this.hurtUsedItem(1, livingEntity);
 
         if (livingEntity instanceof Player player) {
             player.getCooldowns().addCooldown(this, 20);
@@ -97,5 +102,12 @@ public class PetToolItem<T extends HuntingBuddyEntity> extends Item {
 //        return super.getUseAnimation(stack);
     }
 
+    public void hurtUsedItem(int amount, LivingEntity livingEntity) {
+        ItemStack usedStack = livingEntity.getUseItem();
+        if (this.isDamageable(usedStack)) {
+            livingEntity.getUseItem().hurtAndBreak(amount, livingEntity,
+                    livingEntity.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
+        }
+    }
 
 }

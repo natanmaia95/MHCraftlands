@@ -96,8 +96,10 @@ public class PalicoInventoryScreen extends AbstractContainerScreen<PalicoInvento
 
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        guiGraphics.drawString(this.font, this.palicoEntity.getDisplayName(), this.titleLabelX, 7, 4210752, false);
-        guiGraphics.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, 87, 4210752, false);
+        int textColorBlack = 4210752;
+
+        guiGraphics.drawString(this.font, this.palicoEntity.getDisplayName(), this.titleLabelX, 7, textColorBlack, false);
+        guiGraphics.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, 87, textColorBlack, false);
 
 
 
@@ -109,17 +111,22 @@ public class PalicoInventoryScreen extends AbstractContainerScreen<PalicoInvento
             if (!mainHandStack.isEmpty()) {
                 heldItemDamage = getFinalAttackDamage(mainHandStack);
             }
-            guiGraphics.drawString(this.font, "%.1f".formatted((float) heldItemDamage), 92,  39, 4210752, false);
-            guiGraphics.drawString(this.font, "%.1f".formatted((float) palicoEntity.getAttributeValue(ModAttributes.DEFENSE)), 92,  49, 4210752, false);
-            guiGraphics.drawString(this.font, "%d".formatted(palicoEntity.getExpLevel()), 92,  59, 4210752, false);
-            guiGraphics.drawString(this.font, "%d".formatted(palicoEntity.getExp()), 92,  69, 4210752, false);
+            guiGraphics.drawString(this.font, "%.1f".formatted((float) heldItemDamage), 92,  39, textColorBlack, false);
+            guiGraphics.drawString(this.font, "%.1f".formatted((float) palicoEntity.getAttributeValue(ModAttributes.DEFENSE)), 92,  49, textColorBlack, false);
+            guiGraphics.drawString(this.font, "%d".formatted(palicoEntity.getExpLevel()), 92,  59, textColorBlack, false);
+            guiGraphics.drawString(this.font, "%d".formatted(palicoEntity.getExp()), 92,  69, textColorBlack, false);
 
 
         }
 
 
         else if (currentTab == 1) { // Skills Screen
-            guiGraphics.drawString(this.font, "Skills go here!", 92,  39, 4210752, false);
+//            guiGraphics.drawString(this.font, "Skills go here!", 92,  39, 4210752, false);
+
+            guiGraphics.drawString(this.font, palicoEntity.getToolPreferenceName(), 90, 45, textColorBlack, false);
+            guiGraphics.drawString(this.font, "%2d / %2d".formatted(palicoEntity.getUsedToolPoints(), palicoEntity.getMaxToolPoints()),
+                    88,  58, textColorBlack, false);
+
         }
 
     }
