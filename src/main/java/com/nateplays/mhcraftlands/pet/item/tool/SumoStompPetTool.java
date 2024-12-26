@@ -3,6 +3,7 @@ package com.nateplays.mhcraftlands.pet.item.tool;
 import com.nateplays.mhcraftlands.pet.effect.MHPetMobEffects;
 import com.nateplays.mhcraftlands.pet.entity.HuntingBuddyEntity;
 import com.nateplays.mhcraftlands.pet.entity.PalicoEntity;
+import com.nateplays.mhcraftlands.pet.entity.PetToolPreference;
 import com.nateplays.mhcraftlands.pet.item.PetToolItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
@@ -22,10 +23,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.List;
+
 public class SumoStompPetTool<T extends PalicoEntity> extends PetToolItem<T> {
 
-    public SumoStompPetTool(Class<T> entityClass, int durability, Properties properties) {
-        super(entityClass, durability, properties);
+    public SumoStompPetTool(Class<T> entityClass, List<PetToolPreference> preferences, int basePointCost, int durability, Properties properties) {
+        super(entityClass, preferences, basePointCost, durability, properties);
     }
 
     @Override
@@ -102,4 +105,6 @@ public class SumoStompPetTool<T extends PalicoEntity> extends PetToolItem<T> {
             );
         }
     }
+
+
 }

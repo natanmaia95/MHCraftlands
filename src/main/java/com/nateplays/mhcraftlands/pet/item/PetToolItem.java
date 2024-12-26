@@ -1,8 +1,16 @@
 package com.nateplays.mhcraftlands.pet.item;
 
+import com.nateplays.mhcraftlands.MHMod;
 import com.nateplays.mhcraftlands.pet.entity.HuntingBuddyEntity;
+import com.nateplays.mhcraftlands.pet.entity.PetToolPreference;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.locale.Language;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -13,17 +21,25 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class PetToolItem<T extends HuntingBuddyEntity> extends Item {
     protected final Class<T> entityClass;
 
-    public PetToolItem(Class<T> entityClass, int durability, Properties properties) {
+    protected List<PetToolPreference> preferences;
+    protected int basePointCost;
+
+    public PetToolItem(Class<T> entityClass, List<PetToolPreference> preferences, int basePointCost, int durability, Properties properties) {
         super(durability > 0 ? properties.durability(durability) : properties);
         this.entityClass = entityClass;
+        this.preferences = preferences;
+        this.basePointCost = basePointCost;
     }
 
     public boolean canUsePetTool(ItemStack stack, LivingEntity entity) {
@@ -35,7 +51,11 @@ public class PetToolItem<T extends HuntingBuddyEntity> extends Item {
     }
 
     public int getPointCost(LivingEntity entity) {
-        return 2;
+        int cost = basePointCost;
+        if (entity instanceof HuntingBuddyEntity buddyEntity) {
+            if (preferences.contains(buddyEntity.getToolPreference())) cost /= 2;
+        }
+        return cost;
     }
 
     //    Tool can't break past 1 durability
@@ -110,4 +130,36 @@ public class PetToolItem<T extends HuntingBuddyEntity> extends Item {
         }
     }
 
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+
+        MutableComponent affinityComponent = Component.empty();
+        affinityComponent.append(Component.literal("[%d◆] ".formatted(this.basePointCost)));
+
+        if (this.preferences.isEmpty()) affinityComponent.append(Component.translatable("entity.mhcraftlands.tool_preference.no_prefs"));
+        else {
+            affinityComponent.append(Component.translatable("entity.mhcraftlands.tool_preference.prefs")
+                    .append(Component.literal(": ")));
+            Iterator<PetToolPreference> iter = this.preferences.iterator();
+            while (iter.hasNext()) {
+                affinityComponent.append(Component.translatable(PetToolPreference.getTranslationKey(iter.next())));
+                if (iter.hasNext()) affinityComponent.append(Component.literal(" "));
+            }
+        }
+        affinityComponent = affinityComponent.withStyle(ChatFormatting.BLUE);
+        tooltipComponents.add(affinityComponent);
+
+        MutableComponent loreComponent;
+        TranslatableContents loreContents = null;
+        String specificDescKey = "item.%s.desc".formatted(BuiltInRegistries.ITEM.getKey(this));
+        if (!Language.getInstance().getOrDefault(specificDescKey, "").equals("")) {
+            loreContents = new TranslatableContents(specificDescKey, null, TranslatableContents.NO_ARGS);
+            loreComponent = MutableComponent.create(loreContents);
+        } else loreComponent = Component.literal("No lore.");
+
+        loreComponent = loreComponent.withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC);
+        tooltipComponents.add(loreComponent);
+    }
 }

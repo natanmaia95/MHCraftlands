@@ -2,6 +2,7 @@ package com.nateplays.mhcraftlands.pet.item.tool;
 
 import com.nateplays.mhcraftlands.pet.entity.HuntingBuddyEntity;
 import com.nateplays.mhcraftlands.pet.entity.PalicoEntity;
+import com.nateplays.mhcraftlands.pet.entity.PetToolPreference;
 import com.nateplays.mhcraftlands.pet.item.PetToolItem;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -21,8 +22,8 @@ import java.util.List;
 
 public class TauntPetTool<T extends HuntingBuddyEntity> extends PetToolItem<T> {
 
-    public TauntPetTool(Class<T> entityClass, int durability, Properties properties) {
-        super(entityClass, durability, properties);
+    public TauntPetTool(Class<T> entityClass, List<PetToolPreference> preferences, int basePointCost, int durability, Properties properties) {
+        super(entityClass, preferences, basePointCost, durability, properties);
     }
 
     @Override

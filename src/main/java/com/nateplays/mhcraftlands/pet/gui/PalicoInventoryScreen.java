@@ -81,17 +81,16 @@ public class PalicoInventoryScreen extends AbstractContainerScreen<PalicoInvento
     protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
         if (currentTab == 0) { // Inventory Screen
             guiGraphics.blit(BACKGROUND_TEXTURE_INVENTORY, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
-
-            int i = (this.width - this.imageWidth) / 2;
-            int j = (this.height - this.imageHeight) / 2;
-            InventoryScreen.renderEntityInInventoryFollowsMouse(guiGraphics, i + 26, j + 33, i + 75, j + 85,
-                    35, 0.25F, this.mouseX, this.mouseY, this.palicoEntity);
-
         }
 
         else if (currentTab == 1) {
             guiGraphics.blit(BACKGROUND_TEXTURE_TOOLS, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
         }
+
+        int i = (this.width - this.imageWidth) / 2;
+        int j = (this.height - this.imageHeight) / 2;
+        InventoryScreen.renderEntityInInventoryFollowsMouse(guiGraphics, i + 26, j + 33, i + 75, j + 85,
+                35, 0.15F, this.mouseX, this.mouseY, this.palicoEntity);
     }
 
     @Override

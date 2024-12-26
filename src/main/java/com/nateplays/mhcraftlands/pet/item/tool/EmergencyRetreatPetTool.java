@@ -1,6 +1,7 @@
 package com.nateplays.mhcraftlands.pet.item.tool;
 
 import com.nateplays.mhcraftlands.pet.entity.PalicoEntity;
+import com.nateplays.mhcraftlands.pet.entity.PetToolPreference;
 import com.nateplays.mhcraftlands.pet.item.PetToolItem;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -12,10 +13,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
+import java.util.List;
+
 public class EmergencyRetreatPetTool<T extends PalicoEntity> extends PetToolItem<T> {
 
-    public EmergencyRetreatPetTool(Class<T> entityClass, int durability, Properties properties) {
-        super(entityClass, durability, properties);
+    public EmergencyRetreatPetTool(Class<T> entityClass, List<PetToolPreference> preferences, int basePointCost, int durability, Properties properties) {
+        super(entityClass, preferences, basePointCost, durability, properties);
     }
 
     @Override

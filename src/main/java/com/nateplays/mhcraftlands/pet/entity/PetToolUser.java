@@ -75,9 +75,11 @@ public interface PetToolUser {
         if (tag.contains(TAG_TOOLS, 9)) {
             this.getToolsContainer().fromTag(tag.getList(TAG_TOOLS, 10), levelRegistry);
         }
+        setToolPreference(PetToolPreference.byId(tag.getInt(TAG_TOOL_PREFERENCE)));
     }
 
     default void writeBuddyToolsToTag(CompoundTag tag, HolderLookup.Provider levelRegistry) {
         tag.put(TAG_TOOLS, this.getToolsContainer().createTag(levelRegistry));
+        tag.putInt(TAG_TOOL_PREFERENCE, getToolPreference().getId());
     }
 }

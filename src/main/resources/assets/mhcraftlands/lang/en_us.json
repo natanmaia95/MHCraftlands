@@ -7,6 +7,8 @@
 
   "entity.mhcraftlands.felyne": "Felyne",
 
+  "entity.mhcraftlands.tool_preference.prefs": "Affinities",
+  "entity.mhcraftlands.tool_preference.no_prefs": "No particular affinities.",
   "entity.mhcraftlands.tool_preference.0": "No Pref",
   "entity.mhcraftlands.tool_preference.1": "Healing",
   "entity.mhcraftlands.tool_preference.2": "Fighting",

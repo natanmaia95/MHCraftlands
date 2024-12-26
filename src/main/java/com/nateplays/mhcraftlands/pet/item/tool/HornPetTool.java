@@ -1,6 +1,7 @@
 package com.nateplays.mhcraftlands.pet.item.tool;
 
 import com.nateplays.mhcraftlands.pet.entity.HuntingBuddyEntity;
+import com.nateplays.mhcraftlands.pet.entity.PetToolPreference;
 import com.nateplays.mhcraftlands.pet.item.PetToolItem;
 import com.nateplays.mhcraftlands.pet.sound.MHPetSounds;
 import com.nateplays.mhcraftlands.sound.ModSounds;
@@ -23,8 +24,9 @@ import net.minecraft.world.phys.AABB;
 import java.util.List;
 
 public class HornPetTool<T extends HuntingBuddyEntity> extends PetToolItem<T> {
-    public HornPetTool(Class<T> entityClass, int durability, Properties properties) {
-        super(entityClass, durability, properties);
+
+    public HornPetTool(Class<T> entityClass, List<PetToolPreference> preferences, int basePointCost, int durability, Properties properties) {
+        super(entityClass, preferences, basePointCost, durability, properties);
     }
 
     public double getEffectRadius(ItemStack stack, LivingEntity entity) {

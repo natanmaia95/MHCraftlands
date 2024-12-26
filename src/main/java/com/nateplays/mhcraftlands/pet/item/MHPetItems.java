@@ -2,10 +2,12 @@ package com.nateplays.mhcraftlands.pet.item;
 
 import com.nateplays.mhcraftlands.MHMod;
 import com.nateplays.mhcraftlands.common.effect.ModEffects;
+import com.nateplays.mhcraftlands.common.helper.PlunderHelper;
 import com.nateplays.mhcraftlands.item.custom.SummonFelyneItem;
 import com.nateplays.mhcraftlands.pet.entity.HuntingBuddyEntity;
 import com.nateplays.mhcraftlands.pet.entity.MHPetEntities;
 import com.nateplays.mhcraftlands.pet.entity.PalicoEntity;
+import com.nateplays.mhcraftlands.pet.entity.PetToolPreference;
 import com.nateplays.mhcraftlands.pet.item.custom.PetTrainingBookItem;
 import com.nateplays.mhcraftlands.pet.item.tool.*;
 import net.minecraft.ChatFormatting;
@@ -55,35 +57,27 @@ public class MHPetItems {
             () -> new PetTrainingBookItem(new Item.Properties()));
 
     public static final DeferredItem<HornPetTool> F_HERB_HORN = PET_ITEMS.register("f_herb_horn",
-            () -> new HornPetTool(PalicoEntity.class, 150, new Item.Properties()));
+            () -> new HornPetTool(PalicoEntity.class, List.of(PetToolPreference.HEALING), 4, 150, new Item.Properties()));
+
     public static final DeferredItem<HornPetTool> F_DEMON_HORN = PET_ITEMS.register("f_demon_horn",
-            () -> new HornPetTool(PalicoEntity.class, 150, new Item.Properties()) {
+            () -> new HornPetTool(PalicoEntity.class, List.of(PetToolPreference.FIGHTING), 8,150, new Item.Properties()) {
                 @Override public void applyActualEffectToEntity(LivingEntity livingEntity) {
                     livingEntity.addEffect(new MobEffectInstance(ModEffects.ATTACK_BOOST_BUFF, 20*60*3, 2));
                 }
             });
+
     public static final DeferredItem<HornPetTool> F_ARMOR_HORN = PET_ITEMS.register("f_armor_horn",
-            () -> new HornPetTool(PalicoEntity.class, 150, new Item.Properties()) {
+            () -> new HornPetTool(PalicoEntity.class, List.of(PetToolPreference.PROTECTION), 8,150, new Item.Properties()) {
                 @Override public void applyActualEffectToEntity(LivingEntity livingEntity) {
                     livingEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20*60*3, 0));
                 }
             });
+
     public static final DeferredItem<HornPetTool> F_PLUNDER_HORN = PET_ITEMS.register("f_plunder_horn",
-            () -> new HornPetTool(PalicoEntity.class, 20, new Item.Properties()) {
+            () -> new HornPetTool(PalicoEntity.class, List.of(PetToolPreference.GATHERING), 16,64, new Item.Properties()) {
                 @Override public void applyActualEffectToEntity(LivingEntity livingEntity) {
                     if (livingEntity.level() instanceof ServerLevel serverLevel) {
-                        LootTable lootTable = serverLevel.getServer().reloadableRegistries().getLootTable(livingEntity.getLootTable());
-                        LootParams.Builder builder = new LootParams.Builder(serverLevel)
-                                .withParameter(LootContextParams.THIS_ENTITY, livingEntity)
-                                .withParameter(LootContextParams.DAMAGE_SOURCE, livingEntity.damageSources().genericKill())
-                                .withParameter(LootContextParams.ORIGIN, livingEntity.position());
-
-//                                .withParameter(LootContextParams.ATTACKING_ENTITY, livingEntity)
-//                                .withRandom(mob.getRandom());
-
-                        List<ItemStack> dropsList = lootTable.getRandomItems(builder.create(LootContextParamSets.ENTITY), serverLevel.getRandom());
-                        Collections.shuffle(dropsList);
-//                        System.out.println(dropsList.toString());
+                        List<ItemStack> dropsList = PlunderHelper.getMobDrops(livingEntity);
                         if (!dropsList.isEmpty()) {
                             ItemStack drop = dropsList.getFirst();
                             drop.setCount(1);
@@ -101,14 +95,17 @@ public class MHPetItems {
             });
 
     public static final DeferredItem<EmergencyRetreatPetTool> F_EMERGENCY_RETREAT_KIT = PET_ITEMS.register("f_emergency_retreat_kit",
-            () -> new EmergencyRetreatPetTool<>(PalicoEntity.class, 10, new Item.Properties()));
+            () -> new EmergencyRetreatPetTool<>(PalicoEntity.class, List.of(PetToolPreference.HEALING, PetToolPreference.PROTECTION),
+                    4,16, new Item.Properties()));
 
     public static final DeferredItem<TauntPetTool> F_TAUNT_SHIELD = PET_ITEMS.register("f_taunt_shield",
-            () -> new TauntPetTool<>(PalicoEntity.class, 10, new Item.Properties()));
+            () -> new TauntPetTool<>(PalicoEntity.class, List.of(PetToolPreference.PROTECTION), 8,10, new Item.Properties()));
+
     public static final DeferredItem<FurbiddenAcornPetTool> F_FURBIDDEN_ACORN = PET_ITEMS.register("f_furbidden_acorn",
             () -> new FurbiddenAcornPetTool<>(PalicoEntity.class, new Item.Properties().stacksTo(4)));
+
     public static final DeferredItem<SumoStompPetTool> F_SUMO_STOMP = PET_ITEMS.register("f_sumo_stomp",
-            () -> new SumoStompPetTool<>(PalicoEntity.class, 100, new Item.Properties()));
+            () -> new SumoStompPetTool<>(PalicoEntity.class, List.of(), 4, 100, new Item.Properties()));
 
 
     public static final DeferredItem<Item> SCRAP_WOOD = registerScrapItem("wood");

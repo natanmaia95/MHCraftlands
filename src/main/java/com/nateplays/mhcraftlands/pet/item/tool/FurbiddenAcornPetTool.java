@@ -3,6 +3,7 @@ package com.nateplays.mhcraftlands.pet.item.tool;
 import com.nateplays.mhcraftlands.pet.effect.MHPetMobEffects;
 import com.nateplays.mhcraftlands.pet.entity.HuntingBuddyEntity;
 import com.nateplays.mhcraftlands.pet.entity.PalicoEntity;
+import com.nateplays.mhcraftlands.pet.entity.PetToolPreference;
 import com.nateplays.mhcraftlands.pet.item.PetToolItem;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -23,7 +24,9 @@ import java.util.List;
 public class FurbiddenAcornPetTool<T extends PalicoEntity> extends PetToolItem<T> {
 
     public FurbiddenAcornPetTool(Class<T> entityClass, Properties properties) {
-        super(entityClass, 0, properties);
+        super(entityClass, List.of(), 0, 0, properties);
+        this.basePointCost = 16;
+        this.preferences = List.of(PetToolPreference.HEALING);
     }
 
     @Override
