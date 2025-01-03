@@ -2,9 +2,8 @@ package com.nateplays.mhcraftlands.pet.entity;
 
 import com.nateplays.mhcraftlands.common.attribute.ModAttributes;
 import com.nateplays.mhcraftlands.entity.interfaces.ILevelableEntity;
-import com.nateplays.mhcraftlands.pet.goals.HuntingBuddyHurtByTargetGoal;
-import com.nateplays.mhcraftlands.pet.goals.HuntingBuddyUseToolGoal;
-import com.nateplays.mhcraftlands.pet.goals.PalicoTamedHarvestBlockGoal;
+import com.nateplays.mhcraftlands.pet.entity.projectile.FelyneBoomerangEntity;
+import com.nateplays.mhcraftlands.pet.goals.*;
 import com.nateplays.mhcraftlands.pet.gui.PalicoInventoryMenu;
 import com.nateplays.mhcraftlands.pet.gui.PetSingleEquipContainer;
 import com.nateplays.mhcraftlands.pet.item.armor.PetHuntingArmorItem;
@@ -32,8 +31,11 @@ import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.npc.InventoryCarrier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -47,18 +49,11 @@ import java.util.UUID;
 public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevelableEntity, InventoryCarrier, MenuProvider, RangedAttackMob {
     //Base class for all sorts of Lynians.
 
-    private final RangedBowAttackGoal<PalicoEntity> rangedGoal = new RangedBowAttackGoal(this, 1.0, 20, 15.0F);
-    private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2, false) {
-        public void stop() {
-            super.stop();
-            PalicoEntity.this.setAggressive(false);
-        }
+    private final PalicoRangedAttackGoal rangedGoal =
+            new PalicoRangedAttackGoal(this, 1.3, 60, 8.0f);
 
-        public void start() {
-            super.start();
-            PalicoEntity.this.setAggressive(true);
-        }
-    };
+    private final PalicoMeleeAttackGoal meleeGoal =
+            new PalicoMeleeAttackGoal(this, 1.5, false);
 
     public final AnimationState livingAnimState = new AnimationState();
     public final AnimationState sitAnimState = new AnimationState();
@@ -76,6 +71,7 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
 
     public PalicoEntity(EntityType<? extends HuntingBuddyEntity> entityType, Level level) {
         super(entityType, level);
+        this.reassessWeaponGoal();
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -93,9 +89,18 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         this.goalSelector.addGoal(3, new HuntingBuddyUseToolGoal(this));
 
         //this.goalSelector.addGoal(3, new Wolf.WolfAvoidEntityGoal<>(this, Llama.class, 24.0F, 1.5, 1.5));
-        this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.6F));
-        this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.5, true));
-        this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.5, 12.0F, 4.0F));
+        this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.6F) {
+            @Override
+            public boolean canUse() {
+                if (PalicoEntity.this.getWeaponItem().getItem() instanceof PetHuntingWeaponItem<?> weaponItem) {
+                    if (weaponItem.getWeaponRange() == PetHuntingWeaponItem.Range.MELEE) return super.canUse();
+                }
+                return false;
+            }
+        });
+        this.goalSelector.addGoal(5, new FollowOwnerGoal(this, 1.5, 12.0F, 4.0F));
+//        this.goalSelector.addGoal(6, this.meleeGoal);
+//        this.goalSelector.addGoal(6, this.rangedGoal);
 
 //        this.goalSelector.addGoal(7, new RemoveBlockGoal(Blocks.OAK_LOG, this, 1.0, 16));
 
@@ -234,6 +239,37 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
 
     @Override
     public void performRangedAttack(LivingEntity livingEntity, float v) {
-        return; //TODO: do ranged attack with ranged weaponItem!
+//        return; //TODO: do ranged attack with ranged weaponItem!
+        ItemStack weaponStack = this.getWeaponItem();
+        if(!(weaponStack.getItem() instanceof PetHuntingWeaponItem<?> weaponItem)) return;
+        if (weaponItem.getWeaponRange() != PetHuntingWeaponItem.Range.RANGED) return;
+
+        if (!level().isClientSide()) {
+            FelyneBoomerangEntity boomerang = new FelyneBoomerangEntity(weaponStack, this, this.level());
+
+            boomerang.shootFromRotation(this, this.getXRot(), this.getYRot(), 0.0f, 1.0f, 0.0f);
+            level().addFreshEntity(boomerang);
+        }
+    }
+
+    public void reassessWeaponGoal() {
+        if (this.level() != null && !this.level().isClientSide) {
+            this.goalSelector.removeGoal(this.meleeGoal);
+            this.goalSelector.removeGoal(this.rangedGoal);
+//            ItemStack itemstack = this.getItemInHand(ProjectileUtil.getWeaponHoldingHand(this, item -> item instanceof net.minecraft.world.item.BowItem));
+//            if (itemstack.is(Items.BOW)) {
+//                int i = this.getHardAttackInterval();
+//                if (this.level().getDifficulty() != Difficulty.HARD) {
+//                    i = this.getAttackInterval();
+//                }
+//
+//                this.bowGoal.setMinAttackInterval(i);
+//                this.goalSelector.addGoal(4, this.bowGoal);
+//            } else {
+//                this.goalSelector.addGoal(4, this.meleeGoal);
+//            }
+            this.goalSelector.addGoal(6, this.meleeGoal);
+            this.goalSelector.addGoal(6, this.rangedGoal);
+        }
     }
 }

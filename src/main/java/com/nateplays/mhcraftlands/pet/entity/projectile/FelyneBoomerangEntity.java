@@ -7,6 +7,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -38,7 +39,7 @@ public class FelyneBoomerangEntity extends AbstractArrow {
 //    protected double flySpeed = 1.0;
     protected double returnSpeed = 1.0;
     protected double maxDistance = 12.0;
-    protected int maxPierces = 5;
+    protected int maxPierces = 3;
 
     protected int currentPierces = 0;
     protected int pierceTimer = 0;
@@ -51,6 +52,7 @@ public class FelyneBoomerangEntity extends AbstractArrow {
     public FelyneBoomerangEntity(ItemStack shootingStack, LivingEntity shooter, Level level) {
         super(MHPetEntities.FELYNE_BOOMERANG.get(), shooter, level, shootingStack, shootingStack);
         this.setWeaponItem(shootingStack);
+        this.pickup = Pickup.ALLOWED;
     }
 
     @Override
@@ -108,8 +110,21 @@ public class FelyneBoomerangEntity extends AbstractArrow {
         return super.tryPickup(player);
     }
 
+    protected boolean tryNonPlayerPickup(LivingEntity livingEntity) {
+        if (this.pickup == Pickup.ALLOWED && this.ownedBy(livingEntity)) return true; //won't drop item back to player
+        return false;
+    }
+
+    public void doNonPlayerPickup(LivingEntity livingEntity) {
+        if (!this.level().isClientSide && (this.inGround || this.isNoPhysics()) && this.shakeTime <= 0 && this.tryNonPlayerPickup(livingEntity)) {
+            livingEntity.take(this, 1);
+            this.discard();
+        }
+    }
+
     @Override
     protected boolean canHitEntity(Entity target) {
+        if (this.getOwner() == target) return false;
         return super.canHitEntity(target);
     }
 
@@ -154,6 +169,13 @@ public class FelyneBoomerangEntity extends AbstractArrow {
                 if (this.getDeltaMovement().length() > this.returnSpeed) {
                     this.setDeltaMovement(this.getDeltaMovement().normalize().scale(this.returnSpeed));
                 }
+
+                this.inGroundTime++; //despawn timer
+
+                //return to nonplayers
+                if (owner instanceof LivingEntity && !(owner instanceof Player) && directionToOwner.length() < 0.5) {
+                    this.doNonPlayerPickup((LivingEntity) owner);
+                }
             }
         } else {
             if (this.pierceTimer > 0) this.pierceTimer--;
@@ -167,6 +189,8 @@ public class FelyneBoomerangEntity extends AbstractArrow {
                 }
             }
         }
+
+
 
         boolean noPhys = this.isNoPhysics();
         Vec3 movement = this.getDeltaMovement();
@@ -184,6 +208,8 @@ public class FelyneBoomerangEntity extends AbstractArrow {
     @Override
     protected void onHitBlock(BlockHitResult result) {
         super.onHitBlock(result);
+        this.setDeltaMovement(new Vec3(0,0,0));
+        this.playSound(SoundEvents.TRIDENT_HIT, 1.0F, 1.0F);
         this.shouldReturn = true;
     }
 
@@ -233,4 +259,7 @@ public class FelyneBoomerangEntity extends AbstractArrow {
             this.getWeaponItem().hurtAndBreak(1, (LivingEntity)this.getOwner(), EquipmentSlot.MAINHAND);
         }
     }
+
+    @Override
+    protected SoundEvent getDefaultHitGroundSoundEvent() { return SoundEvents.TRIDENT_HIT; }
 }
