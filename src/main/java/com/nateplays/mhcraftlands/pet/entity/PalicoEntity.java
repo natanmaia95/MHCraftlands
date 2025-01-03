@@ -27,6 +27,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.*;
+import net.minecraft.world.entity.monster.AbstractSkeleton;
+import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.npc.InventoryCarrier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -42,14 +44,26 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
-public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevelableEntity, InventoryCarrier, MenuProvider {
+public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevelableEntity, InventoryCarrier, MenuProvider, RangedAttackMob {
     //Base class for all sorts of Lynians.
+
+    private final RangedBowAttackGoal<PalicoEntity> rangedGoal = new RangedBowAttackGoal(this, 1.0, 20, 15.0F);
+    private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2, false) {
+        public void stop() {
+            super.stop();
+            PalicoEntity.this.setAggressive(false);
+        }
+
+        public void start() {
+            super.start();
+            PalicoEntity.this.setAggressive(true);
+        }
+    };
 
     public final AnimationState livingAnimState = new AnimationState();
     public final AnimationState sitAnimState = new AnimationState();
     public final AnimationState standUpAnimState = new AnimationState();
     public final AnimationState faintAnimState = new AnimationState();
-
 
     public final Container helmArmorAccess = new PetSingleEquipContainer(this, EquipmentSlot.HEAD);
     public final Container mailArmorAccess = new PetSingleEquipContainer(this, EquipmentSlot.CHEST);
@@ -216,5 +230,10 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
 
     public boolean wantsToPickUp(ItemStack stack) {
         return this.getInventory().canAddItem(stack);
+    }
+
+    @Override
+    public void performRangedAttack(LivingEntity livingEntity, float v) {
+        return; //TODO: do ranged attack with ranged weaponItem!
     }
 }

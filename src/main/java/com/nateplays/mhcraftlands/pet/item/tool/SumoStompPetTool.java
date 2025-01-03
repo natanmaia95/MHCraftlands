@@ -1,5 +1,6 @@
 package com.nateplays.mhcraftlands.pet.item.tool;
 
+import com.nateplays.mhcraftlands.common.effect.ModEffects;
 import com.nateplays.mhcraftlands.pet.effect.MHPetMobEffects;
 import com.nateplays.mhcraftlands.pet.entity.HuntingBuddyEntity;
 import com.nateplays.mhcraftlands.pet.entity.PalicoEntity;
@@ -91,7 +92,7 @@ public class SumoStompPetTool<T extends PalicoEntity> extends PetToolItem<T> {
                 double knockbackResistance = livingEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE);
                 knockback.scale((1 - knockbackResistance));
                 victim.push(knockback);
-                victim.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20*10, 5, false, false));
+                victim.addEffect(new MobEffectInstance(ModEffects.STATUS_PSEUDOPARALYSIS, 20*10, 0, false, false));
 //                livingEntity.doHurtTarget(victim);
             });
 

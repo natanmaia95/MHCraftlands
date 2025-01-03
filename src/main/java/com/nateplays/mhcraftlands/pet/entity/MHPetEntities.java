@@ -1,12 +1,15 @@
 package com.nateplays.mhcraftlands.pet.entity;
 
 import com.nateplays.mhcraftlands.MHMod;
+import com.nateplays.mhcraftlands.pet.entity.projectile.FelyneBoomerangEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Supplier;
 
 public class MHPetEntities {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
@@ -21,6 +24,11 @@ public class MHPetEntities {
             );
 
 
+
+    public static final Supplier<EntityType<FelyneBoomerangEntity>> FELYNE_BOOMERANG =
+            ENTITY_TYPES.register("felyne_boomerang", () -> EntityType.Builder.<FelyneBoomerangEntity>of(FelyneBoomerangEntity::new, MobCategory.MISC)
+                    .sized(0.7f, 0.2f).build("felyne_boomerang")
+            );
 
 
     public static void register(IEventBus eventBus) {

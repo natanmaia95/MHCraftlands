@@ -9,6 +9,7 @@ import com.nateplays.mhcraftlands.pet.entity.MHPetEntities;
 import com.nateplays.mhcraftlands.pet.entity.PalicoEntity;
 import com.nateplays.mhcraftlands.pet.entity.PetToolPreference;
 import com.nateplays.mhcraftlands.pet.item.custom.PetTrainingBookItem;
+import com.nateplays.mhcraftlands.pet.item.custom.ScrapItem;
 import com.nateplays.mhcraftlands.pet.item.tool.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.locale.Language;
@@ -56,26 +57,29 @@ public class MHPetItems {
     public static final DeferredItem<PetTrainingBookItem> TRAINING_BOOK = PET_ITEMS.register("training_book",
             () -> new PetTrainingBookItem(new Item.Properties()));
 
+
+
+
     public static final DeferredItem<HornPetTool> F_HERB_HORN = PET_ITEMS.register("f_herb_horn",
             () -> new HornPetTool(PalicoEntity.class, List.of(PetToolPreference.HEALING), 4, 150, new Item.Properties()));
 
     public static final DeferredItem<HornPetTool> F_DEMON_HORN = PET_ITEMS.register("f_demon_horn",
             () -> new HornPetTool(PalicoEntity.class, List.of(PetToolPreference.FIGHTING), 8,150, new Item.Properties()) {
-                @Override public void applyActualEffectToEntity(LivingEntity livingEntity) {
+                @Override public void applyActualEffectToEntity(LivingEntity livingEntity, LivingEntity user) {
                     livingEntity.addEffect(new MobEffectInstance(ModEffects.ATTACK_BOOST_BUFF, 20*60*3, 2));
                 }
             });
 
     public static final DeferredItem<HornPetTool> F_ARMOR_HORN = PET_ITEMS.register("f_armor_horn",
             () -> new HornPetTool(PalicoEntity.class, List.of(PetToolPreference.PROTECTION), 8,150, new Item.Properties()) {
-                @Override public void applyActualEffectToEntity(LivingEntity livingEntity) {
+                @Override public void applyActualEffectToEntity(LivingEntity livingEntity, LivingEntity user) {
                     livingEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20*60*3, 0));
                 }
             });
 
     public static final DeferredItem<HornPetTool> F_PLUNDER_HORN = PET_ITEMS.register("f_plunder_horn",
             () -> new HornPetTool(PalicoEntity.class, List.of(PetToolPreference.GATHERING), 16,64, new Item.Properties()) {
-                @Override public void applyActualEffectToEntity(LivingEntity livingEntity) {
+                @Override public void applyActualEffectToEntity(LivingEntity livingEntity, LivingEntity user) {
                     if (livingEntity.level() instanceof ServerLevel serverLevel) {
                         List<ItemStack> dropsList = PlunderHelper.getMobDrops(livingEntity);
                         if (!dropsList.isEmpty()) {
@@ -87,7 +91,7 @@ public class MHPetItems {
                 }
 
                 @Override
-                public boolean isValidTarget(LivingEntity entity) {
+                public boolean isValidTarget(LivingEntity entity, LivingEntity user) {
                     if (!(entity instanceof Mob mob)) return false;
                     if (HuntingBuddyEntity.ALLIED_TO_HUNTERS_SELECTOR.test(entity)) return false;
                     return true;
@@ -108,6 +112,10 @@ public class MHPetItems {
             () -> new SumoStompPetTool<>(PalicoEntity.class, List.of(), 4, 100, new Item.Properties()));
 
 
+
+
+
+
     public static final DeferredItem<Item> SCRAP_WOOD = registerScrapItem("wood");
     public static final DeferredItem<Item> SCRAP_BONE = registerScrapItem("bone");
     public static final DeferredItem<Item> SCRAP_ORE = registerScrapItem("ore");
@@ -119,25 +127,8 @@ public class MHPetItems {
 
 
     protected static DeferredItem<Item> registerScrapItem(String scrapName) {
-        return PET_ITEMS.register(scrapName + "_scrap", () -> new Item(new Item.Properties()){
-            @Override
-            public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                TranslatableContents loreContents = null;
-                String genericDescKey = "item.%s.generic_scrap.desc".formatted(MHMod.MOD_ID);
-                String specificDescKey = "item.%s.%s_scrap.desc".formatted(MHMod.MOD_ID, scrapName);
-                if (Language.getInstance().getOrDefault(specificDescKey, "") != "") {
-                    loreContents = new TranslatableContents(specificDescKey, null, TranslatableContents.NO_ARGS);
-                } else loreContents = new TranslatableContents(genericDescKey, null, TranslatableContents.NO_ARGS);
-
-                MutableComponent loreComponent = MutableComponent.create(loreContents);
-                loreComponent = loreComponent.withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC);
-                tooltipComponents.add(loreComponent);
-            }
-        });
+        return PET_ITEMS.register(scrapName + "_scrap", () -> new ScrapItem(new Item.Properties()));
     }
-
-
-
 
     public static void register(IEventBus eventBus) { PET_ITEMS.register(eventBus); }
 }

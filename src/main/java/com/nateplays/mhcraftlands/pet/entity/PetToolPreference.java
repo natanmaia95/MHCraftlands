@@ -15,6 +15,23 @@ public enum PetToolPreference {
     BOMBING(5),
     ASSISTANCE(6);
 
+    /* Tool preferences:
+    *
+    * Healing buddies keep hunters and other buddies in good shape.
+    *
+    * Fighting buddies will keep up the pressure on enemies.
+    *
+    * Protection buddies try to pull monsters and their aggro away from the hunter.
+    *
+    * Gathering buddies attempt to gather extra materials from monsters and the field.
+    *
+    * Bombing buddies will use a variety of explosives during hunts.
+    *
+    * Assistance buddies make the hunt easier, with buffs and traps.
+    *
+    * Other types may be added.
+    * */
+
     private static final PetToolPreference[] BY_ID = Arrays.stream(values()).sorted(
             Comparator.comparingInt(PetToolPreference::getId)).toArray(PetToolPreference[]::new);
     private final int id;

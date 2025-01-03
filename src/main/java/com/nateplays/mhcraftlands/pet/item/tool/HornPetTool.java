@@ -34,12 +34,12 @@ public class HornPetTool<T extends HuntingBuddyEntity> extends PetToolItem<T> {
     }
 
     //Override this!
-    public void applyActualEffectToEntity(LivingEntity livingEntity) {
+    public void applyActualEffectToEntity(LivingEntity livingEntity, LivingEntity user) {
         livingEntity.heal(4.0f);
     }
 
-    public void applyEffectToEntity(LivingEntity livingEntity) {
-        applyActualEffectToEntity(livingEntity);
+    public void applyEffectToEntity(LivingEntity livingEntity, LivingEntity user) {
+        applyActualEffectToEntity(livingEntity, user);
 
         if (livingEntity.level() instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER,
@@ -52,15 +52,15 @@ public class HornPetTool<T extends HuntingBuddyEntity> extends PetToolItem<T> {
         }
     }
 
-    public boolean isValidTarget(LivingEntity entity) {
+    public boolean isValidTarget(LivingEntity entity, LivingEntity user) {
         return entity instanceof HuntingBuddyEntity || entity instanceof Player;
     }
 
     protected void applyEffectAroundUser(ItemStack stack, Level level, LivingEntity userEntity) {
 //        if (level instanceof ServerLevel serverLevel) {
             AABB boundingBox = userEntity.getBoundingBox().inflate(getEffectRadius(stack, userEntity));
-            List<LivingEntity> nearbyTargets = level.getEntitiesOfClass(LivingEntity.class, boundingBox, this::isValidTarget);
-            nearbyTargets.forEach(this::applyEffectToEntity);
+            List<LivingEntity> nearbyTargets = level.getEntitiesOfClass(LivingEntity.class, boundingBox, (target) -> this.isValidTarget(target, userEntity));
+            nearbyTargets.forEach((target) -> this.applyEffectToEntity(target, userEntity));
 //        }
     }
 

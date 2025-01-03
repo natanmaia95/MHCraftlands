@@ -53,6 +53,19 @@ public class ModEffects {
     );
 
 
+
+
+
+    public static final Holder<MobEffect> STATUS_PSEUDOPARALYSIS = MOB_EFFECTS.register("status_pseudoparalysis",
+            () -> new PseudoParalysisMobEffect().withAttributeMods());
+
+    public static final Holder<MobEffect> STATUS_PSEUDOPOISON = MOB_EFFECTS.register("status_pseudopoison",
+            () -> new PseudoPoisonMobEffect());
+
+    public static final Holder<MobEffect> STATUS_BUBBLE = MOB_EFFECTS.register("status_bubble",
+            () -> new BubbleMobEffect());
+
+
     public static void register(IEventBus eventBus) {
         MOB_EFFECTS.register(eventBus);
     }

@@ -24,6 +24,8 @@ public class PetClientEventHandler {
 
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
+//        event.registerLayerDefinition(PalicoModel.LAYER_LOCATION, PalicoModel::createBodyLayer);
+
         event.registerLayerDefinition(PalicoModel.LAYER_LOCATION, PalicoModel::createBodyLayer);
         event.registerLayerDefinition(PalicoModel.ARMOR_LAYER_LOCATION, PalicoModel::createBodyLayer);
 

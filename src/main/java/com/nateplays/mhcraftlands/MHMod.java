@@ -14,6 +14,8 @@ import com.nateplays.mhcraftlands.common.armor.ModArmorMaterials;
 import com.nateplays.mhcraftlands.hunter.weapon.DualBladesItem;
 import com.nateplays.mhcraftlands.common.weapon.ModWeaponItems;
 import com.nateplays.mhcraftlands.hunter.weapon.SwordAndShieldItem;
+import com.nateplays.mhcraftlands.pet.client.rendering.projectile.FelyneBoomerangRenderer;
+import com.nateplays.mhcraftlands.pet.entity.MHPetEntities;
 import com.nateplays.mhcraftlands.pet.item.MHPetItems;
 import com.nateplays.mhcraftlands.sound.ModSounds;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -114,6 +116,8 @@ public class MHMod
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             EntityRenderers.register(ModEntities.MOSSWINE.get(), MosswineRenderer::new);
+
+            EntityRenderers.register(MHPetEntities.FELYNE_BOOMERANG.get(), FelyneBoomerangRenderer::new);
 
 
             // Predicates
