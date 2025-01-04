@@ -2,21 +2,17 @@ package com.nateplays.mhcraftlands.pet.goals;
 
 import com.nateplays.mhcraftlands.pet.entity.HuntingBuddyEntity;
 import com.nateplays.mhcraftlands.pet.item.PetToolItem;
-import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.pathfinder.Path;
 
-import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class HuntingBuddyUseToolGoal extends Goal {
 
@@ -26,12 +22,12 @@ public class HuntingBuddyUseToolGoal extends Goal {
     protected int cooldownTicks = 40;
     protected int remainingUseTicks = 0;
     protected int useDelayTicks = 0;
-    protected boolean hasAvoidPath = false;
+    protected boolean hasUsePath = false;
     private ItemStack currentTool = ItemStack.EMPTY;
 
     public HuntingBuddyUseToolGoal(HuntingBuddyEntity mob) {
         this.mob = mob;
-        this.setFlags(EnumSet.of(Flag.TARGET, Flag.MOVE, Flag.JUMP));
+        this.setFlags(EnumSet.of(Flag.TARGET, Flag.MOVE, Flag.LOOK, Flag.JUMP));
     }
 
     @Override
@@ -64,15 +60,15 @@ public class HuntingBuddyUseToolGoal extends Goal {
 
     @Override
     public void start() {
-        this.hasAvoidPath = false;
+        this.hasUsePath = false;
         this.useDelayTicks = 20;
         this.remainingUseTicks = currentTool.getUseDuration(mob);
-        this.hasAvoidPath = tryPathfindAvoidTarget();
+        this.hasUsePath = tryPathfind();
     }
 
     @Override
     public void stop() {
-        this.hasAvoidPath = false;
+        this.hasUsePath = false;
         this.useDelayTicks = 0;
         this.remainingUseTicks = 0;
 
@@ -89,9 +85,9 @@ public class HuntingBuddyUseToolGoal extends Goal {
                 actuallyStart();
                 return;
             }
-            if (hasAvoidPath) {
+            if (hasUsePath) {
                 if (mob.getNavigation().isDone()) actuallyStart();
-            } else hasAvoidPath = tryPathfindAvoidTarget();
+            } else hasUsePath = tryPathfind();
             return;
         }
 
@@ -130,24 +126,38 @@ public class HuntingBuddyUseToolGoal extends Goal {
         }
     }
 
-    private boolean tryPathfindAvoidTarget() {
-        LivingEntity target = mob.getTarget();
-        Path avoidPath;
+    private boolean tryPathfind() {
+        LivingEntity attackTarget = mob.getTarget();
+        LivingEntity owner = mob.getOwner();
+        Path attemptedPath;
+        Vec3 targetPos = null;
 
-        if (target == null) return false;
-
-        Vec3 vec3 = DefaultRandomPos.getPosAway(this.mob, 12, 7, target.position());
-        // if no valid position was found
-        if (vec3 == null) {
-            return false;
+        if (currentTool.getItem() instanceof PetToolItem<?> toolItem) {
+            switch (toolItem.getUseBehavior()) {
+                case FLEE_ENEMY -> {
+                    if (attackTarget == null) return false;
+                    targetPos = DefaultRandomPos.getPosAway(this.mob, 12, 7, attackTarget.position());
+                }
+                case STAY -> {
+//                    targetPos = DefaultRandomPos.getPos(this.mob, 2, 1);
+                    targetPos = this.mob.position();
+                }
+                case REACH_OWNER -> {
+                    if (owner == null) return false;
+                    targetPos = DefaultRandomPos.getPosTowards(this.mob, 2, 3, owner.position(), Mth.HALF_PI);
+                }
+            }
         }
 
+        // if no valid position was found
+        if (targetPos == null) return false;
+
         // try create path
-        avoidPath = mob.getNavigation().createPath(vec3.x, vec3.y, vec3.z, 0);
-        if (avoidPath == null) return false;
+        attemptedPath = mob.getNavigation().createPath(targetPos.x, targetPos.y, targetPos.z, 0);
+        if (attemptedPath == null) return false;
 
         mob.getNavigation().stop();
-        mob.getNavigation().moveTo(avoidPath, 3.0);
+        mob.getNavigation().moveTo(attemptedPath, 3.0);
         return true;
     }
 }

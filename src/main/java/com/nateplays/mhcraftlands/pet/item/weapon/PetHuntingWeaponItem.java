@@ -66,6 +66,7 @@ public class PetHuntingWeaponItem<E extends HuntingBuddyEntity> extends HuntingW
             }
 
             player.awardStat(Stats.ITEM_USED.get(this));
+            player.getCooldowns().addCooldown(this, 40);
 //            weaponStack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(usedHand));
             return InteractionResultHolder.success(weaponStack);
         }

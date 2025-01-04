@@ -54,6 +54,7 @@ public class FelyneBoomerangRenderer extends EntityRenderer<FelyneBoomerangEntit
     public void render(FelyneBoomerangEntity p_entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
         ItemStack itemStack = p_entity.getWeaponItem();
         if (itemStack == null) itemStack = new ItemStack(Items.EMERALD);
+        if (p_entity.visualOverrideStack != null) itemStack = p_entity.visualOverrideStack;
 
         poseStack.pushPose();
 

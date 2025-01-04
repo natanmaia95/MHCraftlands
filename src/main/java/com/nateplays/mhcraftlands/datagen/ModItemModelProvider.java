@@ -61,14 +61,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(MHPetItems.DISMISS_BUDDY_VOUCHER.get());
         basicItem(MHPetItems.TRAINING_BOOK.get());
 
-        basicItem(MHPetItems.F_HERB_HORN.get());
-        basicItem(MHPetItems.F_DEMON_HORN.get());
-        basicItem(MHPetItems.F_ARMOR_HORN.get());
-
         registerAllCraftingMaterials();
         registerAllPetArmorWeaponItems();
-//        armorItem(ModArmorItems.F_FRANKIE_HELM);
-//        armorItem(ModArmorItems.F_FRANKIE_MAIL);
     }
 
     private void registerAllPetArmorWeaponItems() {
@@ -97,6 +91,13 @@ public class ModItemModelProvider extends ItemModelProvider {
         petWeaponItem(MHPetWeaponItems.F_MOSGHARL_BROOM);
         petWeaponItem(MHPetWeaponItems.F_GHOST_LANTERN, modLoc("item/handheld_flipped"));
         petWeaponItem(MHPetWeaponItems.F_FRANKIE_BALL, modLoc("item/handheld_low"));
+
+        basicItem(MHPetItems.F_HERB_HORN, "buddy_tool/");
+        basicItem(MHPetItems.F_ARMOR_HORN, "buddy_tool/");
+        basicItem(MHPetItems.F_DEMON_HORN, "buddy_tool/");
+
+        basicItem(MHPetItems.F_BOOMERANG, "buddy_tool/");
+        basicItem(MHPetItems.F_BIG_BOOMERANG, "buddy_tool/");
     }
 
     private void registerAllCraftingMaterials() {

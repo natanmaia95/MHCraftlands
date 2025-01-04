@@ -86,6 +86,7 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         this.goalSelector.addGoal(1, new TamableAnimal.TamableAnimalPanicGoal(2.0, DamageTypeTags.PANIC_ENVIRONMENTAL_CAUSES));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
 
+        this.goalSelector.addGoal(5, new FollowOwnerGoal(this, 1.5, 32.0F, 16.0F));
         this.goalSelector.addGoal(3, new HuntingBuddyUseToolGoal(this));
 
         //this.goalSelector.addGoal(3, new Wolf.WolfAvoidEntityGoal<>(this, Llama.class, 24.0F, 1.5, 1.5));
@@ -98,7 +99,7 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
                 return false;
             }
         });
-        this.goalSelector.addGoal(5, new FollowOwnerGoal(this, 1.5, 12.0F, 4.0F));
+
 //        this.goalSelector.addGoal(6, this.meleeGoal);
 //        this.goalSelector.addGoal(6, this.rangedGoal);
 
@@ -106,6 +107,7 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
 
         this.goalSelector.addGoal(7, new PalicoTamedHarvestBlockGoal(this, ModTags.Blocks.PALICO_HARVESTABLE_ORES, 1.2, 8, 2, 100));
         this.goalSelector.addGoal(7, new PalicoTamedHarvestBlockGoal(this, ModTags.Blocks.PALICO_HARVESTABLE_PLANTS, 1.2, 8, 2, 200));
+        this.goalSelector.addGoal(8, new FollowOwnerGoal(this, 1.5, 12.0F, 4.0F));
 
         this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0));
         this.goalSelector.addGoal(9, new TemptGoal(this, 1.2, Ingredient.of(Tags.Items.GEMS_EMERALD), false));
@@ -246,7 +248,6 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
 
         if (!level().isClientSide()) {
             FelyneBoomerangEntity boomerang = new FelyneBoomerangEntity(weaponStack, this, this.level());
-
             boomerang.shootFromRotation(this, this.getXRot(), this.getYRot(), 0.0f, 1.0f, 0.0f);
             level().addFreshEntity(boomerang);
         }

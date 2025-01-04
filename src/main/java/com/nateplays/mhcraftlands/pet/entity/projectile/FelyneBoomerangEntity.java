@@ -1,6 +1,8 @@
 package com.nateplays.mhcraftlands.pet.entity.projectile;
 
 import com.nateplays.mhcraftlands.pet.entity.MHPetEntities;
+import com.nateplays.mhcraftlands.pet.item.PetToolItem;
+import com.nateplays.mhcraftlands.pet.item.weapon.PetHuntingWeaponItem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -28,22 +30,26 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.function.Predicate;
 
 public class FelyneBoomerangEntity extends AbstractArrow {
 
     private static final EntityDataAccessor<ItemStack> DATA_WEAPON =
             SynchedEntityData.defineId(FelyneBoomerangEntity.class, EntityDataSerializers.ITEM_STACK);
+    
 
-    private boolean shouldReturn = false;
+    private boolean shouldReturn = true;
 //    protected double flySpeed = 1.0;
-    protected double returnSpeed = 1.0;
-    protected double maxDistance = 12.0;
-    protected int maxPierces = 3;
+    protected double returnSpeed = 2.0;
 
     protected int currentPierces = 0;
     protected int pierceTimer = 0;
 
+    public double damageMultiplier = 1.0;
+    public int maxPierces = 3;
+    public double maxDistance = 4.0;
+    public ItemStack visualOverrideStack;
 
     public FelyneBoomerangEntity(EntityType<? extends AbstractArrow> entityType, Level level) {
         super(entityType, level);
@@ -53,6 +59,13 @@ public class FelyneBoomerangEntity extends AbstractArrow {
         super(MHPetEntities.FELYNE_BOOMERANG.get(), shooter, level, shootingStack, shootingStack);
         this.setWeaponItem(shootingStack);
         this.pickup = Pickup.ALLOWED;
+    }
+
+    @Override
+    public void shoot(double x, double y, double z, float velocity, float inaccuracy) {
+        super.shoot(x, y, z, velocity, inaccuracy);
+        this.returnSpeed = velocity;
+        this.shouldReturn = false;
     }
 
     @Override
@@ -106,8 +119,9 @@ public class FelyneBoomerangEntity extends AbstractArrow {
 
     @Override
     protected boolean tryPickup(Player player) {
-        if (this.pickup == Pickup.ALLOWED && this.ownedBy(player)) return true; //won't drop item back to player
-        return super.tryPickup(player);
+        if (List.of(Pickup.CREATIVE_ONLY, Pickup.ALLOWED).contains(this.pickup) && this.ownedBy(player)) return true; //won't drop item back to player
+        else return false;
+//        return super.tryPickup(player);
     }
 
     protected boolean tryNonPlayerPickup(LivingEntity livingEntity) {
@@ -130,6 +144,7 @@ public class FelyneBoomerangEntity extends AbstractArrow {
 
     @Override
     protected @Nullable EntityHitResult findHitEntity(Vec3 startVec, Vec3 endVec) {
+        if (this.pierceTimer > 0) return null;
         return getEntityHitResultNoClip(
                 this.getBoundingBox().expandTowards(this.getDeltaMovement()).inflate(0.0), this::canHitEntity, 0.5f
         );
@@ -156,39 +171,47 @@ public class FelyneBoomerangEntity extends AbstractArrow {
     public void tick() {
         super.tick();
 
-        Entity owner = getOwner();
-        if (this.shouldReturn) {
-            if (!canReturnToOwner()) {
-                this.discard();
-            } else { //can return to owner
-                this.setNoPhysics(true); //no physics means not hit tests. TODO: rethink this for damage on the way back.
-                Vec3 directionToOwner = owner.getEyePosition().subtract(this.position());
+        if (!level().isClientSide) {
+            Entity owner = getOwner();
+            if (this.shouldReturn) {
+                if (!canReturnToOwner()) {
+                    this.discard();
+                } else { //can return to owner
+                    this.setNoPhysics(true); //no physics means not hit tests. TODO: rethink this for damage on the way back.
+                    Vec3 directionToOwner = owner.getEyePosition().subtract(this.position());
 
 
-                this.setDeltaMovement(this.getDeltaMovement().scale(0.90).add(directionToOwner.normalize().scale(this.returnSpeed*0.1)));
-                if (this.getDeltaMovement().length() > this.returnSpeed) {
-                    this.setDeltaMovement(this.getDeltaMovement().normalize().scale(this.returnSpeed));
+                    this.setDeltaMovement(this.getDeltaMovement().scale(0.90).add(directionToOwner.normalize().scale(this.returnSpeed*0.1)));
+                    if (this.getDeltaMovement().length() > this.returnSpeed) {
+                        this.setDeltaMovement(this.getDeltaMovement().normalize().scale(this.returnSpeed));
+                    }
+
+                    this.inGroundTime++; //despawn timer
+                    if (this.inGroundTime > 100) {
+                        this.discard();
+                        return;
+                    }
+
+                    //return to nonplayers
+                    if (owner instanceof LivingEntity && !(owner instanceof Player) && directionToOwner.length() < 0.8) {
+                        this.doNonPlayerPickup((LivingEntity) owner);
+                    }
                 }
-
-                this.inGroundTime++; //despawn timer
-
-                //return to nonplayers
-                if (owner instanceof LivingEntity && !(owner instanceof Player) && directionToOwner.length() < 0.5) {
-                    this.doNonPlayerPickup((LivingEntity) owner);
-                }
-            }
-        } else {
-            if (this.pierceTimer > 0) this.pierceTimer--;
-            else this.setNoPhysics(false);
+            } else {
+                if (this.pierceTimer > 0) this.pierceTimer--;
+//                else this.setNoPhysics(false);
 
 
-            if (canReturnToOwner()) {
-                Vec3 directionToOwner = owner.getEyePosition().subtract(this.position());
-                if (directionToOwner.length() > this.maxDistance) {
-                    this.shouldReturn = true;
+                if (canReturnToOwner()) {
+                    Vec3 directionToOwner = owner.getEyePosition().subtract(this.position());
+                    if (directionToOwner.length() > this.maxDistance) {
+                        this.shouldReturn = true;
+                    }
                 }
             }
         }
+
+
 
 
 
@@ -224,8 +247,14 @@ public class FelyneBoomerangEntity extends AbstractArrow {
             damageAmount += livingEntity.getAttributeValue(Attributes.ATTACK_DAMAGE);
         }
         if (this.getWeaponItem() != null) {
-            damageAmount += this.getWeaponItem().getItem().getAttackDamageBonus(target, (float) damageAmount, damageSource);
+            double weaponDamage = this.getWeaponItem().getItem().getAttackDamageBonus(target, (float) damageAmount, damageSource);
+            if (this.getWeaponItem().getItem() instanceof PetHuntingWeaponItem<?> petWeaponItem) {
+                if (petWeaponItem.getWeaponRange() == PetHuntingWeaponItem.Range.MELEE) weaponDamage *= 0.7;
+            }
+            damageAmount += weaponDamage;
         }
+
+        damageAmount *= this.damageMultiplier;
 
         //TODO: try getPierceLevel()
         this.currentPierces += 1;
@@ -233,7 +262,7 @@ public class FelyneBoomerangEntity extends AbstractArrow {
             this.shouldReturn = true;
         } else {
             this.pierceTimer = 2;
-            this.setNoPhysics(true);
+//            this.setNoPhysics(true);
         }
 
         if (target.hurt(damageSource, (float)damageAmount)) {

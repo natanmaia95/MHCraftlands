@@ -341,6 +341,10 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
         return this.getTarget() != null;
     }
 
+    public boolean canJoinCombat() {
+        return !isKOed() && !isInSittingPose();
+    }
+
     @Override
     public EntityDataAccessor<Integer> getToolPreferenceAccessor() {
         return TOOL_PREFERENCE;

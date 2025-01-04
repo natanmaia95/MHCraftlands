@@ -14,7 +14,7 @@ public class MHPetWeaponItems {
 
 
     public static final DeferredItem<PetHuntingWeaponItem<PalicoEntity>> F_KAMURA_BOKKEN = WEAPON_ITEMS.register("f_kamura_bokken",
-            () -> new PetHuntingWeaponItem<PalicoEntity>(MHPetWeaponTiers.F_KAMURA_BOKKEN, PetHuntingWeaponItem.Range.MELEE,
+            () -> new PetHuntingWeaponItem<PalicoEntity>(MHPetWeaponTiers.F_KAMURA_BOKKEN, PetHuntingWeaponItem.Range.RANGED,
                     new Item.Properties().attributes(PetHuntingWeaponItem.createAttributes(MHPetWeaponTiers.F_KAMURA_BOKKEN)), PalicoEntity.class));
 
     public static final DeferredItem<PetHuntingWeaponItem<PalicoEntity>> F_BONE_PICK = WEAPON_ITEMS.register("f_bone_pick",
@@ -38,7 +38,7 @@ public class MHPetWeaponItems {
                     new Item.Properties().attributes(PetHuntingWeaponItem.createAttributes(MHPetWeaponTiers.F_MOSGHARL_BROOM)), PalicoEntity.class));
 
     public static final DeferredItem<PetHuntingWeaponItem<PalicoEntity>> F_GHOST_LANTERN = WEAPON_ITEMS.register("f_ghost_lantern",
-            () -> new PetHuntingWeaponItem<PalicoEntity>(MHPetWeaponTiers.F_GHOST_LANTERN, PetHuntingWeaponItem.Range.MELEE,
+            () -> new PetHuntingWeaponItem<PalicoEntity>(MHPetWeaponTiers.F_GHOST_LANTERN, PetHuntingWeaponItem.Range.RANGED,
                     new Item.Properties().attributes(PetHuntingWeaponItem.createAttributes(MHPetWeaponTiers.F_GHOST_LANTERN)), PalicoEntity.class));
 
     public static final DeferredItem<PetHuntingWeaponItem<PalicoEntity>> F_FRANKIE_BALL = WEAPON_ITEMS.register("f_frankie_ball",

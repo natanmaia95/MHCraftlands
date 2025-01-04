@@ -30,6 +30,10 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class PetToolItem<T extends HuntingBuddyEntity> extends Item {
+    public enum UseBehavior {
+        STAY, FLEE_ENEMY, REACH_ENEMY, REACH_OWNER
+    }
+
     protected final Class<T> entityClass;
 
     protected List<PetToolPreference> preferences;
@@ -40,6 +44,10 @@ public class PetToolItem<T extends HuntingBuddyEntity> extends Item {
         this.entityClass = entityClass;
         this.preferences = preferences;
         this.basePointCost = basePointCost;
+    }
+
+    public UseBehavior getUseBehavior() {
+        return UseBehavior.FLEE_ENEMY;
     }
 
     public boolean canUsePetTool(ItemStack stack, LivingEntity entity) {

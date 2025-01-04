@@ -47,11 +47,11 @@ public class PalicoRangedAttackGoal extends Goal {
     }
 
     public boolean canUse() {
-        return this.mob.getTarget() != null && this.hasRangedWeapon();
+        return this.mob.getTarget() != null && this.hasRangedWeapon() && this.mob.canJoinCombat() && !this.mob.isUsingItem();
     }
 
     public boolean canContinueToUse() {
-        return (this.canUse() || !this.mob.getNavigation().isDone()) && this.hasRangedWeapon();
+        return (this.canUse() || !this.mob.getNavigation().isDone()) && this.hasRangedWeapon() && this.mob.canJoinCombat() && !this.mob.isUsingItem();
     }
 
     public void start() {
@@ -63,7 +63,7 @@ public class PalicoRangedAttackGoal extends Goal {
         super.stop();
         this.mob.setAggressive(false);
         this.seeTime = 0;
-        this.attackTime = -1;
+        this.attackTime = attackIntervalMin;
         this.mob.stopUsingItem();
     }
 

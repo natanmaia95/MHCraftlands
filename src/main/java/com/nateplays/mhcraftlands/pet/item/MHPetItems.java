@@ -111,6 +111,15 @@ public class MHPetItems {
     public static final DeferredItem<SumoStompPetTool> F_SUMO_STOMP = PET_ITEMS.register("f_sumo_stomp",
             () -> new SumoStompPetTool<>(PalicoEntity.class, List.of(), 4, 100, new Item.Properties()));
 
+    public static final DeferredItem<FelyneBoomerangPetTool> F_BOOMERANG = PET_ITEMS.register("f_boomerang",
+            () -> new FelyneBoomerangPetTool(List.of(PetToolPreference.FIGHTING, PetToolPreference.GATHERING), 4, 100, new Item.Properties()));
+
+    public static final DeferredItem<FelyneBoomerangPetTool> F_BIG_BOOMERANG = PET_ITEMS.register("f_big_boomerang",
+            () -> new FelyneBoomerangPetTool(List.of(PetToolPreference.FIGHTING, PetToolPreference.GATHERING), 8, 100, new Item.Properties()) {
+                @Override
+                public double getDamageMultiplier() { return 5.0; } //TODO: add knockback to big boomerang
+            });
+
 
 
 
