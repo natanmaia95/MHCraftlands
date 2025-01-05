@@ -105,7 +105,7 @@ public class ModCreativeModeTabs {
                         output.accept(MHPetItems.F_FURBIDDEN_ACORN);
                         output.accept(MHPetItems.F_EMERGENCY_RETREAT_KIT);
                         output.accept(MHPetItems.F_SUMO_STOMP);
-                        output.accept(MHPetItems.F_TAUNT_SHIELD);
+                        output.accept(MHPetItems.F_SHIELDSPIRE);
                         output.accept(MHPetItems.F_BOOMERANG);
                         output.accept(MHPetItems.F_BIG_BOOMERANG);
 

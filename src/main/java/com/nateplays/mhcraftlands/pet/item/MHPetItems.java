@@ -102,8 +102,8 @@ public class MHPetItems {
             () -> new EmergencyRetreatPetTool<>(PalicoEntity.class, List.of(PetToolPreference.HEALING, PetToolPreference.PROTECTION),
                     4,16, new Item.Properties()));
 
-    public static final DeferredItem<TauntPetTool> F_TAUNT_SHIELD = PET_ITEMS.register("f_taunt_shield",
-            () -> new TauntPetTool<>(PalicoEntity.class, List.of(PetToolPreference.PROTECTION), 8,10, new Item.Properties()));
+    public static final DeferredItem<TauntPetTool> F_SHIELDSPIRE = PET_ITEMS.register("f_shieldspire",
+            () -> new TauntPetTool<>(PalicoEntity.class, List.of(PetToolPreference.PROTECTION), 8,100, new Item.Properties()));
 
     public static final DeferredItem<FurbiddenAcornPetTool> F_FURBIDDEN_ACORN = PET_ITEMS.register("f_furbidden_acorn",
             () -> new FurbiddenAcornPetTool<>(PalicoEntity.class, new Item.Properties().stacksTo(4)));

@@ -93,8 +93,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         petWeaponItem(MHPetWeaponItems.F_FRANKIE_BALL, modLoc("item/handheld_low"));
 
         basicItem(MHPetItems.F_HERB_HORN, "buddy_tool/");
+        basicItem(MHPetItems.F_FURBIDDEN_ACORN, "buddy_tool/");
+        basicItem(MHPetItems.F_EMERGENCY_RETREAT_KIT, "buddy_tool/");
         basicItem(MHPetItems.F_ARMOR_HORN, "buddy_tool/");
         basicItem(MHPetItems.F_DEMON_HORN, "buddy_tool/");
+        basicItem(MHPetItems.F_SUMO_STOMP, "buddy_tool/");
+        basicItem(MHPetItems.F_SHIELDSPIRE, "buddy_tool/");
 
         basicItem(MHPetItems.F_BOOMERANG, "buddy_tool/");
         basicItem(MHPetItems.F_BIG_BOOMERANG, "buddy_tool/");

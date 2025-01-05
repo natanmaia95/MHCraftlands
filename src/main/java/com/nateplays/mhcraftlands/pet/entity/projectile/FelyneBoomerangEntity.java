@@ -37,7 +37,7 @@ public class FelyneBoomerangEntity extends AbstractArrow {
 
     private static final EntityDataAccessor<ItemStack> DATA_WEAPON =
             SynchedEntityData.defineId(FelyneBoomerangEntity.class, EntityDataSerializers.ITEM_STACK);
-    
+
 
     private boolean shouldReturn = true;
 //    protected double flySpeed = 1.0;

@@ -100,10 +100,6 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
             }
         });
 
-//        this.goalSelector.addGoal(6, this.meleeGoal);
-//        this.goalSelector.addGoal(6, this.rangedGoal);
-
-//        this.goalSelector.addGoal(7, new RemoveBlockGoal(Blocks.OAK_LOG, this, 1.0, 16));
 
         this.goalSelector.addGoal(7, new PalicoTamedHarvestBlockGoal(this, ModTags.Blocks.PALICO_HARVESTABLE_ORES, 1.2, 8, 2, 100));
         this.goalSelector.addGoal(7, new PalicoTamedHarvestBlockGoal(this, ModTags.Blocks.PALICO_HARVESTABLE_PLANTS, 1.2, 8, 2, 200));

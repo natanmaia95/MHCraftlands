@@ -158,6 +158,7 @@ public class HuntingBuddyUseToolGoal extends Goal {
 
         mob.getNavigation().stop();
         mob.getNavigation().moveTo(attemptedPath, 3.0);
+        System.out.println("Found path!");
         return true;
     }
 }

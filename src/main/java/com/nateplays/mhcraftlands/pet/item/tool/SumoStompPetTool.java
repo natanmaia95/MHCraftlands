@@ -34,7 +34,7 @@ public class SumoStompPetTool<T extends PalicoEntity> extends PetToolItem<T> {
 
     @Override
     public int getUseDuration(ItemStack stack, LivingEntity entity) {
-        return 50;
+        return 40;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class SumoStompPetTool<T extends PalicoEntity> extends PetToolItem<T> {
             livingEntity.jumpFromGround();
         }
 
-        if (remainingUseDuration == 50 || remainingUseDuration == 30) {
+        if (remainingUseDuration == 40 || remainingUseDuration == 25) {
             if (level instanceof ServerLevel serverLevel) {
                 serverLevel.playSound(null, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(),
                         SoundEvents.MACE_SMASH_GROUND, SoundSource.NEUTRAL, 1.0F, 1.0F);

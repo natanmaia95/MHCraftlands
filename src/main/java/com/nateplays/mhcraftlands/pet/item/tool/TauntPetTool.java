@@ -46,8 +46,8 @@ public class TauntPetTool<T extends HuntingBuddyEntity> extends PetToolItem<T> {
 
     @Override
     public void onUseTick(Level level, LivingEntity livingEntity, ItemStack stack, int remainingUseDuration) {
-        if ((remainingUseDuration+1) % 20 == 0) {
-            livingEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 30, 2));
+        livingEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 40, 2));
+        if ((remainingUseDuration-1) % 40 == 0) {
             if (level instanceof ServerLevel serverLevel) {
                 this.tauntNearbyEnemies(serverLevel, livingEntity, stack, remainingUseDuration);
             }
@@ -57,24 +57,26 @@ public class TauntPetTool<T extends HuntingBuddyEntity> extends PetToolItem<T> {
             stack.hurtAndBreak(1, livingEntity,
                     livingEntity.getUsedItemHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
         }
-
     }
 
     @Override
     public UseAnim getUseAnimation(ItemStack stack) {return UseAnim.BLOCK;}
 
     public void tauntNearbyEnemies(ServerLevel serverLevel, LivingEntity livingEntity, ItemStack stack, int remainingUseDuration) {
+        int count = 0;
         AABB boundingBox = livingEntity.getBoundingBox().inflate(32.0);
         List<Monster> nearbyMobs = serverLevel.getEntitiesOfClass(Monster.class, boundingBox);
         for (Monster mob : nearbyMobs) {
             if (mob.getRandom().nextFloat() < 0.5f) {
                 if (mob.getTarget() != livingEntity) {
+                    count += 1;
                     mob.setTarget(livingEntity);
                     serverLevel.sendParticles(ParticleTypes.GUST,
                             mob.getX(), mob.getEyeY(), mob.getZ(),
                             3, mob.getRandom().nextDouble(),0,mob.getRandom().nextDouble(),1.0);
                 }
             }
+            if (count > 2) break;
         }
     }
 }

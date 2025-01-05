@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "mhcraftlands:item/buddy_tool/f_furbidden_acorn"
+  }
+}
