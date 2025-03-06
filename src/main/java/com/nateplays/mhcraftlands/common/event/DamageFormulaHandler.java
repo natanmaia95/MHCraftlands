@@ -45,7 +45,7 @@ public class DamageFormulaHandler {
             //finish by applying the "motion value", the actual strength of the swing
             float mvMultiplier = weaponItem.getAttackDamageMultiplier();
             event.setAmount(event.getAmount() * mvMultiplier);
-            LogUtils.getLogger().debug("multiplier:" + String.valueOf(mvMultiplier));
+//            LogUtils.getLogger().debug("multiplier:" + String.valueOf(mvMultiplier));
         }
 
         return true;
@@ -63,18 +63,20 @@ public class DamageFormulaHandler {
                 double elementalDamage = 0.0;
 
                 for (DeferredHolder<Attribute, Attribute> elemDamageAttrHolder : ModAttributes.allElemDamages()) {
+                    LOGGER.debug(elemDamageAttrHolder.toString());
                     double tempDamage = 0.0;
                     //attack
                     AttributeInstance elemDamageAttrInstance = livingEntity.getAttribute(elemDamageAttrHolder);
                     if (elemDamageAttrInstance != null) tempDamage = elemDamageAttrInstance.getValue();
+                    if (tempDamage == 0) continue;
+//                    LOGGER.debug("element base damage: %f".formatted(tempDamage));
                     //defense
                     DeferredHolder<Attribute, Attribute> weaknessHolder = ModAttributes.ELEMENT_DAMAGE_TO_WEAKNESS.get(elemDamageAttrHolder);
                     AttributeInstance weaknessAttrInstance = targetEntity.getAttribute(weaknessHolder);
                     if (weaknessAttrInstance != null) {
                         tempDamage *= weaknessAttrInstance.getValue();
-                        LOGGER.debug("element weakness: %f".formatted(weaknessAttrInstance.getValue()));
+//                        LOGGER.debug("element weakness: %f".formatted(weaknessAttrInstance.getValue()));
                     }
-
                     //apply
                     elementalDamage += tempDamage;
                 }
@@ -87,7 +89,7 @@ public class DamageFormulaHandler {
             }
 
             event.setAmount(event.getAmount() + (float) finalElementalDamage);
-            LOGGER.debug("element damage: %f".formatted(finalElementalDamage));
+//            LOGGER.debug("element damage: %f".formatted(finalElementalDamage));
         }
 
         return true;

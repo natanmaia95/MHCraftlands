@@ -111,4 +111,6 @@ public abstract class HuntingWeaponItem extends TieredItem {
         }
     }
 
+
+
 }

@@ -39,23 +39,9 @@ public class ModAttributeHandler {
     public static void entityAttributeModificationEvent(EntityAttributeModificationEvent event) {
         event.add(EntityType.PLAYER, ModAttributes.DEFENSE);
         event.add(EntityType.PLAYER, ModAttributes.EATING_SPEED);
-
-
-        //add to all living entities.
-//        BuiltInRegistries.ENTITY_TYPE.forEach((entityType) -> {
-//            System.out.println("entity type:" + entityType.toString());
-//            if (entityType.getBaseClass().isAssignableFrom(LivingEntity.class)) {
-//                EntityType<? extends LivingEntity> livingType = (EntityType<? extends LivingEntity>) entityType;
-//                if (DefaultAttributes.getSupplier(livingType) == null) return;
-//
-//                //add all elemental weaknesses at default 1.0
-//                for (DeferredHolder<Attribute, Attribute> weaknessHolder : ModAttributes.allElemWeaknesses()) {
-//                    if (!event.has(livingType, weaknessHolder)) {
-//                        event.add(livingType, weaknessHolder);
-//                    }
-//                }
-//            }
-//        });
+        for (DeferredHolder<Attribute, Attribute> attrHolder : ModAttributes.allElemDamages()) {
+            event.add(EntityType.PLAYER, attrHolder);
+        }
 
         for (EntityType<?> entityType : BuiltInRegistries.ENTITY_TYPE) {
             // Check if the entity is a LivingEntity (only LivingEntities have attributes)
@@ -64,16 +50,20 @@ public class ModAttributeHandler {
                 EntityType<? extends LivingEntity> livingType = (EntityType<? extends LivingEntity>) entityType;
                 // Add your custom attributes to the entity type
 //                System.out.println("living type:" + entityType.toString());
-                    event.add(livingType, ModAttributes.DEFENSE);
-                    event.add(livingType, ModAttributes.FIRE_WEAKNESS);
-                    event.add(livingType, ModAttributes.WATER_WEAKNESS);
-                    event.add(livingType, ModAttributes.FIRE_DAMAGE);
+                event.add(livingType, ModAttributes.DEFENSE);
+                for (DeferredHolder<Attribute, Attribute> weaknessHolder : ModAttributes.allElemWeaknesses()) {
+                    event.add(livingType, weaknessHolder);
+                }
+                // Add more attributes as needed
+
+//                    event.add(livingType, ModAttributes.WATER_WEAKNESS);
+//                    event.add(livingType, ModAttributes.FIRE_DAMAGE);
 //                event.add(entityType, ModAttributes.THUNDER_WEAKNESS);
-                    // Add more attributes as needed
+
             }
         }
 
-        event.add(EntityType.ZOMBIE, ModAttributes.DEFENSE);
-        event.add(EntityType.ZOMBIE, ModAttributes.FIRE_WEAKNESS);
+//        event.add(EntityType.ZOMBIE, ModAttributes.DEFENSE);
+//        event.add(EntityType.ZOMBIE, ModAttributes.FIRE_WEAKNESS);
     }
 }

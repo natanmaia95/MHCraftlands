@@ -1,6 +1,8 @@
 package com.nateplays.mhcraftlands.item;
 
 import com.nateplays.mhcraftlands.MHMod;
+import com.nateplays.mhcraftlands.common.attribute.ModAttributes;
+import com.nateplays.mhcraftlands.common.weapon.HuntingWeaponItem;
 import com.nateplays.mhcraftlands.hunter.weapon.DualBladesItem;
 import com.nateplays.mhcraftlands.hunter.weapon.GlaiveItem;
 import com.nateplays.mhcraftlands.hunter.weapon.GreatSwordItem;
@@ -15,6 +17,8 @@ import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -82,7 +86,8 @@ public class ModItems {
     public static final DeferredItem<SwordAndShieldItem> MACHALITE_SNS = ITEMS.register("machalite_sns",
             () -> new SwordAndShieldItem(
                     ModToolTiers.MACHALITE, new Item.Properties()
-                    .attributes(SwordAndShieldItem.createAttributes(ModToolTiers.MACHALITE))));
+                    .attributes(SwordAndShieldItem.createAttributes(ModToolTiers.MACHALITE))
+            ));
 
     public static final DeferredItem<DualBladesItem> MACHALITE_DB = ITEMS.register("machalite_db",
             () -> new DualBladesItem(

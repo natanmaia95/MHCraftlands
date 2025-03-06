@@ -101,11 +101,11 @@
   "tooltip.mhcraftlands.skill_description.mushroomancer": "Allows consumption of mushrooms.",
   "tooltip.mhcraftlands.skill_description.mushroomancer.2": "[2] Allows consumption of mushrooms and fungi.",
 
-  "attribute.mhcraftlands.fire_elemental_damage": "Fire Damage",
-  "attribute.mhcraftlands.water_elemental_damage": "Water Damage",
-  "attribute.mhcraftlands.thunder_elemental_damage": "Thunder Damage",
-  "attribute.mhcraftlands.ice_elemental_damage": "Ice Damage",
-  "attribute.mhcraftlands.dragon_elemental_damage": "Dragon Damage",
+  "attribute.mhcraftlands.fire_elemental_damage": "§c🔥Fire Damage",
+  "attribute.mhcraftlands.water_elemental_damage": "§9🌊Water Damage",
+  "attribute.mhcraftlands.thunder_elemental_damage": "§e⚡Thunder Damage",
+  "attribute.mhcraftlands.ice_elemental_damage": "§b❄Ice Damage",
+  "attribute.mhcraftlands.dragon_elemental_damage": "§5☠Dragon Damage",
 
   "enchantment.mhcraftlands.quick_eating": "Quick Eating",
   "enchantment.mhcraftlands.muck_resistance": "Muck Resistance",
