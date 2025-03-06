@@ -7,15 +7,20 @@ import com.nateplays.mhcraftlands.common.weapon.HuntingWeaponItem;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import org.slf4j.Logger;
 
 @EventBusSubscriber(modid = MHMod.MOD_ID)
 public class DamageFormulaHandler {
+
+    private static final Logger LOGGER = LogUtils.getLogger();
 
     @SubscribeEvent
     public static void livingDamageEvent(LivingIncomingDamageEvent event) {
@@ -23,7 +28,7 @@ public class DamageFormulaHandler {
         DamageSource damageSource = event.getSource();
         damageFormulaRawStep(event, damageSource);
 //        damageFormulaMotionValueStep(event);
-//        damageFormulaElementalStep(event);
+        damageFormulaElementalStep(event);
 
 
         damageFormulaDefenseStep(event);
@@ -50,23 +55,39 @@ public class DamageFormulaHandler {
         DamageSource damageSource = event.getSource();
         ItemStack weaponStack = damageSource.getWeaponItem();
         Entity entity = damageSource.getEntity();
+        LivingEntity targetEntity = event.getEntity();
         if (weaponStack != null && weaponStack.getItem() instanceof HuntingWeaponItem weaponItem) {
             double finalElementalDamage = 0.0;
 
             if (entity instanceof LivingEntity livingEntity) {
                 double elementalDamage = 0.0;
 
-                AttributeInstance fireDamageAttribute = livingEntity.getAttribute(ModAttributes.FIRE_DAMAGE);
-                if (fireDamageAttribute != null) elementalDamage += fireDamageAttribute.getValue();
+                for (DeferredHolder<Attribute, Attribute> elemDamageAttrHolder : ModAttributes.allElemDamages()) {
+                    double tempDamage = 0.0;
+                    //attack
+                    AttributeInstance elemDamageAttrInstance = livingEntity.getAttribute(elemDamageAttrHolder);
+                    if (elemDamageAttrInstance != null) tempDamage = elemDamageAttrInstance.getValue();
+                    //defense
+                    DeferredHolder<Attribute, Attribute> weaknessHolder = ModAttributes.ELEMENT_DAMAGE_TO_WEAKNESS.get(elemDamageAttrHolder);
+                    AttributeInstance weaknessAttrInstance = targetEntity.getAttribute(weaknessHolder);
+                    if (weaknessAttrInstance != null) {
+                        tempDamage *= weaknessAttrInstance.getValue();
+                        LOGGER.debug("element weakness: %f".formatted(weaknessAttrInstance.getValue()));
+                    }
+
+                    //apply
+                    elementalDamage += tempDamage;
+                }
 
                 if (livingEntity instanceof Player player) { //half elem damage if spamming attack
                     if (player.getAttackStrengthScale(0) <= 0.8f) elementalDamage *= 0.5;
                 }
-                //check crits, etc
+                //TODO: check element crits, etc
                 finalElementalDamage += elementalDamage;
             }
 
             event.setAmount(event.getAmount() + (float) finalElementalDamage);
+            LOGGER.debug("element damage: %f".formatted(finalElementalDamage));
         }
 
         return true;
