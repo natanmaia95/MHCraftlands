@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "f_diamond",
+  "key": {
+    "A": {
+      "item": "mhcraftlands:diamond_scrap"
+    },
+    "B": {
+      "item": "minecraft:deepslate"
+    },
+    "I": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " A ",
+    " B ",
+    "AIA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mhcraftlands:f_diamond_sword"
+  }
+}

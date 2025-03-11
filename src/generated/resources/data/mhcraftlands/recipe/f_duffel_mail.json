@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "f_duffel",
+  "key": {
+    "A": {
+      "item": "mhcraftlands:fur_scrap"
+    },
+    "B": {
+      "item": "minecraft:feather"
+    }
+  },
+  "pattern": [
+    "ABA",
+    " A "
+  ],
+  "result": {
+    "count": 1,
+    "id": "mhcraftlands:f_duffel_mail"
+  }
+}

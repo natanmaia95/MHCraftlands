@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
-  "group": "f_alloy",
+  "group": "f_frankie",
   "key": {
     "A": {
       "item": "mhcraftlands:sinister_scrap"

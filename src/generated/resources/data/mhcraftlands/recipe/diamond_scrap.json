@@ -3,10 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "minecraft:copper_ores"
-    },
-    {
-      "tag": "minecraft:copper_ores"
+      "item": "minecraft:diamond"
     },
     {
       "item": "minecraft:stick"
@@ -14,6 +11,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "mhcraftlands:ore_scrap"
+    "id": "mhcraftlands:diamond_scrap"
   }
 }

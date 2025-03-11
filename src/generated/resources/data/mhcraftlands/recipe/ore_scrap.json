@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "minecraft:iron_ores"
+      "item": "minecraft:raw_iron"
     },
     {
       "item": "minecraft:stick"

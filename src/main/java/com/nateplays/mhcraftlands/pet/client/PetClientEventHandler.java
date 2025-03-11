@@ -29,10 +29,13 @@ public class PetClientEventHandler {
         event.registerLayerDefinition(PalicoModel.LAYER_LOCATION, PalicoModel::createBodyLayer);
         event.registerLayerDefinition(PalicoModel.ARMOR_LAYER_LOCATION, PalicoModel::createBodyLayer);
 
+        event.registerLayerDefinition(FDuffelModel.LAYER_LOCATION, FDuffelModel::createBodyLayer);
         event.registerLayerDefinition(FBoneHelmModel.LAYER_LOCATION, FBoneHelmModel::createBodyLayer);
+        event.registerLayerDefinition(FCreeperModel.LAYER_LOCATION, FCreeperModel::createBodyLayer);
         event.registerLayerDefinition(FGhostHelmModel.LAYER_LOCATION, FGhostHelmModel::createBodyLayer);
         event.registerLayerDefinition(FRedModel.LAYER_LOCATION, FRedModel::createBodyLayer);
         event.registerLayerDefinition(FMosgharlModel.LAYER_LOCATION, FMosgharlModel::createBodyLayer);
         event.registerLayerDefinition(FFrankieModel.LAYER_LOCATION, FFrankieModel::createBodyLayer);
+        event.registerLayerDefinition(FDiamondModel.LAYER_LOCATION, FDiamondModel::createBodyLayer);
     }
 }

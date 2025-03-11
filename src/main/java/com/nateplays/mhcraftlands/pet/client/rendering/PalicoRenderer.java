@@ -59,6 +59,7 @@ public class PalicoRenderer extends MobRenderer<PalicoEntity, PalicoModel<Palico
                 palicoModel.earl.visible = !(!palicoModel.earl.visible || armorItem.hideEars());
                 palicoModel.earr.visible = !(!palicoModel.earr.visible || armorItem.hideEars());
                 palicoModel.head.visible = !(!palicoModel.head.visible || armorItem.hideHead());
+                palicoModel.tail.visible = !(!palicoModel.tail.visible || armorItem.hideTail());
             }
         }
     }

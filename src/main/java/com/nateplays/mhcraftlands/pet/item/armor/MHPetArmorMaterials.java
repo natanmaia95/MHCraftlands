@@ -30,11 +30,17 @@ public class MHPetArmorMaterials {
     public static final Holder<ArmorMaterial> F_KAMURA = registerPetMaterial(PET_ARMOR_MATERIALS, "f_kamura",
             5, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(MHPetItems.SCRAP_FUR));
 
+    public static final Holder<ArmorMaterial> F_DUFFEL = registerPetMaterial(PET_ARMOR_MATERIALS, "f_duffel",
+            5, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(MHPetItems.SCRAP_FUR));
+
     public static final Holder<ArmorMaterial> F_BONE = registerPetMaterial(PET_ARMOR_MATERIALS, "f_bone",
             7, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(MHPetItems.SCRAP_BONE));
 
     public static final Holder<ArmorMaterial> F_ALLOY = registerPetMaterial(PET_ARMOR_MATERIALS, "f_alloy",
             9, SoundEvents.ARMOR_EQUIP_IRON, () -> Ingredient.of(MHPetItems.SCRAP_ORE));
+
+    public static final Holder<ArmorMaterial> F_CREEPER = registerPetMaterial(PET_ARMOR_MATERIALS, "f_creeper",
+            5, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(MHPetItems.SCRAP_SINISTER));
 
     public static final Holder<ArmorMaterial> F_RED = registerPetMaterial(PET_ARMOR_MATERIALS, "f_red",
             7, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(MHPetItems.SCRAP_FUR), false, true);
@@ -48,7 +54,8 @@ public class MHPetArmorMaterials {
     public static final Holder<ArmorMaterial> F_FRANKIE = registerPetMaterial(PET_ARMOR_MATERIALS, "f_frankie",
             15, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(MHPetItems.SCRAP_SINISTER), false, false);
 
-
+    public static final Holder<ArmorMaterial> F_DIAMOND = registerPetMaterial(PET_ARMOR_MATERIALS, "f_diamond",
+            40, SoundEvents.ARMOR_EQUIP_DIAMOND, () -> Ingredient.of(MHPetItems.SCRAP_DIAMOND));
 
 
     public static Holder<ArmorMaterial> registerPetMaterial(DeferredRegister<ArmorMaterial> register, String name, int baseDefense, Holder<SoundEvent> soundEvent,

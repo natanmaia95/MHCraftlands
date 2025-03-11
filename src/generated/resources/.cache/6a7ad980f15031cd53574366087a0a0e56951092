@@ -1,4 +1,4 @@
-// 1.21	2025-01-04T21:57:21.8030939	Item Models: mhcraftlands
+// 1.21	2025-03-11T00:34:03.0307039	Item Models: mhcraftlands
 08ea91963f2a430f21a37d6cf7c8c8409444bf6d assets/mhcraftlands/models/item/bone_scrap.json
 eea418b550e8141fbcb3c1319739e74b469e6c7a assets/mhcraftlands/models/item/dismiss_buddy_voucher.json
 4e66352f14f40ff3f77d85c61be43af6ddd3431b assets/mhcraftlands/models/item/earth_crystal.json
@@ -15,7 +15,15 @@ a87ec9de648eb510ce2e64269c9ce8407773369d assets/mhcraftlands/models/item/f_alloy
 b54d89f350a317ad03c91f4ed41b1b6b51c1c95f assets/mhcraftlands/models/item/f_bone_mail.json
 4060a17e8c9839bd9fa4bc09e8de33ce58b38334 assets/mhcraftlands/models/item/f_bone_pick.json
 6192bb62497566771a19132f36855830264ee797 assets/mhcraftlands/models/item/f_boomerang.json
+6917f6297cd8f15d959dee3e47fb6c91ad5de25c assets/mhcraftlands/models/item/f_creeper_clobberer.json
+4618d7d2c8588084ac20dd955d289a9c9c23763e assets/mhcraftlands/models/item/f_creeper_helm.json
+d94a61c4c7a3a80d46038f1150c409b2353bb4bc assets/mhcraftlands/models/item/f_creeper_mail.json
 41d97d1772769741e184238c5f7f1dd324c7845a assets/mhcraftlands/models/item/f_demon_horn.json
+80d9d15022f44baf31c6eca9c965374ed35e4eb1 assets/mhcraftlands/models/item/f_diamond_helm.json
+0ebf8c0954cf04b947b442ddd6371017a038ad15 assets/mhcraftlands/models/item/f_diamond_mail.json
+bf8d75bd1576bc524db0e355eaed520a35ed5677 assets/mhcraftlands/models/item/f_diamond_sword.json
+4ca974ab332caf57873de27a81ff86ce1fc12716 assets/mhcraftlands/models/item/f_duffel_helm.json
+4b5cb62b525267a42db695a1e8caa1aba7b39598 assets/mhcraftlands/models/item/f_duffel_mail.json
 840b5ef75c3dd1641309875816bdc82b7f1d9a2d assets/mhcraftlands/models/item/f_emergency_retreat_kit.json
 ee221958671dea8fe77424884828520070f77e5f assets/mhcraftlands/models/item/f_frankie_ball.json
 c45aeea3c2d898f44e8033bce54dd58b04abc7c8 assets/mhcraftlands/models/item/f_frankie_helm.json
@@ -37,6 +45,8 @@ d90380a812cfbb576e30dfcf41e1a31342f977f8 assets/mhcraftlands/models/item/f_red_h
 104d282fa98395cdb3612f114f08a3e2f74fad64 assets/mhcraftlands/models/item/f_red_mail.json
 d5cb3df88131b55f1f1e7ec523ea19349014d317 assets/mhcraftlands/models/item/f_shieldspire.json
 1d27a41c6c28872eddb0fb290ea8d97c049c4b6d assets/mhcraftlands/models/item/f_sumo_stomp.json
+6b54b74660a9ed99701a346480f79d9cfb576e38 assets/mhcraftlands/models/item/f_trekker_peckaxe.json
+e16101d0e3be84ed3ba16dd38395b6162e2acf1c assets/mhcraftlands/models/item/f_valkyrie_sword.json
 6dd41ae36b383b8f9bcc3cd6eaf0324f918f3214 assets/mhcraftlands/models/item/humble_scrap.json
 ca9ea35beac667e1e44b0b6cbc9de59e8fea1a56 assets/mhcraftlands/models/item/machalite_axe.json
 66def21587bdb8fbe6aefd8a3a4467ea03bc0b9e assets/mhcraftlands/models/item/machalite_button.json

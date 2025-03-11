@@ -131,6 +131,7 @@ public class MHPetItems {
     public static final DeferredItem<Item> SCRAP_FUR = registerScrapItem("fur");
     public static final DeferredItem<Item> SCRAP_HUMBLE = registerScrapItem("humble");
     public static final DeferredItem<Item> SCRAP_SINISTER = registerScrapItem("sinister");
+    public static final DeferredItem<Item> SCRAP_DIAMOND = registerScrapItem("diamond");
 
 
 

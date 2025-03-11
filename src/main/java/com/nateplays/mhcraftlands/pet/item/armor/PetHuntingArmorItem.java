@@ -1,9 +1,11 @@
 package com.nateplays.mhcraftlands.pet.item.armor;
 
+import com.nateplays.mhcraftlands.MHMod;
 import com.nateplays.mhcraftlands.common.armor.HuntingArmorItem;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -13,6 +15,7 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import org.slf4j.Logger;
@@ -20,6 +23,8 @@ import org.slf4j.LoggerFactory;
 
 public class PetHuntingArmorItem<T extends Animal, A extends Model> extends HuntingArmorItem {
     static final Logger LOGGER = LoggerFactory.getLogger(PetHuntingArmorItem.class);
+
+    public static final ResourceLocation ELEM_WEAKNESS_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "hunting_armor_elemental_weakness");
 
     public final PetArmorMaterial petArmorMaterial;
     private final Class<T> entityClass;

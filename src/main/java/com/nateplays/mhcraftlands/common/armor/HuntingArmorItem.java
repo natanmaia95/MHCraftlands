@@ -5,12 +5,14 @@ import com.nateplays.mhcraftlands.common.attribute.ModAttributes;
 import com.nateplays.mhcraftlands.common.skill.HuntingSkillData;
 import com.nateplays.mhcraftlands.common.skill.HuntingSkillDataLoader;
 import com.nateplays.mhcraftlands.common.skill.ModEnchantmentHelper;
+import com.nateplays.mhcraftlands.common.weapon.HuntingWeaponItem;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -21,10 +23,12 @@ import net.minecraft.world.level.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Map;
+
 public class HuntingArmorItem extends ArmorItem {
     private static final Logger LOGGER = LoggerFactory.getLogger(HuntingArmorItem.class);
 
-    public static final ResourceLocation MODIFIER_ID_BASE_DEFENSE =
+    public static final ResourceLocation BASE_DEFENSE_MODIFIER_ID =
             ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID,"base_defense");
 
 
@@ -84,7 +88,7 @@ public class HuntingArmorItem extends ArmorItem {
 
     //This being added as an attribute component removes EVERY OTHER ATTRIBUTE THE ARMOR WOULD HAVE INCLUDING ARMOR VALUE :D
     public static ItemAttributeModifiers createAttributes(Holder<ArmorMaterial> material, Type type) {
-        return ItemAttributeModifiers.builder()
+        ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder()
                 .add(
                         ModAttributes.DEFENSE,
                         new AttributeModifier(
@@ -92,9 +96,8 @@ public class HuntingArmorItem extends ArmorItem {
                                 (double) material.value().getDefense(type) / 10.0, //Defense has 1 decimal digit
                                 AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.bySlot(type.getSlot())
-                )
-                //add elemental resistances here depending on data loader.
-                .build();
-
+                );
+        //TODO: add elemental resistances here depending on data loader.
+        return builder.build();
     }
 }

@@ -89,10 +89,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MHPetItems.SCRAP_BONE)
                 .requires(Items.BONE).requires(Items.STICK).unlockedBy("has_bone", has(Items.BONE)).save(recipeOutput);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MHPetItems.SCRAP_ORE)
-                .requires(ItemTags.IRON_ORES).requires(Items.STICK).unlockedBy("has_iron_ores", has(ItemTags.IRON_ORES)).save(recipeOutput);
+                .requires(Items.RAW_IRON).requires(Items.STICK).unlockedBy("has_raw_iron", has(Items.RAW_IRON)).save(recipeOutput);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MHPetItems.SCRAP_ORE)
-                .requires(ItemTags.COPPER_ORES).requires(ItemTags.COPPER_ORES).requires(Items.STICK).unlockedBy("has_copper_ores", has(ItemTags.COPPER_ORES))
-                .save(recipeOutput, MHMod.MOD_ID +":ore_scrap_from_copper_ores");
+                .requires(Items.RAW_COPPER).requires(Items.RAW_COPPER).requires(Items.STICK).unlockedBy("has_raw_copper", has(Items.RAW_COPPER))
+                .save(recipeOutput, MHMod.MOD_ID +":ore_scrap_from_raw_copper");
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MHPetItems.SCRAP_FUR)
                 .requires(ItemTags.WOOL).requires(Items.STICK).unlockedBy("has_wool", has(ItemTags.WOOL)).save(recipeOutput);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MHPetItems.SCRAP_FUR)
@@ -109,15 +109,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MHPetItems.SCRAP_SINISTER)
                 .requires(Items.SPIDER_EYE).requires(Items.STICK).unlockedBy("has_spider_eye", has(Items.SPIDER_EYE))
                 .save(recipeOutput, MHMod.MOD_ID +":sinister_scrap_from_spider_eye");
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MHPetItems.SCRAP_DIAMOND)
+                .requires(Items.DIAMOND).requires(Items.STICK).unlockedBy("has_diamond", has(Items.DIAMOND)).save(recipeOutput);
 
         palicoArmor(recipeOutput, "f_acorn", MHPetArmorItems.F_ACORN_HELM.get(), MHPetItems.SCRAP_WOOD, Items.OAK_SAPLING);
         palicoArmor(recipeOutput, "f_acorn", MHPetArmorItems.F_ACORN_MAIL.get(), MHPetItems.SCRAP_WOOD, Items.OAK_SAPLING);
         palicoArmor(recipeOutput, "f_kamura", MHPetArmorItems.F_KAMURA_HELM.get(), MHPetItems.SCRAP_FUR, ItemTags.WOOL_CARPETS);
         palicoArmor(recipeOutput, "f_kamura", MHPetArmorItems.F_KAMURA_MAIL.get(), MHPetItems.SCRAP_FUR, ItemTags.WOOL_CARPETS);
+        palicoArmor(recipeOutput, "f_duffel", MHPetArmorItems.F_DUFFEL_HELM.get(), MHPetItems.SCRAP_FUR, Ingredient.of(Items.FEATHER));
+        palicoArmor(recipeOutput, "f_duffel", MHPetArmorItems.F_DUFFEL_MAIL.get(), MHPetItems.SCRAP_FUR, Ingredient.of(Items.FEATHER));
         palicoArmor(recipeOutput, "f_bone", MHPetArmorItems.F_BONE_HELM.get(), MHPetItems.SCRAP_BONE, Ingredient.of(Items.FEATHER));
         palicoArmor(recipeOutput, "f_bone", MHPetArmorItems.F_BONE_MAIL.get(), MHPetItems.SCRAP_BONE, Ingredient.of(Items.FEATHER));
         palicoArmor(recipeOutput, "f_alloy", MHPetArmorItems.F_ALLOY_HELM.get(), MHPetItems.SCRAP_ORE, Items.IRON_INGOT);
         palicoArmor(recipeOutput, "f_alloy", MHPetArmorItems.F_ALLOY_MAIL.get(), MHPetItems.SCRAP_ORE, Items.IRON_INGOT);
+        palicoArmor(recipeOutput, "f_creeper", MHPetArmorItems.F_CREEPER_HELM.get(), MHPetItems.SCRAP_SINISTER, Items.TNT);
+        palicoArmor(recipeOutput, "f_creeper", MHPetArmorItems.F_CREEPER_MAIL.get(), MHPetItems.SCRAP_SINISTER, Items.TNT);
         palicoArmor(recipeOutput, "f_red", MHPetArmorItems.F_RED_HELM.get(), MHPetItems.SCRAP_FUR, Items.RED_WOOL);
         palicoArmor(recipeOutput, "f_red", MHPetArmorItems.F_RED_MAIL.get(), MHPetItems.SCRAP_FUR, Items.RED_WOOL);
         palicoArmor(recipeOutput, "f_mosgharl", MHPetArmorItems.F_MOSGHARL_HELM.get(), MHPetItems.SCRAP_HUMBLE, Ingredient.EMPTY);
@@ -126,15 +132,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         palicoArmor(recipeOutput, "f_frankie", MHPetArmorItems.F_FRANKIE_MAIL.get(), MHPetItems.SCRAP_SINISTER, Items.ROTTEN_FLESH);
         palicoArmor(recipeOutput, "f_ghost", MHPetArmorItems.F_GHOST_HELM.get(), MHPetItems.SCRAP_SINISTER, Items.CARVED_PUMPKIN);
         palicoArmor(recipeOutput, "f_ghost", MHPetArmorItems.F_GHOST_MAIL.get(), MHPetItems.SCRAP_SINISTER, Items.WHITE_BANNER);
+        palicoArmor(recipeOutput, "f_diamond", MHPetArmorItems.F_DIAMOND_HELM.get(), MHPetItems.SCRAP_DIAMOND, Items.PHANTOM_MEMBRANE);
+        palicoArmor(recipeOutput, "f_diamond", MHPetArmorItems.F_DIAMOND_MAIL.get(), MHPetItems.SCRAP_DIAMOND, Items.DEEPSLATE);
 
         palicoWeapon(recipeOutput, "f_kamura", MHPetWeaponItems.F_KAMURA_BOKKEN.get(), MHPetItems.SCRAP_WOOD, Ingredient.EMPTY, 0);
         palicoWeapon(recipeOutput, "f_acorn", MHPetWeaponItems.F_BONE_PICK.get(), MHPetItems.SCRAP_BONE, Ingredient.EMPTY, 2);
+        palicoWeapon(recipeOutput, "f_duffel", MHPetWeaponItems.F_TREKKER_PECKAXE.get(), MHPetItems.SCRAP_ORE, Ingredient.EMPTY, 2);
         palicoWeapon(recipeOutput, "f_bone", MHPetWeaponItems.F_BONE_HAMMER.get(), MHPetItems.SCRAP_BONE, Items.BONE, 1);
         palicoWeapon(recipeOutput, "f_alloy", MHPetWeaponItems.F_IRON_SWORD.get(), MHPetItems.SCRAP_ORE, Ingredient.EMPTY, 0);
+        palicoWeapon(recipeOutput, "f_creeper", MHPetWeaponItems.F_CREEPER_CLOBBERER.get(), MHPetItems.SCRAP_SINISTER, Items.TNT, 1);
         palicoWeapon(recipeOutput, "f_alloy", MHPetWeaponItems.F_RED_BASKET.get(), MHPetItems.SCRAP_WOOD, Items.APPLE, 4);
-        palicoWeapon(recipeOutput, "f_alloy", MHPetWeaponItems.F_MOSGHARL_BROOM.get(), MHPetItems.SCRAP_HUMBLE, Items.HAY_BLOCK, 2);
-        palicoWeapon(recipeOutput, "f_alloy", MHPetWeaponItems.F_GHOST_LANTERN.get(), MHPetItems.SCRAP_SINISTER, Items.JACK_O_LANTERN, 5);
-        palicoWeapon(recipeOutput, "f_alloy", MHPetWeaponItems.F_FRANKIE_BALL.get(), MHPetItems.SCRAP_SINISTER, Items.IRON_BLOCK, 5);
+        palicoWeapon(recipeOutput, "f_mosgharl", MHPetWeaponItems.F_MOSGHARL_BROOM.get(), MHPetItems.SCRAP_HUMBLE, Items.HAY_BLOCK, 2);
+        palicoWeapon(recipeOutput, "f_ghost", MHPetWeaponItems.F_GHOST_LANTERN.get(), MHPetItems.SCRAP_SINISTER, Items.JACK_O_LANTERN, 5);
+        palicoWeapon(recipeOutput, "f_frankie", MHPetWeaponItems.F_FRANKIE_BALL.get(), MHPetItems.SCRAP_SINISTER, Items.IRON_BLOCK, 5);
+        palicoWeapon(recipeOutput, "f_diamond", MHPetWeaponItems.F_DIAMOND_SWORD.get(), MHPetItems.SCRAP_DIAMOND, Items.DEEPSLATE, 0);
+        palicoWeapon(recipeOutput, "f_valkyrie", MHPetWeaponItems.F_VALKYRIE_SWORD.get(), MHPetItems.SCRAP_DIAMOND, Items.BLUE_ICE, 0);
     }
 
 

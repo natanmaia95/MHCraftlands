@@ -18,10 +18,14 @@ public class MHPetWeaponTiers {
             64, 1.0f, () -> Ingredient.of(MHPetItems.SCRAP_WOOD));
     public static final Tier F_BONE_PICK = makePetWeaponTier(
             64, 1.0f, () -> Ingredient.of(MHPetItems.SCRAP_BONE));
+    public static final Tier F_TREKKER_PECKAXE = makePetWeaponTier(
+            64, 1.0f, () -> Ingredient.of(MHPetItems.SCRAP_ORE));
     public static final Tier F_BONE_HAMMER = makePetWeaponTier(
             128, 1.5f, () -> Ingredient.of(MHPetItems.SCRAP_BONE));
     public static final Tier F_IRON_SWORD = makePetWeaponTier(
             128, 1.5f, () -> Ingredient.of(MHPetItems.SCRAP_ORE));
+    public static final Tier F_CREEPER_CLOBBERER = makePetWeaponTier(
+            128, 1.5f, () -> Ingredient.of(MHPetItems.SCRAP_SINISTER));
     public static final Tier F_RED_BASKET = makePetWeaponTier(
             128, 1.7f, () -> Ingredient.of(MHPetItems.SCRAP_WOOD));
     public static final Tier F_MOSGHARL_BROOM = makePetWeaponTier(
@@ -30,6 +34,10 @@ public class MHPetWeaponTiers {
             256, 2.0f, () -> Ingredient.of(MHPetItems.SCRAP_SINISTER));
     public static final Tier F_FRANKIE_BALL = makePetWeaponTier(
             256, 2.0f, () -> Ingredient.of(MHPetItems.SCRAP_SINISTER));
+    public static final Tier F_DIAMOND_SWORD = makePetWeaponTier(
+            512, 3.0f, () -> Ingredient.of(MHPetItems.SCRAP_DIAMOND));
+    public static final Tier F_VALKYRIE_SWORD = makePetWeaponTier(
+            512, 2.0f, () -> Ingredient.of(MHPetItems.SCRAP_DIAMOND));
 
 
 

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "f_creeper",
+  "key": {
+    "A": {
+      "item": "mhcraftlands:sinister_scrap"
+    },
+    "B": {
+      "item": "minecraft:tnt"
+    },
+    "I": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "ABA",
+    " A ",
+    " I "
+  ],
+  "result": {
+    "count": 1,
+    "id": "mhcraftlands:f_creeper_clobberer"
+  }
+}

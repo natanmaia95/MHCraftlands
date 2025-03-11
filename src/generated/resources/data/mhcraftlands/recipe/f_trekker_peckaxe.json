@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "f_duffel",
+  "key": {
+    "A": {
+      "item": "mhcraftlands:ore_scrap"
+    },
+    "B": {
+      "item": "mhcraftlands:ore_scrap"
+    },
+    "I": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " B ",
+    " A ",
+    " I "
+  ],
+  "result": {
+    "count": 1,
+    "id": "mhcraftlands:f_trekker_peckaxe"
+  }
+}

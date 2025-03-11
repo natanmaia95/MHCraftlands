@@ -3,6 +3,7 @@ package com.nateplays.mhcraftlands.common.weapon;
 
 import com.nateplays.mhcraftlands.MHMod;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.protocol.game.ClientboundAnimatePacket;
 import net.minecraft.resources.ResourceLocation;
@@ -13,6 +14,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
@@ -28,8 +30,8 @@ import net.neoforged.neoforge.common.ItemAbility;
 import java.util.List;
 
 public abstract class HuntingWeaponItem extends TieredItem {
-    public static final ResourceLocation HUNTING_WEAPON_EXTRA_RANGE_ID = ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "hunting_weapon_extra_range");
-    public static final ResourceLocation HUNTING_WEAPON_BASE_ELEMENTAL_DAMAGE_ID = ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "hunting_weapon_base_elemental_damage");
+    public static final ResourceLocation EXTRA_RANGE_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "hunting_weapon_extra_range");
+    public static final ResourceLocation ELEM_DAMAGE_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "hunting_weapon_elemental_damage");
 
 
     public HuntingWeaponItem(Tier tier, Item.Properties properties) {
@@ -53,11 +55,18 @@ public abstract class HuntingWeaponItem extends TieredItem {
                         (double)(damageMultiplier * tier.getAttackDamageBonus()), AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID,
                         (double)attackSpeed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-                .add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(HUNTING_WEAPON_EXTRA_RANGE_ID,
+                .add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(EXTRA_RANGE_MODIFIER_ID,
                         (double)extraAttackRange, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                 .build();
     }
 
+    public static ItemAttributeModifiers createAttrsWithElement(Holder<Attribute> elemAttributeHolder, float amount, ItemAttributeModifiers originalModifiers) {
+        return originalModifiers.withModifierAdded(
+                elemAttributeHolder,
+                new AttributeModifier(HuntingWeaponItem.ELEM_DAMAGE_MODIFIER_ID, amount, AttributeModifier.Operation.ADD_VALUE),
+                EquipmentSlotGroup.MAINHAND);
+    }
+//TODO
 
 
     public float getAttackDamageMultiplier() {

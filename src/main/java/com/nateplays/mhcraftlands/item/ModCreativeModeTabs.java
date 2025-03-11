@@ -111,21 +111,29 @@ public class ModCreativeModeTabs {
 
                         output.accept(MHPetWeaponItems.F_KAMURA_BOKKEN);
                         output.accept(MHPetWeaponItems.F_BONE_PICK);
+                        output.accept(MHPetWeaponItems.F_TREKKER_PECKAXE);
                         output.accept(MHPetWeaponItems.F_BONE_HAMMER);
                         output.accept(MHPetWeaponItems.F_IRON_SWORD);
+                        output.accept(MHPetWeaponItems.F_CREEPER_CLOBBERER);
                         output.accept(MHPetWeaponItems.F_RED_BASKET);
                         output.accept(MHPetWeaponItems.F_MOSGHARL_BROOM);
                         output.accept(MHPetWeaponItems.F_GHOST_LANTERN);
                         output.accept(MHPetWeaponItems.F_FRANKIE_BALL);
+                        output.accept(MHPetWeaponItems.F_DIAMOND_SWORD);
+                        output.accept(MHPetWeaponItems.F_VALKYRIE_SWORD);
 
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_ACORN_HELM.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_ACORN_MAIL.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_KAMURA_HELM.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_KAMURA_MAIL.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_DUFFEL_HELM.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_DUFFEL_MAIL.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_BONE_HELM.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_BONE_MAIL.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_ALLOY_HELM.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_ALLOY_MAIL.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_CREEPER_HELM.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_CREEPER_MAIL.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_RED_HELM.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_RED_MAIL.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_GHOST_HELM.get(), itemDisplayParameters, output);
@@ -134,6 +142,9 @@ public class ModCreativeModeTabs {
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_MOSGHARL_MAIL.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_FRANKIE_HELM.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_FRANKIE_MAIL.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_DIAMOND_HELM.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_DIAMOND_MAIL.get(), itemDisplayParameters, output);
+
                     })
                     .build());
 

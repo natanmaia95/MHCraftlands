@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
-  "group": "f_alloy",
+  "group": "f_mosgharl",
   "key": {
     "A": {
       "item": "mhcraftlands:humble_scrap"

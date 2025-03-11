@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "f_valkyrie",
+  "key": {
+    "A": {
+      "item": "mhcraftlands:diamond_scrap"
+    },
+    "B": {
+      "item": "minecraft:blue_ice"
+    },
+    "I": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " A ",
+    " B ",
+    "AIA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mhcraftlands:f_valkyrie_sword"
+  }
+}
