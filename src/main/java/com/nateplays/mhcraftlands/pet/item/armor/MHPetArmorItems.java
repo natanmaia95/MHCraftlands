@@ -29,11 +29,20 @@ public class MHPetArmorItems {
 
     public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel<PalicoEntity>>> F_ACORN_HELM = PET_ARMOR_ITEMS.register("f_acorn_helm", () -> new PetHuntingArmorItem<>(
             MHPetArmorMaterials.F_ACORN, ArmorItem.Type.HELMET,
-            new Item.Properties().durability(150), PalicoEntity.class
+            new Item.Properties().durability(100), PalicoEntity.class
     ));
     public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel<PalicoEntity>>> F_ACORN_MAIL = PET_ARMOR_ITEMS.register("f_acorn_mail", () -> new PetHuntingArmorItem<>(
             MHPetArmorMaterials.F_ACORN, ArmorItem.Type.CHESTPLATE,
-            new Item.Properties().durability(150), PalicoEntity.class
+            new Item.Properties().durability(100), PalicoEntity.class
+    ));
+
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel<PalicoEntity>>> F_MELYNX_HELM = PET_ARMOR_ITEMS.register("f_melynx_helm", () -> new PetHuntingArmorItem<>(
+            MHPetArmorMaterials.F_MELYNX, ArmorItem.Type.HELMET,
+            new Item.Properties().durability(100), PalicoEntity.class
+    ));
+    public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel<PalicoEntity>>> F_MELYNX_MAIL = PET_ARMOR_ITEMS.register("f_melynx_mail", () -> new PetHuntingArmorItem<>(
+            MHPetArmorMaterials.F_MELYNX, ArmorItem.Type.CHESTPLATE,
+            new Item.Properties().durability(100), PalicoEntity.class
     ));
 
     public static final DeferredItem<PetHuntingArmorItem<PalicoEntity, PalicoModel<PalicoEntity>>> F_KAMURA_HELM = PET_ARMOR_ITEMS.register("f_kamura_helm", () -> new PetHuntingArmorItem<>(

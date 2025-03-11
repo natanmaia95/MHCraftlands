@@ -36,9 +36,11 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.awt.*;
 import java.util.Collections;
 import java.util.List;
 
@@ -47,8 +49,10 @@ public class MHPetItems {
 
 
     public static final DeferredItem<SpawnEggItem> FELYNE_SPAWN_EGG = PET_ITEMS.register("felyne_spawn_egg",
-            () -> new SpawnEggItem(MHPetEntities.FELYNE.get(), 0xdecc99, 0x453e2a, new Item.Properties()));
-    //TODO: learn how to use DeferredSpawnEggItem
+            () -> new DeferredSpawnEggItem(MHPetEntities.FELYNE, 0xdecc99, 0x453e2a, new Item.Properties()));
+
+    public static final DeferredItem<SpawnEggItem> MELYNX_SPAWN_EGG = PET_ITEMS.register("melynx_spawn_egg",
+            () -> new DeferredSpawnEggItem(MHPetEntities.MELYNX, Color.black.getRGB(), Color.white.getRGB(), new Item.Properties()));
 
     public static final DeferredItem<SummonFelyneItem> SUMMON_FELYNE_VOUCHER = PET_ITEMS.register("summon_felyne_voucher", SummonFelyneItem::new);
     public static final DeferredItem<Item> DISMISS_BUDDY_VOUCHER = PET_ITEMS.register("dismiss_buddy_voucher",

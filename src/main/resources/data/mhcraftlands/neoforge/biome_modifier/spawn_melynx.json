@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#mhcraftlands:spawns_melynxes",
+  "spawners": {
+    "type": "mhcraftlands:melynx",
+    "maxCount": 3,
+    "minCount": 1,
+    "weight": 5
+  }
+}

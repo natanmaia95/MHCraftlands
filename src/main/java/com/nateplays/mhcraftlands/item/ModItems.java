@@ -11,6 +11,7 @@ import com.nateplays.mhcraftlands.entity.ModEntities;
 import com.nateplays.mhcraftlands.item.custom.ChiselItem;
 import com.nateplays.mhcraftlands.item.custom.HammerItem;
 import com.nateplays.mhcraftlands.item.custom.SummonFelyneItem;
+import com.nateplays.mhcraftlands.pet.entity.MHPetEntities;
 import com.nateplays.mhcraftlands.sound.ModSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.locale.Language;
@@ -24,6 +25,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.awt.*;
 import java.util.List;
 
 public class ModItems {

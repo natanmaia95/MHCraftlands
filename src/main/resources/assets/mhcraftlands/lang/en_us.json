@@ -6,6 +6,10 @@
   "creativetab.mhcraftlands.hunter_armor_tab": "Hunter Armor",
 
   "entity.mhcraftlands.felyne": "Felyne",
+  "entity.mhcraftlands.melynx": "Melynx",
+
+  "message.mhcraftlands.item_stolen": "Your %s was stolen by %s!",
+  "message.mhcraftlands.pet_dismissed": "%s was sent to greener pastures. Goodbye!",
 
   "entity.mhcraftlands.tool_preference.prefs": "Affinities",
   "entity.mhcraftlands.tool_preference.no_prefs": "No particular affinities.",

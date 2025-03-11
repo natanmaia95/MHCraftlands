@@ -1,4 +1,4 @@
-// 1.21	2025-03-11T00:34:03.0307039	Item Models: mhcraftlands
+// 1.21	2025-03-11T18:33:17.3634552	Item Models: mhcraftlands
 08ea91963f2a430f21a37d6cf7c8c8409444bf6d assets/mhcraftlands/models/item/bone_scrap.json
 eea418b550e8141fbcb3c1319739e74b469e6c7a assets/mhcraftlands/models/item/dismiss_buddy_voucher.json
 4e66352f14f40ff3f77d85c61be43af6ddd3431b assets/mhcraftlands/models/item/earth_crystal.json
@@ -37,6 +37,9 @@ c52dc751842f1c8660b3103d3bfded56ddf6db27 assets/mhcraftlands/models/item/f_iron_
 5a56c07b8a29b2da9edea87abe9fcf6f71b592c8 assets/mhcraftlands/models/item/f_kamura_bokken.json
 50f096aacd8efba2d48d3d125e123fd48003b8ec assets/mhcraftlands/models/item/f_kamura_helm.json
 59ae332cbe54130950e4fbe1fcf82e7b916c2dcb assets/mhcraftlands/models/item/f_kamura_mail.json
+783edec59bdae7fa8a2a35c1ca9c9c654ada4fb0 assets/mhcraftlands/models/item/f_melynx_helm.json
+75482e77e79f59ab47303e0c779b08ae79e8cac4 assets/mhcraftlands/models/item/f_melynx_mail.json
+38c61bfc7be311e05b7e3cf3ce31ccc2be67376b assets/mhcraftlands/models/item/f_melynx_tool.json
 eb2f9abd4dce7298f2bcd0779c549b4ec6af86da assets/mhcraftlands/models/item/f_mosgharl_broom.json
 083bf48ac129ace8a2dd4ebc27de015e04652b89 assets/mhcraftlands/models/item/f_mosgharl_helm.json
 9a60a8b3ab09c63f749b5b63a002a28d5cc8bf3d assets/mhcraftlands/models/item/f_mosgharl_mail.json
@@ -64,6 +67,7 @@ c9c0fd5d30c8ef84a6616ade1fb26363ed626e30 assets/mhcraftlands/models/item/machali
 d0280323869b30c69350ed96ab040d630daa4f67 assets/mhcraftlands/models/item/machalite_sns.json
 27cb047b0e541fde157d1c06c7f6cabecb66ceb0 assets/mhcraftlands/models/item/machalite_sword.json
 b42a4d0523333640a64b7d852388ec5698f24efb assets/mhcraftlands/models/item/machalite_wall.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/mhcraftlands/models/item/melynx_spawn_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/mhcraftlands/models/item/mosswine_spawn_egg.json
 0006afe19e20b3679b8feed6f69b3c5cb2fdff1c assets/mhcraftlands/models/item/music_disc_huntergoforth.json
 510e46f3cab72565ae86237e80d81bf8432c0324 assets/mhcraftlands/models/item/nulberry.json

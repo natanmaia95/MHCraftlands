@@ -57,6 +57,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         withExistingParent(ModItems.MOSSWINE_SPAWN_EGG.getRegisteredName(), mcLoc("item/template_spawn_egg"));
         withExistingParent(MHPetItems.FELYNE_SPAWN_EGG.getRegisteredName(), mcLoc("item/template_spawn_egg"));
+        withExistingParent(MHPetItems.MELYNX_SPAWN_EGG.getRegisteredName(), mcLoc("item/template_spawn_egg"));
         basicItem(MHPetItems.SUMMON_FELYNE_VOUCHER.get());
         basicItem(MHPetItems.DISMISS_BUDDY_VOUCHER.get());
         basicItem(MHPetItems.TRAINING_BOOK.get());
@@ -68,6 +69,8 @@ public class ModItemModelProvider extends ItemModelProvider {
     private void registerAllPetArmorWeaponItems() {
         armorItem(MHPetArmorItems.F_ACORN_HELM);
         armorItem(MHPetArmorItems.F_ACORN_MAIL);
+        armorItem(MHPetArmorItems.F_MELYNX_HELM);
+        armorItem(MHPetArmorItems.F_MELYNX_MAIL);
         armorItem(MHPetArmorItems.F_KAMURA_HELM);
         armorItem(MHPetArmorItems.F_KAMURA_MAIL);
         armorItem(MHPetArmorItems.F_DUFFEL_HELM);
@@ -91,6 +94,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         petWeaponItem(MHPetWeaponItems.F_KAMURA_BOKKEN);
         petWeaponItem(MHPetWeaponItems.F_BONE_PICK);
+        petWeaponItem(MHPetWeaponItems.F_MELYNX_TOOL);
         petWeaponItem(MHPetWeaponItems.F_TREKKER_PECKAXE);
         petWeaponItem(MHPetWeaponItems.F_BONE_HAMMER);
         petWeaponItem(MHPetWeaponItems.F_IRON_SWORD);

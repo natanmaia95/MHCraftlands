@@ -3,8 +3,8 @@
   "biomes": "#mhcraftlands:spawns_felynes",
   "spawners": {
     "type": "mhcraftlands:felyne",
-    "maxCount": 6,
-    "minCount": 3,
-    "weight": 1
+    "maxCount": 3,
+    "minCount": 1,
+    "weight": 5
   }
 }

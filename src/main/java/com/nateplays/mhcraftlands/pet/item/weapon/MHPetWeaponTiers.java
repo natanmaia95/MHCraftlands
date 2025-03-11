@@ -18,6 +18,8 @@ public class MHPetWeaponTiers {
             64, 1.0f, () -> Ingredient.of(MHPetItems.SCRAP_WOOD));
     public static final Tier F_BONE_PICK = makePetWeaponTier(
             64, 1.0f, () -> Ingredient.of(MHPetItems.SCRAP_BONE));
+    public static final Tier F_MELYNX_TOOL = makePetWeaponTier(
+            64, 1.0f, () -> Ingredient.of(MHPetItems.SCRAP_FUR));
     public static final Tier F_TREKKER_PECKAXE = makePetWeaponTier(
             64, 1.0f, () -> Ingredient.of(MHPetItems.SCRAP_ORE));
     public static final Tier F_BONE_HAMMER = makePetWeaponTier(

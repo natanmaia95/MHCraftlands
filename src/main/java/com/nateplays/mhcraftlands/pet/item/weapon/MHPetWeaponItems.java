@@ -22,12 +22,16 @@ public class MHPetWeaponItems {
                     new Item.Properties().attributes(PetHuntingWeaponItem.createAttributes(MHPetWeaponTiers.F_KAMURA_BOKKEN)), PalicoEntity.class));
 
     public static final DeferredItem<PetHuntingWeaponItem<PalicoEntity>> F_TREKKER_PECKAXE = WEAPON_ITEMS.register("f_trekker_peckaxe",
-            () -> new PetHuntingWeaponItem<PalicoEntity>(MHPetWeaponTiers.F_TREKKER_PECKAXE,  PetHuntingWeaponItem.Range.MELEE,
+            () -> new PetHuntingWeaponItem<PalicoEntity>(MHPetWeaponTiers.F_TREKKER_PECKAXE,  PetHuntingWeaponItem.Range.RANGED,
                     new Item.Properties().attributes(PetHuntingWeaponItem.createAttributes(MHPetWeaponTiers.F_TREKKER_PECKAXE)), PalicoEntity.class));
 
     public static final DeferredItem<PetHuntingWeaponItem<PalicoEntity>> F_BONE_PICK = WEAPON_ITEMS.register("f_bone_pick",
             () -> new PetHuntingWeaponItem<PalicoEntity>(MHPetWeaponTiers.F_BONE_PICK,  PetHuntingWeaponItem.Range.MELEE,
                     new Item.Properties().attributes(PetHuntingWeaponItem.createAttributes(MHPetWeaponTiers.F_BONE_PICK)), PalicoEntity.class));
+
+    public static final DeferredItem<PetHuntingWeaponItem<PalicoEntity>> F_MELYNX_TOOL = WEAPON_ITEMS.register("f_melynx_tool",
+            () -> new PetHuntingWeaponItem<PalicoEntity>(MHPetWeaponTiers.F_MELYNX_TOOL,  PetHuntingWeaponItem.Range.MELEE,
+                    new Item.Properties().attributes(PetHuntingWeaponItem.createAttributes(MHPetWeaponTiers.F_MELYNX_TOOL)), PalicoEntity.class));
 
     public static final DeferredItem<PetHuntingWeaponItem<PalicoEntity>> F_BONE_HAMMER = WEAPON_ITEMS.register("f_bone_hammer",
             () -> new PetHuntingWeaponItem<PalicoEntity>(MHPetWeaponTiers.F_BONE_HAMMER,  PetHuntingWeaponItem.Range.MELEE,

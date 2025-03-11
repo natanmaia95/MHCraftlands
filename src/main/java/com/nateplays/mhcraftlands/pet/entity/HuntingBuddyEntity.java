@@ -269,11 +269,9 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
             }
 
         } else {
+            this.dropEquipment();
             stack.shrink(1);
-            MutableComponent dismissMessage = MutableComponent.create(this.getDisplayName().getContents());
-            dismissMessage.append(Component.literal(" was sent to greener pastures. Goodbye!"));
-            player.sendSystemMessage(dismissMessage);
-            //TODO: make translatable
+            player.sendSystemMessage(Component.translatable("message.mhcraftlands.pet_dismissed", this.getDisplayName()));
 
             this.remove(RemovalReason.KILLED);
 
@@ -298,7 +296,15 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
         return 20.0;
     }
 
-
+    @Override
+    public void dropEquipment() {
+        super.dropEquipment();
+        // If tame, drop armor and tools. Won't happen on death but will on dismiss.
+        if (isTame()) {
+            for (ItemStack stack : this.getAllSlots()) this.spawnAtLocation(stack);
+            for (ItemStack stack : this.getToolsContainer().getItems()) this.spawnAtLocation(stack);
+        }
+    }
 
     public boolean isValidArmorItem(ItemStack stack) {
         if (stack.getItem() instanceof PetHuntingArmorItem<?,?> petHuntingArmorItem) {

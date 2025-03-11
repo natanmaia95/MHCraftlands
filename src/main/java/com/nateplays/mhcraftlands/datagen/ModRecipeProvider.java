@@ -114,6 +114,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         palicoArmor(recipeOutput, "f_acorn", MHPetArmorItems.F_ACORN_HELM.get(), MHPetItems.SCRAP_WOOD, Items.OAK_SAPLING);
         palicoArmor(recipeOutput, "f_acorn", MHPetArmorItems.F_ACORN_MAIL.get(), MHPetItems.SCRAP_WOOD, Items.OAK_SAPLING);
+        palicoArmor(recipeOutput, "f_melynx", MHPetArmorItems.F_MELYNX_HELM.get(), MHPetItems.SCRAP_FUR, Items.GREEN_CARPET);
+        palicoArmor(recipeOutput, "f_melynx", MHPetArmorItems.F_MELYNX_MAIL.get(), MHPetItems.SCRAP_FUR, Items.GREEN_CARPET);
         palicoArmor(recipeOutput, "f_kamura", MHPetArmorItems.F_KAMURA_HELM.get(), MHPetItems.SCRAP_FUR, ItemTags.WOOL_CARPETS);
         palicoArmor(recipeOutput, "f_kamura", MHPetArmorItems.F_KAMURA_MAIL.get(), MHPetItems.SCRAP_FUR, ItemTags.WOOL_CARPETS);
         palicoArmor(recipeOutput, "f_duffel", MHPetArmorItems.F_DUFFEL_HELM.get(), MHPetItems.SCRAP_FUR, Ingredient.of(Items.FEATHER));
@@ -137,6 +139,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         palicoWeapon(recipeOutput, "f_kamura", MHPetWeaponItems.F_KAMURA_BOKKEN.get(), MHPetItems.SCRAP_WOOD, Ingredient.EMPTY, 0);
         palicoWeapon(recipeOutput, "f_acorn", MHPetWeaponItems.F_BONE_PICK.get(), MHPetItems.SCRAP_BONE, Ingredient.EMPTY, 2);
+        palicoWeapon(recipeOutput, "f_melynx", MHPetWeaponItems.F_MELYNX_TOOL.get(), MHPetItems.SCRAP_WOOD, Items.RABBIT_HIDE, 2);
         palicoWeapon(recipeOutput, "f_duffel", MHPetWeaponItems.F_TREKKER_PECKAXE.get(), MHPetItems.SCRAP_ORE, Ingredient.EMPTY, 2);
         palicoWeapon(recipeOutput, "f_bone", MHPetWeaponItems.F_BONE_HAMMER.get(), MHPetItems.SCRAP_BONE, Items.BONE, 1);
         palicoWeapon(recipeOutput, "f_alloy", MHPetWeaponItems.F_IRON_SWORD.get(), MHPetItems.SCRAP_ORE, Ingredient.EMPTY, 0);

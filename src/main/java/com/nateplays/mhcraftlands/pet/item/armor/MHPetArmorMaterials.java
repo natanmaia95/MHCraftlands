@@ -27,6 +27,9 @@ public class MHPetArmorMaterials {
     public static final Holder<ArmorMaterial> F_ACORN = registerPetMaterial(PET_ARMOR_MATERIALS, "f_acorn",
             5, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(MHPetItems.SCRAP_WOOD));
 
+    public static final Holder<ArmorMaterial> F_MELYNX = registerPetMaterial(PET_ARMOR_MATERIALS, "f_melynx",
+            5, SoundEvents.ARMOR_EQUIP_TURTLE, () -> Ingredient.of(MHPetItems.SCRAP_FUR));
+
     public static final Holder<ArmorMaterial> F_KAMURA = registerPetMaterial(PET_ARMOR_MATERIALS, "f_kamura",
             5, SoundEvents.ARMOR_EQUIP_LEATHER, () -> Ingredient.of(MHPetItems.SCRAP_FUR));
 

@@ -62,6 +62,7 @@ public class ModCreativeModeTabs {
 
 //                        output.accept(ModItems.MOSSWINE_SPAWN_EGG);
                         output.accept(MHPetItems.FELYNE_SPAWN_EGG);
+                        output.accept(MHPetItems.MELYNX_SPAWN_EGG);
                         output.accept(MHPetItems.SUMMON_FELYNE_VOUCHER);
                         output.accept(MHPetItems.DISMISS_BUDDY_VOUCHER);
                         output.accept(MHPetItems.TRAINING_BOOK);
@@ -124,6 +125,8 @@ public class ModCreativeModeTabs {
 
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_ACORN_HELM.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_ACORN_MAIL.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_MELYNX_HELM.get(), itemDisplayParameters, output);
+                        outputAcceptHuntingArmorItem(MHPetArmorItems.F_MELYNX_MAIL.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_KAMURA_HELM.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_KAMURA_MAIL.get(), itemDisplayParameters, output);
                         outputAcceptHuntingArmorItem(MHPetArmorItems.F_DUFFEL_HELM.get(), itemDisplayParameters, output);

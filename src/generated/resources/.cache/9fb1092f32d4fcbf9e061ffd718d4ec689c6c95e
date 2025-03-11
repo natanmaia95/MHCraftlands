@@ -1,4 +1,4 @@
-// 1.21	2025-03-11T00:34:03.0337052	Recipes
+// 1.21	2025-03-11T18:33:17.3664529	Recipes
 e90a737f0ca10722cd92ce5730bd8a1f78e391db data/mhcraftlands/advancement/recipes/building_blocks/machalite_slab.json
 6cc29b2d5bae9ed8c57b2c8c0f067fb39fcb9b33 data/mhcraftlands/advancement/recipes/building_blocks/machalite_stairs.json
 7e657ca4a4859894e855304b5e0831b569fa17fc data/mhcraftlands/advancement/recipes/building_blocks/machalite_wall.json
@@ -28,6 +28,9 @@ e0a9b6e5eb6767247b7d3eaa9ac02afca197070f data/mhcraftlands/advancement/recipes/c
 e73d38b33bf961b8f38f05acbdeacb5497c2b2d6 data/mhcraftlands/advancement/recipes/combat/f_kamura_bokken.json
 b41aa7144606bcdb9345c02bbf14331aac193170 data/mhcraftlands/advancement/recipes/combat/f_kamura_helm.json
 9426eef39b1830bd136225fd18b8efa47f07d7bf data/mhcraftlands/advancement/recipes/combat/f_kamura_mail.json
+015aaaaef1c0ffa889967c36f5a4dfce198903b8 data/mhcraftlands/advancement/recipes/combat/f_melynx_helm.json
+6d18f6e85367aed8dfa44b61694ce171336a430d data/mhcraftlands/advancement/recipes/combat/f_melynx_mail.json
+0b919516cd957b3ee877196bf6cc11514b0e4bc2 data/mhcraftlands/advancement/recipes/combat/f_melynx_tool.json
 83d72ea8e94f8f808e90b22ff29a88f102416451 data/mhcraftlands/advancement/recipes/combat/f_mosgharl_broom.json
 d76a56565275d1870b500e33194c0b457fb5e239 data/mhcraftlands/advancement/recipes/combat/f_mosgharl_helm.json
 4244230768213cdc57943feba9f2061892950548 data/mhcraftlands/advancement/recipes/combat/f_mosgharl_mail.json
@@ -92,6 +95,9 @@ e8dc5cdabf87adb0942bf0299416b62b31257478 data/mhcraftlands/recipe/f_iron_sword.j
 3cffe5584e1f48881e0612c33c11421f6a54fe17 data/mhcraftlands/recipe/f_kamura_bokken.json
 1a3252396077e82b09093d07cd5d7b431d6c1665 data/mhcraftlands/recipe/f_kamura_helm.json
 bac03bd6c99d62ba76f3578d71e3db58d2865db1 data/mhcraftlands/recipe/f_kamura_mail.json
+4db0462d3ac3614244473bfb176e81120fda28f6 data/mhcraftlands/recipe/f_melynx_helm.json
+b25fd8d38bad42583114389eb1d99e6e02339757 data/mhcraftlands/recipe/f_melynx_mail.json
+eefb3e0fc2b4f991ae414d8bffca1dfd7508ffa9 data/mhcraftlands/recipe/f_melynx_tool.json
 eef7a019f2095441eeb1127a7c48f403986ae97a data/mhcraftlands/recipe/f_mosgharl_broom.json
 02a614575786ece9379f5be94e3aa15ac4bf77d6 data/mhcraftlands/recipe/f_mosgharl_helm.json
 e44cad88a4c2fd1ec9c77bfc497f01b27e6554fe data/mhcraftlands/recipe/f_mosgharl_mail.json

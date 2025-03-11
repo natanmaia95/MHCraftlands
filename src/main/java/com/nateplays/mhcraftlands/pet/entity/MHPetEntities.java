@@ -23,6 +23,11 @@ public class MHPetEntities {
                     .sized(0.5f, 0.8f).build("felyne")
             );
 
+    public static final DeferredHolder<EntityType<?>, EntityType<Melynx>> MELYNX =
+            ENTITY_TYPES.register("melynx", () -> EntityType.Builder.of(Melynx::new, MobCategory.CREATURE)
+                    .sized(0.5f, 0.8f).build("melynx")
+            );
+
 
 
     public static final Supplier<EntityType<FelyneBoomerangEntity>> FELYNE_BOOMERANG =

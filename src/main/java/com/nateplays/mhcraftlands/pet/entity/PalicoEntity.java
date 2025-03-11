@@ -86,7 +86,7 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         this.goalSelector.addGoal(1, new TamableAnimal.TamableAnimalPanicGoal(2.0, DamageTypeTags.PANIC_ENVIRONMENTAL_CAUSES));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
 
-        this.goalSelector.addGoal(5, new FollowOwnerGoal(this, 1.5, 32.0F, 16.0F));
+        this.goalSelector.addGoal(5, new FollowOwnerGoal(this, 1.5, 32.0F, 8.0F));
         this.goalSelector.addGoal(3, new HuntingBuddyUseToolGoal(this));
 
         //this.goalSelector.addGoal(3, new Wolf.WolfAvoidEntityGoal<>(this, Llama.class, 24.0F, 1.5, 1.5));
@@ -114,7 +114,7 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
         this.targetSelector.addGoal(3, new HuntingBuddyHurtByTargetGoal(this).setAlertOthers());
-        this.targetSelector.addGoal(4, new HurtByTargetGoal(this));
+//        this.targetSelector.addGoal(4, new HurtByTargetGoal(this));
 //        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
 //        this.targetSelector.addGoal(8, new ResetUniversalAngerTargetGoal<>(this, true));
 
@@ -229,6 +229,13 @@ public abstract class PalicoEntity extends HuntingBuddyEntity implements ILevela
     @Override
     public @NotNull SimpleContainer getInventory() {
         return this.pouchInventory;
+    }
+
+    @Override
+    public void dropEquipment() {
+        super.dropEquipment();
+        // Drop inventory regardless if tame.
+        for (ItemStack stack : this.getInventory().getItems()) this.spawnAtLocation(stack);
     }
 
     public boolean wantsToPickUp(ItemStack stack) {

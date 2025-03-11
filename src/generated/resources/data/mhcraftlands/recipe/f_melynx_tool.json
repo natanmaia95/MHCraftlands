@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "f_melynx",
+  "key": {
+    "A": {
+      "item": "mhcraftlands:wood_scrap"
+    },
+    "B": {
+      "item": "minecraft:rabbit_hide"
+    },
+    "I": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " B ",
+    " A ",
+    " I "
+  ],
+  "result": {
+    "count": 1,
+    "id": "mhcraftlands:f_melynx_tool"
+  }
+}

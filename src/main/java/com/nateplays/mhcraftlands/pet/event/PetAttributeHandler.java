@@ -12,5 +12,6 @@ public class PetAttributeHandler {
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(MHPetEntities.FELYNE.get(), PalicoEntity.createAttributes().build()); //TODO: try moving this to entity itself?
+        event.put(MHPetEntities.MELYNX.get(), PalicoEntity.createAttributes().build());
     }
 }

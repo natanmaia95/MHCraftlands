@@ -20,6 +20,7 @@ public class PetClientEventHandler {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         EntityRenderers.register(MHPetEntities.FELYNE.get(), PalicoRenderer::new);
+        EntityRenderers.register(MHPetEntities.MELYNX.get(), PalicoRenderer::new);
     }
 
     @SubscribeEvent

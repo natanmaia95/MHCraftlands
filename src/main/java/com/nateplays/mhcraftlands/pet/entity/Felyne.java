@@ -4,6 +4,7 @@ import com.nateplays.mhcraftlands.MHMod;
 import com.nateplays.mhcraftlands.common.weapon.ModWeaponItems;
 import com.nateplays.mhcraftlands.pet.item.weapon.MHPetWeaponItems;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
@@ -45,7 +46,5 @@ public class Felyne extends PalicoEntity {
     public boolean isFood(ItemStack stack) { return false; }
 
     @Override
-    public boolean isTameItem(ItemStack stack) {
-        return stack.getItem() == Items.EMERALD;
-    }
+    public boolean isTameItem(ItemStack stack) { return stack.is(ItemTags.FISHES); }
 }
