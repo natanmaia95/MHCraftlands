@@ -1,0 +1,19 @@
+{
+  "defense": 12,
+  "resistances": [
+    {
+      "name": "fire_elemental_resistance",
+      "value": -10
+    },
+    {
+      "name": "dragon_elemental_resistance",
+      "value": 10
+    }
+  ],
+  "skills": [
+    {
+      "skill": "mhcraftlands:mushroomancer",
+      "level": 2
+    }
+  ]
+}

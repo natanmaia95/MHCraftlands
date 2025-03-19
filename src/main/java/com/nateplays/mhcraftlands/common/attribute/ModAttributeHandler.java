@@ -39,7 +39,10 @@ public class ModAttributeHandler {
     public static void entityAttributeModificationEvent(EntityAttributeModificationEvent event) {
         event.add(EntityType.PLAYER, ModAttributes.DEFENSE);
         event.add(EntityType.PLAYER, ModAttributes.EATING_SPEED);
-        for (DeferredHolder<Attribute, Attribute> attrHolder : ModAttributes.allElemDamages()) {
+        for (Holder<Attribute> attrHolder : ModAttributes.allElemDamages()) {
+            event.add(EntityType.PLAYER, attrHolder);
+        }
+        for (Holder<Attribute> attrHolder : ModAttributes.allElemResistances()) {
             event.add(EntityType.PLAYER, attrHolder);
         }
 
@@ -51,8 +54,8 @@ public class ModAttributeHandler {
                 // Add your custom attributes to the entity type
 //                System.out.println("living type:" + entityType.toString());
                 event.add(livingType, ModAttributes.DEFENSE);
-                for (DeferredHolder<Attribute, Attribute> weaknessHolder : ModAttributes.allElemWeaknesses()) {
-                    event.add(livingType, weaknessHolder);
+                for (Holder<Attribute> resistance : ModAttributes.allElemResistances()) {
+                    event.add(livingType, resistance, 0);
                 }
                 // Add more attributes as needed
 

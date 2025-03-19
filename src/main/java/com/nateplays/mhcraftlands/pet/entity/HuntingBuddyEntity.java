@@ -8,6 +8,7 @@ import com.nateplays.mhcraftlands.pet.item.PetToolItem;
 import com.nateplays.mhcraftlands.pet.item.armor.PetHuntingArmorItem;
 import com.nateplays.mhcraftlands.pet.item.custom.PetTrainingBookItem;
 import com.nateplays.mhcraftlands.pet.item.weapon.PetHuntingWeaponItem;
+import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -22,6 +23,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
@@ -29,11 +31,14 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Map;
+import java.util.Set;
 import java.util.function.Predicate;
 
 public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevelableEntity, PetToolUser {
@@ -82,9 +87,17 @@ public abstract class HuntingBuddyEntity extends TamableAnimal implements ILevel
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes()
-                .add(ModAttributes.DEFENSE)
-                .add(ModAttributes.FIRE_DAMAGE).add(ModAttributes.WATER_DAMAGE); //TODO: add the rest of them
+        AttributeSupplier.Builder builder = Mob.createMobAttributes()
+                .add(ModAttributes.DEFENSE);
+        //add element stuff
+        for (DeferredHolder<Attribute, Attribute> elemDamageAttr : ModAttributes.allElemDamages()) {
+            builder = builder.add(elemDamageAttr);
+        }
+        for (DeferredHolder<Attribute, Attribute> elemResistAttr : ModAttributes.allElemResistances()) {
+            builder = builder.add(elemResistAttr);
+        }
+        //finish
+        return builder;
     }
 
     public abstract ResourceLocation getTextureLocation();

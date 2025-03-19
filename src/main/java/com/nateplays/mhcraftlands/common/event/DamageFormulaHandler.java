@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import com.nateplays.mhcraftlands.MHMod;
 import com.nateplays.mhcraftlands.common.attribute.ModAttributes;
 import com.nateplays.mhcraftlands.common.weapon.HuntingWeaponItem;
+import net.minecraft.core.Holder;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -71,12 +72,14 @@ public class DamageFormulaHandler {
                     if (tempDamage == 0) continue;
 //                    LOGGER.debug("element base damage: %f".formatted(tempDamage));
                     //defense
-                    DeferredHolder<Attribute, Attribute> weaknessHolder = ModAttributes.ELEMENT_DAMAGE_TO_WEAKNESS.get(elemDamageAttrHolder);
-                    AttributeInstance weaknessAttrInstance = targetEntity.getAttribute(weaknessHolder);
+                    Holder<Attribute> resistanceHolder = ModAttributes.ELEMENT_DAMAGE_TO_RESISTANCE.get(elemDamageAttrHolder);
+                    AttributeInstance weaknessAttrInstance = targetEntity.getAttribute(resistanceHolder);
+                    double damageRate = 100.0;
                     if (weaknessAttrInstance != null) {
-                        tempDamage *= weaknessAttrInstance.getValue();
+                        damageRate = Math.max(0, 100.0 - weaknessAttrInstance.getValue());
 //                        LOGGER.debug("element weakness: %f".formatted(weaknessAttrInstance.getValue()));
                     }
+                    tempDamage *= damageRate/100.0;
                     //apply
                     elementalDamage += tempDamage;
                 }

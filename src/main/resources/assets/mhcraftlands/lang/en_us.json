@@ -110,6 +110,11 @@
   "attribute.mhcraftlands.thunder_elemental_damage": "§e⚡Thunder Damage",
   "attribute.mhcraftlands.ice_elemental_damage": "§b❄Ice Damage",
   "attribute.mhcraftlands.dragon_elemental_damage": "§5☠Dragon Damage",
+  "attribute.mhcraftlands.fire_elemental_resistance": "§c🔥Fire Resistance",
+  "attribute.mhcraftlands.water_elemental_resistance": "§9🌊Water Resistance",
+  "attribute.mhcraftlands.thunder_elemental_resistance": "§e⚡Thunder Resistance",
+  "attribute.mhcraftlands.ice_elemental_resistance": "§b❄Ice Resistance",
+  "attribute.mhcraftlands.dragon_elemental_resistance": "§5☠Dragon Resistance",
 
   "enchantment.mhcraftlands.quick_eating": "Quick Eating",
   "enchantment.mhcraftlands.muck_resistance": "Muck Resistance",

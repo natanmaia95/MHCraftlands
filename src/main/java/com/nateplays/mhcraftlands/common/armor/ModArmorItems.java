@@ -83,7 +83,8 @@ public class ModArmorItems {
 
     public static final Supplier<PlayerHuntingArmorItem<Player, ChaosPlateAModel<Player>>> CHAOS_PLATE_A =
             ARMOR_ITEMS.register("chaos_plate_a", () -> new PlayerHuntingArmorItem<>(
-                    ModArmorMaterials.CHAOS_PLATE, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(150),
+                    ModArmorMaterials.CHAOS_PLATE, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties().durability(150),
                     ChaosPlateAModel.class
             ));
 

@@ -45,6 +45,12 @@ public class CommonAttributeHandler {
                     0.0, AttributeModifier.Operation.ADD_MULTIPLIED_BASE
             ));
         }
+        for (Holder<Attribute> resistanceHolder : ModAttributes.ELEMENT_DAMAGE_TO_RESISTANCE.values()) {
+            attributes.put(resistanceHolder, new AttributeModifier(
+                    ResourceLocation.fromNamespaceAndPath(MHMod.MOD_ID, "default." + resistanceHolder.getKey().location().getPath()),
+                    0.0, AttributeModifier.Operation.ADD_MULTIPLIED_BASE
+            ));
+        }
         // add more attributes as needed
         return attributes;
     }

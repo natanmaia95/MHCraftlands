@@ -1,7 +1,6 @@
 {
   "values": [
     "#minecraft:is_forest",
-    "#minecraft:is_desert",
     "#minecraft:is_hill",
     "#minecraft:is_savanna"
   ]
